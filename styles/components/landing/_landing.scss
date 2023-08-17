@@ -1,5 +1,27 @@
 .landing {
     background-image: url("/landing/hero.jpg");
     background-size: cover;
-    height: 800px;
+    height: 65vh;
+    background-position: center;
+    position: relative;
+
+    &__meet {
+        position: absolute;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
+
+        &--title {
+            color: $textColor;
+        }
+
+        &--form {
+            background-color: #16120D60;
+        }
+
+        &--to {
+            color: white;
+        }
+    }
+
 }
