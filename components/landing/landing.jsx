@@ -1,8 +1,9 @@
-import React from 'react'
-
+// import '../../styles/components/_landing.scss'
 const Landing = () => {
     return (
-        <div>landing</div>
+        <div className="landing">
+
+        </div>
     )
 }
 
