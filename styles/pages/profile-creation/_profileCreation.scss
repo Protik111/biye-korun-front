@@ -1,0 +1,9 @@
+.profile-creation {
+    background-color: $primaryColor;
+    min-height: 100vh;
+
+    &__form {
+        background-color: $whiteColor;
+        min-height: 95vh;
+    }
+}

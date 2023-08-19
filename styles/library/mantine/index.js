@@ -17,7 +17,8 @@ export const selectMobileStylesV2 = {
 }
 
 export const btnBackground = {
-    backgroundColor: '#F143CB',
+    // backgroundColor: '#F143CB',
+    backgroundColor: '#E64980',
 
     '&:hover': {
         backgroundColor: '#9880E7',
