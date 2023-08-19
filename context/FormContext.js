@@ -4,39 +4,24 @@ const FormContext = createContext({})
 
 export const FormProvider = ({ children }) => {
     const title = {
-        // 0: 'Billing Info',
-        // 1: 'Shipping Info',
-        // 2: 'Opt-In'
         0: 'Basic 1',
         1: 'Basic 2',
     }
 
     const [page, setPage] = useState(0)
+    const [fieldErrors, setFieldErrors] = useState({});
 
     const [data, setData] = useState({
-        // billFirstName: "",
-        // billLastName: "",
-        // billAddress1: "",
-        // billAddress2: "",
-        // billCity: "",
-        // billState: "",
-        // billZipCode: "",
-        // sameAsBilling: false,
-        // shipFirstName: "",
-        // shipLastName: "",
-        // shipAddress1: "",
-        // shipAddress2: "",
-        // shipCity: "",
-        // shipState: "",
-        // shipZipCode: "",
-        // optInNews: false
 
-        postedBy: '',
-        firstName: '',
-        lastName: '',
-        gender: '',
-        religion: '',
-        community: ''
+        basic1postedBy: '',
+        basic1firstName: '',
+        basic1lastName: '',
+        basic1gender: '',
+        basic1religion: '',
+        basic1community: '',
+        basic2email: '',
+        basic2dob: new Date(),
+        basic2country: '',
     })
 
     // const handleChange = e => {
@@ -54,6 +39,65 @@ export const FormProvider = ({ children }) => {
     //     }))
     // }
 
+
+    const validatePage = (page) => {
+        const pageData = Object.keys(data)
+            .filter((key) => key.startsWith(`basic${page + 1}`))
+            .reduce((pageData, key) => {
+                pageData[key] = data[key];
+                return pageData;
+            }, {});
+
+        const errors = {};
+
+        //basic1 validation
+        if (page === 0) {
+            if (!pageData.basic1postedBy) {
+                errors.basic1postedBy = 'Please select a profile';
+            }
+            if (!pageData.basic1firstName) {
+                errors.basic1firstName = 'First name is required';
+            }
+            if (!pageData.basic1lastName) {
+                errors.basic1lastName = 'Last name is required';
+            }
+            if (!pageData.basic1gender) {
+                errors.basic1gender = 'Please select a gender';
+            }
+            if (!pageData.basic1religion) {
+                errors.basic1religion = 'Please select a religion';
+            }
+            if (!pageData.basic1community) {
+                errors.basic1community = 'Please select a community';
+            }
+        }
+
+        //email regex
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        //basic2 validation
+        if (page === 1) {
+
+            if (!pageData.basic2email) {
+                errors.basic2email = 'Email is required';
+            }
+            if (pageData.basic2email && !emailRegex.test(pageData.basic2email)) {
+                errors.basic2email = 'Invalid email address';
+            }
+            if (!pageData.basic2dob) {
+                errors.basic2dob = 'Choose you date of birth';
+            }
+            if (!pageData.basic2country) {
+                errors.basic2country = 'Please select a country';
+            }
+        }
+
+        setFieldErrors(errors);
+
+        // Return true if there are no errors
+        return Object.keys(errors).length === 0;
+    };
+
     const handleChange = (name, value) => {
         setData((prevFormValues) => ({
             ...prevFormValues,
@@ -62,21 +106,19 @@ export const FormProvider = ({ children }) => {
     };
 
     const {
-        billAddress2,
-        sameAsBilling,
-        shipAddress2,
-        optInNews,
-        ...requiredInputs } = data
+        community,
+        ...requiredInputs
+    } = data
 
     const canSubmit = [...Object.values(requiredInputs)].every(Boolean) && page === Object.keys(title).length - 1
 
     const canNextPage1 = Object.keys(data)
-        .filter(key => key.startsWith('bill') && key !== 'billAddress2')
+        .filter(key => key.startsWith('basic1') && key !== 'community')
         .map(key => data[key])
         .every(Boolean)
 
     const canNextPage2 = Object.keys(data)
-        .filter(key => key.startsWith('ship') && key !== 'shipAddress2')
+        .filter(key => key.startsWith('basic2'))
         .map(key => data[key])
         .every(Boolean)
 
@@ -94,7 +136,7 @@ export const FormProvider = ({ children }) => {
     const submitHide = page !== Object.keys(title).length - 1 && "remove-button"
 
     return (
-        <FormContext.Provider value={{ title, page, setPage, data, setData, canSubmit, handleChange, disablePrev, disableNext, prevHide, nextHide, submitHide }}>
+        <FormContext.Provider value={{ title, page, setPage, data, setData, canSubmit, handleChange, disablePrev, disableNext, prevHide, nextHide, submitHide, validatePage, fieldErrors }}>
             {children}
         </FormContext.Provider>
     )

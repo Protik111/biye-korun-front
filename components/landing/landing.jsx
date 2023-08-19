@@ -8,6 +8,8 @@ import MultistepRegistration from "../multiStepRegistration/multistepRegistratio
 import { motherTongues, religions } from "@/staticData/InputFields/inputFields";
 // import useMediaQueryHook from "@/hooks/library/mantine/useMediaQuery";
 import useMediaQueryHookSSR from "@/hooks/library/mantine/useMediaQuerySSR";
+import Form from "../multiStepRegistration/Form";
+import { FormProvider } from "@/context/FormContext";
 
 const Landing = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -96,7 +98,10 @@ const Landing = () => {
 
             {
                 modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose}>
-                    <MultistepRegistration></MultistepRegistration>
+                    {/* <MultistepRegistration></MultistepRegistration> */}
+                    <FormProvider>
+                        <Form></Form>
+                    </FormProvider>
                 </CenteredModal>
             }
         </section>
