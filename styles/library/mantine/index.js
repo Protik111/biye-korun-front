@@ -15,3 +15,11 @@ export const selectMobileStylesV2 = {
         width: '250px',
     }
 }
+
+export const btnBackground = {
+    backgroundColor: '#F143CB',
+
+    '&:hover': {
+        backgroundColor: '#9880E7',
+    }
+}

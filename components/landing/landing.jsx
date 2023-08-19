@@ -1,6 +1,6 @@
 'use client';
 
-import { labelStyles, selectMobileStyles, selectMobileStylesV2 } from "@/styles/library/mantine";
+import { btnBackground, labelStyles, selectMobileStyles, selectMobileStylesV2 } from "@/styles/library/mantine";
 import { Button, Select } from "@mantine/core";
 import { useState } from "react";
 import CenteredModal from "../global/CenteredModal";
@@ -14,7 +14,7 @@ const Landing = () => {
 
     const { matches } = useMediaQueryHookSSR('(max-width: 640px)');
 
-    console.log('matches', matches);
+    // console.log('matches', matches);
 
     const startAge = 20;
     const endAge = 70;
@@ -64,7 +64,7 @@ const Landing = () => {
 
                         <Select
                             size="md"
-                            placeholder="Select Religion"
+                            placeholder="Select"
                             label="of religion"
                             defaultValue="20"
                             styles={{ label: labelStyles }}
@@ -87,7 +87,7 @@ const Landing = () => {
                     </div>
 
                     <div className="flex justify-center mt-15">
-                        <Button color="pink" size="md" onClick={() => setModalOpen(true)}>
+                        <Button style={btnBackground} size="md" onClick={() => setModalOpen(true)}>
                             Let's Begin
                         </Button>
                     </div>
