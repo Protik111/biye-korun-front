@@ -1,15 +1,18 @@
 "use client"
 
 import { useState } from 'react';
-import { Stepper, Button, Group } from '@mantine/core';
+import { Stepper, Button, Group, Notification } from '@mantine/core';
 import { btnBackground } from '@/styles/library/mantine';
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 import Step1 from '@/components/profile-creation/step1';
 import Step2 from '@/components/profile-creation/Step2';
+import Step3 from '@/components/profile-creation/Step3';
 
 
 const ProfileCreation = () => {
     const [active, setActive] = useState(0);
+    const [showNotification, setShowNotification] = useState(false);
+
 
     const [formValues, setFormValues] = useState({
         city: '',
@@ -23,7 +26,9 @@ const ProfileCreation = () => {
         qualification: '',
         worksWith: '',
         profession: '',
-        income: ''
+        income: '',
+        about: '',
+        phone: ''
     });
 
     const [formErrors, setFormErrors] = useState({
@@ -38,7 +43,9 @@ const ProfileCreation = () => {
         qualification: '',
         worksWith: '',
         profession: '',
-        income: ''
+        income: '',
+        about: '',
+        phone: ''
     });
 
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
@@ -49,6 +56,15 @@ const ProfileCreation = () => {
             ...step1FormValues,
         }));
         nextStep();
+
+        if (active === 2) {
+            console.log('data last', formValues)
+            setShowNotification(true)
+
+            setTimeout(() => {
+                setShowNotification(false);
+            }, 3000)
+        }
     };
 
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
@@ -56,28 +72,63 @@ const ProfileCreation = () => {
     console.log('formError', formErrors);
 
     return (
-        <div className="profile-creation py-30">
-            <div className='container profile-creation__form rounded-15'>
-                <h1 className='text-center py-20'>Let's Create The Profile Now</h1>
-                <Stepper color='pink' active={active} breakpoint="sm">
-                    <Stepper.Step label="First step" description="Create an account">
-                        <Step1
-                            onNextStep={handleStep1Next}
-                            formValues={formValues}
-                            setFormValues={setFormValues}
-                            formErrors={formErrors}
-                            setFormErrors={setFormErrors}
-                        >
-                        </Step1>
-                    </Stepper.Step>
-                    <Stepper.Step label="Second step" description="Education and qualification">
-                        <Step2></Step2>
-                    </Stepper.Step>
-                    <Stepper.Step label="Final step" description="Get full access">
-                        <h2 className='text-center'>Get Full Access</h2>
-                    </Stepper.Step>
-                </Stepper>
-                {/* 
+        <>
+
+            <div style={{
+                position: 'fixed',
+                top: '20px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                zIndex: 1000,
+            }}>
+                {showNotification && (
+                    <Notification
+                        position="top"
+                        title="Profile created successfully!"
+                        onClose={() => setShowNotification(false)} // Hide the notification when closed
+                    >
+                        We'll contact you soon!
+                    </Notification>
+                )}
+            </div>
+
+            <div className="profile-creation py-30">
+                <div className='container profile-creation__form rounded-15'>
+                    <h1 className='text-center py-20'>Let's Create The Profile Now</h1>
+                    <Stepper color='pink' active={active} breakpoint="sm">
+                        <Stepper.Step label="First step" description="Create an account">
+                            <Step1
+                                onNextStep={handleStep1Next}
+                                formValues={formValues}
+                                setFormValues={setFormValues}
+                                formErrors={formErrors}
+                                setFormErrors={setFormErrors}
+                            >
+                            </Step1>
+                        </Stepper.Step>
+                        <Stepper.Step label="Second step" description="Education and qualification">
+                            <Step2
+                                onNextStep={handleStep1Next}
+                                formValues={formValues}
+                                setFormValues={setFormValues}
+                                formErrors={formErrors}
+                                setFormErrors={setFormErrors}
+                            >
+
+                            </Step2>
+                        </Stepper.Step>
+                        <Stepper.Step label="Final step" description="Provide a few words">
+                            <Step3
+                                onNextStep={handleStep1Next}
+                                formValues={formValues}
+                                setFormValues={setFormValues}
+                                formErrors={formErrors}
+                                setFormErrors={setFormErrors}
+                            >
+                            </Step3>
+                        </Stepper.Step>
+                    </Stepper>
+                    {/* 
                 <Group position="center" mt="xl">
                     <Button
                         size="md"
@@ -96,8 +147,9 @@ const ProfileCreation = () => {
                         onClick={handleStep1Next}
                     >Next Step</Button>
                 </Group> */}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

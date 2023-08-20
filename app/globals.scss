@@ -45,3 +45,75 @@ body {
   font-size: 14px;
   margin-top: 4px;
 }
+
+.customized-input {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  height: 2.625rem;
+  -webkit-tap-highlight-color: transparent;
+  line-height: calc(2.625rem - 0.125rem);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  width: 100%;
+  color: #000;
+  display: block;
+  text-align: left;
+  border: 0.0625rem solid #ced4da;
+  background-color: #fff;
+  -webkit-transition: border-color 100ms ease;
+  transition: border-color 100ms ease;
+  min-height: 2.625rem;
+  padding-left: calc(2.625rem / 3);
+  padding-right: calc(2.625rem / 3);
+  border-radius: 0.25rem;
+}
+
+//overriding react-international-phone-input start
+.react-international-phone-input {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  height: 2.625rem;
+  -webkit-tap-highlight-color: transparent;
+  line-height: calc(2.625rem - 0.125rem);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  width: 100%;
+  color: #000;
+  display: block;
+  text-align: left;
+  border: 0.0625rem solid #ced4da;
+  background-color: #fff;
+  -webkit-transition: border-color 100ms ease;
+  transition: border-color 100ms ease;
+  min-height: 2.625rem;
+  padding-left: calc(2.625rem / 3);
+  padding-right: calc(2.625rem / 3);
+  border-radius: 0.25rem;
+
+  &:focus {
+    border: 1px solid #1C7ED6 !important;
+
+    .react-international-phone-country-selector-button {
+      height: 3.625rem !important;
+      border: 1px solid #1C7ED6 !important;
+    }
+  }
+}
+
+.react-international-phone-country-selector-button {
+  height: 2.625rem !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  min-width: 365px !important;
+}
+
+//overriding react-international-phone-input end

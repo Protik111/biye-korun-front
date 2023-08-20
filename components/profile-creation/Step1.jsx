@@ -1,10 +1,8 @@
 'use client'
 
-import { communities, heights, maritalStatuses, profileFor, recidencies, religions, subCommunities } from "@/staticData/InputFields/inputFields"
-import { btnBackground } from "@/styles/library/mantine"
-import { Button, Group, Input, Radio, Select, TextInput, Chip } from "@mantine/core"
-import { useState } from "react"
-import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
+import { heights, maritalStatuses, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
+import { Button, Select, TextInput, Chip } from "@mantine/core"
+import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 
 const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
@@ -46,8 +44,6 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
             errors.subCommunity = 'Sub Community is required';
         }
 
-        console.log('Form Errors:', errors);
-
 
         setFormErrors(errors);
         return Object.keys(errors).length === 0; // Return true if no errors
@@ -67,8 +63,6 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
             [name]: value,
         }));
     };
-
-    console.log('formValues', formValues);
 
     return (
         <div className="step1">
@@ -149,6 +143,7 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                     value={formValues.hasChildren}
                     onChange={(event) => handleFormChange('hasChildren', event)}
                     name="hasChildren"
+                    className="mt-5"
                 >
                     <div className="flex flex-gap-10 flex-wrap">
                         <Chip variant="filled" color="pink" value="no">No</Chip>
