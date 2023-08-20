@@ -5,5 +5,10 @@
     &__form {
         background-color: $whiteColor;
         min-height: 95vh;
+        max-width: 90%;
+
+        @include lgMinBreakPoint {
+            max-width: 50%;
+        }
     }
 }

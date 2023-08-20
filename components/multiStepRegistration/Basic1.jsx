@@ -79,6 +79,7 @@ const Basic1 = () => {
                 name="basic1religion"
                 onChange={(event) => handleChange('basic1religion', event)}
                 error={fieldErrors.basic1religion}
+            // dropdownPosition="bottom"
             />
 
             <br />

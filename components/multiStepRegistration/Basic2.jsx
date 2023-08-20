@@ -36,11 +36,12 @@ const Basic2 = () => {
                 error={fieldErrors.basic2email}
 
             />
+            <br />
 
             <DatePickerInput
                 clearable
                 defaultValue={new Date()}
-                label="Pick date"
+                label="Your date of birth"
                 placeholder="Pick date"
                 mx="auto"
                 size="md"

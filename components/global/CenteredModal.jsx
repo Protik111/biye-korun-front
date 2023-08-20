@@ -21,8 +21,10 @@ const CenteredModal = ({ modalOpen, handleModalClose, children }) => {
                 size="md"
                 styles={{
                     modal: {
-                        backgroundColor: "#062539", // Change the modal background color
-                    },
+                        backgroundColor: "#062539",
+                        height: '1000px',
+                        overflow: 'atuo'
+                    }
                 }}
             >
                 {children}

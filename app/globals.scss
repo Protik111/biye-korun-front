@@ -26,10 +26,22 @@ body {
   height: 100%;
 }
 
+//reuseable styles
 .remove-button {
   display: none;
 }
 
 .label {
   font-weight: 600;
+}
+
+.label-required .required-field {
+  color: red;
+  margin-left: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
 }

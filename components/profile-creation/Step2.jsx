@@ -7,7 +7,7 @@ import { useState } from "react"
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 
 
-const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
+const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
 
     const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity } = formValues;
 
@@ -223,10 +223,10 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                 type="submit"
                 rightIcon={<IconArrowNarrowRight />}
                 onClick={handleNextStep}
-            >Continue</Button>
+            >Next Step</Button>
 
         </div>
     )
 }
 
-export default Step1;
+export default Step2;

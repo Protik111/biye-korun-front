@@ -1,6 +1,10 @@
 .step1 {
-    max-width: 40%;
+    max-width: 90%;
     margin: 0 auto;
     // background-color: red;
     // padding: 200px;
+
+    @include lgMinBreakPoint {
+        max-width: 40%;
+    }
 }
