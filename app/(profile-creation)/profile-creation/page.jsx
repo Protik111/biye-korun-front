@@ -69,7 +69,7 @@ const ProfileCreation = () => {
 
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
-    console.log('formError', formErrors);
+    // console.log('formError', formErrors);
 
     return (
         <>
