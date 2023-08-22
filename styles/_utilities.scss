@@ -85,6 +85,10 @@
     place-items: center;
 }
 
+// margin auto
+.m-auto {
+    margin: 0 auto;
+}
 
 /* Margin Left */
 .ml-5 {
@@ -466,4 +470,13 @@
 
 .min-w-100 {
     min-width: 100%;
+}
+
+// border
+.border-1 {
+    border: 1px solid $primaryColor;
+}
+
+.border-1-top {
+    border-top: 1px solid $primaryColor;
 }

@@ -29,3 +29,5 @@ export const creativeHobbies = ["Writing", "Cooking", "Singing", "Photography", 
 export const funs = ["Movies", "Music", "Traveling", "Reading", "Sports", "Social media", "Gaming", "Binge-watching", "Biking", "Clubbing", "Shopping", "Theater & Events", "Anime", "Stand ups"]
 
 export const fitness = ["Running", "Cycling", "Yoga", "Meditation", "Walking", "Working out"]
+
+export const otherInterests = ["Pets", "Foodie", "Vegan", "News & Politics", "Social service", "Enterpreneurship", "Home decor", "Investments"]
