@@ -23,3 +23,9 @@ export const worksWiths = ["Private Company", "Government", "Business", "Defense
 export const professions = ["Banking Professional", "Chatered Accountant", "Software Engineer"]
 
 export const incomes = ["Upto BDT 20K monthly", "BDT 20K to 50K monthly", "BDT 50K to 100K monthly"]
+
+export const creativeHobbies = ["Writing", "Cooking", "Singing", "Photography", "Playing instruments", "Paining", "DIY crafts", "Dancing", "Acting", "Poetry", "Gardening", "Bloging", "Content creation", "Designing", "Doodling"]
+
+export const funs = ["Movies", "Music", "Traveling", "Reading", "Sports", "Social media", "Gaming", "Binge-watching", "Biking", "Clubbing", "Shopping", "Theater & Events", "Anime", "Stand ups"]
+
+export const fitness = ["Running", "Cycling", "Yoga", "Meditation", "Walking", "Working out"]
