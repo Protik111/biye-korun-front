@@ -1,7 +1,8 @@
 import ThemeIconComp from '@/components/global/ThemeIconComp';
-import { useStyles } from '@/styles/library/mantine';
-import { Accordion, RangeSlider, ThemeIcon } from '@mantine/core';
-import { IconCalendarTime, IconFall, IconHearts, IconPray, IconWorld } from '@tabler/icons-react';
+import { incomes, professions, qualifications, worksWiths } from '@/staticData/InputFields/inputFields';
+import { labelStyles, useStyles } from '@/styles/library/mantine';
+import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
+import { IconBrandCashapp, IconCalendarTime, IconCertificate, IconFall, IconHearts, IconPray, IconUserCircle, IconWorld } from '@tabler/icons-react';
 
 function valueLabelFormat(value) {
     const units = ['KB', 'MB', 'GB', 'TB'];
@@ -35,22 +36,21 @@ function Education() {
                     <Accordion.Item value="item-1">
                         <Accordion.Control
                             icon={
-                                <ThemeIconComp iconComp={<IconPray size={16} />} />
+                                <ThemeIconComp iconComp={<IconCertificate size={16} />} />
                             }
                         >Qualification</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Country"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={qualifications}
+                            // style={{ width: '180px' }}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -63,17 +63,16 @@ function Education() {
                         >Working with</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Country"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={worksWiths}
+                            // style={{ width: '180px' }}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -81,22 +80,21 @@ function Education() {
                     <Accordion.Item value="item-3">
                         <Accordion.Control
                             icon={
-                                <ThemeIconComp iconComp={<IconWorld size={16} />} />
+                                <ThemeIconComp iconComp={<IconUserCircle size={16} />} />
                             }
                         >Profession</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Country"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={professions}
+                            // style={{ width: '180px' }}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -104,22 +102,21 @@ function Education() {
                     <Accordion.Item value="item-4">
                         <Accordion.Control
                             icon={
-                                <ThemeIconComp iconComp={<IconWorld size={16} />} />
+                                <ThemeIconComp iconComp={<IconBrandCashapp size={16} />} />
                             }
                         >Annual Income</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Country"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={incomes}
+                            // style={{ width: '180px' }}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>

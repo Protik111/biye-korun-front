@@ -1,10 +1,12 @@
 import ThemeIconComp from '@/components/global/ThemeIconComp';
+import { maritalStatuses } from '@/staticData/InputFields/inputFields';
 import { useStyles } from '@/styles/library/mantine';
-import { Accordion, RangeSlider, ThemeIcon } from '@mantine/core';
+import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
 import { IconCalendarTime, IconFall, IconHearts } from '@tabler/icons-react';
+import { useState } from 'react';
 
 function valueLabelFormat(value) {
-    const units = ['KB', 'MB', 'GB', 'TB'];
+    const units = ["''", "''", "''", "''"];
 
     let unitIndex = 0;
     let scaledValue = value;
@@ -17,8 +19,23 @@ function valueLabelFormat(value) {
     return `${scaledValue} ${units[unitIndex]}`;
 }
 
+
 function BasicInformation() {
     const { classes } = useStyles();
+
+    const [values, setValues] = useState([21, 29]);
+    const minRange = 2;
+
+    const handleAge = (newValues) => {
+        // Ensure that the difference between the handles is at least minRange
+        const diff = newValues[1] - newValues[0];
+        if (diff >= minRange) {
+            setValues(newValues);
+        } else {
+            // Adjust the values to meet the minimum range
+            setValues([newValues[0], newValues[0] + minRange]);
+        }
+    };
 
     return (
         <>
@@ -44,13 +61,15 @@ function BasicInformation() {
                                 size="md"
                                 color='pink'
                                 py="xl"
-                                scale={(v) => 2 ** v}
+                                // scale={(v) => 2 ** v}
                                 step={1}
-                                min={2}
-                                max={30}
+                                min={18}
+                                max={39}
                                 labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                values={values}
+                                // defaultValue={[21, 29]}
+                                range={3}
+                                onChange={handleAge}
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -67,12 +86,15 @@ function BasicInformation() {
                                 size="md"
                                 color='pink'
                                 py="xl"
-                                scale={(v) => 2 ** v}
+                                // scale={(v) => 2 ** v}
                                 step={1}
-                                min={2}
-                                max={30}
+                                // min={4.5}
+                                // max={8}
                                 labelAlwaysOn
-                                defaultValue={[10, 20]}
+                                // values={values}
+                                defaultValue={[4.11, 4.12]}
+                                range={3}
+                                // onChange={handleAge}
                                 label={valueLabelFormat}
                             />
                         </Accordion.Panel>
@@ -86,17 +108,17 @@ function BasicInformation() {
                         >Marital Status</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Marital status"
+                                // styles={{ label: labelStyles }}
+                                data={maritalStatuses}
+                                // value={formValues.maritalStatus}
+                                withAsterisk
+                                name="maritalStatus"
+                            // onChange={(event) => handleFormChange('maritalStatus', event)}
+                            // error={formErrors.maritalStatus}
                             />
                         </Accordion.Panel>
                     </Accordion.Item>

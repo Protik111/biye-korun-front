@@ -1,6 +1,7 @@
 import ThemeIconComp from '@/components/global/ThemeIconComp';
-import { useStyles } from '@/styles/library/mantine';
-import { Accordion, RangeSlider, ThemeIcon } from '@mantine/core';
+import { motherTongues, religions } from '@/staticData/InputFields/inputFields';
+import { labelStyles, useStyles } from '@/styles/library/mantine';
+import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
 import { IconCalendarTime, IconFall, IconHearts, IconPray, IconWorld } from '@tabler/icons-react';
 
 function valueLabelFormat(value) {
@@ -40,17 +41,15 @@ function Communities() {
                         >Religion</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Religion"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={religions}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -63,17 +62,16 @@ function Communities() {
                         >Mother Tongue</Accordion.Control>
                         <Accordion.Panel>
 
-                            <RangeSlider
+                            <Select
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                scale={(v) => 2 ** v}
-                                step={1}
-                                min={2}
-                                max={30}
-                                labelAlwaysOn
-                                defaultValue={[10, 20]}
-                                label={valueLabelFormat}
+                                placeholder="Select"
+                                label="Mother Tongue"
+                                defaultValue="20"
+                                styles={{ label: labelStyles }}
+                                data={motherTongues}
+                            // style={{ width: '180px' }}
+                            // sx={selectMobileStyles}
+
                             />
                         </Accordion.Panel>
                     </Accordion.Item>

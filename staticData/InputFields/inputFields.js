@@ -31,3 +31,7 @@ export const funs = ["Movies", "Music", "Traveling", "Reading", "Sports", "Socia
 export const fitness = ["Running", "Cycling", "Yoga", "Meditation", "Walking", "Working out"]
 
 export const otherInterests = ["Pets", "Foodie", "Vegan", "News & Politics", "Social service", "Enterpreneurship", "Home decor", "Investments"]
+
+export const countries = ["Bangladesh", "India", "Pakistan", "USA", "Canada"]
+
+export const states = ["Dhaka", "Chittagong", "Sylet", "Khulna"]
