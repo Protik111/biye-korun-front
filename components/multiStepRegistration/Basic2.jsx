@@ -1,5 +1,5 @@
 import useFormContext from "@/hooks/common/useFormContext"
-import { profileFor } from "@/staticData/InputFields/inputFields"
+import { countries, profileFor } from "@/staticData/InputFields/inputFields"
 import { btnBackground } from "@/styles/library/mantine"
 import { Button, Group, Input, Radio, Select, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
@@ -27,7 +27,7 @@ const Basic2 = () => {
 
             <TextInput
                 label="Your Email"
-                placeholder="Enter you email"
+                placeholder="Enter your email"
                 size="md"
                 withAsterisk
                 name="basic2email"
@@ -60,7 +60,7 @@ const Basic2 = () => {
                 placeholder="Select"
                 label="Your Country"
                 // styles={{ label: labelStyles }}
-                data={profileFor}
+                data={countries}
                 value={data.basic2country}
                 withAsterisk
                 name="basic2country"

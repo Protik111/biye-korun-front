@@ -7,6 +7,12 @@
     }
 }
 
+@mixin smMaxBreakPoint {
+    @media (max-width: #{$screen-sm}) {
+        @content;
+    }
+}
+
 @mixin mdMinBreakPoint {
     @media (min-width: #{$screen-md}) {
         @content;
@@ -15,6 +21,12 @@
 
 @mixin lgMinBreakPoint {
     @media (min-width: #{$screen-lg}) {
+        @content;
+    }
+}
+
+@mixin lgMaxBreakPoint {
+    @media (max-width: #{$screen-lg}) {
         @content;
     }
 }

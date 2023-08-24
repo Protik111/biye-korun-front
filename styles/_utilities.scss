@@ -77,6 +77,16 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-cols-3-responsive {
+    @include lgMaxBreakPoint {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include smMaxBreakPoint {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 .grid-gap-20 {
     gap: 20px;
 }
@@ -472,9 +482,18 @@
     min-width: 100%;
 }
 
+//height
+.min-vh-100 {
+    min-height: 100vh;
+}
+
 // border
 .border-1 {
     border: 1px solid $primaryColor;
+}
+
+.border-1-secondary {
+    border: 0.0625rem solid rgb(222, 226, 230);
 }
 
 .border-1-top {

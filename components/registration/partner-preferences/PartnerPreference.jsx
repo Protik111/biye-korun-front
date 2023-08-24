@@ -11,7 +11,7 @@ const PartnerPreference = () => {
     const [seeMore, setSeemore] = useState(false);
     return (
         <div className='partenerPref'>
-            <h2 className='text-center py-15'>Now let's add your hobbies & interests</h2>
+            <h2 className='text-center py-15'>Recommended Partner Preferences</h2>
 
             <BasicInformation></BasicInformation>
             <Communities></Communities>
