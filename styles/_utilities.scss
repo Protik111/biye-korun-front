@@ -415,6 +415,14 @@
     text-align: center;
 }
 
+.text-white {
+    color: $whiteColor;
+}
+
+.text-white-light {
+    color: $secondaryLight1Color;
+}
+
 /* Border Radius */
 .rounded {
     border-radius: 5px;

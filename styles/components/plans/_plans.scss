@@ -1,0 +1,14 @@
+.plans {
+    &__box {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        // background-color: $whiteColor;
+        gap: 20px;
+        z-index: 100;
+
+    }
+
+    &__singlePlan {
+        background-color: $whiteColor;
+    }
+}
