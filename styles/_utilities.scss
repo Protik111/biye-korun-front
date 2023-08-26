@@ -36,6 +36,14 @@
     justify-content: center;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
 .align-center {
     align-items: center;
 }
@@ -422,6 +430,12 @@
 .text-white-light {
     color: $secondaryLight1Color;
 }
+
+
+.secondary-text {
+    color: $secondaryColor;
+}
+
 
 /* Border Radius */
 .rounded {

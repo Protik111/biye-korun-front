@@ -86,6 +86,18 @@ body {
   border-radius: 10px;
 }
 
+.container-box {
+  background-color: $whiteColor;
+  border: 1px solid $primaryColor;
+  min-height: 100vh;
+  border-radius: 10px;
+}
+
+.container-box-bg {
+  background-color: $whiteColor;
+  border-radius: 10px;
+}
+
 .box-shadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

@@ -33,7 +33,6 @@ const SinglePlan = ({ plan }) => {
                     <List.Item>Your Photo should be front facing and your entire face should be visible.</List.Item>
                     {
                         features?.map((feature, i) => <List.Item className={`${feature?.active ? '' : 'plans__singlePlan--feature'}`} key={i}>
-                            {console.log('feature', feature?.active)}
                             {feature?.title}</List.Item>)
                     }
                 </List>

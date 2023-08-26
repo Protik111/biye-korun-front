@@ -1,0 +1,27 @@
+.todaysMatch {
+    &__wrapper {
+        display: flex;
+        gap: 15px;
+
+        &--requestBox {
+            flex: 0 0 25%;
+            position: sticky;
+            top: 100px;
+            height: 100vh;
+            overflow-y: auto;
+
+            .requestBox-container {
+                background-color: white;
+                padding: 25px 20px;
+                border-radius: 10px;
+            }
+        }
+
+        &--contentBox {
+            flex: 1;
+            overflow-y: auto;
+            // padding: 20px;
+
+        }
+    }
+}

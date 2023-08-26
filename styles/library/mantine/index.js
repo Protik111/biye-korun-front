@@ -27,6 +27,10 @@ export const btnBackground = {
     }
 }
 
+export const fontSizeMnd = {
+    fontSize: '16px',
+}
+
 export const useStyles = createStyles((theme) => ({
     root: {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
