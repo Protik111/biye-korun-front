@@ -19,7 +19,7 @@ const SinglePlan = ({ plan }) => {
                     Continue
                 </Button>
             </div>
-            <div className="mt-10 py-15">
+            <div className="py-15">
                 <List
                     spacing="xs"
                     size="sm"
@@ -32,7 +32,9 @@ const SinglePlan = ({ plan }) => {
                 >
                     <List.Item>Your Photo should be front facing and your entire face should be visible.</List.Item>
                     {
-                        features?.map((feature, i) => <List.Item key={i}>{feature?.title}</List.Item>)
+                        features?.map((feature, i) => <List.Item className={`${feature?.active ? '' : 'plans__singlePlan--feature'}`} key={i}>
+                            {console.log('feature', feature?.active)}
+                            {feature?.title}</List.Item>)
                     }
                 </List>
             </div>

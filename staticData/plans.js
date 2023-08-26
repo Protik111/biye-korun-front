@@ -61,7 +61,7 @@ export const plansList = [
             },
             {
                 title: "Let matches contact you",
-                active: false
+                active: true
             },
             {
                 title: "Let matches contact you directly",
@@ -98,11 +98,11 @@ export const plansList = [
             },
             {
                 title: "Let matches contact you",
-                active: false
+                active: true
             },
             {
                 title: "Let matches contact you directly",
-                active: false
+                active: true
             },
             {
                 title: "Send unlimited messages",
@@ -135,53 +135,53 @@ export const plansList = [
             },
             {
                 title: "Let matches contact you",
-                active: false
+                active: true
             },
             {
                 title: "Let matches contact you directly",
-                active: false
+                active: true
             },
             {
                 title: "Send unlimited messages",
-                active: false
+                active: true
             }
         ]
     },
-    {
-        id: 5,
-        topTag: 'Best Value',
-        header: `${<b>Plantinum Plus</b>} 12 Months`,
-        money: 'BDT 8, 350',
-        subMoney: 'BDT 2,784 per month',
-        features: [
-            {
-                title: "Send unlimited messages",
-                active: true
-            },
-            {
-                title: "View upto 75 Contact Numbers",
-                active: true
-            },
-            {
-                title: "3 Biye Live Passes",
-                active: true
-            },
-            {
-                title: "Standout from others",
-                active: true
-            },
-            {
-                title: "Let matches contact you",
-                active: false
-            },
-            {
-                title: "Let matches contact you directly",
-                active: false
-            },
-            {
-                title: "Send unlimited messages",
-                active: false
-            }
-        ]
-    }
+    // {
+    //     id: 5,
+    //     topTag: 'Best Value',
+    //     header: `${<b>Plantinum Plus</b>} 12 Months`,
+    //     money: 'BDT 8, 350',
+    //     subMoney: 'BDT 2,784 per month',
+    //     features: [
+    //         {
+    //             title: "Send unlimited messages",
+    //             active: true
+    //         },
+    //         {
+    //             title: "View upto 75 Contact Numbers",
+    //             active: true
+    //         },
+    //         {
+    //             title: "3 Biye Live Passes",
+    //             active: true
+    //         },
+    //         {
+    //             title: "Standout from others",
+    //             active: true
+    //         },
+    //         {
+    //             title: "Let matches contact you",
+    //             active: true
+    //         },
+    //         {
+    //             title: "Let matches contact you directly",
+    //             active: false
+    //         },
+    //         {
+    //             title: "Send unlimited messages",
+    //             active: false
+    //         }
+    //     ]
+    // }
 ]

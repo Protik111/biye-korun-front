@@ -1,14 +1,26 @@
 .plans {
     &__box {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         // background-color: $whiteColor;
         gap: 20px;
         z-index: 100;
+
+        @include lgMaxBreakPoint {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include smMaxBreakPoint {
+            grid-template-columns: repeat(1, 1fr);
+        }
 
     }
 
     &__singlePlan {
         background-color: $whiteColor;
+
+        &--feature {
+            color: $textLight1Color;
+        }
     }
 }

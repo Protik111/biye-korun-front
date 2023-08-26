@@ -17,6 +17,10 @@ h2 {
     font-weight: normal;
     font-size: 36px;
     line-height: 43px;
+
+    @include smMinBreakPoint {
+        font-size: 28px;
+    }
 }
 
 h3 {
