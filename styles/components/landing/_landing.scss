@@ -1,27 +1,30 @@
 .landing {
-    background-image: url("/landing/hero.jpg");
-    background-size: cover;
-    height: 65vh;
-    background-position: center;
-    position: relative;
+  background-image: url("/landing/hero.jpg");
+  background-size: cover;
+  height: 65vh;
+  background-position: center;
+  position: relative;
 
-    &__meet {
-        position: absolute;
-        left: 50%;
-        bottom: 5%;
-        transform: translateX(-50%);
+  @include mdMaxBreakPoint {
+    height: 100vh;
+  }
 
-        &--title {
-            color: $textColor;
-        }
+  &__meet {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
 
-        &--form {
-            background-color: $primaryColor;
-        }
-
-        &--to {
-            color: white;
-        }
+    &--title {
+      color: $textColor;
     }
 
+    &--form {
+      background-color: $primaryColor;
+    }
+
+    &--to {
+      color: white;
+    }
+  }
 }
