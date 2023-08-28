@@ -1,56 +1,62 @@
-@import './variable';
+@import "./variable";
 
 // Breakpoints
 @mixin smMinBreakPoint {
-    @media (min-width: #{$screen-sm}) {
-        @content;
-    }
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
 }
 
 @mixin smMaxBreakPoint {
-    @media (max-width: #{$screen-sm}) {
-        @content;
-    }
+  @media (max-width: #{$screen-sm}) {
+    @content;
+  }
 }
 
 @mixin mdMinBreakPoint {
-    @media (min-width: #{$screen-md}) {
-        @content;
-    }
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin mdMaxBreakPoint {
+  @media (max-width: #{$screen-md}) {
+    @content;
+  }
 }
 
 @mixin lgMinBreakPoint {
-    @media (min-width: #{$screen-lg}) {
-        @content;
-    }
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
 }
 
 @mixin lgMaxBreakPoint {
-    @media (max-width: #{$screen-lg}) {
-        @content;
-    }
+  @media (max-width: #{$screen-lg}) {
+    @content;
+  }
 }
 
 @mixin xlMinBreakPoint {
-    @media (min-width: #{$screen-xl}) {
-        @content;
-    }
+  @media (min-width: #{$screen-xl}) {
+    @content;
+  }
 }
 
 @mixin xxlMinBreakPoint {
-    @media (min-width: #{$screen-xxl}) {
-        @content;
-    }
+  @media (min-width: #{$screen-xxl}) {
+    @content;
+  }
 }
 
 @mixin customMinBreakPoint($size) {
-    @media (min-width: #{$size}px) {
-        @content;
-    }
+  @media (min-width: #{$size}px) {
+    @content;
+  }
 }
 
 @mixin customMaxBreakPoint($size) {
-    @media (max-width: #{$size}px) {
-        @content;
-    }
+  @media (max-width: #{$size}px) {
+    @content;
+  }
 }
