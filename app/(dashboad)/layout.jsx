@@ -1,23 +1,27 @@
-'use client'
+"use client";
 
-import Tapbar from '@/components/dashboard/Tapbar'
-import '../globals.scss'
-import { Inter } from 'next/font/google'
+import Tapbar from "@/components/dashboard/Tapbar";
+import "../globals.scss";
+// import Navbar from "@/components/global/Navbar";
+// import dynamic from "next/dynamic";
 
-const inter = Inter({ subsets: ['latin'] })
+// const Navbar = dynamic(() => import("@/components/global/Navbar"), {
+//   ssr: false,
+// });
 
 export const metadata = {
-  title: 'Profile',
-  description: 'A matrimony service to find people hapiness',
-}
+  title: "Profile",
+  description: "A matrimony service to find people hapiness",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        {/* <Navbar></Navbar> */}
         <Tapbar></Tapbar>
         {children}
       </body>
     </html>
-  )
+  );
 }
