@@ -1,4 +1,4 @@
-.todaysMatch {
+.myMatches {
   &__wrapper {
     display: flex;
     gap: 15px;
@@ -7,7 +7,7 @@
       flex: 0 0 25%;
       position: sticky;
       top: 100px;
-      height: 100vh;
+      //   height: 100vh;
       overflow-y: auto;
 
       .requestBox-container {

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Profile = () => {
-  return <div>My Profile</div>;
+  return <div>New Matches</div>;
 };
 
 export default Profile;

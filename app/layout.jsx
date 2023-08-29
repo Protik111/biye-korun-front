@@ -1,8 +1,5 @@
 import Navbar from "@/components/global/Navbar";
 import "./globals.scss";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Biye Korun",
@@ -12,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Navbar></Navbar>
         {children}
       </body>
