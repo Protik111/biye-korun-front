@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Button } from "@mantine/core";
+import Link from "next/link";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
@@ -20,7 +21,9 @@ function Navbar() {
       <div className="navbarRoot">
         <nav className="container">
           <div className="navbarRoot__logo">
-            <img src="/biyekorun-logo.png" alt="Biye Korun Logo" />
+            <Link href="/">
+              <img src="/biyekorun-logo.png" alt="Biye Korun Logo" />
+            </Link>
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
             <a href="/">Home</a>

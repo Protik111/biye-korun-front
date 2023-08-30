@@ -12,15 +12,15 @@ const Tapbar = () => {
   return (
     <div className="tapbar">
       <div className="container">
-        <Tabs defaultValue="profile" color="pink" variant="pills">
+        <Tabs defaultValue="todays-matches" color="pink" variant="pills">
           <Tabs.List grow position="apart">
-            <Tabs.Tab
+            {/* <Tabs.Tab
               onClick={() => handleChangeTab("profile")}
               sx={fontSizeMnd}
               value="profile"
             >
               Profile
-            </Tabs.Tab>
+            </Tabs.Tab> */}
             <Tabs.Tab
               sx={fontSizeMnd}
               value="new-matches"

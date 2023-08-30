@@ -1,8 +1,7 @@
 
 // import '../../global.scss'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from "@/components/global/Navbar"
 
 export const metadata = {
   title: 'Profile Creation',
@@ -11,8 +10,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <div>
+      {/* <Navbar></Navbar> */}
+      <div>{children}</div>
+    </div>
   )
 }
