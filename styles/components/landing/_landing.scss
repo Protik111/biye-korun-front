@@ -1,7 +1,7 @@
 .landing {
   background-image: url("/landing/hero.jpg");
   background-size: cover;
-  height: 65vh;
+  height: 80vh;
   background-position: center;
   position: relative;
 
@@ -12,7 +12,7 @@
   &__meet {
     position: absolute;
     left: 50%;
-    bottom: 5%;
+    bottom: 15%;
     transform: translateX(-50%);
 
     &--title {

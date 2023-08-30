@@ -28,7 +28,7 @@ const Landing = () => {
         <section className="landing">
             <div className="container">
                 <div className="landing__meet">
-                    <h2 className="landing__meet--title text-center">Meet someone for keeps</h2>
+                    <h2 className="landing__meet--title text-center">Find the right person to spend rest of your life</h2>
 
                     <div className="landing__meet--form flex justify-center align-center flex-gap-10 flex-wrap p-30 rounded-10">
                         <Select
