@@ -1,0 +1,18 @@
+.howWorks {
+    background-color: #d9e9e4;
+    // background-color: $whiteColor;
+
+    &__wrapper {
+        background-image: url("/landing/howWorksBG.png");
+        background-position: center;
+        background-size: contain;
+        height: 450px;
+        background-repeat: no-repeat;
+
+        @include lgMaxBreakPoint {
+            background-image: none;
+            height: auto;
+        }
+
+    }
+}
