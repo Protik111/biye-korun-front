@@ -1,5 +1,6 @@
 import Navbar from "@/components/global/Navbar";
 import "./globals.scss";
+import { ReduxProvider } from "@/redux/provider";
 
 export const metadata = {
   title: "Biye Korun",
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar></Navbar>
-        {children}
+        <ReduxProvider>
+          <Navbar></Navbar>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

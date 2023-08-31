@@ -49,7 +49,7 @@ const Footer = () => {
                         </ul>
                     </li>
 
-                    <li className="nav__item">
+                    <p className="nav__item">
                         <h2 className="nav__title">Contact</h2>
 
                         {/* <ul className="nav__ul">
@@ -70,7 +70,7 @@ const Footer = () => {
                             Uttara, Dhaka-1230 <br />
                             <p>+880161171308</p>
                         </p>
-                    </li>
+                    </p>
                 </ul>
 
                 <div className="legal text-center">
