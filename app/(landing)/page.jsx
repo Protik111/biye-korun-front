@@ -1,4 +1,6 @@
 'use client'
+import Faqs from "@/components/global/Faqs";
+import Footer from "@/components/global/Footer";
 import BrideGroom from "@/components/landing/BrideGroom";
 import HowWorks from "@/components/landing/HowWorks";
 import LandingV2 from "@/components/landing/LandingV2";
@@ -11,6 +13,8 @@ export default function Home() {
       <LandingV2></LandingV2>
       <BrideGroom></BrideGroom>
       <HowWorks></HowWorks>
+      <Faqs></Faqs>
+      <Footer></Footer>
     </>
   )
 }
