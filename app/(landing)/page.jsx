@@ -14,7 +14,7 @@ export default function Home() {
       <BrideGroom></BrideGroom>
       <HowWorks></HowWorks>
       <Faqs></Faqs>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </>
   )
 }

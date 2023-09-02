@@ -168,11 +168,11 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                     name="diet"
                 >
                     <div className="flex flex-gap-10 flex-wrap">
-                        <Chip variant="filled" color="pink" value="veg">Veg</Chip>
-                        <Chip variant="filled" color="pink" value="non-veg">Non-Veg</Chip>
+                        <Chip variant="filled" color="pink" value="Veg">Veg</Chip>
+                        <Chip variant="filled" color="pink" value="Non-Veg">Non-Veg</Chip>
                         <Chip variant="filled" color="pink" value="Eggetarian">Eggetarian</Chip>
-                        <Chip variant="filled" color="pink" value="carnivore">Carnivore</Chip>
-                        <Chip variant="filled" color="pink" value="vegan">Vegan</Chip>
+                        <Chip variant="filled" color="pink" value="Jain">Jain</Chip>
+                        <Chip variant="filled" color="pink" value="Vegan">Vegan</Chip>
                     </div>
                     {formErrors.diet && (
                         <p className="error-message">{formErrors.diet}</p>

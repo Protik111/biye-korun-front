@@ -7,9 +7,12 @@ import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 import Step1 from '@/components/profile-creation/step1';
 import Step2 from '@/components/profile-creation/Step2';
 import Step3 from '@/components/profile-creation/Step3';
+import { useDispatch } from 'react-redux';
+import { createProfile } from '@/redux/features/user/userSlice';
 
 
 const ProfileCreation = () => {
+    const dispatch = useDispatch();
     const [active, setActive] = useState(0);
     const [showNotification, setShowNotification] = useState(false);
 
@@ -48,6 +51,8 @@ const ProfileCreation = () => {
         phone: ''
     });
 
+    console.log('formValues', formValues);
+
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
 
     const handleStep1Next = (step1FormValues) => {
@@ -57,8 +62,16 @@ const ProfileCreation = () => {
         }));
         nextStep();
 
+        if (active === 0) {
+            const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity } = formValues;
+            const data = { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity }
+
+            dispatch(createProfile({ city, livingWith: livesWithFamily, residencyStatus: residency, maritalStatus, children: hasChildren, diet, height, caste: subCommunity, step: 'first' }))
+
+        }
+
         if (active === 2) {
-            console.log('data last', formValues)
+            // console.log('data last', formValues)
             setShowNotification(true)
 
             setTimeout(() => {

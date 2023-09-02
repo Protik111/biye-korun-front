@@ -1,18 +1,20 @@
 import useFormContext from '@/hooks/common/useFormContext'
 import FormInputs from './FormInputs'
-import { Button } from '@mantine/core'
+import { Button, Notification } from '@mantine/core'
 import { btnBackground } from '@/styles/library/mantine'
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 import { format } from 'date-fns'
 import { register, reset } from '@/redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Form = () => {
-
     const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
-    const dispatch = useDispatch();
+    const [showNotification, setShowNotification] = useState(false);
 
-    console.log('user, isLoading, isError, isSuccess, message', user, isLoading, isError, isSuccess, message);
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const {
         page,
@@ -61,60 +63,82 @@ const Form = () => {
             // console.log(JSON.stringify(data))
             // console.log(datas, 'datas')
             dispatch(register(datas))
+            setShowNotification(true)
+
+            setTimeout(() => {
+                setShowNotification(false)
+                router.push('/profile-creation')
+            }, 1000)
         }
 
     }
 
 
     const content = (
-        <form className="form flex-col">
+        <>
+            <form className="form flex-col">
 
 
-            <FormInputs />
+                <FormInputs />
+                <header className="form-header">
+                    {/* <h2>{title[page]}</h2> */}
 
-            <header className="form-header">
-                {/* <h2>{title[page]}</h2> */}
+                    <div className="button-container">
 
-                <div className="button-container">
+                        <div className='flex flex-gap-15'>
+                            <Button
+                                size="md"
+                                fullWidth
+                                leftIcon={<IconArrowNarrowLeft />}
+                                style={btnBackground} type="button"
+                                className={`button ${prevHide}`}
+                                onClick={handlePrev}
+                                disabled={disablePrev}
+                            >Prev</Button>
 
-                    <div className='flex flex-gap-15'>
+                            <Button
+                                size="md"
+                                fullWidth
+                                type="submit"
+                                className={`button ${submitHide}`}
+                                // disabled={!canSubmit}
+                                onClick={handleSubmit}
+                            >Sign Up</Button>
+                        </div>
+
                         <Button
+                            rightIcon={<IconArrowNarrowRight />}
                             size="md"
                             fullWidth
-                            leftIcon={<IconArrowNarrowLeft />}
-                            style={btnBackground} type="button"
-                            className={`button ${prevHide}`}
-                            onClick={handlePrev}
-                            disabled={disablePrev}
-                        >Prev</Button>
+                            style={btnBackground}
+                            className={`button ${nextHide}`}
+                            onClick={handleNext}
+                        //  disabled={disableNext}
+                        >Next
+                        </Button>
 
-                        <Button
-                            size="md"
-                            fullWidth
-                            type="submit"
-                            className={`button ${submitHide}`}
-                            // disabled={!canSubmit}
-                            onClick={handleSubmit}
-                        >Sign Up</Button>
                     </div>
+                </header>
+            </form>
 
-                    <Button
-                        rightIcon={<IconArrowNarrowRight />}
-                        size="md"
-                        fullWidth
-                        style={btnBackground}
-                        className={`button ${nextHide}`}
-                        onClick={handleNext}
-                    //  disabled={disableNext}
-                    >Next
-                    </Button>
-
-                </div>
-            </header>
-
-
-
-        </form>
+            <div style={{
+                position: 'fixed',
+                top: '20px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                zIndex: 1000,
+            }}>
+                {showNotification && (
+                    <Notification
+                        position="top"
+                        title="Registered successfully!"
+                        onClose={() => setShowNotification(false)} // Hide the notification when closed
+                    >
+                        We'll contact you soon!
+                    </Notification>
+                )}
+            </div>
+        </>
     )
 
     return content
