@@ -1,7 +1,7 @@
 import useFormContext from "@/hooks/common/useFormContext"
 import { countries, profileFor } from "@/staticData/InputFields/inputFields"
 import { btnBackground } from "@/styles/library/mantine"
-import { Button, Group, Input, Radio, Select, TextInput } from "@mantine/core"
+import { Button, Group, Input, PasswordInput, Radio, Select, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 
 const Basic2 = () => {
@@ -34,6 +34,20 @@ const Basic2 = () => {
                 value={data.basic2email}
                 onChange={(event) => handleChange('basic2email', event.target.value)}
                 error={fieldErrors.basic2email}
+
+            />
+            <br />
+
+
+            <PasswordInput
+                label="Your Password"
+                placeholder="Enter your password"
+                size="md"
+                withAsterisk
+                name="basic2password"
+                value={data.basic2password}
+                onChange={(event) => handleChange('basic2password', event.target.value)}
+                error={fieldErrors.basic2password}
 
             />
             <br />

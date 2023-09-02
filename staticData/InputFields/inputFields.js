@@ -4,7 +4,8 @@ export const motherTongues = ["Bengali", "English", "Hindi", "Arabic", "Chinese"
 
 export const communities = ["Bengali", "English", "Hindi", "Arabic", "Chinese", "Other"];
 
-export const profileFor = ["Self", "Son", "Daughter", "Brother", "Sister", "Friend", "Relative"]
+// export const profileFor = ["Self", "Son", "Daughter", "Brother", "Sister", "Friend", "Relative"]
+export const profileFor = ["Myself", "My Son", "My Daughter", "My Brother", "My Sister", "My Friend", "My Relative"]
 
 export const cities = ["Dhaka", "Chittagon", "Cumilla", "Sylet", "Barishal"]
 

@@ -15,6 +15,10 @@
     bottom: 15%;
     transform: translateX(-50%);
 
+    @include mdMaxBreakPoint {
+      bottom: 1%;
+    }
+
     &--title {
       color: $textColor;
     }

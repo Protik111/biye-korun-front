@@ -3,8 +3,16 @@ import FormInputs from './FormInputs'
 import { Button } from '@mantine/core'
 import { btnBackground } from '@/styles/library/mantine'
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
+import { format } from 'date-fns'
+import { register, reset } from '@/redux/features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Form = () => {
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
+    const dispatch = useDispatch();
+
+    console.log('user, isLoading, isError, isSuccess, message', user, isLoading, isError, isSuccess, message);
 
     const {
         page,
@@ -36,15 +44,26 @@ const Form = () => {
 
         const isSubmittable = validatePage(page);
 
+        const datas = {
+            email: data?.basic2email,
+            firstName: data?.basic1firstName,
+            lastName: data?.basic1lastName,
+            dateOfBirth: format(data?.basic2dob, 'MM/dd/yyyy'),
+            gender: data?.basic1gender,
+            postedBy: data?.basic1postedBy,
+            community: data?.basic1community,
+            country: data?.basic2country,
+            religion: data?.basic1religion,
+            password: data?.basic2password
+        }
+
         if (isSubmittable) {
-            console.log(JSON.stringify(data))
+            // console.log(JSON.stringify(data))
+            // console.log(datas, 'datas')
+            dispatch(register(datas))
         }
 
     }
-
-    console.log('page, title', fieldErrors);
-
-
 
 
     const content = (
