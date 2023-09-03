@@ -6,6 +6,7 @@ import setAuthToken from "@/utils/setAuthToken";
 import { useEffect, useState } from "react";
 import { loadUser } from "./features/auth/authSlice";
 import { Loader } from "@mantine/core";
+import { configureAxiosHeader } from "@/utils/setAxiosHeader";
 
 export function ReduxProvider({ children }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -18,6 +19,8 @@ export function ReduxProvider({ children }) {
             store.dispatch(loadUser());
         }
         setIsLoading(true)
+
+        configureAxiosHeader();
     }, [])
 
     if (!isLoading) {
