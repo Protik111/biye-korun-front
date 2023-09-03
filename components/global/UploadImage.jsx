@@ -7,6 +7,8 @@ import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from '@mantine/dropzone';
 function UploadImage() {
     const [files, setFiles] = useState([]);
 
+    console.log('images', files);
+
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
         return (

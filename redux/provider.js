@@ -21,7 +21,7 @@ export function ReduxProvider({ children }) {
     }, [])
 
     if (!isLoading) {
-        return <div className="flex justify-center align-center min-vh-100">
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
             <Loader size="xl" color="pink" />
         </div>
     }

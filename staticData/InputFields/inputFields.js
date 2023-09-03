@@ -36,3 +36,49 @@ export const otherInterests = ["Pets", "Foodie", "Vegan", "News & Politics", "So
 export const countries = ["Bangladesh", "India", "Pakistan", "USA", "Canada"]
 
 export const states = ["Dhaka", "Chittagong", "Sylet", "Khulna"]
+
+export const colleges = [
+    "University of Dhaka",
+    "Bangladesh University of Engineering and Technology (BUET)",
+    "University of Chittagong",
+    "Jahangirnagar University",
+    "Rajshahi University",
+    "Khulna University",
+    "Bangladesh Agricultural University",
+    "Shahjalal University of Science and Technology (SUST)",
+    "Dhaka University of Engineering and Technology (DUET)",
+    "Islamic University, Bangladesh",
+    "Comilla University",
+    "Jatiya Kabi Kazi Nazrul Islam University",
+    "Hajee Mohammad Danesh Science and Technology University",
+    "Jessore University of Science and Technology",
+    "Mawlana Bhashani Science and Technology University",
+    "Noakhali Science and Technology University",
+    "Pabna University of Science and Technology",
+    "Patuakhali Science and Technology University",
+    "Sher-e-Bangla Agricultural University",
+    "Sylhet Agricultural University",
+];
+
+export const companies = [
+    "Grameenphone IT",
+    "Robi Axiata Limited",
+    "Banglalink Digital Communications Ltd.",
+    "Airtel Bangladesh Limited",
+    "Huawei Technologies (Bangladesh) Ltd.",
+    "Samsung Electronics Bangladesh Co. Ltd.",
+    "Ovijat IT",
+    "TechRepublic Bangladesh Ltd.",
+    "BASIS (Bangladesh Association of Software and Information Services)",
+    "DataSoft Systems Bangladesh Limited",
+    "Eicra Soft Ltd.",
+    "Brain Station 23 Ltd.",
+    "Leads Corporation Limited",
+    "SSL Wireless",
+    "Ingenious Solutions",
+    "Daffodil Computers Ltd.",
+    "Synesis IT",
+    "Amber IT Limited",
+    "aamra companies",
+    "Tiger IT Bangladesh Ltd.",
+];

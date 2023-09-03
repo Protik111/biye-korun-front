@@ -1,6 +1,7 @@
 import Navbar from "@/components/global/Navbar";
 import "./globals.scss";
 import { ReduxProvider } from "@/redux/provider";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Biye Korun",
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ReduxProvider>
+          <ToastContainer />
           <Navbar></Navbar>
           {children}
         </ReduxProvider>

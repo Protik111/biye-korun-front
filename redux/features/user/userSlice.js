@@ -3,6 +3,7 @@ import userService from "./userService";
 
 const initialState = {
     userInfo: null,
+    userInfoDatas: null,
     userPreferences: null,
     isError: false,
     isSuccess: false,
@@ -47,12 +48,12 @@ const userSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(createProfile.fulfilled, (state, action) => {
-                state.userInfo = action.payload,
+                state.userInfoDatas = action.payload.data,
                     state.isLoading = false
                 state.isSuccess = true
             })
             .addCase(createProfile.rejected, (state, action) => {
-                state.userInfo = null
+                state.userInfoDatas = null
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

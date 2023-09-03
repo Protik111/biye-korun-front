@@ -7,15 +7,17 @@ import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 import Step1 from '@/components/profile-creation/step1';
 import Step2 from '@/components/profile-creation/Step2';
 import Step3 from '@/components/profile-creation/Step3';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createProfile } from '@/redux/features/user/userSlice';
+import { notifyError } from '@/utils/showNotification';
+import { useRouter } from 'next/navigation';
 
 
 const ProfileCreation = () => {
+    const { userInfo, message } = useSelector(state => state.user)
     const dispatch = useDispatch();
     const [active, setActive] = useState(0);
-    const [showNotification, setShowNotification] = useState(false);
-
+    const router = useRouter();
 
     const [formValues, setFormValues] = useState({
         city: '',
@@ -27,8 +29,10 @@ const ProfileCreation = () => {
         height: '',
         subCommunity: '',
         qualification: '',
+        college: '',
         worksWith: '',
         profession: '',
+        company: '',
         income: '',
         about: '',
         phone: ''
@@ -44,8 +48,10 @@ const ProfileCreation = () => {
         height: '',
         subCommunity: '',
         qualification: '',
+        college: '',
         worksWith: '',
         profession: '',
+        company: '',
         income: '',
         about: '',
         phone: ''
@@ -60,23 +66,49 @@ const ProfileCreation = () => {
             ...prevFormValues,
             ...step1FormValues,
         }));
-        nextStep();
+        // nextStep();
 
         if (active === 0) {
             const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity } = formValues;
             const data = { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity }
 
             dispatch(createProfile({ city, livingWith: livesWithFamily, residencyStatus: residency, maritalStatus, children: hasChildren, diet, height, caste: subCommunity, step: 'first' }))
+                .unwrap()
+                .then(() => {
+                    nextStep();
+                })
+                .catch(() => {
+                    notifyError(message)
+                })
 
         }
 
-        if (active === 2) {
-            // console.log('data last', formValues)
-            setShowNotification(true)
+        if (active === 1) {
+            const { qualification, college, worksWith, company, profession, income } = formValues;
+            dispatch(createProfile({ education: qualification, college, workingWith: worksWith, occupation: profession, employer: company, income, step: 'second' }))
+                .unwrap()
+                .then(() => {
+                    nextStep();
+                })
+                .catch(() => {
+                    notifyError(message)
+                })
+        }
 
-            setTimeout(() => {
-                setShowNotification(false);
-            }, 3000)
+        if (active === 2) {
+            const { about, phone } = formValues;
+            dispatch(createProfile({ aboutMe: about, phone: phone.replace(/[+\s]/g, ''), step: 'third' }))
+                .unwrap()
+                .then(() => {
+                    nextStep();
+
+                    setTimeout(() => {
+                        router.push('/registration/photo')
+                    }, 1000)
+                })
+                .catch(() => {
+                    notifyError(message)
+                })
         }
     };
 
@@ -86,25 +118,6 @@ const ProfileCreation = () => {
 
     return (
         <>
-
-            <div style={{
-                position: 'fixed',
-                top: '20px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                zIndex: 1000,
-            }}>
-                {showNotification && (
-                    <Notification
-                        position="top"
-                        title="Profile created successfully!"
-                        onClose={() => setShowNotification(false)} // Hide the notification when closed
-                    >
-                        We'll contact you soon!
-                    </Notification>
-                )}
-            </div>
-
             <div className="profile-creation py-30">
                 <div className='container profile-creation__form rounded-15'>
                     <h1 className='text-center py-20'>Let's Create The Profile Now</h1>

@@ -1,19 +1,27 @@
 'use client'
 
-import { incomes, professions, qualifications, worksWiths } from "@/staticData/InputFields/inputFields"
+import { colleges, companies, incomes, professions, qualifications, worksWiths } from "@/staticData/InputFields/inputFields"
 import { Button, Select } from "@mantine/core"
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 
 const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
 
-    const { qualification, worksWith, profession, income } = formValues;
+    const { qualification, worksWith, profession, income, college, company } = formValues;
 
     const validateForm = () => {
         const errors = {};
 
         if (!qualification) {
             errors.qualification = 'Qualification is required';
+        }
+
+        if (!college) {
+            errors.college = 'College is required';
+        }
+
+        if (!company) {
+            errors.company = 'Company is required';
         }
 
         if (!worksWith) {
@@ -67,6 +75,22 @@ const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
             <br />
 
+            {qualification && <>
+                <Select
+                    size="md"
+                    placeholder="Select"
+                    label="College"
+                    data={colleges}
+                    value={formValues.college}
+                    withAsterisk
+                    name="college"
+                    onChange={(event) => handleFormChange('college', event)}
+                    error={formErrors.college}
+                />
+
+                <br />
+            </>}
+
             <Select
                 size="md"
                 placeholder="Select"
@@ -95,6 +119,22 @@ const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
             />
 
             <br />
+
+            {profession && <>
+                <Select
+                    size="md"
+                    placeholder="Select"
+                    label="Company"
+                    data={companies}
+                    value={formValues.company}
+                    withAsterisk
+                    name="company"
+                    onChange={(event) => handleFormChange('company', event)}
+                    error={formErrors.company}
+                />
+
+                <br />
+            </>}
 
 
             <Select
