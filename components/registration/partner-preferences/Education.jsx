@@ -3,23 +3,24 @@ import { incomes, professions, qualifications, worksWiths } from '@/staticData/I
 import { labelStyles, useStyles } from '@/styles/library/mantine';
 import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
 import { IconBrandCashapp, IconCalendarTime, IconCertificate, IconFall, IconHearts, IconPray, IconUserCircle, IconWorld } from '@tabler/icons-react';
+import { useState } from 'react';
 
-function valueLabelFormat(value) {
-    const units = ['KB', 'MB', 'GB', 'TB'];
 
-    let unitIndex = 0;
-    let scaledValue = value;
-
-    while (scaledValue >= 1024 && unitIndex < units.length - 1) {
-        unitIndex += 1;
-        scaledValue /= 1024;
-    }
-
-    return `${scaledValue} ${units[unitIndex]}`;
-}
-
-function Education() {
+function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, maxIncomeValue, setMaxIncomeValue, }) {
     const { classes } = useStyles();
+
+    const handleFormChange = (name, value) => {
+        setFormData((prevFormValues) => ({
+            ...prevFormValues,
+            [name]: value,
+        }));
+    };
+
+    // Function to handle range slider changes
+    const handleIncomeChange = (newValues) => {
+        setMinIncomeValue(newValues[0]);
+        setMaxIncomeValue(newValues[1]);
+    };
 
     return (
         <div className='pt-15'>
@@ -47,7 +48,11 @@ function Education() {
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
-                                data={qualifications}
+                                // data={qualifications}
+                                data={["Open to All", "Doctorate", "Masters", "Bachelor/Undergraduate", "Associate/Diploma", "High School and below"]}
+                                name="qualification"
+                                value={formData.qualification}
+                                onChange={(event) => handleFormChange('qualification', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
@@ -69,7 +74,11 @@ function Education() {
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
-                                data={worksWiths}
+                                // data={worksWiths}
+                                data={["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]}
+                                name="workingWith"
+                                value={formData.workingWith}
+                                onChange={(event) => handleFormChange('workingWith', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
@@ -92,6 +101,9 @@ function Education() {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={professions}
+                                name="profession"
+                                value={formData.profession}
+                                onChange={(event) => handleFormChange('profession', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
@@ -107,17 +119,39 @@ function Education() {
                         >Monthly Income</Accordion.Control>
                         <Accordion.Panel>
 
-                            <Select
+                            {/* <Select
                                 size="md"
                                 placeholder="Select"
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={incomes}
+                                name="income"
+                                value={formData.income}
+                                onChange={(event) => handleFormChange('income', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
+                            /> */}
+                            <RangeSlider
+                                size="md"
+                                color="pink"
+                                step={5000} // You can adjust the step value as needed
+                                min={10000}
+                                max={200000}
+                                labelAlwaysOn
+                                values={[minIncomeValue, maxIncomeValue]}
+                                onChange={handleIncomeChange}
+                                valueLabel={(value) => `${value} BDT`}
                             />
+                            <div>
+                                <div>
+                                    Min Income: {minIncomeValue} BDT
+                                </div>
+                                <div>
+                                    Max Income: {maxIncomeValue} BDT
+                                </div>
+                            </div>
                         </Accordion.Panel>
                     </Accordion.Item>
                 </Accordion>

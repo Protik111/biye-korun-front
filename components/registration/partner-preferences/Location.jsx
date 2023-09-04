@@ -18,8 +18,15 @@ function valueLabelFormat(value) {
     return `${scaledValue} ${units[unitIndex]}`;
 }
 
-function Location() {
+function Location({ formData, setFormData }) {
     const { classes } = useStyles();
+
+    const handleFormChange = (name, value) => {
+        setFormData((prevFormValues) => ({
+            ...prevFormValues,
+            [name]: value,
+        }));
+    };
 
     return (
         <div className='pt-15'>
@@ -48,6 +55,9 @@ function Location() {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={countries}
+                                name="livingIn"
+                                value={formData.livingIn}
+                                onChange={(event) => handleFormChange('livingIn', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
@@ -70,6 +80,9 @@ function Location() {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={states}
+                                name="stateLiving"
+                                value={formData.stateLiving}
+                                onChange={(event) => handleFormChange('stateLiving', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 
@@ -92,6 +105,9 @@ function Location() {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={recidencies}
+                                name="residency"
+                                value={formData.residency}
+                                onChange={(event) => handleFormChange('residency', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 

@@ -40,7 +40,7 @@ const Step3 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
     return (
         <div className="step1">
 
-            <h2 className='text-center'>Education and Qualifications</h2>
+            <h2 className='text-center'>About Yourself</h2>
 
             <Textarea
                 placeholder="Describe yourself"

@@ -18,8 +18,15 @@ function valueLabelFormat(value) {
     return `${scaledValue} ${units[unitIndex]}`;
 }
 
-function Communities() {
+function Communities({ formData, setFormData }) {
     const { classes } = useStyles();
+
+    const handleFormChange = (name, value) => {
+        setFormData((prevFormValues) => ({
+            ...prevFormValues,
+            [name]: value,
+        }));
+    };
 
     return (
         <div className='pt-15'>
@@ -47,7 +54,11 @@ function Communities() {
                                 label="Religion"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
-                                data={religions}
+                                // data={religions}
+                                data={["Open to All", "Muslim", "Hindu", "Christian", "Sikh", "Parsi", "Jain", "Buddhist", "Jewish", "No Religion", "Spirtual-not religious", "Other"]}
+                                name="religion"
+                                value={formData.religion}
+                                onChange={(event) => handleFormChange('religion', event)}
                             // sx={selectMobileStyles}
 
                             />
@@ -69,6 +80,9 @@ function Communities() {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={motherTongues}
+                                name="motherTongue"
+                                value={formData.motherTongue}
+                                onChange={(event) => handleFormChange('motherTongue', event)}
                             // style={{ width: '180px' }}
                             // sx={selectMobileStyles}
 

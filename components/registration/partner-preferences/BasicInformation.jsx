@@ -10,20 +10,12 @@ function BasicInformation({ formData, setFormData, minHeight, setMinHeight, maxH
     const { ages, height, maritalStatus } = formData;
     const { classes } = useStyles();
 
-    // const [ages, setAges] = useState([18, 25]);
-
-
-
     const handleFormChange = (name, value) => {
         setFormData((prevFormValues) => ({
             ...prevFormValues,
             [name]: value,
         }));
     };
-
-    console.log('formData', formData);
-
-    // Initial range values (in inches)
 
     // Function to format height in feet and inches
     const formatHeight = (heightInches) => {
@@ -120,8 +112,9 @@ function BasicInformation({ formData, setFormData, minHeight, setMinHeight, maxH
                                 placeholder="Select"
                                 label="Marital status"
                                 // styles={{ label: labelStyles }}
-                                data={maritalStatuses}
-                                // value={formValues.maritalStatus}
+                                // data={maritalStatuses}
+                                data={["Open to All", "Never Married", "Divorced", "Widowed", "Awaiting Divorce", "Annulled"]}
+                                value={formData.maritalStatus}
                                 withAsterisk
                                 name="maritalStatus"
                                 onChange={(event) => handleFormChange('maritalStatus', event)}
