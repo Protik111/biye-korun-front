@@ -19,7 +19,27 @@ const ProfileCreation = () => {
     const [active, setActive] = useState(0);
     const router = useRouter();
 
+    // console.log('userInfo', userInfo);
+
+    // const { location: { city, residencyStatus }, doctrine: { caste }, appearance: { height }, education: { college, education }, family: { children, livingWith }, lifestyle: { diet, maritalStatus }, profession: { employer, income, occupation, workingWith }, trait: { aboutMe }, phone } = userInfo || {};
+
     const [formValues, setFormValues] = useState({
+        // city: city ? city : '',
+        // livesWithFamily: livingWith ? livingWith : '',
+        // residency: residencyStatus ? residencyStatus : '',
+        // maritalStatus: maritalStatus ? maritalStatus : '',
+        // hasChildren: children ? children : '',
+        // diet: diet ? diet : '',
+        // height: height ? height : '',
+        // subCommunity: caste ? caste : '',
+        // qualification: education ? education : '',
+        // college: college ? college : '',
+        // worksWith: workingWith ? workingWith : '',
+        // profession: occupation ? occupation : '',
+        // company: employer ? employer : '',
+        // income: income ? income : '',
+        // about: aboutMe ? aboutMe : '',
+        // phone: phone ? phone : ''
         city: '',
         livesWithFamily: '',
         residency: '',
@@ -56,8 +76,6 @@ const ProfileCreation = () => {
         about: '',
         phone: ''
     });
-
-    console.log('formValues', formValues);
 
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
 

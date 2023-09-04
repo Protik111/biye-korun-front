@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { loadUser } from "./features/auth/authSlice";
 import { Loader } from "@mantine/core";
 import { configureAxiosHeader } from "@/utils/setAxiosHeader";
+import { loadUserData } from "./features/user/userSlice";
 
 export function ReduxProvider({ children }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -16,11 +17,13 @@ export function ReduxProvider({ children }) {
         const parsedToken = JSON.parse(token);
         if (parsedToken?.accessToken) {
             setAuthToken(parsedToken.accessToken);
-            store.dispatch(loadUser());
-        }
-        setIsLoading(true)
 
-        configureAxiosHeader();
+            // console.log('parsedToken?.accessToken', parsedToken?.accessToken);
+            store.dispatch(loadUser());
+            store.dispatch(loadUserData());
+            configureAxiosHeader();
+            setIsLoading(true)
+        }
     }, [])
 
     if (!isLoading) {

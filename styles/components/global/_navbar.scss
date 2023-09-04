@@ -9,6 +9,7 @@
     cursor: pointer;
   }
 }
+
 nav {
   display: flex;
   align-items: center;
@@ -20,6 +21,7 @@ a {
   text-decoration: none;
   margin-right: 1rem;
 }
+
 .links {
   position: absolute;
   top: -700px;
@@ -31,22 +33,33 @@ a {
   transition: all 0.5s ease;
   //   transform: translate(-50%, -50%);
 
+  .user-profile {
+    display: inline-block;
+  }
+
   a {
     color: white;
     font-size: 2rem;
     display: block;
   }
+
   @media (min-width: 768px) {
     position: initial;
     margin: 0;
+
     a {
       font-size: 1rem;
       color: white;
       display: inline;
     }
-    display: block;
+
+    // display: block;
+    display: flex;
+    align-items: center;
+
   }
 }
+
 .links.active {
   width: 100%;
   display: block;
@@ -58,6 +71,7 @@ a {
   right: 0;
   text-align: center;
   z-index: 1010;
+
   a {
     font-size: 1rem;
     margin-top: 1rem;

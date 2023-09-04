@@ -78,6 +78,8 @@ const Form = () => {
 
     }
 
+    console.log('message', message);
+
 
     const content = (
         <form className="form flex-col">
@@ -89,7 +91,7 @@ const Form = () => {
 
                 <div className="button-container">
 
-                    <div className='flex flex-gap-15'>
+                    {page === 1 && <div className='flex flex-gap-15'>
                         <Button
                             size="md"
                             fullWidth
@@ -108,9 +110,9 @@ const Form = () => {
                             // disabled={!canSubmit}
                             onClick={handleSubmit}
                         >Sign Up</Button>
-                    </div>
+                    </div>}
 
-                    <Button
+                    {page === 0 && <Button
                         rightIcon={<IconArrowNarrowRight />}
                         size="md"
                         fullWidth
@@ -119,7 +121,7 @@ const Form = () => {
                         onClick={handleNext}
                     //  disabled={disableNext}
                     >Next
-                    </Button>
+                    </Button>}
 
                 </div>
             </header>

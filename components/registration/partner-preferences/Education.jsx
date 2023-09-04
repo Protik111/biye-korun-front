@@ -104,7 +104,7 @@ function Education() {
                             icon={
                                 <ThemeIconComp iconComp={<IconBrandCashapp size={16} />} />
                             }
-                        >Annual Income</Accordion.Control>
+                        >Monthly Income</Accordion.Control>
                         <Accordion.Panel>
 
                             <Select

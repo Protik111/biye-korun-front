@@ -1,12 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
-import { IconMenu2, IconX } from "@tabler/icons-react";
-import { Button } from "@mantine/core";
+import { IconLogout2, IconMenu2, IconUserCircle, IconX } from "@tabler/icons-react";
+import { Avatar, Button } from "@mantine/core";
 import Link from "next/link";
+import { Menu, Text } from '@mantine/core';
+import { IconSettings, IconSearch, IconPhoto, IconMessageCircle, IconTrash, IconArrowsLeftRight } from '@tabler/icons-react';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/redux/features/auth/authSlice";
+import { notifyError, notifySuccess } from "@/utils/showNotification";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
+  const { isAuthenticated } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  // console.log('isAuthenticated', isAuthenticated);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -15,6 +26,20 @@ function Navbar() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        notifySuccess("Logout successfully!")
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
+      })
+      .catch(() => {
+        notifyError("Error Occurred!")
+      })
+  }
 
   return (
     <>
@@ -30,9 +55,28 @@ function Navbar() {
             <a href="">Profiles</a>
             <a href="">Dashboard</a>
             <a href="">Help</a>
-            <Button mt={5} mr={5} color="pink" radius="xl" size="md">
+            {!isAuthenticated ? <Button mt={5} mr={5} color="pink" radius="xl" size="md">
               Login
-            </Button>
+            </Button> :
+              <div className="user-profile">
+                <Menu shadow="md" width={200}>
+                  <Menu.Target sx={{ cursor: 'pointer', border: '1px solid pink' }}>
+                    <Avatar
+                      size="lg"
+                      radius="xl"
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
+                      alt="it's me"
+                    />
+                  </Menu.Target>
+
+                  <Menu.Dropdown>
+                    <Menu.Label>User Profile</Menu.Label>
+                    <Menu.Item icon={<IconUserCircle size={14} />}>View Profile</Menu.Item>
+                    <Menu.Item onClick={() => handleLogout()} icon={<IconLogout2 size={14} />}>Log out</Menu.Item>
+
+                  </Menu.Dropdown>
+                </Menu>
+              </div>}
           </div>
           <div className="burguer" onClick={handleClick}>
             {!clicked ? (

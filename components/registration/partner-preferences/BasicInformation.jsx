@@ -5,37 +5,39 @@ import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
 import { IconCalendarTime, IconFall, IconHearts } from '@tabler/icons-react';
 import { useState } from 'react';
 
-function valueLabelFormat(value) {
-    const units = ["''", "''", "''", "''"];
 
-    let unitIndex = 0;
-    let scaledValue = value;
-
-    while (scaledValue >= 1024 && unitIndex < units.length - 1) {
-        unitIndex += 1;
-        scaledValue /= 1024;
-    }
-
-    return `${scaledValue} ${units[unitIndex]}`;
-}
-
-
-function BasicInformation() {
+function BasicInformation({ formData, setFormData, minHeight, setMinHeight, maxHeight, setMaxHeight }) {
+    const { ages, height, maritalStatus } = formData;
     const { classes } = useStyles();
 
-    const [values, setValues] = useState([21, 29]);
-    const minRange = 2;
+    // const [ages, setAges] = useState([18, 25]);
 
-    const handleAge = (newValues) => {
-        // Ensure that the difference between the handles is at least minRange
-        const diff = newValues[1] - newValues[0];
-        if (diff >= minRange) {
-            setValues(newValues);
-        } else {
-            // Adjust the values to meet the minimum range
-            setValues([newValues[0], newValues[0] + minRange]);
-        }
+
+
+    const handleFormChange = (name, value) => {
+        setFormData((prevFormValues) => ({
+            ...prevFormValues,
+            [name]: value,
+        }));
     };
+
+    console.log('formData', formData);
+
+    // Initial range values (in inches)
+
+    // Function to format height in feet and inches
+    const formatHeight = (heightInches) => {
+        const feet = Math.floor(heightInches / 12);
+        const inches = heightInches % 12;
+        return `${feet}' ${inches}"`;
+    };
+
+    // Function to handle range slider changes
+    const handleRangeChange = (newValues) => {
+        setMinHeight(newValues[0]);
+        setMaxHeight(newValues[1]);
+    };
+
 
     return (
         <>
@@ -65,11 +67,13 @@ function BasicInformation() {
                                 step={1}
                                 min={18}
                                 max={39}
+                                name="ages"
                                 labelAlwaysOn
-                                values={values}
-                                // defaultValue={[21, 29]}
-                                range={3}
-                                onChange={handleAge}
+                                values={formData.ages}
+                                defaultValue={formData.ages}
+                                range={2}
+                                // onChange={handleAge}
+                                onChange={(event) => handleFormChange('ages', event)}
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
@@ -81,22 +85,25 @@ function BasicInformation() {
                             }
                         >Height Range</Accordion.Control>
                         <Accordion.Panel>
-
                             <RangeSlider
                                 size="md"
-                                color='pink'
-                                py="xl"
-                                // scale={(v) => 2 ** v}
+                                color="pink"
                                 step={1}
-                                // min={4.5}
-                                // max={8}
+                                min={58}
+                                max={83}
                                 labelAlwaysOn
-                                // values={values}
-                                defaultValue={[4.11, 4.12]}
-                                range={3}
-                                // onChange={handleAge}
-                                label={valueLabelFormat}
+                                values={[minHeight, maxHeight]}
+                                onChange={handleRangeChange}
+                                valueLabel={(value) => formatHeight(value)}
                             />
+                            <div>
+                                <div>
+                                    Min Height: {formatHeight(minHeight)}
+                                </div>
+                                <div>
+                                    Max Height: {formatHeight(maxHeight)}
+                                </div>
+                            </div>
                         </Accordion.Panel>
                     </Accordion.Item>
 
@@ -117,7 +124,7 @@ function BasicInformation() {
                                 // value={formValues.maritalStatus}
                                 withAsterisk
                                 name="maritalStatus"
-                            // onChange={(event) => handleFormChange('maritalStatus', event)}
+                                onChange={(event) => handleFormChange('maritalStatus', event)}
                             // error={formErrors.maritalStatus}
                             />
                         </Accordion.Panel>

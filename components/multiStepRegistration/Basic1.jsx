@@ -62,8 +62,8 @@ const Basic1 = () => {
                 error={fieldErrors.basic1gender}
             >
                 <Group mt="xs">
-                    <Radio checked={data.gender === 'male'} color="pink" value="male" label="Male" />
-                    <Radio checked={data.gender === 'female'} color="pink" value="Female" label="Female" />
+                    <Radio checked={data.gender === 'Male'} color="pink" value="Male" label="Male" />
+                    <Radio checked={data.gender === 'Female'} color="pink" value="Female" label="Female" />
                 </Group>
             </Radio.Group>
 

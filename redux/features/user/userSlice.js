@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userService from "./userService";
 
 const initialState = {
-    userInfo: null,
+    userInfo: {},
     userInfoDatas: null,
     userPreferences: null,
     isError: false,
@@ -17,6 +17,20 @@ export const createProfile = createAsyncThunk('user/createProfile', async (data,
     const { step, ...otherData } = data;
     try {
         return await userService.createProfile(otherData, step)
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+//loaduserData
+export const loadUserData = createAsyncThunk('user/loadUserData', async (_data, thunkAPI) => {
+    try {
+        return await userService.loadUserData()
     } catch (error) {
         const message =
             (error.response &&
@@ -54,6 +68,20 @@ const userSlice = createSlice({
             })
             .addCase(createProfile.rejected, (state, action) => {
                 state.userInfoDatas = null
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(loadUserData.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(loadUserData.fulfilled, (state, action) => {
+                state.userInfo = action.payload.data,
+                    state.isLoading = false
+                state.isSuccess = true
+            })
+            .addCase(loadUserData.rejected, (state, action) => {
+                state.userInfo = null
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
