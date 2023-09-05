@@ -59,7 +59,10 @@ function Navbar() {
             </Link>
             {/* <a href="">Profiles</a> */}
             <Link href="/my-matches">
-              <p >Dashboard</p>
+              <p>Dashboard</p>
+            </Link>
+            <Link href="/plans">
+              <p>Plans</p>
             </Link>
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}

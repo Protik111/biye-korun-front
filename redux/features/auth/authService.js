@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/user/'
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/user/`
 
 const loadUser = async () => {
     const response = await axios.get(API_URL + 'verify')

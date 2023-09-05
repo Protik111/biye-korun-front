@@ -7,12 +7,15 @@ import axios from 'axios';
 import { resizeFile } from '@/utils/resizeFile';
 import { useRouter } from 'next/navigation';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
+import { useDispatch } from 'react-redux';
+import { loadUserData } from '@/redux/features/user/userSlice';
 
 
 function UploadImage() {
     const [files, setFiles] = useState([]);
     const [imageLoading, setImageLoading] = useState(false);
     const router = useRouter();
+    const dispatch = useDispatch();
 
     // console.log('images', files);
 
@@ -32,6 +35,7 @@ function UploadImage() {
                     .then((res) => {
                         setImageLoading(false);
                         notifySuccess('Image uploaded successfully!')
+                        dispatch(loadUserData())
                         setTimeout(() => {
                             router.push('/registration/hobbies')
                         }, 1000)
