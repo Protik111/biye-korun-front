@@ -1,4 +1,3 @@
-"use client"
 
 import { loadUser } from "@/redux/features/auth/authSlice";
 import { Loader } from "@mantine/core";
