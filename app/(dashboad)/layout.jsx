@@ -1,4 +1,3 @@
-"use client";
 
 import Tapbar from "@/components/dashboard/Tapbar";
 import "../globals.scss";
