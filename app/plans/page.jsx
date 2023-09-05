@@ -1,4 +1,4 @@
-"use client"
+
 
 import MatchMaking from "@/components/plans/MatchMaking"
 import PlansHero from "@/components/plans/PlansHero"

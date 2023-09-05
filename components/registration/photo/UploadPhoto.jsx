@@ -1,4 +1,4 @@
-"use client"
+
 
 import UploadImage from '@/components/global/UploadImage'
 import { btnBackground } from '@/styles/library/mantine'

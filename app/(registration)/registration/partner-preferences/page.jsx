@@ -1,4 +1,4 @@
-"use client"
+
 import PartnerPreference from '@/components/registration/partner-preferences/PartnerPreference'
 
 const page = () => {

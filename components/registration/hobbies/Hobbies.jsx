@@ -1,4 +1,4 @@
-"use client"
+
 import { creativeHobbies, fitness, funs, otherInterests } from "@/staticData/InputFields/inputFields"
 import { btnBackground } from "@/styles/library/mantine"
 import { notifyError, notifySuccess } from "@/utils/showNotification"

@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 

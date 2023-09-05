@@ -1,4 +1,4 @@
-"use client"
+
 
 import Matches from "@/components/matches/Matches"
 

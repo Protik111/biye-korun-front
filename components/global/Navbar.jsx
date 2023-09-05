@@ -1,4 +1,4 @@
-"use client";
+
 import { useEffect, useState } from "react";
 import { IconLogout2, IconMenu2, IconUserCircle, IconX } from "@tabler/icons-react";
 import { Avatar, Button } from "@mantine/core";

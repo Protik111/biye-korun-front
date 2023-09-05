@@ -1,4 +1,4 @@
-"use client";
+
 import TodaysMatch from "@/components/dashboard/TodaysMatch";
 
 export const TodaysMatchPage = () => {
