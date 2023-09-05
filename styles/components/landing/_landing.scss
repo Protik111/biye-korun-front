@@ -16,7 +16,8 @@
     transform: translateX(-50%);
 
     @include mdMaxBreakPoint {
-      bottom: 1%;
+      // bottom: 1%;
+      top: 120px;
     }
 
     &--title {

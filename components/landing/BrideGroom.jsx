@@ -42,9 +42,9 @@ const BrideGroom = () => {
     return (
         <div className='bridegroom'>
             <h2 className="text-center">Match bride & groom for you</h2>
-            <div className="container flex flex-wrap flex-gap-25 align-center justify-center">
+            <div className="container bridegroom__wrapper">
                 {
-                    brides?.map((item, i) => <div className="container-box-bg p-40 text-center">
+                    brides?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center">
                         <Avatar mx="auto" size="xl" src={item?.image} alt={item?.name} />
                         <h3 className="mt-5">{item?.name}</h3>
                         <p>{item?.years}</p>

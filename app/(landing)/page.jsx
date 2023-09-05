@@ -7,7 +7,6 @@ import LandingV2 from "@/components/landing/LandingV2";
 import Landing from "@/components/landing/landing";
 
 export default function Home() {
-  console.log('local', process.env.NEXT_PUBLIC_API_URL);
   return (
     <>
       {/* <Landing></Landing> */}

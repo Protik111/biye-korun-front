@@ -18,7 +18,7 @@ function Navbar() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  const { profilePicture } = userInfo;
+  const { profilePicture } = userInfo || {};
 
   // console.log('isAuthenticated', isAuthenticated);
 

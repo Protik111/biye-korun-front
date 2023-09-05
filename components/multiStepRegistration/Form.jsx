@@ -78,7 +78,7 @@ const Form = () => {
 
     }
 
-    console.log('message', message);
+    // console.log('message', message);
 
 
     const content = (

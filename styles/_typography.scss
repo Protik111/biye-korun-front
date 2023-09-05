@@ -18,8 +18,9 @@ h2 {
     font-size: 36px;
     line-height: 43px;
 
-    @include smMinBreakPoint {
+    @include smMaxBreakPoint {
         font-size: 28px;
+        line-height: 28px;
     }
 }
 

@@ -1,0 +1,16 @@
+.bridegroom {
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 250px);
+        gap: 15px;
+        justify-content: center;
+        /* Center horizontally */
+        align-content: center;
+        /* Center vertically */
+
+        @include smMaxBreakPoint {
+            grid-template-columns: repeat(auto-fill, 180px);
+        }
+    }
+}
