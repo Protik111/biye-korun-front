@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 4000",
+    "lint": "next lint",
+    "dev:staging": "env-cmd -f .env.staging next dev -p 4000",
+    "build:staging": "env-cmd -f .env.staging next build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -19,6 +21,7 @@
     "axios": "^1.5.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
+    "env-cmd": "^10.1.0",
     "next": "13.4.16",
     "node-sass": "^9.0.0",
     "react": "18.2.0",
