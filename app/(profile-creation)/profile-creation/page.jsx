@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Stepper, Button, Group, Notification } from '@mantine/core';
 import { btnBackground } from '@/styles/library/mantine';
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
-import Step1 from '@/components/profile-creation/step1';
+import Step1 from '@/components/profile-creation/Step1';
 import Step2 from '@/components/profile-creation/Step2';
 import Step3 from '@/components/profile-creation/Step3';
 import { useDispatch, useSelector } from 'react-redux';
