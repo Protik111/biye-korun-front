@@ -1,9 +1,10 @@
 import { fontSizeMnd } from "@/styles/library/mantine";
 import { Tabs } from "@mantine/core";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Tapbar = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleChangeTab = (value) => {
     router.push(`/${value}`);
@@ -12,15 +13,8 @@ const Tapbar = () => {
   return (
     <div className="tapbar">
       <div className="container">
-        <Tabs defaultValue="todays-matches" color="pink" variant="pills">
+        <Tabs defaultValue={pathname.replace(/^\/+/, '')} color="pink" variant="pills">
           <Tabs.List grow position="apart">
-            {/* <Tabs.Tab
-              onClick={() => handleChangeTab("profile")}
-              sx={fontSizeMnd}
-              value="profile"
-            >
-              Profile
-            </Tabs.Tab> */}
             <Tabs.Tab
               sx={fontSizeMnd}
               value="new-matches"

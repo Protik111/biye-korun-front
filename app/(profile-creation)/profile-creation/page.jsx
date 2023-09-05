@@ -19,7 +19,7 @@ const ProfileCreation = () => {
     const [active, setActive] = useState(0);
     const router = useRouter();
 
-    const { location: { city, residencyStatus }, doctrine: { caste }, appearance: { height }, education: { college, education }, family: { children, livingWith }, lifestyle: { diet, maritalStatus }, profession: { employer, income, occupation, workingWith }, trait: { aboutMe }, phone } = userInfo || {};
+    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone } = userInfo;
 
     // console.log('city, residencyStatus', city, residencyStatus);
 

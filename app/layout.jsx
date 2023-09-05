@@ -6,6 +6,9 @@ import { ToastContainer } from "react-toastify";
 export const metadata = {
   title: "Biye Korun",
   description: "A matrimony service to find people hapiness",
+  icons: {
+    url: 'biyekorun-logo.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
