@@ -12,10 +12,13 @@ import { useRouter } from "next/navigation";
 
 function Navbar() {
   const { isAuthenticated } = useSelector(state => state.auth);
+  const { userInfo } = useSelector(state => state.user)
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  const { profilePicture } = userInfo;
 
   // console.log('isAuthenticated', isAuthenticated);
 
@@ -51,10 +54,15 @@ function Navbar() {
             </Link>
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
-            <a href="/">Home</a>
-            <a href="">Profiles</a>
-            <a href="">Dashboard</a>
-            <a href="">Help</a>
+            <Link href="/">
+              <p >Home</p>
+            </Link>
+            {/* <a href="">Profiles</a> */}
+            <Link href="/my-matches">
+              <p >Dashboard</p>
+            </Link>
+            {/* <a href="/my-matches">Dashboard</a> */}
+            {/* <a href="">Help</a> */}
             {!isAuthenticated ? <Button mt={5} mr={5} color="pink" radius="xl" size="md">
               Login
             </Button> :
@@ -64,14 +72,19 @@ function Navbar() {
                     <Avatar
                       size="lg"
                       radius="xl"
-                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
+                      src={profilePicture?.url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80'}
                       alt="it's me"
                     />
                   </Menu.Target>
 
                   <Menu.Dropdown>
                     <Menu.Label>User Profile</Menu.Label>
-                    <Menu.Item icon={<IconUserCircle size={14} />}>View Profile</Menu.Item>
+
+                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                      <Link style={{ color: 'black' }} href="/my-matches">
+                        View Profile
+                      </Link>
+                    </Menu.Item>
                     <Menu.Item onClick={() => handleLogout()} icon={<IconLogout2 size={14} />}>Log out</Menu.Item>
 
                   </Menu.Dropdown>

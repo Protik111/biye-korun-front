@@ -12,17 +12,20 @@ import { loadUserData } from "./features/user/userSlice";
 export function ReduxProvider({ children }) {
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        const token = localStorage.getItem('biyeKorun_token');
-        const parsedToken = JSON.parse(token);
+    useEffect(async () => {
+        const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
         if (parsedToken?.accessToken) {
             setAuthToken(parsedToken.accessToken);
 
-            // console.log('parsedToken?.accessToken', parsedToken?.accessToken);
-            store.dispatch(loadUser());
-            store.dispatch(loadUserData());
-            configureAxiosHeader();
-            setIsLoading(true)
+            try {
+                await store.dispatch(loadUser());
+                await store.dispatch(loadUserData());
+                await configureAxiosHeader();
+                setIsLoading(true)
+            } catch (error) {
+                console.error("An error occurred:", error);
+                setIsLoading(true);
+            }
         }
     }, [])
 
