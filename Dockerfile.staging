@@ -20,7 +20,7 @@ RUN npm run build:staging
 EXPOSE 4000
 
 # Set the environment variable for the app's production mode
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
 # Start the app with the "start" script defined in package.json
 CMD npx next start -p 4000
