@@ -1,4 +1,4 @@
-
+"use client"
 
 import PhoneVerification from "@/components/registration/phone-verification/PhoneVerification"
 

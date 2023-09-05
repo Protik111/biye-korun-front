@@ -1,4 +1,4 @@
-
+"use client"
 
 import { useState } from 'react';
 import { Stepper, Button, Group, Notification } from '@mantine/core';
