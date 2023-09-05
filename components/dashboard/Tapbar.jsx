@@ -1,3 +1,4 @@
+"use client"
 import { fontSizeMnd } from "@/styles/library/mantine";
 import { Tabs } from "@mantine/core";
 import { usePathname, useRouter } from "next/navigation";
