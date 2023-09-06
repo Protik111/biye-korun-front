@@ -71,17 +71,17 @@ function Navbar() {
             </Button> :
               <div className="user-profile">
                 <Menu shadow="md" width={200}>
-                  <Menu.Target sx={{ cursor: 'pointer', border: '1px solid pink' }}>
+                  <Menu.Target sx={{ cursor: 'pointer' }}>
                     <Avatar
-                      size="lg"
+                      size="md"
                       radius="xl"
-                      src={profilePicture?.url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80'}
+                      src={profilePicture?.url || '/profile.svg'}
                       alt="it's me"
                     />
                   </Menu.Target>
 
                   <Menu.Dropdown>
-                    <Menu.Label>User Profile</Menu.Label>
+                    {/* <Menu.Label>User Profile</Menu.Label> */}
 
                     <Menu.Item icon={<IconUserCircle size={14} />}>
                       <Link style={{ color: 'black' }} href="/my-matches">

@@ -64,7 +64,6 @@ const Form = () => {
             password: data?.basic2password
         }
 
-        const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
 
         if (isSubmittable) {
             // console.log(JSON.stringify(data))
@@ -73,6 +72,9 @@ const Form = () => {
                 .unwrap()
                 .then(() => {
                     notifySuccess("Registered successfully!")
+
+                    const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+
                     setTimeout(() => {
                         if (parsedToken?.accessToken) {
                             setAuthToken(parsedToken.accessToken);
