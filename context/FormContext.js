@@ -93,7 +93,6 @@ export const FormProvider = ({ children }) => {
             }
             if (pageData.basic2password) {
                 const passwordError = isStrongPassword(pageData.basic2password)
-                console.log('passwordError', passwordError);
                 if (passwordError) {
                     errors.basic2password = passwordError;
                 }
