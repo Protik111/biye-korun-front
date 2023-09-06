@@ -18,6 +18,16 @@ export const selectMobileStylesV2 = {
     }
 }
 
+export const logininput = {
+    width: '300px',
+    '@media (max-width: 640px)': {
+        width: '250px',
+    },
+    '@media (max-width: 400px)': {
+        width: '200px',
+    }
+}
+
 export const btnBackground = {
     // backgroundColor: '#F143CB',
     backgroundColor: '#E64980',

@@ -38,7 +38,7 @@ function UploadImage() {
                         dispatch(loadUserData())
                         setTimeout(() => {
                             router.push('/registration/hobbies')
-                        }, 1000)
+                        }, 500)
                     })
                     .catch((err) => {
                         setImageLoading(false);

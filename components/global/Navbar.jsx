@@ -37,7 +37,7 @@ function Navbar() {
         notifySuccess("Logout successfully!")
         setTimeout(() => {
           router.push('/')
-        }, 1000)
+        }, 500)
       })
       .catch(() => {
         notifyError("Error Occurred!")
@@ -66,9 +66,12 @@ function Navbar() {
             </Link>
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
-            {!isAuthenticated ? <Button mt={5} mr={5} color="pink" radius="xl" size="md">
-              Login
-            </Button> :
+            {!isAuthenticated ?
+              <Link href="/login">
+                <Button mt={5} mr={5} color="pink" radius="xl" size="md">
+                  Login
+                </Button>
+              </Link> :
               <div className="user-profile">
                 <Menu shadow="md" width={200}>
                   <Menu.Target sx={{ cursor: 'pointer' }}>

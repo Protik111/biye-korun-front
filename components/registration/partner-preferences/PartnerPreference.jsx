@@ -76,7 +76,7 @@ const PartnerPreference = () => {
                 setLoading(false)
                 setTimeout(() => {
                     router.push('/matches')
-                }, 1000)
+                }, 500)
             })
             .catch(err => {
                 setLoading(false)

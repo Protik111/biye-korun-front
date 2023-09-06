@@ -123,7 +123,7 @@ const ProfileCreation = () => {
 
                     setTimeout(() => {
                         router.push('/registration/photo')
-                    }, 1000)
+                    }, 500)
                 })
                 .catch(() => {
                     notifyError(message)

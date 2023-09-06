@@ -111,7 +111,7 @@ const LandingV2 = () => {
                 modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose}>
                     {/* <MultistepRegistration></MultistepRegistration> */}
                     <FormProvider>
-                        <Form></Form>
+                        <Form handleModalClose={handleModalClose}></Form>
                     </FormProvider>
                 </CenteredModal>
             }

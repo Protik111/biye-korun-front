@@ -11,12 +11,14 @@ import { useState } from 'react';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
 import setAuthToken from '@/utils/setAuthToken';
 import { configureAxiosHeader } from '@/utils/setAxiosHeader';
+import LoaderWithText from '../global/LoaderWithText';
 
 
 
-const Form = () => {
+const Form = ({ handleModalClose }) => {
     const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
     const [showNotification, setShowNotification] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -66,12 +68,13 @@ const Form = () => {
 
 
         if (isSubmittable) {
-            // console.log(JSON.stringify(data))
-            // console.log(datas, 'datas')
+            setLoading(true)
             dispatch(register(datas))
                 .unwrap()
                 .then(() => {
                     notifySuccess("Registered successfully!")
+                    setLoading(false)
+                    handleModalClose()
 
                     const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
 
@@ -81,10 +84,11 @@ const Form = () => {
                             configureAxiosHeader();
                         }
                         router.push('/profile-creation')
-                    }, 3000)
+                    }, 500)
                 })
                 .catch(() => {
                     notifyError(message)
+                    setLoading(false)
                 })
         }
 
@@ -121,7 +125,18 @@ const Form = () => {
                             className={`button ${submitHide}`}
                             // disabled={!canSubmit}
                             onClick={handleSubmit}
-                        >Sign Up</Button>
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    <LoaderWithText text="Signing up.." color="white"></LoaderWithText>
+                                </>
+                            ) : (
+                                <>
+                                    Sign up
+                                </>
+                            )}
+                        </Button>
                     </div>}
 
                     {page === 0 && <Button

@@ -78,7 +78,7 @@ const Hobbies = () => {
                 setHobbiesLoading(false)
                 setTimeout(() => {
                     router.push('/registration/partner-preferences')
-                }, 2000)
+                }, 500)
             })
             .catch(err => {
                 setHobbiesLoading(false)

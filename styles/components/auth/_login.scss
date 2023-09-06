@@ -1,0 +1,22 @@
+.loginComp {
+
+    &__wrapper {
+        padding: 30px;
+
+        &--right {
+            img {
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
+
+                @include lgMaxBreakPoint {
+                    height: 200px;
+                }
+
+                @include smMaxBreakPoint {
+                    height: 200px;
+                }
+            }
+        }
+    }
+}

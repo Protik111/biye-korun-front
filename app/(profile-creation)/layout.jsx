@@ -1,9 +1,4 @@
 // "use client"
-// import { loadUser } from "@/redux/features/auth/authSlice";
-// import { Loader } from "@mantine/core";
-// import { useRouter } from "next/navigation";
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux"
 
 export const metadata = {
   title: 'Profile Creation',
