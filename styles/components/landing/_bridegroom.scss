@@ -10,7 +10,7 @@
         /* Center vertically */
 
         @include smMaxBreakPoint {
-            grid-template-columns: repeat(auto-fill, 180px);
+            grid-template-columns: repeat(auto-fill, 250px);
         }
     }
 }

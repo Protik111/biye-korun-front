@@ -1,6 +1,7 @@
 import useFormContext from "@/hooks/common/useFormContext"
 import { countries, profileFor } from "@/staticData/InputFields/inputFields"
 import { btnBackground } from "@/styles/library/mantine"
+import { generate18YearBefore } from "@/utils/generate18YearBefore"
 import { Button, Group, Input, PasswordInput, Radio, Select, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 
@@ -9,19 +10,7 @@ const Basic2 = () => {
     const { data, handleChange, fieldErrors } = useFormContext()
 
     const content = (
-        <div className="mutlistep__registration px-15">
-            {/* <Select
-                size="md"
-                placeholder="Select"
-                label="Profile for"
-                // styles={{ label: labelStyles }}
-                data={profileFor}
-                value={data.basic1postedBy}
-                withAsterisk
-                name="basic1postedBy"
-                onChange={(event) => handleChange('basic1postedBy', event)}
-            // error={formErrors.postedBy}
-            /> */}
+        <div className="mutlistep__registration px-10 py-10">
 
             <br />
 
@@ -52,23 +41,6 @@ const Basic2 = () => {
             />
             <br />
 
-            <DatePickerInput
-                clearable
-                defaultValue={new Date()}
-                label="Your date of birth"
-                placeholder="Pick date"
-                mx="auto"
-                size="md"
-                maw={400}
-                withAsterisk
-                value={data.basic2dob}
-                onChange={(event) => handleChange('basic2dob', event)}
-                error={fieldErrors.basic2dob}
-
-            />
-
-            <br />
-
             <Select
                 size="md"
                 placeholder="Select"
@@ -80,6 +52,26 @@ const Basic2 = () => {
                 name="basic2country"
                 onChange={(event) => handleChange('basic2country', event)}
                 error={fieldErrors.basic2country}
+            />
+
+            <br />
+
+            <DatePickerInput
+                clearable
+                // defaultValue={today}
+                // description="Years must be at least 18"
+                label="Your date of birth"
+                placeholder="Pick date"
+                mx="auto"
+                size="md"
+                maw={400}
+                withAsterisk
+                value={data.basic2dob}
+                onChange={(event) => handleChange('basic2dob', event)}
+                error={fieldErrors.basic2dob}
+                //disableBeforeDate={minDate} // Use the disableDate function
+                maxDate={generate18YearBefore()}
+
             />
 
             <br />

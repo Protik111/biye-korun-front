@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
+import setAuthToken from '@/utils/setAuthToken';
+import { configureAxiosHeader } from '@/utils/setAxiosHeader';
+
+
 
 const Form = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
@@ -60,6 +64,8 @@ const Form = () => {
             password: data?.basic2password
         }
 
+        const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+
         if (isSubmittable) {
             // console.log(JSON.stringify(data))
             // console.log(datas, 'datas')
@@ -68,6 +74,10 @@ const Form = () => {
                 .then(() => {
                     notifySuccess("Registered successfully!")
                     setTimeout(() => {
+                        if (parsedToken?.accessToken) {
+                            setAuthToken(parsedToken.accessToken);
+                            configureAxiosHeader();
+                        }
                         router.push('/profile-creation')
                     }, 3000)
                 })

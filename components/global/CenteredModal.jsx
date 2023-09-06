@@ -19,11 +19,12 @@ const CenteredModal = ({ modalOpen, handleModalClose, children }) => {
                 overlayOpacity={0.55}
                 overlayBlur={3}
                 size="md"
+                // height="1500"
                 styles={{
                     modal: {
                         backgroundColor: "#062539",
-                        height: '1000px',
-                        overflow: 'atuo'
+                        // height: '1000px',
+                        overflow: 'atuo',
                     }
                 }}
             >

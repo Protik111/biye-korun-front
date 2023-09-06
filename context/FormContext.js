@@ -1,3 +1,5 @@
+import { generate18YearBefore } from "@/utils/generate18YearBefore"
+import { isStrongPassword } from "@/utils/isFunctionStrong"
 import { createContext, useState, useEffect } from "react"
 
 const FormContext = createContext({})
@@ -21,7 +23,7 @@ export const FormProvider = ({ children }) => {
         basic1community: '',
         basic2email: '',
         basic2password: '',
-        basic2dob: new Date(),
+        basic2dob: new Date(generate18YearBefore()),
         basic2country: '',
     })
 
@@ -50,6 +52,7 @@ export const FormProvider = ({ children }) => {
             }, {});
 
         const errors = {};
+
 
         //basic1 validation
         if (page === 0) {
@@ -88,8 +91,12 @@ export const FormProvider = ({ children }) => {
             if (!pageData.basic2password) {
                 errors.basic2password = 'Password is required';
             }
-            if (pageData.basic2password && pageData.basic2password.length < 8) {
-                errors.basic2password = 'Password should be at least 8 characters';
+            if (pageData.basic2password) {
+                const passwordError = isStrongPassword(pageData.basic2password)
+                console.log('passwordError', passwordError);
+                if (passwordError) {
+                    errors.basic2password = passwordError;
+                }
             }
             if (!pageData.basic2dob) {
                 errors.basic2dob = 'Choose you date of birth';

@@ -8,7 +8,7 @@ const Basic1 = () => {
     const { data, handleChange, fieldErrors } = useFormContext()
 
     const content = (
-        <div className="mutlistep__registration px-15">
+        <div className="mutlistep__registration px-10">
             <Select
                 size="md"
                 placeholder="Select"

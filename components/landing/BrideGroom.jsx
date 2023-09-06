@@ -1,4 +1,8 @@
 import { Avatar, Button } from "@mantine/core"
+import CenteredModal from "../global/CenteredModal";
+import { FormProvider } from "@/context/FormContext";
+import Form from "../multiStepRegistration/Form";
+import { useState } from "react";
 
 const brides = [
     {
@@ -39,6 +43,10 @@ const brides = [
 ]
 
 const BrideGroom = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleModalClose = () => setModalOpen(false)
+
     return (
         <div className='bridegroom'>
             <h2 className="text-center">Match bride & groom for you</h2>
@@ -67,10 +75,19 @@ const BrideGroom = () => {
                     // color="pink"
                     className="mt-10"
                     size="md"
+                    onClick={() => setModalOpen(true)}
                 >
                     Register Now
                 </Button>
             </div>
+            {
+                modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose}>
+                    {/* <MultistepRegistration></MultistepRegistration> */}
+                    <FormProvider>
+                        <Form></Form>
+                    </FormProvider>
+                </CenteredModal>
+            }
         </div>
     )
 }
