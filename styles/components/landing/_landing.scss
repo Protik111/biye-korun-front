@@ -12,7 +12,8 @@
   &__meet {
     position: absolute;
     left: 50%;
-    bottom: 25%;
+    // bottom: 100px;
+    top: 40%;
     transform: translateX(-50%);
 
     @include mdMaxBreakPoint {

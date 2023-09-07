@@ -72,7 +72,7 @@ function Navbar() {
                   Login
                 </Button>
               </Link> :
-              <div className="user-profile">
+              <div className="user-profile mt-10 mr-10">
                 <Menu shadow="md" width={200}>
                   <Menu.Target sx={{ cursor: 'pointer' }}>
                     <Avatar
@@ -108,7 +108,7 @@ function Navbar() {
               <></>
             )}
           </div>
-          <div className={`initial ${clicked ? " active" : ""} bigDiv`}>
+          <div className={`initial ${clicked ? "active" : ""} bigDiv`}>
             <div className="ml-15 mt-15">
               <IconX
                 onClick={() => setClicked(false)}

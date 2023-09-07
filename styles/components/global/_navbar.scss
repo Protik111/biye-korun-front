@@ -90,6 +90,10 @@ a {
   z-index: 1000;
   transition: all 0.6s ease;
 
+  @media (min-width: 768px) {
+    display: none;
+  }
+
   &.active {
     border-radius: 0 0 80% 0;
     top: 0;
