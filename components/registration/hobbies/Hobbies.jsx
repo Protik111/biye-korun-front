@@ -17,6 +17,7 @@ const Hobbies = () => {
 
     // console.log('userInfo', userInfo);
 
+
     const handleFormChange = (e, val) => {
 
         // console.log('e, val', e, val);
