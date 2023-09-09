@@ -1,50 +1,35 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-const useAxios = (configObj) => {
-    const {
-        axiosInstance,
-        method,
-        url,
-        requestConfig = {}
-    } = configObj;
-
-    const [response, setResponse] = useState([]);
-    const [error, setError] = useState('');
+const useAxios = (url, method = "GET", initialData = null, config = {}) => {
+    const [data, setData] = useState(initialData);
+    const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [reload, setReload] = useState(0);
 
-    const refetch = () => setReload(prev => prev + 1);
+    console.log('url', url);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.request({
+                url,
+                method,
+                ...config,
+            });
+            console.log('response.data', response.data);
+            setData(response.data);
+        } catch (err) {
+            setError(err);
+            console.log('err', err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        //let isMounted = true;
-        const controller = new AbortController();
-
-        const fetchData = async () => {
-            try {
-                const res = await axiosInstance[method.toLowerCase()](url, {
-                    ...requestConfig,
-                    signal: controller.signal
-                });
-                console.log(res);
-                setResponse(res.data);
-            } catch (err) {
-                console.log(err.message);
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        // call the function
         fetchData();
+    }, []);
 
-        // useEffect cleanup function
-        return () => controller.abort();
+    return { data, error, loading, refetch: fetchData };
+};
 
-        // eslint-disable-next-line
-    }, [reload]);
-
-    return [response, error, loading, refetch];
-}
-
-export default useAxios
+export default useAxios;
