@@ -3,12 +3,33 @@
     display: flex;
     gap: 15px;
 
+    @include smMaxBreakPoint {
+      flex-direction: column;
+    }
+
     &--requestBox {
       flex: 0 0 25%;
       position: sticky;
       top: 100px;
       height: 100vh;
       overflow-y: auto;
+
+      @include smMaxBreakPoint {
+        position: static;
+      }
+
+      .requestPhoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          @include smMaxBreakPoint {
+            height: 150px;
+            object-fit: cover;
+          }
+        }
+      }
 
       .requestBox-container {
         background-color: white;
