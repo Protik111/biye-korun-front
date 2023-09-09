@@ -78,6 +78,8 @@ const ProfileCreation = () => {
         phone: ''
     });
 
+    console.log('formValues', formValues);
+
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
 
     const handleStep1Next = (step1FormValues) => {

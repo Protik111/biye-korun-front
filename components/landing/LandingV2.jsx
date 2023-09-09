@@ -10,8 +10,12 @@ import { motherTongues, religions } from "@/staticData/InputFields/inputFields";
 import useMediaQueryHookSSR from "@/hooks/library/mantine/useMediaQuerySSR";
 import Form from "../multiStepRegistration/Form";
 import { FormProvider } from "@/context/FormContext";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const LandingV2 = () => {
+    const { isAuthenticated } = useSelector(state => state.auth)
+    const router = useRouter();
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -22,6 +26,14 @@ const LandingV2 = () => {
     const ages = Array.from({ length: endAge - startAge + 1 }, (_, index) => (startAge + index).toString().padStart(2, '0'));
 
     const handleModalClose = () => setModalOpen(false)
+
+    const handleLetsBegin = () => {
+        if (!isAuthenticated) {
+            setModalOpen(true)
+        } else {
+            router.push('/my-matches')
+        }
+    }
 
     return (
         <div className='landingv2'>
@@ -100,7 +112,7 @@ const LandingV2 = () => {
                     </div>
 
                     <div className="flex justify-center mt-15">
-                        <Button style={btnBackground} size="md" onClick={() => setModalOpen(true)}>
+                        <Button style={btnBackground} size="md" onClick={handleLetsBegin}>
                             Let's Begin
                         </Button>
                     </div>

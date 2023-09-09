@@ -1,7 +1,7 @@
 'use client'
 
-import { heights, maritalStatuses, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
-import { Button, Select, TextInput, Chip } from "@mantine/core"
+import { cities, heights, maritalStatuses, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
+import { Button, Select, TextInput, Chip, Autocomplete } from "@mantine/core"
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 
@@ -70,14 +70,15 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
             <h2 className='text-center'>Create An Account</h2>
 
 
-            <TextInput
+            <Autocomplete
                 label="City you lives in?"
                 placeholder="Enter the city you lives in"
                 size="md"
                 withAsterisk
                 name="city"
+                data={cities}
                 value={formValues.city}
-                onChange={(event) => handleFormChange('city', event.target.value)}
+                onChange={(event) => handleFormChange('city', event)}
                 error={formErrors.city}
             />
 
@@ -136,28 +137,30 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
             <br />
 
-            <div>
-                <label htmlFor="hasChildren" className="label">Do you have any children?</label>
-                <Chip.Group
-                    multiple={false}
-                    value={formValues.hasChildren}
-                    onChange={(event) => handleFormChange('hasChildren', event)}
-                    name="hasChildren"
-                    className="mt-5"
-                >
-                    <div className="flex flex-gap-10 flex-wrap mt-5">
-                        <Chip variant="filled" color="pink" value="no">No</Chip>
-                        <Chip variant="filled" color="pink" value="yes, livingTogether">Yes. Living together</Chip>
-                        <Chip variant="filled" color="pink" value="yes, notLivingTogether">Yes. Not living together</Chip>
-                    </div>
-                </Chip.Group>
+            {formValues.maritalStatus !== 'Never Married' ? <>
+                <div>
+                    <label htmlFor="hasChildren" className="label">Do you have any children?</label>
+                    <Chip.Group
+                        multiple={false}
+                        value={formValues.hasChildren}
+                        onChange={(event) => handleFormChange('hasChildren', event)}
+                        name="hasChildren"
+                        className="mt-5"
+                    >
+                        <div className="flex flex-gap-10 flex-wrap mt-5">
+                            <Chip variant="filled" color="pink" value="no">No</Chip>
+                            <Chip variant="filled" color="pink" value="yes, livingTogether">Yes. Living together</Chip>
+                            <Chip variant="filled" color="pink" value="yes, notLivingTogether">Yes. Not living together</Chip>
+                        </div>
+                    </Chip.Group>
 
-                {formErrors.hasChildren && (
-                    <p className="error-message">{formErrors.hasChildren}</p>
-                )}
-            </div>
+                    {formErrors.hasChildren && (
+                        <p className="error-message">{formErrors.hasChildren}</p>
+                    )}
+                </div>
 
-            <br />
+                <br />
+            </> : <></>}
 
             <div>
                 <label htmlFor="diet" className="label">Your diet?</label>

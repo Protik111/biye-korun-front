@@ -6,13 +6,20 @@ import { Button, Select, TextInput, Chip } from "@mantine/core"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import React, { useState } from 'react'
+import { useSelector } from "react-redux"
 
 const Hobbies = () => {
+    const { userInfo, message } = useSelector(state => state.user)
+
     const [hobbies, setHobbies] = useState([])
     const [hobbiesLoading, setHobbiesLoading] = useState(false);
     const router = useRouter();
 
+    // console.log('userInfo', userInfo);
+
     const handleFormChange = (e, val) => {
+
+        // console.log('e, val', e, val);
 
         if (hobbies.length === 0) {
             setHobbies([
@@ -87,7 +94,7 @@ const Hobbies = () => {
             })
     }
 
-    console.log('hobbies', hobbies);
+    // console.log('hobbies', hobbies);
     return (
         <div className='hobbies'>
             <h2 className='text-center py-15'>Now let's add your hobbies & interests</h2>

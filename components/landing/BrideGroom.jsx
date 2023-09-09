@@ -3,6 +3,8 @@ import CenteredModal from "../global/CenteredModal";
 import { FormProvider } from "@/context/FormContext";
 import Form from "../multiStepRegistration/Form";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const brides = [
     {
@@ -43,9 +45,20 @@ const brides = [
 ]
 
 const BrideGroom = () => {
+    const { isAuthenticated } = useSelector(state => state.auth)
+    const router = useRouter();
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleModalClose = () => setModalOpen(false)
+
+    const handleRegister = () => {
+        if (!isAuthenticated) {
+            setModalOpen(true)
+        } else {
+            router.push('/my-matches')
+        }
+    }
 
     return (
         <div className='bridegroom'>
@@ -75,9 +88,9 @@ const BrideGroom = () => {
                     // color="pink"
                     className="mt-10"
                     size="md"
-                    onClick={() => setModalOpen(true)}
+                    onClick={handleRegister}
                 >
-                    Register Now
+                    {!isAuthenticated ? 'Register Now' : "Let's Begin"}
                 </Button>
             </div>
             {

@@ -7,23 +7,119 @@ export const communities = ["Bengali", "English", "Hindi", "Arabic", "Chinese", 
 // export const profileFor = ["Self", "Son", "Daughter", "Brother", "Sister", "Friend", "Relative"]
 export const profileFor = ["Myself", "My Son", "My Daughter", "My Brother", "My Sister", "My Friend", "My Relative"]
 
-export const cities = ["Dhaka", "Chittagon", "Cumilla", "Sylet", "Barishal"]
+// export const cities = ["Dhaka", "Chittagon", "Cumilla", "Sylet", "Barishal"]
 
-export const recidencies = ["Bangladeshi", "Indian", "American"]
+export const cities = ["Dhaka North", "Dhaka South", "Chittagong", "Khulna", "Bogura", "Sylhet", "Rajshahi", "Comilla", "Barisal", "Rangpur", "Mymensingh", "Gazipur", "Narayanganj", "New York", "Los Angeles", "Chicago", "Washington D.C.",
+    "Boston", "El Paso", "Detroit", "Nashville", "Memphis", "Oklahoma City",
+    "Las Vegas",
+    "Louisville",
+    "Baltimore",
+    "Atlanta",
+    "Long Beach",
+    "Omaha",
+    "Raleigh",
+    "Colorado Springs",
+    "Miami",
+    "Virginia Beach",
+    "Oakland"]
+
+
+// export const recidencies = ["Bangladeshi", "Indian", "American"]
+export const recidencies = ["Citizen", "Permanent Resident", "Student Visa", "Temporary Visa", "Work Permit"]
+
 
 export const maritalStatuses = ["Never Married", "Married", "Divorced", "Widowed", "Awaiting Divorce"]
 
-export const heights = ["5ft 1nc - 154cm", "5ft 2nc - 157cm", "5ft 3nc - 160cm"]
+// export const heights = ["5ft 1nc - 154cm", "5ft 2nc - 157cm", "5ft 3nc - 160cm"]
 
-export const subCommunities = ["Dhakaya", "NoaKhailla", "Barishalla"]
+export const heights = ["4ft 5in - 134cm",
+    "4ft 6in - 137cm",
+    "4ft 7in - 139cm",
+    "4ft 9in - 142cm",
+    "4ft 10in - 144cm",
+    "4ft 11in - 147cm",
+    "5ft - 152cm",
+    "5ft 1in - 154cm",
+    "5ft 2in - 157cm",
+    "5ft 3in - 160cm",
+    "5ft 4in - 162cm",
+    "5ft 5in - 165cm",
+    "5ft 6in - 167cm",
+    "5ft 7in - 170cm",
+    "5ft 8in - 172cm",
+    "5ft 9in - 175cm",
+    "5ft 10in - 177cm",
+    "5ft 11in - 180cm",
+    "6ft - 182cm",
+    "6ft 1in - 185cm",
+    "6ft 2in - 187cm",
+    "6ft 3in - 190cm",
+    "6ft 4in - 193cm",
+    "6ft 5in - 195cm",
+    "6ft 6in - 198cm",
+    "6ft 7in - 200cm",
+    "6ft 8in - 203cm",
+    "6ft 9in - 205cm",
+    "6ft 10in - 208cm",
+    "6ft 11in - 210cm",
+    "7ft - 213cm"]
 
-export const qualifications = ["BSc", "MSc", "BA", "DR", "PhD"]
+// export const subCommunities = ["Dhakaya", "NoaKhailla", "Barishalla"]
+export const subCommunities = ["Shia",
+    "Ansari",
+    "Pathan",
+    "Shafi",
+    "Sunni",
+    "Sunni Hanafi",
+    "Sunni Hunbali",
+    "Sunni Maliki",
+    "Sunni Shafi"]
 
-export const worksWiths = ["Private Company", "Government", "Business", "Defense"]
+// export const qualifications = ["BSc", "MSc", "BA", "DR", "PhD"]
+
+export const qualifications = [
+    "BSC",
+    "BJMC",
+    "BFA",
+    "B.Arch",
+    "B.Des",
+    "BMM",
+    "MFA",
+    "M.Ed",
+    "M.A",
+    "MSW",
+    "MJMC",
+    "M.Arch",
+    "M.Des",
+    "BA (Hons)",
+    "B.Arch (Hons)",
+    "DFA",
+    "D.Ed",
+    "D.Arch",
+    "AA",
+    "AFA"
+]
+
+// export const worksWiths = ["Private Company", "Government", "Business", "Defense"]
+export const worksWiths = ["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]
+
 
 export const professions = ["Banking Professional", "Chatered Accountant", "Software Engineer"]
 
-export const incomes = ["Upto BDT 20K monthly", "BDT 20K to 50K monthly", "BDT 50K to 100K monthly"]
+// export const incomes = ["Upto BDT 20K monthly", "BDT 20K to 50K monthly", "BDT 50K to 100K monthly"]
+
+export const incomes = ["Upto USD 40K",
+    "Upto USD 40K - 60K",
+    "Upto USD 60K - 80K",
+    "Upto USD 80K - 100K",
+    "Upto USD 100K - 125K",
+    "Upto USD 125K - 150K",
+    "Upto USD 150K - 175K",
+    "Upto USD 175K - 200K",
+    "Upto USD 200K - 250K",
+    "Upto USD 250K - 300K",
+    "Upto USD 300K - 500K",
+    "Above USD 500K"]
 
 export const creativeHobbies = ["Writing", "Cooking", "Singing", "Photography", "Playing instruments", "Painting", "DIY crafts", "Dancing", "Acting", "Poetry", "Gardening", "Bloging", "Content creation", "Designing", "Doodling"]
 
