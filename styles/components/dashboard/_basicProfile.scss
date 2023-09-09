@@ -1,5 +1,11 @@
 .basicProfile {
-    // &__top {}
+    // &__top {
+    //     &-wrapper {
+    //         @include smMaxBreakPoint {
+    //             flex-direction: column !important;
+    //         }
+    //     }
+    // }
 
     &__details {
         display: flex;

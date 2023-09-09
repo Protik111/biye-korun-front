@@ -3,6 +3,13 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 
-  &__singleContainer {
+  @include mdMaxBreakPoint {
+    grid-template-columns: repeat(2, 1fr);
   }
+
+  @include smMaxBreakPoint {
+    grid-template-columns: 1fr;
+  }
+
+  &__singleContainer {}
 }

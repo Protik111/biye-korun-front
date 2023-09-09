@@ -16,7 +16,7 @@ const SingleProfile = () => {
       </div>
       <div>
         <div className="basiscProfile__top">
-          <div className="flex align-center justify-between">
+          <div className="basiscProfile__top--wrapper flex align-center justify-between">
             <div className="flex align-center justify-between flex-gap-5">
               <h3>Shakil Ahmed</h3>
               <IconLock color="#E64980"></IconLock>

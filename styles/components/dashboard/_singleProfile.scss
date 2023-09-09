@@ -1,15 +1,43 @@
 .singleProfile {
-  // &__top {}
+
   display: grid;
   grid-template-columns: 30% 70%;
 
+  @include smMaxBreakPoint {
+    grid-template-columns: 100%;
+  }
+
+  .basiscProfile__top {
+    .basiscProfile__top--wrapper {
+      @include mdMaxBreakPoint {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      @include smMaxBreakPoint {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  }
+
+
   &__image {
     padding: 10px;
+
+    @include smMaxBreakPoint {
+      margin: 0 auto
+    }
+
     img {
       max-width: 100%;
       height: auto;
       object-fit: cover;
       border-radius: 10px;
+
+      @include smMaxBreakPoint {
+        height: 150px;
+      }
     }
   }
 

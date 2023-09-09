@@ -23,7 +23,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="photoSettings" label="Photo settings">
                 <Group mt="xs" className="flex-column align-start">
@@ -41,7 +41,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="recentlyJoined" label="Recently joined">
                 <Group mt="xs" className="flex-column align-start">
@@ -59,7 +59,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="activeMembers" label="Active Members">
                 <Group mt="xs" className="flex-column align-start">
@@ -78,7 +78,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Checkbox.Group defaultValue={["all"]} label="Annual income">
                 <Group mt="xs" className="flex-column align-start">
@@ -101,7 +101,7 @@ const MyMatches = () => {
                 </Group>
               </Checkbox.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Checkbox.Group defaultValue={["all"]} label="Marital status">
                 <Group mt="xs" className="flex-column align-start">
@@ -122,7 +122,7 @@ const MyMatches = () => {
                 </Group>
               </Checkbox.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="religion" label="Religion">
                 <Group mt="xs" className="flex-column align-start">
@@ -133,7 +133,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="motherTongue" label="Mother Tongue">
                 <Group mt="xs" className="flex-column align-start">
@@ -144,7 +144,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="countryLivingIn" label="Country Living in">
                 <Group mt="xs" className="flex-column align-start">
@@ -156,7 +156,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
 
               <Radio.Group name="educationLevel" label="Education Level">
                 <Group mt="xs" className="flex-column align-start">
@@ -179,7 +179,7 @@ const MyMatches = () => {
                 </Group>
               </Radio.Group>
 
-              <Divider className="mt-10"></Divider>
+              <Divider my={10}></Divider>
             </div>
           </div>
 

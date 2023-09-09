@@ -93,7 +93,7 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                     onChange={(event) => handleFormChange('livesWithFamily', event)}
                     name="livesWithFamily"
                 >
-                    <div className="flex flex-gap-10">
+                    <div className="flex flex-gap-10 mt-5">
                         <Chip variant="filled" color="pink" value="yes">Yes</Chip>
                         <Chip variant="filled" color="pink" value="no">No</Chip>
                     </div>
@@ -145,7 +145,7 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                     name="hasChildren"
                     className="mt-5"
                 >
-                    <div className="flex flex-gap-10 flex-wrap">
+                    <div className="flex flex-gap-10 flex-wrap mt-5">
                         <Chip variant="filled" color="pink" value="no">No</Chip>
                         <Chip variant="filled" color="pink" value="yes, livingTogether">Yes. Living together</Chip>
                         <Chip variant="filled" color="pink" value="yes, notLivingTogether">Yes. Not living together</Chip>
@@ -167,7 +167,7 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                     onChange={(event) => handleFormChange('diet', event)}
                     name="diet"
                 >
-                    <div className="flex flex-gap-10 flex-wrap">
+                    <div className="flex flex-gap-10 flex-wrap mt-5">
                         <Chip variant="filled" color="pink" value="Veg">Veg</Chip>
                         <Chip variant="filled" color="pink" value="Non-Veg">Non-Veg</Chip>
                         <Chip variant="filled" color="pink" value="Eggetarian">Eggetarian</Chip>
