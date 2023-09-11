@@ -1,4 +1,6 @@
-export const religions = ["Muslim", "Hindu", "Christian", "Sikh", "Parsi", "Jain", "Buddhist", "Jewish", "Atheist", "Spiritual", "Other"];
+// export const religions = ["Muslim", "Hindu", "Christian", "Sikh", "Parsi", "Jain", "Buddhist", "Jewish", "Atheist", "Spiritual", "Other"];
+
+export const religions = ["Muslim", "Christian", "Hindu", "Jain", "Sikh", "Buddhist", "Jewish", "No Relegion", "Spritual-not religious", "Other"]
 
 export const motherTongues = ["Bengali", "English", "Hindi", "Arabic", "Chinese", "Other"];
 

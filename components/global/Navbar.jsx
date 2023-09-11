@@ -87,7 +87,7 @@ function Navbar() {
                     {/* <Menu.Label>User Profile</Menu.Label> */}
 
                     <Menu.Item icon={<IconUserCircle size={14} />}>
-                      <Link style={{ color: 'black' }} href="/my-matches">
+                      <Link style={{ color: 'black' }} href="/dashboard">
                         View Profile
                       </Link>
                     </Menu.Item>

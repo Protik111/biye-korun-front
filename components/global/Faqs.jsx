@@ -16,7 +16,7 @@ const Faqs = () => {
                 <Accordion defaultValue="customization" variant='contained'>
                     <Accordion.Item value="customization" className='mantive-custom_accordion'>
                         <Accordion.Control className='mantive-custom_control'>What is Biye Korun and how does it differ from other matrimony websites?</Accordion.Control>
-                        <Accordion.Panel>Answer: The mission of the distinctive marriage website Biye Korun is to assist people in finding the ideal life partner. We stand apart from other websites because to our sophisticated matching system, verified profiles, and committed assistance. In order to provide the best matchmaking experience, we put our users' security, privacy, and contentment first.</Accordion.Panel>
+                        <Accordion.Panel>The mission of the distinctive marriage website Biye Korun is to assist people in finding the ideal life partner. We stand apart from other websites because to our sophisticated matching system, verified profiles, and committed assistance. In order to provide the best matchmaking experience, we put our users' security, privacy, and contentment first.</Accordion.Panel>
                     </Accordion.Item>
 
                     <Accordion.Item value="accordion2" className='mantive-custom_accordion'>
