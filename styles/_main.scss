@@ -1,10 +1,12 @@
 //external
-@import 'react-toastify/dist/ReactToastify.css';
+@import "react-toastify/dist/ReactToastify.css";
 
 //components
 @import "../styles/components/landing/landing";
 @import "../styles/components/landing/landingv2";
 @import "../styles/components/landing/howWorks";
+@import "../styles/components/landing/premiumPlan";
+@import "../styles/components/landing/whychoose";
 @import "../styles/components/landing/bridegroom";
 @import "../styles/components/profile-creation/step1";
 @import "../styles/components/registration/photo/uploadPhoto";
