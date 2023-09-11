@@ -23,6 +23,7 @@ const MyDashboard = () => {
                         </div>
                         <Divider my={10}></Divider>
 
+
                         <div className='flex justify-between align-center px-15 py-10'>
                             <div>
                                 <p className='small-text'>Account Type</p>
