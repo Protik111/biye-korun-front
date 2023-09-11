@@ -1,0 +1,85 @@
+.premiumPlan_main {
+  background-color: #fff4e4;
+  @mixin heading_content {
+    color: #360036;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 48px */
+    padding: 20px 0;
+    margin-top: 22px;
+  }
+  @mixin list_content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px;
+    margin-left: 30px;
+    p {
+      color: #000;
+      text-align: center;
+      font-family: DM Sans;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 120%; /* 19.2px */
+    }
+  }
+  .plan_card {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    .free_card {
+      border-top-left-radius: 8px;
+      background: #f2bdff;
+      width: 300px;
+      height: 460px;
+      margin-top: 55px;
+      border-bottom-left-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      background-image: url("/landing/freetree.png");
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      h1 {
+        @include heading_content();
+      }
+      .div_list {
+        @include list_content();
+      }
+      @media (max-width: 612px) {
+        border-radius: 8px;
+      }
+    }
+    .paid_card {
+      border-radius: 8px;
+      background: #360036;
+      width: 300px;
+      height: 560px;
+      display: flex;
+      flex-direction: column;
+      background-image: url("/landing/freetree.png");
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      position: relative;
+      h1 {
+        @include heading_content();
+        color: #f2bdff;
+      }
+      .div_list {
+        @include list_content();
+        p {
+          color: #fff;
+        }
+      }
+    }
+    @media (max-width: 612px) {
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
