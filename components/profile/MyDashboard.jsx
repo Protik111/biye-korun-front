@@ -4,18 +4,28 @@ import ThemeIconComp from '../global/ThemeIconComp'
 import { IconCheck, IconLock, IconX } from '@tabler/icons-react'
 import { btnBackground } from '@/styles/library/mantine'
 import MyDashboardBottom from './MyDashboardBottom'
+import { useSelector } from 'react-redux'
+import { imageUrl } from '@/staticData/image'
+import { useRouter } from 'next/navigation'
 
 const MyDashboard = () => {
+    const { userInfo } = useSelector(state => state.user);
+    const router = useRouter();
+
+    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, profilePicture: { url }, fullName, userId } = userInfo;
+
+    // console.log('userInfo', userInfo);
+
     return (
         <div className='myDashboard container'>
             <div className='myDashboard__topBox'>
                 <div className='myDashboard__topBox--left container-box-bg rounded-10'>
                     <div className='profile--img'>
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" alt="Profile" />
+                        <img src={url || imageUrl} alt="Profile" />
                         <div className='flex justify-between align-center px-15 py-10'>
                             <div>
-                                <h3>Shakil Ahmed</h3>
-                                <p className='small-text'>SH76865633</p>
+                                <h3>{fullName}</h3>
+                                <p className='small-text'>{userId}</p>
                             </div>
                             <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
@@ -109,6 +119,7 @@ const MyDashboard = () => {
                                     // leftIcon={<IconArrowNarrowLeft />}
                                     style={btnBackground} type="button"
                                     className={`button`}
+                                    onClick={() => router.push('/todays-matches')}
                                 >
                                     View Today's Match
                                 </Button>
