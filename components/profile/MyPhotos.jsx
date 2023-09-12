@@ -4,8 +4,12 @@ import { Alert } from '@mantine/core'
 import { IconAlertCircle } from '@tabler/icons-react'
 import { imageUrl } from '@/staticData/image'
 import UploadPhotoGuidelines from '../registration/photo/UploadPhotoGuidelines'
+import { useSelector } from 'react-redux'
 
 const MyPhotos = () => {
+    const { userInfo } = useSelector(state => state.user);
+
+    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, profilePicture: { url }, fullName, userId } = userInfo;
     return (
         <div className='myPhotos container container-box-bg mt-15'>
             <div className='flex justify-center align-center'>
@@ -21,7 +25,7 @@ const MyPhotos = () => {
             <h3 className='mt-20'>Your photos</h3>
             <div className='profile-img--container'>
                 <div className="profile-img">
-                    <img src={imageUrl} alt="Profile" />
+                    <img src={url || imageUrl} alt="Profile" />
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 import LoaderWithText from "@/components/global/LoaderWithText"
-import { login } from "@/redux/features/auth/authSlice"
+import { loadUser, login } from "@/redux/features/auth/authSlice"
+import { loadUserData } from "@/redux/features/user/userSlice"
 import { btnBackground, logininput } from "@/styles/library/mantine"
 import setAuthToken from "@/utils/setAuthToken"
 import { configureAxiosHeader } from "@/utils/setAxiosHeader"
@@ -59,12 +60,16 @@ const LoginComp = () => {
 
                     const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
 
+                    if (parsedToken?.accessToken) {
+                        setAuthToken(parsedToken.accessToken);
+                        configureAxiosHeader();
+                        dispatch(loadUser())
+                        dispatch(loadUserData())
+                    }
+
                     setTimeout(() => {
-                        if (parsedToken?.accessToken) {
-                            setAuthToken(parsedToken.accessToken);
-                            configureAxiosHeader();
-                        }
-                        router.push('/todays-matches')
+                        router.push('/dashboard', '/dashboard', { shallow: true })
+                        // window.location.href("/dashboard")
                     }, 500)
                 })
                 .catch(() => {

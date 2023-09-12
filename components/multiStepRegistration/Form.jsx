@@ -4,7 +4,7 @@ import { Button, Notification } from '@mantine/core'
 import { btnBackground } from '@/styles/library/mantine'
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from '@tabler/icons-react';
 import { format } from 'date-fns'
-import { register, reset } from '@/redux/features/auth/authSlice';
+import { loadUser, register, reset } from '@/redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import { notifyError, notifySuccess } from '@/utils/showNotification';
 import setAuthToken from '@/utils/setAuthToken';
 import { configureAxiosHeader } from '@/utils/setAxiosHeader';
 import LoaderWithText from '../global/LoaderWithText';
+import { loadUserData } from '@/redux/features/user/userSlice';
 
 
 
@@ -78,11 +79,13 @@ const Form = ({ handleModalClose }) => {
 
                     const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
 
+                    if (parsedToken?.accessToken) {
+                        setAuthToken(parsedToken.accessToken);
+                        configureAxiosHeader();
+                        dispatch(loadUser())
+                        dispatch(loadUserData())
+                    }
                     setTimeout(() => {
-                        if (parsedToken?.accessToken) {
-                            setAuthToken(parsedToken.accessToken);
-                            configureAxiosHeader();
-                        }
                         router.push('/profile-creation')
                     }, 500)
                 })
