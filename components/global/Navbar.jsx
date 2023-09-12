@@ -61,6 +61,7 @@ function Navbar() {
             <Link href={isAuthenticated ? '/dashboard' : '/login'}>
               <p>Dashboard</p>
             </Link>
+
             <Link href="/plans">
               <p>Plans</p>
             </Link>
