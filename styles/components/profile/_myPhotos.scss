@@ -1,0 +1,13 @@
+.myPhotos {
+    .profile-img--container {
+        margin-top: 15px;
+
+        .profile-img {
+            img {
+                max-width: 100%;
+                height: 180px;
+                object-fit: cover;
+            }
+        }
+    }
+}

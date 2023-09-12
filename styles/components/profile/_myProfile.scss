@@ -40,5 +40,30 @@
                 }
             }
         }
+
+        &--about {
+            .info-section {
+                .profile-info {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+
+                    .single-item {
+                        display: flex;
+
+                        .left {
+                            flex-basis: 50%;
+                            opacity: 0.5;
+                        }
+
+                        .right {
+                            flex-basis: 50%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
+
+
 }

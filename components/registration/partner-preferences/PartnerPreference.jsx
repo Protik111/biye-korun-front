@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@mantine/core"
 import BasicInformation from "./BasicInformation"
 import Communities from "./Communities"
@@ -18,7 +19,7 @@ const maxHeightInches = 83; // 6' 11'' in inches
 const minIncome = 10000; // 10000 BDT
 const maxIncome = 200000; // 200,000 BDT
 
-const PartnerPreference = () => {
+const PartnerPreference = ({ profile }) => {
     const [seeMore, setSeemore] = useState(false);
     const [formData, setFormData] = useState({
         ages: [18, 25],
@@ -85,6 +86,10 @@ const PartnerPreference = () => {
             })
     }
 
+    const handleSavePartnerPreferences = () => {
+        alert("Not Implemented")
+    }
+
     return (
         <div className='partenerPref'>
             <h2 className='text-center py-15'>Recommended Partner Preferences</h2>
@@ -106,12 +111,17 @@ const PartnerPreference = () => {
             {seeMore ? <Education formData={formData} setFormData={setFormData} minIncomeValue={minIncomeValue} setMinIncomeValue={setMinIncomeValue} maxIncomeValue={maxIncomeValue} setMaxIncomeValue={setMaxIncomeValue}></Education> : <></>}
 
             <div className="flex justify-center mt-30">
-                <Button
+                {profile ? <Button
+                    disabled={loading}
+                    onClick={() => handleSavePartnerPreferences()}
+                    style={btnBackground} size="md">
+                    Update Partner Preferences
+                </Button> : <Button
                     disabled={loading}
                     onClick={() => handleSave()}
                     style={btnBackground} size="md">
                     Save & Continue
-                </Button>
+                </Button>}
             </div>
         </div>
     )

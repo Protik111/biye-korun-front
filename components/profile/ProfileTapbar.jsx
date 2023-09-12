@@ -18,31 +18,31 @@ const ProfileTapbar = () => {
                     <Tabs.List grow position="apart">
                         <Tabs.Tab
                             sx={fontSizeMnd}
-                            value="new-matches"
+                            value="dashboard"
                             onClick={() => handleChangeTab("dashboard")}
                         >
                             Dashboard
                         </Tabs.Tab>
                         <Tabs.Tab
                             sx={fontSizeMnd}
-                            value="todays-matches"
+                            value="my-profile"
                             onClick={() => handleChangeTab("my-profile")}
                         >
                             My Profile
                         </Tabs.Tab>
                         <Tabs.Tab
                             sx={fontSizeMnd}
-                            value="my-matches"
+                            value="my-photos"
                             onClick={() => handleChangeTab("my-photos")}
                         >
                             My Photos
                         </Tabs.Tab>
                         <Tabs.Tab
                             sx={fontSizeMnd}
-                            value="recently-viewed"
-                            onClick={() => handleChangeTab("settings")}
+                            value="partner-preferences"
+                            onClick={() => handleChangeTab("partner-preferences")}
                         >
-                            Settings
+                            Partner Preferences
                         </Tabs.Tab>
                         {/* <Tabs.Tab sx={fontSizeMnd} value="more-matches">More Matches</Tabs.Tab> */}
                     </Tabs.List>
