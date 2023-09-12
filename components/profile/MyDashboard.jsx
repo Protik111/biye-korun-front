@@ -22,7 +22,7 @@ const MyDashboard = () => {
                 <div className='myDashboard__topBox--left container-box-bg rounded-10'>
                     <div className='profile--img'>
                         <img src={url || imageUrl} alt="Profile" />
-                        <div className='flex justify-between align-center px-15 py-10'>
+                        <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
                             <div>
                                 <h3>{fullName}</h3>
                                 <p className='small-text'>{userId}</p>
@@ -34,7 +34,7 @@ const MyDashboard = () => {
                         <Divider my={10}></Divider>
 
 
-                        <div className='flex justify-between align-center px-15 py-10'>
+                        <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
                             <div>
                                 <p className='small-text'>Account Type</p>
                                 <h5>Free Membership</h5>
@@ -45,7 +45,7 @@ const MyDashboard = () => {
                         </div>
                         <Divider my={10}></Divider>
 
-                        <div className='flex justify-between align-center px-15 py-10'>
+                        <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
                             <div>
                                 <p className='small-text'>Mobile no. is verified</p>
                                 <Anchor href="/" target="_blank">

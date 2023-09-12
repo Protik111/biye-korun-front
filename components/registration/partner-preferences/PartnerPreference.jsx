@@ -87,7 +87,38 @@ const PartnerPreference = ({ profile }) => {
     }
 
     const handleSavePartnerPreferences = () => {
-        alert("Not Implemented")
+        const { ages, maritalStatus, religion, motherTongue, livingIn, stateLiving, residency, qualification, workingWith, profession,
+            income } = formData
+
+        const data = {
+            minAge: ages[0].toString(),
+            maxAge: ages[1].toString(),
+            minHeight: minHeight.toString(),
+            maxHeight: maxHeight.toString(),
+            maritalStatus: maritalStatus,
+            religion,
+            community: "Muslim",
+            motherTongue,
+            country: livingIn,
+            stateLiving,
+            residencyStatus: residency,
+            qualification,
+            workingWith,
+            profession,
+            minIncome: minIncomeValue.toString(),
+            maxIncome: maxIncomeValue.toString(),
+        }
+        setLoading(true)
+        axios.patch('user/partner-preferences', data)
+            .then(res => {
+                notifySuccess('Preferences are added successfully!')
+                setLoading(false)
+            })
+            .catch(err => {
+                setLoading(false)
+                // console.log(err.response.data);
+                notifyError(err.response.data.message)
+            })
     }
 
     return (

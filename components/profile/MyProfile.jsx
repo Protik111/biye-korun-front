@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
+import { format } from 'date-fns'
+
 const imageUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
 const MyProfile = () => {
@@ -29,9 +31,6 @@ const MyProfile = () => {
     };
 
     console.log('userinfo', userInfo);
-
-    // console.log('heightCalculator(height)', heightCalculator(height));
-    // console.log('heightCalculator(height)', calculateAge(dateOfBirth));
 
     return (
         <div className="myProfile container">
@@ -66,7 +65,7 @@ const MyProfile = () => {
                                     <p className="right">: {religion || notSpecfied}, {community}</p>
                                 </div>
                                 <div className="single-item">
-                                    <p className="left">Location</p>
+                                    <p className="left">Country</p>
                                     <p className="right">: {country || notSpecfied}</p>
                                 </div>
                                 {/* <div className="single-item">
@@ -79,35 +78,7 @@ const MyProfile = () => {
 
                         <div className="manage-profile mt-25 border-1 p-15 mr-5 rounded-10">
                             <h3 className="secondary-text">Manage your profile</h3>
-                            <div className="mt-10 flex align-center flex-gap-15">
-                                {/* <List
-                                    spacing="xs"
-                                    size="sm"
-                                    center
-                                    sx={{ display: 'flex', alignItems: 'center' }}
-                                    // className="flex align-center flex-wrap flex-gap-10"
-                                    icon={
-                                        <ThemeIcon color="pink" size={16} radius="xl">
-                                            <IconPlayerRecordFilled size="12" />
-                                        </ThemeIcon>
-                                    }
-                                >
-                                    <List.Item>
-                                        <Anchor href="/" target="_blank">
-                                            Edit Personal Profile
-                                        </Anchor>
-                                    </List.Item>
-                                    <List.Item>
-                                        <Anchor href="/" target="_blank">
-                                            Edit Personal Profile
-                                        </Anchor>
-                                    </List.Item>
-                                    <List.Item>
-                                        <Anchor href="/" target="_blank">
-                                            Edit Personal Profile
-                                        </Anchor>
-                                    </List.Item>
-                                </List> */}
+                            <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
                                     <Anchor href="/" target="_blank">
@@ -130,7 +101,7 @@ const MyProfile = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-10 flex align-center flex-gap-15">
+                            <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
@@ -234,39 +205,39 @@ const MyProfile = () => {
                             <div>
                                 <div className="single-item">
                                     <p className="left">Age</p>
-                                    <p className="right">: 25</p>
+                                    <p className="right">: {calculateAge(dateOfBirth)}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Marital Status</p>
-                                    <p className="right">: Never Married</p>
+                                    <p className="right">: {maritalStatus || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Date of Birth</p>
-                                    <p className="right">: 18-Aug-1998</p>
+                                    <p className="right">: {format(new Date(dateOfBirth), 'MM/dd/yyyy')}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Height</p>
-                                    <p className="right">: 5'6''</p>
+                                    <p className="right">: {heightCalculator(height)}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Grew up in</p>
-                                    <p className="right">: Bangladesh</p>
+                                    <p className="right">: {country}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <div className="single-item">
                                     <p className="left">Diet</p>
-                                    <p className="right">: Non-Veg</p>
+                                    <p className="right">: {diet}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Blood Groop</p>
-                                    <p className="right">: O+</p>
+                                    <p className="right">: Not Specified</p>
                                 </div>
-                                <div className="single-item">
+                                {/* <div className="single-item">
                                     <p className="left">Disbalility</p>
-                                    <p className="right">: None</p>
-                                </div>
+                                    <p className="right">: Not Specified</p>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -290,11 +261,11 @@ const MyProfile = () => {
                             <div>
                                 <div className="single-item">
                                     <p className="left">Religion</p>
-                                    <p className="right">: Muslim</p>
+                                    <p className="right">: {religion}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Community</p>
-                                    <p className="right">: Sunni</p>
+                                    <p className="right">: {community}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Sub community</p>
@@ -378,30 +349,30 @@ const MyProfile = () => {
                             <div>
                                 <div className="single-item">
                                     <p className="left">Highest Qualification</p>
-                                    <p className="right">: B.Eng (Hons) - Engineeringd</p>
+                                    <p className="right">: {education || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">College(s) Attended</p>
-                                    <p className="right">: American International University-Bangladesh</p>
+                                    <p className="right">: {college || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Annual Income</p>
-                                    <p className="right">: Upto USD 40K</p>
+                                    <p className="right">: {income || notSpecfied}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <div className="single-item">
                                     <p className="left">Working With</p>
-                                    <p className="right">: Private Company</p>
+                                    <p className="right">: {workingWith || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Working As</p>
-                                    <p className="right">: Software Developer</p>
+                                    <p className="right">: {occupation || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Employer Name</p>
-                                    <p className="right">: TECH SERVE4</p>
+                                    <p className="right">: {employer || notSpecfied}</p>
                                 </div>
                             </div>
                         </div>
@@ -426,22 +397,22 @@ const MyProfile = () => {
                             <div>
                                 <div className="single-item">
                                     <p className="left">Current Residence</p>
-                                    <p className="right">: Dhaka, Bangladesh</p>
+                                    <p className="right">: {city}, {country}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">State Of Residence</p>
-                                    <p className="right">: Dhaka</p>
+                                    <p className="right">: {city}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <div className="single-item">
                                     <p className="left">Residency Status</p>
-                                    <p className="right">: Permanent Resident</p>
+                                    <p className="right">: {notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Zip / Pin code</p>
-                                    <p className="right">: Not Specified</p>
+                                    <p className="right">: {notSpecfied}</p>
                                 </div>
                             </div>
                         </div>

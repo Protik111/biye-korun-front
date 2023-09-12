@@ -103,8 +103,8 @@ const MyDashboardBottom = () => {
                     }
                 </div>
 
-                <div className="myDashboard__bottom--noti container-box-bg ml-15 p-15">
-                    <div className="flex justify-between align-center flex-gap-10">
+                <div className="myDashboard__bottom--noti container-box-bg mx-10 p-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-10">
                         <Avatar
                             size="md"
                             radius="md"
@@ -118,7 +118,7 @@ const MyDashboardBottom = () => {
                     <Divider my={5}></Divider>
 
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"
@@ -131,7 +131,7 @@ const MyDashboardBottom = () => {
 
                     <Divider my={5}></Divider>
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"
@@ -143,7 +143,7 @@ const MyDashboardBottom = () => {
                     </div>
                     <Divider my={5}></Divider>
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"
@@ -154,7 +154,7 @@ const MyDashboardBottom = () => {
                     </div>
                     <Divider my={5}></Divider>
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"
@@ -166,7 +166,7 @@ const MyDashboardBottom = () => {
                     <Divider my={5}></Divider>
 
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"
@@ -177,7 +177,7 @@ const MyDashboardBottom = () => {
                     </div>
                     <Divider my={5}></Divider>
 
-                    <div className="flex justify-between align-center flex-gap-5 mt-15">
+                    <div className="flex flex-wrap justify-between align-center flex-gap-5 mt-15">
                         <Avatar
                             size="md"
                             radius="md"

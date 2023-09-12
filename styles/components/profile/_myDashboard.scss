@@ -1,8 +1,13 @@
 .myDashboard {
     &__topBox {
         display: grid;
-        grid-template-columns: 20% 60% 20%;
+        grid-template-columns: 20% 55% 20%;
         gap: 25px;
+        justify-content: center;
+
+        @include smMaxBreakPoint {
+            grid-template-columns: 100%;
+        }
 
         &--left {
             .profile--img {
@@ -12,6 +17,11 @@
                     object-fit: cover;
                     border-top-left-radius: 10px;
                     border-top-right-radius: 10px;
+
+                    @include smMaxBreakPoint {
+                        height: 250px;
+                        // object-fit: contain;
+                    }
                 }
             }
         }
@@ -26,6 +36,10 @@
                         height: 140px;
                         max-width: 100%;
                         object-fit: cover;
+
+                        @include mdMaxBreakPoint {
+                            object-fit: contain;
+                        }
                     }
                 }
             }
@@ -39,6 +53,11 @@
                     object-fit: cover;
                     border-top-left-radius: 10px;
                     border-top-right-radius: 10px;
+
+                    @include smMaxBreakPoint {
+                        height: 250px;
+                        // object-fit: contain;
+                    }
                 }
             }
         }
@@ -47,13 +66,19 @@
     &__bottom {
         &--profileContainerRoot {
             display: grid;
-            grid-template-columns: 80% 25%;
+            grid-template-columns: 80% 20%;
             // place-content: center;
+
+            @include smMaxBreakPoint {
+                grid-template-columns: 100%;
+                gap: 15px;
+            }
 
             .myDashboard__bottom--profileContainer {
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
+
 
                 .single {
                     display: flex;
@@ -61,7 +86,15 @@
                     align-items: center;
                     flex-direction: column;
                     text-align: center;
+                    // height: 200px;
                     max-height: 250px;
+                }
+            }
+
+            .myDashboard__bottom--noti {
+
+                @include smMaxBreakPoint {
+                    grid-row: 1;
                 }
             }
         }

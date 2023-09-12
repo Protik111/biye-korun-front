@@ -496,6 +496,18 @@
   width: 100%;
 }
 
+.w-md-100-responsive {
+  @include mdMaxBreakPoint {
+    width: 100% !important;
+  }
+}
+
+.w-sm-100-responsive {
+  @include smMaxBreakPoint {
+    width: 100% !important;
+  }
+}
+
 /* Max Width Classes */
 .max-w-25 {
   max-width: 25%;

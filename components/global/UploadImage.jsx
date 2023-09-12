@@ -65,7 +65,7 @@ function UploadImage() {
     });
 
     return (
-        <div className='w-50'>
+        <div className='w-50 w-md-100-responsive'>
             <h3 className='mb-5'>Upload your profile photo</h3>
             <Dropzone accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
                 {files?.length === 0 ? (

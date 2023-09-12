@@ -24,7 +24,7 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
 
     return (
         <div className='pt-15'>
-            <div className='partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto'>
+            <div className='partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive'>
                 <h3 className='pb-5'>Education & Career</h3>
                 <Accordion
                     // maw={720}

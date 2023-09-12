@@ -33,7 +33,7 @@ function BasicInformation({ formData, setFormData, minHeight, setMinHeight, maxH
 
     return (
         <>
-            <div className='partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto'>
+            <div className='partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive'>
                 <h3 className='pb-5'>Basic Information</h3>
                 <Accordion
                     // maw={720}
