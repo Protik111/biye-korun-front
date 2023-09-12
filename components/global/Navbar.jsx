@@ -92,6 +92,13 @@ function Navbar() {
                         View Profile
                       </Link>
                     </Menu.Item>
+
+                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                      <Link style={{ color: 'black' }} href="/my-matches">
+                        My Matches
+                      </Link>
+                    </Menu.Item>
+
                     <Menu.Item onClick={() => handleLogout()} icon={<IconLogout2 size={14} />}>Log out</Menu.Item>
 
                   </Menu.Dropdown>

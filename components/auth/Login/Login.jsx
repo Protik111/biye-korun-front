@@ -68,7 +68,7 @@ const LoginComp = () => {
                     }
 
                     setTimeout(() => {
-                        router.push('/dashboard', '/dashboard', { shallow: true })
+                        router.push('/my-matches', '/my-matches', { shallow: true })
                         // window.location.href("/dashboard")
                     }, 500)
                 })

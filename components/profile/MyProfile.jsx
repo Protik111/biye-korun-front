@@ -1,6 +1,6 @@
 "use client"
 
-import { Alert, Anchor, Button, Divider } from "@mantine/core"
+import { Alert, Anchor, Button, Divider, Input } from "@mantine/core"
 import { List, ThemeIcon } from '@mantine/core';
 import { IconCircleCheck, IconCircleDashed, IconPlayerRecordFilled } from '@tabler/icons-react';
 import ThemeIconComp from "../global/ThemeIconComp";
@@ -206,6 +206,12 @@ const MyProfile = () => {
                                 <div className="single-item">
                                     <p className="left">Age</p>
                                     <p className="right">: {calculateAge(dateOfBirth)}</p>
+                                    {/* :{" "}<Input
+                                        variant="unstyled"
+                                        disabled
+                                        placeholder="Your email"
+                                        size="xs"
+                                    /> */}
                                 </div>
                                 <div className="single-item">
                                     <p className="left">Marital Status</p>
