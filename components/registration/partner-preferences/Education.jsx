@@ -22,6 +22,7 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
         setMaxIncomeValue(newValues[1]);
     };
 
+
     return (
         <div className='pt-15'>
             <div className='partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive'>
