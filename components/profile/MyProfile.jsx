@@ -12,6 +12,7 @@ import { heightCalculator } from "@/utils/heightCalculator";
 import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
 import { format } from 'date-fns'
+import Link from "next/link";
 
 const imageUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
@@ -188,15 +189,17 @@ const MyProfile = () => {
                     <div className="personality mt-20" id="myself">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Personality, Family Details, Career, Partner Expectations etc.</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <p className="mt-5">
@@ -209,15 +212,17 @@ const MyProfile = () => {
                     <div className="basic-lifestyle info-section mt-20">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Basic & Lifestyle</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <div className="profile-info mt-10">
@@ -271,15 +276,17 @@ const MyProfile = () => {
                     <div className="religious-background info-section mt-20">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Religious Background</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <div className="profile-info mt-10">
@@ -311,15 +318,17 @@ const MyProfile = () => {
                     <div className="family-details info-section mt-20">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Family Details</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <div className="profile-info mt-10">
@@ -359,15 +368,17 @@ const MyProfile = () => {
                     <div className="family-details info-section mt-20">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Education & Career</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <div className="profile-info mt-10">
@@ -407,15 +418,17 @@ const MyProfile = () => {
                     <div className="family-details info-section mt-20">
                         <div className="flex justify-between align-center">
                             <h3 className="secondary-text">Location of Groom</h3>
-                            <Button
-                                variant="light"
-                                size="xs"
-                                radius="xl"
-                                color="pink"
-                                className={`button mt-10`}
-                            >
-                                Edit
-                            </Button>
+                            <Link href="/edit-profile">
+                                <Button
+                                    variant="light"
+                                    size="xs"
+                                    radius="xl"
+                                    color="pink"
+                                    className={`button mt-10`}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </div>
                         <Divider mt={5}></Divider>
                         <div className="profile-info mt-10">

@@ -14,7 +14,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
     return (
         <div className='px-15' >
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select"
                 label="Marital status"
@@ -29,7 +29,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
             <br />
 
             <DatePickerInput
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 clearable
                 // defaultValue={today}
                 // description="Years must be at least 18"
@@ -48,7 +48,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
             <br />
 
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select"
                 label="Your Country"
@@ -86,7 +86,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
             <br />
 
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select"
                 label="Height"

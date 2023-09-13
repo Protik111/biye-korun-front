@@ -17,10 +17,12 @@ const EditProfile = () => {
         education: { college, education } = {},
         family: { children, livingWith } = {},
         lifestyle: { diet, maritalStatus } = {},
-        profession: { employer, income, occupation, workingWith } = {},
+        profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
         trait: { aboutMe } = {},
         phone, profilePicture: { url } = {},
         fullName,
+        firstName,
+        lastName,
         userId,
         dateOfBirth,
         postedBy,
@@ -40,7 +42,11 @@ const EditProfile = () => {
         community: community ? community : '',
         caste: caste ? caste : '',
         education: education ? education : '',
-        college: college ? college : ''
+        college: college ? college : '',
+        income: '',
+        occupation: occupation ? occupation : '',
+        workingWith: workingWith ? workingWith : '',
+        employer: employer ? employer : ''
     })
 
 

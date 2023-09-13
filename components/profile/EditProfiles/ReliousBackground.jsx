@@ -13,7 +13,7 @@ const ReliousBackground = ({ profileDatas, setProfileDatas }) => {
     return (
         <div className='px-15'>
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select Religion"
                 label="Religion"
@@ -28,7 +28,7 @@ const ReliousBackground = ({ profileDatas, setProfileDatas }) => {
 
 
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select Community"
                 label="Community"
@@ -41,7 +41,7 @@ const ReliousBackground = ({ profileDatas, setProfileDatas }) => {
             <br />
 
             <Select
-                className='w-50'
+                className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select Community"
                 label="Sub-Community"
