@@ -16,11 +16,28 @@ import { format } from 'date-fns'
 const imageUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
 const MyProfile = () => {
-    const { userInfo } = useSelector(state => state.user);
+    const { userInfo } = useSelector(state => state.user) || {};
     const partnerPreferencesRef = useRef(null);
     const router = useRouter();
 
-    const { location: { city, residencyStatus }, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, profilePicture: { url }, fullName, userId, dateOfBirth, postedBy, religion, community, country } = userInfo || {};
+    const {
+        location: { city, residencyStatus } = {},
+        doctrine: { caste } = {},
+        appearance: { height } = {},
+        education: { college, education } = {},
+        family: { children, livingWith } = {},
+        lifestyle: { diet, maritalStatus } = {},
+        profession: { employer, income, occupation, workingWith } = {},
+        trait: { aboutMe } = {},
+        phone, profilePicture: { url } = {},
+        fullName,
+        userId,
+        dateOfBirth,
+        postedBy,
+        religion,
+        community,
+        country
+    } = userInfo || {};
 
     const scrollToPartnerPreferences = () => {
         if (partnerPreferencesRef.current) {

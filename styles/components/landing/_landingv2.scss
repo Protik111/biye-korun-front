@@ -19,44 +19,32 @@
 
     .slider .slide:nth-child(1) {
         background-image: url('/landing/slider/slider1.svg');
-        animation-delay: -7;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 0s;
     }
 
     .slider .slide:nth-child(2) {
         background-image: url('/landing/slider/slider2.svg');
-        animation-delay: -14s;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 7s;
     }
 
     .slider .slide:nth-child(3) {
         background-image: url('/landing/slider/slider3.svg');
-        animation-delay: -21s;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 14s;
     }
 
     .slider .slide:nth-child(4) {
         background-image: url('/landing/slider/slider4.svg');
-        animation-delay: -28s;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 21s;
     }
 
     .slider .slide:nth-child(5) {
         background-image: url('/landing/slider/slider5.svg');
-        animation-delay: -35s;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 28s;
     }
 
     .slider .slide:nth-child(6) {
         background-image: url('/landing/slider/slider6.svg');
-        animation-delay: -42s;
-        background-position: center;
-        background-size: cover;
+        animation-delay: 35s;
     }
 
     @keyframes slide {

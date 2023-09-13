@@ -7,9 +7,27 @@ import UploadPhotoGuidelines from '../registration/photo/UploadPhotoGuidelines'
 import { useSelector } from 'react-redux'
 
 const MyPhotos = () => {
-    const { userInfo } = useSelector(state => state.user);
+    const { userInfo } = useSelector(state => state.user) || {};
 
-    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, profilePicture: { url }, fullName, userId } = userInfo;
+    const {
+        location: { city, residencyStatus } = {},
+        doctrine: { caste } = {},
+        appearance: { height } = {},
+        education: { college, education } = {},
+        family: { children, livingWith } = {},
+        lifestyle: { diet, maritalStatus } = {},
+        profession: { employer, income, occupation, workingWith } = {},
+        trait: { aboutMe } = {},
+        phone, profilePicture: { url } = {},
+        fullName,
+        userId,
+        dateOfBirth,
+        postedBy,
+        religion,
+        community,
+        country
+    } = userInfo || {};
+
     return (
         <div className='myPhotos container container-box-bg mt-15'>
             <div className='flex justify-center align-center'>

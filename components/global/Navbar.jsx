@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 function Navbar() {
   const { isAuthenticated } = useSelector(state => state.auth);
-  const { userInfo } = useSelector(state => state.user)
+  const { userInfo } = useSelector(state => state.user) || {}
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
   const [mounted, setMounted] = useState(false);

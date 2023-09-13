@@ -9,10 +9,27 @@ import { imageUrl } from '@/staticData/image'
 import { useRouter } from 'next/navigation'
 
 const MyDashboard = () => {
-    const { userInfo } = useSelector(state => state.user);
+    const { userInfo } = useSelector(state => state.user) || {};
     const router = useRouter();
 
-    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, profilePicture: { url }, fullName, userId } = userInfo;
+    const {
+        location: { city, residencyStatus } = {},
+        doctrine: { caste } = {},
+        appearance: { height } = {},
+        education: { college, education } = {},
+        family: { children, livingWith } = {},
+        lifestyle: { diet, maritalStatus } = {},
+        profession: { employer, income, occupation, workingWith } = {},
+        trait: { aboutMe } = {},
+        phone, profilePicture: { url } = {},
+        fullName,
+        userId,
+        dateOfBirth,
+        postedBy,
+        religion,
+        community,
+        country
+    } = userInfo || {};
 
     // console.log('userInfo', userInfo);
 
