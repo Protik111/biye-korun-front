@@ -28,9 +28,9 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
             errors.maritalStatus = 'Marital Status is required';
         }
 
-        if (!hasChildren) {
-            errors.hasChildren = 'Has Children is required';
-        }
+        // if (!hasChildren) {
+        //     errors.hasChildren = 'Has Children is required';
+        // }
 
         if (!diet) {
             errors.diet = 'Diet is required';
@@ -49,11 +49,15 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
         return Object.keys(errors).length === 0; // Return true if no errors
     };
 
+
     const handleNextStep = () => {
         if (validateForm()) {
+            // console.log('success validation');
             // Call the parent component's callback with the formValues
             onNextStep(formValues);
+        } else {
         }
+
     };
 
 

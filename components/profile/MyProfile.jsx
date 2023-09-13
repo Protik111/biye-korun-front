@@ -31,6 +31,8 @@ const MyProfile = () => {
         trait: { aboutMe } = {},
         phone, profilePicture: { url } = {},
         fullName,
+        firstName,
+        lastName,
         userId,
         dateOfBirth,
         postedBy,
@@ -47,12 +49,12 @@ const MyProfile = () => {
         }
     };
 
-    // console.log('userinfo', userInfo);
+    console.log('userinfo', userInfo);
 
     return (
         <div className="myProfile container">
             <div className="myProfile__top container-box-bg p-15">
-                <Alert title={<h2>{fullName}<p>({userId})</p></h2>} color="red">
+                <Alert title={<h2>{firstName + " " + lastName}<p>({userId})</p></h2>} color="red">
                 </Alert>
 
                 <div className="myProfile__top--wrapper">

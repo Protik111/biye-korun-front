@@ -44,7 +44,7 @@ function Navbar() {
       })
   }
 
-  console.log('profilePicture', profilePicture);
+  // console.log('profilePicture', profilePicture);
 
   return (
     <>
