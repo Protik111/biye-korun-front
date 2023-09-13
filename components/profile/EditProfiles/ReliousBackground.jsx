@@ -9,6 +9,7 @@ const ReliousBackground = ({ profileDatas, setProfileDatas }) => {
             [name]: value
         }))
     }
+
     return (
         <div className='px-15'>
             <Select

@@ -44,6 +44,8 @@ function Navbar() {
       })
   }
 
+  console.log('profilePicture', profilePicture);
+
   return (
     <>
       <div className="navbarRoot">
@@ -79,7 +81,7 @@ function Navbar() {
                     <Avatar
                       size="md"
                       radius="xl"
-                      src={profilePicture?.url || '/profile.svg'}
+                      src={profilePicture?.url?.large || '/profile.svg'}
                       alt="it's me"
                     />
                   </Menu.Target>

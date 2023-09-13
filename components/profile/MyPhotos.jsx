@@ -43,7 +43,7 @@ const MyPhotos = () => {
             <h3 className='mt-20'>Your photos</h3>
             <div className='profile-img--container'>
                 <div className="profile-img">
-                    <img src={url || imageUrl} alt="Profile" />
+                    <img src={url?.large || imageUrl} alt="Profile" />
                 </div>
             </div>
 

@@ -57,7 +57,7 @@ const MyProfile = () => {
 
                 <div className="myProfile__top--wrapper">
                     <div className="profile-img">
-                        <img src={url || imageUrl} alt="Profile" />
+                        <img src={url?.large || imageUrl} alt="Profile" />
                     </div>
                     <div>
                         <div className="profile-info">

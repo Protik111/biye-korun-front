@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import BasicLifeStyle from "./EditProfiles/BasicLifeStyle";
 import ReliousBackground from "./EditProfiles/ReliousBackground";
+import EducationCareer from "./EditProfiles/EducationCareer";
 
 const EditProfile = () => {
     const { userInfo } = useSelector(state => state.user) || {};
@@ -37,7 +38,9 @@ const EditProfile = () => {
         height: height ? height : '',
         religion: religion ? religion : '',
         community: community ? community : '',
-        caste: caste ? caste : ''
+        caste: caste ? caste : '',
+        education: education ? education : '',
+        college: college ? college : ''
     })
 
 
@@ -79,9 +82,11 @@ const EditProfile = () => {
                     </Accordion.Panel>
                 </Accordion.Item>
 
-                <Accordion.Item value="focus-ring">
-                    <Accordion.Control>No annoying focus ring</Accordion.Control>
-                    <Accordion.Panel>With new :focus-visible pseudo-class focus ring appears only when user navigates with keyboard</Accordion.Panel>
+                <Accordion.Item value="education-career">
+                    <Accordion.Control>Education Career</Accordion.Control>
+                    <Accordion.Panel>
+                        <EducationCareer profileDatas={profileDatas} setProfileDatas={setProfileDatas}></EducationCareer>
+                    </Accordion.Panel>
                 </Accordion.Item>
             </Accordion>
         </div>
