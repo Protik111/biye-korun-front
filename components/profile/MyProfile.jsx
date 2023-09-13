@@ -47,7 +47,7 @@ const MyProfile = () => {
         }
     };
 
-    console.log('userinfo', userInfo);
+    // console.log('userinfo', userInfo);
 
     return (
         <div className="myProfile container">
