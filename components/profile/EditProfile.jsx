@@ -59,9 +59,9 @@ const EditProfile = () => {
         }
     };
 
-    console.log('profileDatas', profileDatas);
+    // console.log('profileDatas', profileDatas);
 
-    console.log('userInfo', userInfo);
+    // console.log('userInfo', userInfo);
 
 
     return (
