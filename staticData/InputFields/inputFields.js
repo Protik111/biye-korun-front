@@ -133,6 +133,7 @@ export const qualifications = [
     "AFA"
 ]
 
+
 // export const worksWiths = ["Private Company", "Government", "Business", "Defense"]
 export const worksWiths = ["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]
 
