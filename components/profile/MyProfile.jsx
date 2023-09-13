@@ -27,7 +27,7 @@ const MyProfile = () => {
         education: { college, education } = {},
         family: { children, livingWith } = {},
         lifestyle: { diet, maritalStatus } = {},
-        profession: { employer, income, occupation, workingWith } = {},
+        profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
         trait: { aboutMe } = {},
         phone, profilePicture: { url } = {},
         fullName,
@@ -379,8 +379,8 @@ const MyProfile = () => {
                                     <p className="right">: {college || notSpecfied}</p>
                                 </div>
                                 <div className="single-item">
-                                    <p className="left">Annual Income</p>
-                                    <p className="right">: {income || notSpecfied}</p>
+                                    <p className="left">Annual Income - Min/Max</p>
+                                    <p className="right">: {"Upto USD" + min + "K" || notSpecfied} / {max + "K" || notSpecfied}</p>
                                 </div>
                             </div>
 
