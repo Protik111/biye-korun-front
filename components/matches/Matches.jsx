@@ -2,6 +2,7 @@ import { matchesProfile } from "@/staticData/matchesPeople"
 import SingleMatch from "./SingleMatch"
 import { btnBackground } from "@/styles/library/mantine"
 import { Button } from "@mantine/core"
+import Link from "next/link"
 
 const Matches = () => {
     return (
@@ -15,9 +16,11 @@ const Matches = () => {
                 }
             </div>
             <div className="flex justify-center align-center container">
-                <Button size="md" style={btnBackground}>
-                    Save & Continue
-                </Button>
+                <Link href="/todays-matches">
+                    <Button size="md" style={btnBackground}>
+                        Save & Continue
+                    </Button>
+                </Link>
             </div>
         </>
     )

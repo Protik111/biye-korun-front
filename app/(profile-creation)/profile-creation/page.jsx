@@ -19,7 +19,7 @@ const ProfileCreation = () => {
     const [active, setActive] = useState(0);
     const router = useRouter();
 
-    const { location: { city, residencyStatus } = {}, doctrine: { caste } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone } = userInfo;
+    const { location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo;
 
     // console.log('city, residencyStatus', city, residencyStatus);
 
@@ -40,7 +40,9 @@ const ProfileCreation = () => {
         company: employer ? employer : '',
         income: income ? income : '',
         about: aboutMe ? aboutMe : '',
-        phone: phone ? phone : ''
+        phone: phone ? phone : '',
+        motherTongue: motherTongue ? motherTongue : '',
+        bloodGroup: bloodGroup ? bloodGroup : ''
         // city: '',
         // livesWithFamily: '',
         // residency: '',
@@ -75,7 +77,9 @@ const ProfileCreation = () => {
         company: '',
         income: '',
         about: '',
-        phone: ''
+        phone: '',
+        motherTongue: '',
+        bloodGroup: ''
     });
 
     console.log('formValues', formValues);
@@ -90,10 +94,10 @@ const ProfileCreation = () => {
         // nextStep();
 
         if (active === 0) {
-            const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity } = formValues;
-            const data = { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity }
+            const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity, motherTongue, bloodGroup } = formValues;
+            const data = { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity, motherTongue, bloodGroup }
 
-            dispatch(createProfile({ city, livingWith: livesWithFamily, residencyStatus: residency, maritalStatus, children: hasChildren, diet, height, caste: subCommunity, step: 'first' }))
+            dispatch(createProfile({ city, livingWith: livesWithFamily, residencyStatus: residency, maritalStatus, children: hasChildren, diet, height, caste: subCommunity, motherTongue, bloodGroup, step: 'first' }))
                 .unwrap()
                 .then(() => {
                     nextStep();

@@ -1,13 +1,13 @@
 'use client'
 
-import { cities, heights, maritalStatuses, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
+import { bloodGroups, cities, heights, maritalStatuses, motherTongues2, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
 import { Button, Select, TextInput, Chip, Autocomplete } from "@mantine/core"
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 
 const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
 
-    const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity } = formValues;
+    const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity, motherTongue, bloodGroup } = formValues;
 
     const validateForm = () => {
         const errors = {};
@@ -42,6 +42,14 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
         if (!subCommunity) {
             errors.subCommunity = 'Sub Community is required';
+        }
+
+        if (!bloodGroup) {
+            errors.bloodGroup = 'Blood Group is required';
+        }
+
+        if (!motherTongue) {
+            errors.motherTongue = 'Mother Tongue is required';
         }
 
 
@@ -214,6 +222,34 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                 name="subCommunity"
                 onChange={(event) => handleFormChange('subCommunity', event)}
                 error={formErrors.subCommunity}
+            />
+
+            <br />
+
+            <Select
+                size="md"
+                placeholder="Select"
+                label="Mother Tongue"
+                data={motherTongues2}
+                value={formValues.motherTongue}
+                withAsterisk
+                name="motherTongue"
+                onChange={(event) => handleFormChange('motherTongue', event)}
+                error={formErrors.motherTongue}
+            />
+
+            <br />
+
+            <Select
+                size="md"
+                placeholder="Select"
+                label="Blood Group"
+                data={bloodGroups}
+                value={formValues.bloodGroup}
+                withAsterisk
+                name="bloodGroup"
+                onChange={(event) => handleFormChange('bloodGroup', event)}
+                error={formErrors.bloodGroup}
             />
 
             <br />

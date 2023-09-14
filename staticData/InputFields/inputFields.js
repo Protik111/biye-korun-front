@@ -226,3 +226,44 @@ export const companies = [
     "aamra companies",
     "Tiger IT Bangladesh Ltd.",
 ];
+
+export const motherTongues2 = [
+    "Mandarin (Putonghua)",
+    "Hindi",
+    "Bengali (Bangla)",
+    "Indonesian (Bahasa Indonesia)",
+    "Japanese",
+    "Korean",
+    "Thai (Siamese)",
+    "Vietnamese",
+    "Turkish",
+    "Urdu",
+    "Tagalog",
+    "Arabic",
+    "Malay/Indonesian",
+    "Tamil",
+    "Russian",
+    "Farsi (Persian)",
+    "Sinhala",
+    "Nepali",
+    "Burmese",
+    "Khmer (Cambodian)",
+    "Lao",
+    "Mongolian",
+    "Kazakh",
+    "Uzbek",
+    "Tajik",
+    "Kyrgyz",
+    "Turkmen"
+]
+
+export const bloodGroups = [
+    "A+",
+    "A-",
+    "B+",
+    "B-",
+    "AB+",
+    "AB-",
+    "O+",
+    "O-"
+]
