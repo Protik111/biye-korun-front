@@ -1,4 +1,4 @@
-import { communities, religions, subCommunities } from '@/staticData/InputFields/inputFields'
+import { communities, motherTongues2, religions, subCommunities } from '@/staticData/InputFields/inputFields'
 import { Select } from '@mantine/core'
 import React from 'react'
 
@@ -49,6 +49,19 @@ const ReliousBackground = ({ profileDatas, setProfileDatas }) => {
                 value={profileDatas.caste}
                 name="caste"
                 onChange={(event) => handleFormChange('caste', event)}
+            />
+
+            <br />
+
+            <Select
+                className='w-50 w-md-100-responsive'
+                size="md"
+                placeholder="Select Mother Tongue"
+                label="Mother Tongue"
+                data={motherTongues2}
+                value={profileDatas.motherTongue}
+                name="motherTongue"
+                onChange={(event) => handleFormChange('motherTongue', event)}
             />
 
             <br />

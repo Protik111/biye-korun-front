@@ -1,4 +1,4 @@
-import { countries, heights, maritalStatuses } from '@/staticData/InputFields/inputFields'
+import { cities, countries, heights, maritalStatuses } from '@/staticData/InputFields/inputFields'
 import { generate18YearBefore } from '@/utils/generate18YearBefore'
 import { Chip, Select } from '@mantine/core'
 import { DatePickerInput } from '@mantine/dates'
@@ -57,6 +57,21 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
                 value={profileDatas.country}
                 name="country"
                 onChange={(event) => handleFormChange('country', event)}
+            // error={fieldErrors.basic2country}
+            />
+
+            <br />
+
+            <Select
+                className='w-50 w-md-100-responsive'
+                size="md"
+                placeholder="Select"
+                label="Your City"
+                // styles={{ label: labelStyles }}
+                data={cities}
+                value={profileDatas.city}
+                name="city"
+                onChange={(event) => handleFormChange('city', event)}
             // error={fieldErrors.basic2country}
             />
 

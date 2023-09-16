@@ -49,8 +49,8 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
-                                // data={qualifications}
-                                data={["Open to All", "Doctorate", "Masters", "Bachelor/Undergraduate", "Associate/Diploma", "High School and below"]}
+                                data={qualifications}
+                                // data={["Open to All", "Doctorate", "Masters", "Bachelor/Undergraduate", "Associate/Diploma", "High School and below"]}
                                 name="qualification"
                                 value={formData.qualification}
                                 onChange={(event) => handleFormChange('qualification', event)}
@@ -75,8 +75,8 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
-                                // data={worksWiths}
-                                data={["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]}
+                                data={worksWiths}
+                                // data={["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]}
                                 name="workingWith"
                                 value={formData.workingWith}
                                 onChange={(event) => handleFormChange('workingWith', event)}

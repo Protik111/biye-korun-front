@@ -3,28 +3,12 @@ import { plansList } from "@/staticData/plans"
 import SinglePlan from "./SinglePlan"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import useAxios from "@/hooks/axios/useAxios";
 
 const Plans = () => {
-    // const { data, error, loading, refetch } = useAxios("/package");
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { data, error, loading, refetch } = useAxios('/package');
 
-    // useEffect(() => {
-    //     // Make the GET request using Axios
-    //     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/package`)
-    //         .then((response) => {
-    //             setData(response.data);
-    //             setLoading(false);
-    //         })
-    //         .catch((err) => {
-    //             setError(err);
-    //             setLoading(false);
-    //             console.log('err', err);
-    //         });
-    // }, []);
-
-    console.log('joke, error, loading, refetch', data, error, loading);
+    console.log('data, error, loading, refetch', data, error, loading);
 
     return (
         <div className="plans__box container">

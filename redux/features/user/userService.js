@@ -16,9 +16,16 @@ const loadUserData = async () => {
     return response.data
 }
 
+//update profile
+const updateProfile = async (data) => {
+    const response = await axios.patch(API_URL + `update-user-profile`, data)
+    console.log(response.data);
+}
+
 const userService = {
     createProfile,
-    loadUserData
+    loadUserData,
+    updateProfile
 }
 
 export default userService

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { configureAxiosHeader } from "@/utils/setAxiosHeader";
+
 
 const useAxios = (url, method = "GET", initialData = null, config = {}) => {
     const [data, setData] = useState(initialData);
@@ -27,6 +29,7 @@ const useAxios = (url, method = "GET", initialData = null, config = {}) => {
 
     useEffect(() => {
         fetchData();
+        configureAxiosHeader()
     }, []);
 
     return { data, error, loading, refetch: fetchData };
