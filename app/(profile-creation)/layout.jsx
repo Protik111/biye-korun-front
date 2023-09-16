@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const metadata = {
-  title: 'Profile Creation',
-  description: 'A matrimony service to find people hapiness',
-}
+// export const metadata = {
+//   title: 'Profile Creation',
+//   description: 'A matrimony service to find people hapiness',
+// }
 
 export default function RootLayout({ children }) {
   const { isAuthenticated } = useSelector(state => state.auth);
