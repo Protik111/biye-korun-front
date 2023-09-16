@@ -60,7 +60,6 @@ const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
             <h2 className='text-center'>Education and Qualifications</h2>
 
-
             <Select
                 size="md"
                 placeholder="Select"
