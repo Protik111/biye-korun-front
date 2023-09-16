@@ -19,7 +19,7 @@ const loadUserData = async () => {
 //update profile
 const updateProfile = async (data) => {
     const response = await axios.patch(API_URL + `update-user-profile`, data)
-    console.log(response.data);
+    return response.data
 }
 
 const userService = {

@@ -1,53 +1,114 @@
 import { matchesProfile } from "@/staticData/matchesPeople"
 import SingleMatch from "./SingleMatch"
 import { btnBackground } from "@/styles/library/mantine"
-import { Button } from "@mantine/core"
+import { Button, Loader } from "@mantine/core"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import useAxios from "@/hooks/axios/useAxios"
+import { useSelector } from "react-redux"
+import { notifyError, notifySuccess } from "@/utils/showNotification"
+import { useRouter } from "next/navigation"
 
 const Matches = () => {
-    const { data, error, loading, refetch } = useAxios('user/getMatches');
+    const { userInfo } = useSelector(state => state.user);
+    const [profiles, setProfiles] = useState([]);
+    const router = useRouter();
+    const [userIds, setUserIds] = useState([])
 
-    console.log('data, error, loading', data, error, loading);
+    const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
+        "page": 1,
+        "limit": 10,
+        "sort_by": "newest",
+    });
 
-    // const [data, setData] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     // Make the GET request using Axios
-    //     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/getMatches`)
-    //         .then((response) => {
-    //             setData(response.data);
-    //             setLoading(false);
-    //             console.log('response.data', response.data);
-    //         })
-    //         .catch((err) => {
-    //             setError(err);
-    //             setLoading(false);
-    //             console.log('err', err);
-    //         });
-    // }, []);
+    // const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/invitefriends", "POST", null, {}, userIds);
+
+
+    if (loading) {
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+            <Loader size="xl" color="pink" />
+        </div>
+    }
+
+    const handleUserIds = (user, remove = false) => {
+        if (!remove) {
+            setProfiles((prevprofiles) => ([
+                ...prevprofiles,
+                user
+            ]))
+        } else {
+            const restProfile = profiles?.filter(profile => profile?._id !== user?._id)
+            setProfiles(restProfile)
+        }
+        // console.log(user, remove)
+    }
+
+    // console.log('profiles', profiles);
+
+    const userIdList = profiles?.map(item => ({
+        requester: userInfo?._id,
+        recipient: item?._id
+    }))
+    // console.log('userIdList', userIdList);
+
+    // console.log('userIds', userIds);
+    const handleSendInvitations = async () => {
+        if (profiles?.length == 0) {
+            notifyError("You must choose at least profile!")
+        } else {
+            // setUserIds(userIdList)
+            // refetch2();
+
+            // console.log('error', error2);
+
+            // if (!error2) {
+            //     notifySuccess("Sent invitation successfully!")
+            //     router.push('/todays-matches')
+            // } else {
+            //     notifyError("Error occurred!")
+            // }
+
+            axios.post('user/invitefriends', userIdList)
+                .then((response) => {
+                    if (response?.data?.success) {
+                        notifySuccess("Invitation sent successfully")
+                        router.push('/todays-matches')
+                    }
+                })
+                .catch((error) => {
+                    notifyError("Error occurred!")
+                });
+        }
+    }
+
+    // console.log('data', data?.data);
 
 
     return (
         <>
             <div className="text-center container">
-                <h2>Let's get started by connecting with few of your Matches</h2>
+                {data?.data?.length > 0 ? <h2>Let's get started by connecting with few of your Matches</h2> : <h2>Currently, there is no matching profile for you!</h2>}
             </div>
             <div className="matchesContainer container grid grid-cols-3 grid-cols-3-responsive grid-gap-20">
                 {
-                    matchesProfile?.map((item, i) => <SingleMatch key={i} item={item}></SingleMatch>)
+                    data?.data?.map((item, i) => <SingleMatch key={i} item={item} handleUserIds={handleUserIds}></SingleMatch>)
                 }
             </div>
             <div className="flex justify-center align-center container">
-                <Link href="/todays-matches">
-                    <Button size="md" style={btnBackground}>
-                        Save & Continue
-                    </Button>
-                </Link>
+                {
+                    data?.data?.length > 0 ?
+                        <Button loading={loading} size="md" style={btnBackground} onClick={handleSendInvitations}>
+                            Save & Continue
+                        </Button>
+                        :
+                        <Link href="/todays-matches">
+                            <Button size="md" style={btnBackground}>
+                                Continue
+                            </Button>
+                        </Link>
+                }
             </div>
         </>
     )

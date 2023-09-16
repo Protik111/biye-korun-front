@@ -50,7 +50,7 @@ const EditProfile = () => {
         motherTongue: motherTongue ? motherTongue : '',
         education: education ? education : '',
         college: college ? college : '',
-        income: '',
+        income: { min, max },
         occupation: occupation ? occupation : '',
         workingWith: workingWith ? workingWith : '',
         employer: employer ? employer : ''
@@ -71,13 +71,48 @@ const EditProfile = () => {
     // console.log('userInfo', userInfo);
     const handleUpdate = () => {
         // console.log('profileDatas', profileDatas);
-        dispatch(updateUserProfile(profileDatas))
+
+        const { dateOfBirth, maritalStatus, country, city, diet, height, religion, community, caste, motherTongue, education, college, occupation, workingWith, employer, income } = profileDatas;
+
+        const profileData = {
+            dateOfBirth,
+            community,
+            country,
+            religion,
+            // bloodGroup: "",
+            location: {
+                city,
+                country,
+            },
+            lifestyle: {
+                maritalStatus,
+            },
+            profession: {
+                employer,
+                income,
+                occupation,
+                workingWith
+            },
+            education: {
+                college,
+                education,
+            },
+            doctrine: {
+                caste,
+                motherTongue,
+            }
+        };
+
+
+        dispatch(updateUserProfile(profileData))
             .unwrap()
             .then(() => {
+                console.log('true');
                 notifySuccess("Updated successfully!")
                 setLoading(false)
             })
             .catch(() => {
+                console.log('false');
                 notifyError("Somthing went wrong!")
                 setLoading(false)
             })
