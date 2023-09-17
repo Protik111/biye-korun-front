@@ -11,11 +11,13 @@ import { useDispatch } from 'react-redux';
 import { loadUserData } from '@/redux/features/user/userSlice';
 
 
-function UploadImage() {
+function UploadImage({ isMultiple = false, multipleRefetch }) {
     const [files, setFiles] = useState([]);
     const [imageLoading, setImageLoading] = useState(false);
     const router = useRouter();
     const dispatch = useDispatch();
+
+    // console.log('isMultiple', isMultiple);
 
     // console.log('images', files);
 
@@ -47,7 +49,42 @@ function UploadImage() {
                     });
             }
         }
-        updateProfileImage();
+
+        async function uploadMultpileImages() {
+            if (files?.length > 0) {
+                setImageLoading(true);
+                let newFile = await resizeFile(files[0])
+                let formData = new FormData();
+                formData.append("image", newFile);
+                axios
+                    .post("user/uploadimage", { image: newFile, isVisible: true, isBlur: false }, {
+                        headers: {
+                            "Content-Type": "multipart/form-data", // Set the content type for FormData
+                        }
+                    })
+                    .then((res) => {
+                        setImageLoading(false);
+                        notifySuccess('Image uploaded successfully!')
+                        dispatch(loadUserData())
+                        multipleRefetch()
+                        setFiles([])
+
+                    })
+                    .catch((err) => {
+                        setImageLoading(false);
+                        // console.log(err.response.data);
+                        notifyError('Error occured uploading image')
+                    });
+            }
+        }
+
+        if (isMultiple) {
+            uploadMultpileImages();
+        }
+
+        if (!isMultiple) {
+            updateProfileImage();
+        }
     }, [files])
 
     const previews = files?.map((file, index) => {
@@ -66,7 +103,9 @@ function UploadImage() {
 
     return (
         <div className='w-50 w-md-100-responsive'>
-            <h3 className='mb-5'>Upload your profile photo</h3>
+            {
+                isMultiple ? <h3 className='mb-5'>Upload your photos</h3> : <h3 className='mb-5'>Upload your profile photo</h3>
+            }
             <Dropzone accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
                 {files?.length === 0 ? (
                     <Image

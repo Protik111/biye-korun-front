@@ -1,3 +1,6 @@
+import { imageUrl } from "@/staticData/image";
+import { calculateAge } from "@/utils/calculateAge";
+import { heightCalculator } from "@/utils/heightCalculator";
 import { Badge, Button, Divider, List, ThemeIcon } from "@mantine/core";
 import {
   IconCircleCheck,
@@ -8,17 +11,36 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 
-const SingleProfile = () => {
+const SingleProfile = ({ profile }) => {
+  const {
+    location: { city, residencyStatus } = {},
+    doctrine: { caste } = {},
+    appearance: { height } = {},
+    education: { college, education } = {},
+    family: { children, livingWith } = {},
+    lifestyle: { diet, maritalStatus } = {},
+    profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
+    trait: { aboutMe } = {},
+    phone, profilePicture: { url } = {},
+    firstName,
+    lastName,
+    userId,
+    dateOfBirth,
+    postedBy,
+    religion,
+    community,
+    country
+  } = profile || {};
   return (
     <div className="singleProfile container-box-bg p-15">
       <div className="singleProfile__image">
-        <img src="/dashboard/blank-profile.jpg" alt="profile" />
+        <img src={url?.medium || imageUrl} alt="profile" />
       </div>
       <div>
         <div className="basiscProfile__top">
           <div className="basiscProfile__top--wrapper flex align-center justify-between">
             <div className="flex align-center justify-between flex-gap-5">
-              <h3>Shakil Ahmed</h3>
+              <h3>{firstName + " " + lastName}</h3>
               <IconLock color="#E64980"></IconLock>
               <Badge variant="outline" color="pink">
                 2-Way
@@ -57,10 +79,10 @@ const SingleProfile = () => {
                 </ThemeIcon>
               }
             >
-              <List.Item>22 yrs, 5'22'</List.Item>
-              <List.Item>Bengali</List.Item>
-              <List.Item>Muslim, Ansari</List.Item>
-              <List.Item>Bsc. in Computer Science Engineering</List.Item>
+              <List.Item>{calculateAge(dateOfBirth)}, {heightCalculator(height)}</List.Item>
+              <List.Item>{community}</List.Item>
+              <List.Item>{religion}, {caste}</List.Item>
+              <List.Item>{city}</List.Item>
             </List>
           </div>
 
@@ -75,10 +97,10 @@ const SingleProfile = () => {
                 </ThemeIcon>
               }
             >
-              <List.Item>Never Married</List.Item>
-              <List.Item>Lives in Dhaka, Bangladesh</List.Item>
-              <List.Item>Company TS4U</List.Item>
-              <List.Item>Earns Upto BDT 40K monthly</List.Item>
+              <List.Item>{maritalStatus}</List.Item>
+              <List.Item>Lives in {country}</List.Item>
+              {/* <List.Item>Works at </List.Item> */}
+              {(!min && max) ? <List.Item>Earns Upto BDT {max}K monthly</List.Item> : <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>}
             </List>
           </div>
         </div>

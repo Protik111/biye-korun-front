@@ -1,8 +1,18 @@
 import { Anchor } from "@mantine/core";
 import BasicProfile from "./BasicProfile";
 import DetailedProfile from "./DetailedProfile";
+import useAxios from "@/hooks/axios/useAxios";
 
 const TodaysMatch = () => {
+  const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
+    page: 1,
+    limit: 10,
+    sort_by: "newest",
+    isToday: true
+  });
+
+  console.log('data', data);
+
   return (
     <div className="todaysMatch container">
       <h2 className="text-center mb-15">

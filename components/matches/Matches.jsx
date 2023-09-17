@@ -17,9 +17,9 @@ const Matches = () => {
     const [userIds, setUserIds] = useState([])
 
     const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
-        "page": 1,
-        "limit": 10,
-        "sort_by": "newest",
+        page: 1,
+        limit: 10,
+        sort_by: "newest",
     });
 
 

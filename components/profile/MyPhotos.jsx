@@ -1,13 +1,18 @@
 import React from 'react'
 import UploadImage from '../global/UploadImage'
-import { Alert } from '@mantine/core'
-import { IconAlertCircle } from '@tabler/icons-react'
+import { Alert, Box, Image, Loader } from '@mantine/core'
+import { IconAlertCircle, IconCircleCheck } from '@tabler/icons-react'
 import { imageUrl } from '@/staticData/image'
 import UploadPhotoGuidelines from '../registration/photo/UploadPhotoGuidelines'
 import { useSelector } from 'react-redux'
+import useAxios from '@/hooks/axios/useAxios'
+import ThemeIconComp from '../global/ThemeIconComp'
 
 const MyPhotos = () => {
     const { userInfo } = useSelector(state => state.user) || {};
+    const { data, error, loading, refetch } = useAxios("user/myphotos");
+
+    console.log('data', data);
 
     const {
         location: { city, residencyStatus } = {},
@@ -33,7 +38,7 @@ const MyPhotos = () => {
     return (
         <div className='myPhotos container container-box-bg mt-15'>
             <div className='flex justify-center align-center'>
-                <UploadImage></UploadImage>
+                <UploadImage isMultiple={true} multipleRefetch={refetch}></UploadImage>
             </div>
 
             <div className='text-center w-75 m-auto mt-15 w-md-100-responsive'>
@@ -43,10 +48,37 @@ const MyPhotos = () => {
             </div>
 
             <h3 className='mt-20'>Your photos</h3>
-            <div className='profile-img--container'>
+            <div className='profile-img--container flex flex-gap-15 flex-wrap justify-center'>
                 <div className="profile-img">
-                    <img src={url?.large || imageUrl} alt="Profile" />
+                    <Box maw={220}>
+                        <Image
+                            radius="md"
+                            src={url?.large || imageUrl}
+                            alt="Profile Picture"
+                            caption={
+                                <div className='flex flex-gap-5 align-center'>
+                                    <ThemeIconComp iconComp={<IconCircleCheck size="14" />} size={18}></ThemeIconComp>
+                                    <h3>Profile Picture</h3>
+                                </div>
+                            }
+                        />
+                    </Box>
                 </div>
+
+                {
+                    data?.data?.length > 0 ? data?.data?.map(item => <Box maw={220}>
+                        <Image
+                            radius="md"
+                            src={item?.url?.medium || imageUrl}
+                            alt="Pictures"
+
+                        />
+                    </Box>) : (
+                        <div>
+                            <Loader size="xl" color="pink" />
+                        </div>
+                    )
+                }
             </div>
 
             <UploadPhotoGuidelines></UploadPhotoGuidelines>

@@ -1,9 +1,19 @@
-import { Anchor, Checkbox, Divider, Group, Radio } from "@mantine/core";
+import { Checkbox, Divider, Group, Radio } from "@mantine/core";
 import React from "react";
 import SingleProfile from "./SingleProfile";
+import useAxios from "@/hooks/axios/useAxios";
+import CardSkeleton from "../global/CardSkeleton";
 
 const MyMatches = () => {
-  const newArray = new Array(10).fill();
+  const skeletons = new Array(5).fill();
+
+  const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
+    page: 1,
+    limit: 10,
+    sort_by: "newest",
+  });
+
+  // console.log('data', data);
 
   return (
     <div>
@@ -184,11 +194,15 @@ const MyMatches = () => {
           </div>
 
           <div className="myMatches__wrapper--contentBox mt-10">
-            {newArray?.map((_item, i) => (
+            {data?.data?.length > 0 ? data?.data?.map((profile, i) => (
               <div key={i} className="mt-15">
-                <SingleProfile></SingleProfile>
+                <SingleProfile profile={profile}></SingleProfile>
               </div>
-            ))}
+            )) : (
+              skeletons?.map((item, i) => <div className="mt-15" key={i}>
+                <CardSkeleton></CardSkeleton>
+              </div>)
+            )}
           </div>
         </div>
       </div>
