@@ -1,22 +1,48 @@
 import { Timeline, Text, Badge, List, ThemeIcon, Avatar, Divider } from '@mantine/core';
-import { IconGitBranch, IconGitPullRequest, IconGitCommit, IconMessageDots, IconUserCircle, IconAddressBook, IconCircleCheck, IconSchool, IconBrandCashapp, IconArchive, IconDeviceIpadSearch } from '@tabler/icons-react';
+import { IconGitBranch, IconGitPullRequest, IconGitCommit, IconMessageDots, IconUserCircle, IconAddressBook, IconCircleCheck, IconSchool, IconBrandCashapp, IconArchive, IconDeviceIpadSearch, IconPhone } from '@tabler/icons-react';
 import ThemeIconComp from '../global/ThemeIconComp';
+import { useSelector } from 'react-redux';
+import { imageUrl } from '@/staticData/image';
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ profile }) => {
+    const { userInfo } = useSelector(state => state.user);
+
+    console.log('profiles', profile);
+
     return (
         <div>
             <Timeline color='pink' active={4} bulletSize={40} lineWidth={3}>
-                <Timeline.Item bullet={<IconUserCircle size={24} />} title="About Nadia Rahman">
+                <Timeline.Item bullet={<IconUserCircle size={24} />} title={`About ${profile?.firstName + " " + profile?.lastName}`}>
                     <div className='flex align-center flex-gap-15 mt-5'>
                         <Badge color="pink">ID: SH80814944</Badge>
-                        <Badge color="pink">Profile created by self</Badge>
+                        <Badge color="pink">Profile created by {profile?.postedBy}</Badge>
                     </div>
 
-                    <Text size="md" mt={4}>The bride, adorned in an elegant ivory gown that cascades into a delicate train, radiates an aura of timeless beauty and anticipation. Her cascading veil, intricately embroidered with delicate lace, veils her face, adding an air of mystery. The bride's eyes shimmer with excitement, and a gentle smile graces her lips as she clutches a bouquet of roses and baby's breath. Her hair is meticulously styled in a classic updo, showcasing the graceful curve of her neck.</Text>
+                    <Text size="md" mt={4}>{profile?.trait?.aboutMe}</Text>
                 </Timeline.Item>
 
                 <Timeline.Item bullet={<IconAddressBook size={24} />} title="Contact Details">
-                    <Text size="md" mt={4}>The bride, adorned in an elegant ivory gown that cascades into a delicate train, radiates an aura of timeless beauty and anticipation. Her cascading veil, intricately embroidered with delicate lace, veils her face, adding an air of mystery. The bride's eyes shimmer with excitement, and a gentle smile graces her lips as she clutches a bouquet of roses and baby's breath. Her hair is meticulously styled in a classic updo, showcasing the graceful curve of her neck.</Text>
+                    <div className='border-1 p-15 w-50 rounded-15'>
+                        <div className='flex flex-gap-10'>
+                            <div>
+                                <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
+                            </div>
+                            <div>
+                                <p>Contact Number</p>
+                                <p>+880985 XXXXX</p>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-gap-10 mt-10'>
+                            <div>
+                                <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
+                            </div>
+                            <div>
+                                <p>Email Id</p>
+                                <p>XXXXXXXXXX@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
                 </Timeline.Item>
 
                 <Timeline.Item title="Education & Career" bullet={<IconSchool size={24} />}>
@@ -30,13 +56,16 @@ const ProfileDetails = () => {
                     //     <IconCircleCheck size="12" />
                     // }
                     >
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Bsc. in Computer Science Engineering</List.Item>
+                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>{profile?.education?.education}</List.Item>
 
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>Engineering</List.Item>
+                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>{profile?.education?.college}</List.Item>
 
                         <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, TS4U</List.Item>
 
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item>
+                        {/* <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item> */}
+                        {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.max}K monthly</List.Item>
+                            :
+                            <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.min}K - {profile?.profession?.income?.max}K monthly</List.Item>}
                     </List>
                 </Timeline.Item>
 
@@ -46,8 +75,8 @@ const ProfileDetails = () => {
                             <Avatar
                                 size="xl"
                                 radius="xl"
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
-                                alt="it's me"
+                                src={userInfo?.profilePicture?.url?.small || imageUrl}
+                                alt="My Profile"
                             />
                             <p>Your Preferences</p>
                         </div>
@@ -61,8 +90,8 @@ const ProfileDetails = () => {
                             <Avatar
                                 size="xl"
                                 radius="xl"
-                                src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-                                alt="it's me"
+                                src={profile?.profilePicture?.url?.small || imageUrl}
+                                alt="User profile"
                             />
                             <p>Her Preferences</p>
                         </div>

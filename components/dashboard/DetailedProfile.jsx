@@ -2,7 +2,7 @@ import { fontSizeMnd } from '@/styles/library/mantine';
 import { Tabs } from '@mantine/core';
 import ProfileDetails from './ProfileDetails';
 
-const DetailedProfile = () => {
+const DetailedProfile = ({ profile }) => {
     return (
         <div className='detailedProfile container-box-bg p-15 mt-25'>
             <Tabs defaultValue="detailed-profile" color='pink'>
@@ -12,7 +12,11 @@ const DetailedProfile = () => {
                 </Tabs.List>
 
                 <Tabs.Panel value="detailed-profile" pt="xs">
-                    <ProfileDetails></ProfileDetails>
+                    <ProfileDetails profile={profile}></ProfileDetails>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="partner-preferences" pt="xs">
+                    <h2 className='text-center'>Comming soon!</h2>
                 </Tabs.Panel>
             </Tabs>
         </div>

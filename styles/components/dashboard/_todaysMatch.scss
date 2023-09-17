@@ -24,6 +24,10 @@
         align-items: center;
 
         img {
+          max-height: 250px;
+          object-fit: contain;
+          border-radius: 10px;
+
           @include smMaxBreakPoint {
             height: 150px;
             object-fit: cover;
