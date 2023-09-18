@@ -1,32 +1,63 @@
-import { Anchor, Skeleton } from "@mantine/core";
+import { Anchor, Button, Skeleton, Tooltip } from "@mantine/core";
 import BasicProfile from "./BasicProfile";
 import DetailedProfile from "./DetailedProfile";
 import useAxios from "@/hooks/axios/useAxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { imageUrl } from "@/staticData/image";
 import CardSkeleton from "../global/CardSkeleton";
 
 const TodaysMatch = () => {
+  const [limit, setLimit] = useState(1)
+  const [index, setIndex] = useState(0);
   const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
     page: 1,
-    limit: 10,
+    limit,
     sort_by: "newest",
     isToday: true
   });
 
-  console.log('data', data);
+  console.log('data today', data);
+
+  const handleNext = () => {
+    setLimit(limit + 1);
+    refetch();
+    // setIndex((prev) => prev + 1)
+  }
+
+  useEffect(() => {
+    if (data?.data?.length > 0 && index < data.data.length - 1) {
+      setIndex((prev) => prev + 1);
+    }
+  }, [data, index]);
+
+  const isDisable = data?.data?.length >= data?.total;
+
+  // console.log('isDisable', isDisable);
+
 
   return (
     <div className="todaysMatch container">
-      <h2 className="text-center mb-15">
-        Here are Today's top Matches for you. Connect with them now!
-      </h2>
+      <div className="flex justify-between align-center">
+        <h2 className="text-center mb-15">
+          Here are Today's top Matches for you. Connect with them now!
+        </h2>
+        <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
+          <Tooltip
+            label={data?.data?.length >= data?.total ? "This is the last profile" : "Click to see next match"}
+            color="pink"
+            withArrow
+          >
+
+            <img style={{ height: '35px', objectFit: 'cover' }} className={`${isDisable ? 'disable' : 'pointer'}`} src="/profile/next-chevron.svg" alt="next"></img>
+          </Tooltip>
+        </button>
+      </div>
 
       <div className="todaysMatch__wrapper">
         {data?.data?.length > 0 ? <div className="todaysMatch__wrapper--requestBox">
           <div className="requestBox-container">
             <div className="requestPhoto">
-              <img src={data?.data[0]?.profilePicture?.url?.medium || imageUrl} alt="Request Photo" />
+              <img src={data?.data[index]?.profilePicture?.url?.medium || imageUrl} alt="Request Photo" />
             </div>
             {/* <div className="text-center">
               <Anchor href="/" target="_blank">
@@ -41,11 +72,11 @@ const TodaysMatch = () => {
         </div>}
 
         <div className="todaysMatch__wrapper--contentBox">
-          {data?.data?.length > 0 ? <BasicProfile profile={data?.data[0]}></BasicProfile> : <div className="container-box-bg p-30">
+          {data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]}></BasicProfile> : <div className="container-box-bg p-30">
             <CardSkeleton></CardSkeleton>
           </div>}
 
-          {data?.data?.length > 0 ? <DetailedProfile profile={data?.data[0]}></DetailedProfile> : <div className="container-box-bg p-30 mt-20 min-vh-75">
+          {data?.data?.length > 0 ? <DetailedProfile profile={data?.data[index]}></DetailedProfile> : <div className="container-box-bg p-30 mt-20 min-vh-75">
             <CardSkeleton></CardSkeleton>
           </div>}
 

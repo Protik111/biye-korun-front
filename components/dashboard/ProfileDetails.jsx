@@ -1,20 +1,20 @@
-import { Timeline, Text, Badge, List, ThemeIcon, Avatar, Divider } from '@mantine/core';
-import { IconGitBranch, IconGitPullRequest, IconGitCommit, IconMessageDots, IconUserCircle, IconAddressBook, IconCircleCheck, IconSchool, IconBrandCashapp, IconArchive, IconDeviceIpadSearch, IconPhone } from '@tabler/icons-react';
+import { Timeline, Text, Badge, List, ThemeIcon, Avatar, Divider, Button } from '@mantine/core';
+import { IconGitBranch, IconGitPullRequest, IconGitCommit, IconMessageDots, IconUserCircle, IconAddressBook, IconCircleCheck, IconSchool, IconBrandCashapp, IconArchive, IconDeviceIpadSearch, IconPhone, IconCircleLetterX, IconEye } from '@tabler/icons-react';
 import ThemeIconComp from '../global/ThemeIconComp';
 import { useSelector } from 'react-redux';
 import { imageUrl } from '@/staticData/image';
+import useAxios from '@/hooks/axios/useAxios';
 
 const ProfileDetails = ({ profile }) => {
     const { userInfo } = useSelector(state => state.user);
-
-    console.log('profiles', profile);
+    const { data, error, loading, refetch } = useAxios(`user/compare-partner-preference/${userInfo._id}`);
 
     return (
         <div>
             <Timeline color='pink' active={4} bulletSize={40} lineWidth={3}>
                 <Timeline.Item bullet={<IconUserCircle size={24} />} title={`About ${profile?.firstName + " " + profile?.lastName}`}>
                     <div className='flex align-center flex-gap-15 mt-5'>
-                        <Badge color="pink">ID: SH80814944</Badge>
+                        <Badge color="pink">ID: {profile?.userId}</Badge>
                         <Badge color="pink">Profile created by {profile?.postedBy}</Badge>
                     </div>
 
@@ -22,25 +22,33 @@ const ProfileDetails = ({ profile }) => {
                 </Timeline.Item>
 
                 <Timeline.Item bullet={<IconAddressBook size={24} />} title="Contact Details">
-                    <div className='border-1 p-15 w-50 rounded-15'>
-                        <div className='flex flex-gap-10'>
-                            <div>
-                                <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
+                    <div className='border-1 p-15 w-50 rounded-15 flex justify-between align-center'>
+                        <div>
+                            <div className='flex flex-gap-10'>
+                                <div>
+                                    <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
+                                </div>
+                                <div>
+                                    <p>Contact Number</p>
+                                    <p>+880985 XXXXX</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>Contact Number</p>
-                                <p>+880985 XXXXX</p>
+
+                            <div className='flex flex-gap-10 mt-10'>
+                                <div>
+                                    <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
+                                </div>
+                                <div>
+                                    <p>Email Id</p>
+                                    <p>XXXXXXXXXX@gmail.com</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div className='flex flex-gap-10 mt-10'>
-                            <div>
-                                <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
-                            </div>
-                            <div>
-                                <p>Email Id</p>
-                                <p>XXXXXXXXXX@gmail.com</p>
-                            </div>
+                        <div>
+                            <Button rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
+                                View Details
+                            </Button>
                         </div>
                     </div>
                 </Timeline.Item>
@@ -60,7 +68,7 @@ const ProfileDetails = ({ profile }) => {
 
                         <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>{profile?.education?.college}</List.Item>
 
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, TS4U</List.Item>
+                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, {profile?.profession?.employer}</List.Item>
 
                         {/* <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item> */}
                         {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.max}K monthly</List.Item>
@@ -98,17 +106,29 @@ const ProfileDetails = ({ profile }) => {
                     </div>
 
                     <div className='mt-25'>
-                        <div className="flex justify-between">
-                            <div>
-                                <p className='secondary-text'>Age</p>
-                                <p className='small-text'>21 to 29</p>
-                            </div>
-                            <ThemeIconComp iconComp={<IconCircleCheck size="18" />}></ThemeIconComp>
-                        </div>
-                        <Divider mt={10} size="sm" />
+                        {
+                            data?.data?.map((item, i) => <div key={i}>
+                                <div className="flex justify-between mt-25">
+                                    <div>
+                                        <p className='secondary-text'>{item?.name}</p>
+                                        <p className='small-text'>{item?.value}</p>
+                                    </div>
+                                    {
+                                        item?.isMatch ?
+                                            <ThemeIconComp iconComp={<IconCircleCheck size="18" />}></ThemeIconComp>
+                                            :
+                                            <ThemeIcon color="black" radius="xl">
+                                                <IconCircleLetterX size="18"></IconCircleLetterX>
+                                            </ThemeIcon>
+                                    }
+                                </div>
+                                <Divider mt={10} size="sm" />
+                            </div>)
+                        }
 
 
-                        <div className="flex justify-between mt-25">
+
+                        {/* <div className="flex justify-between mt-25">
                             <div>
                                 <p className='secondary-text'>Hegiht</p>
                                 <p className='small-text'>5'2''</p>
@@ -160,7 +180,7 @@ const ProfileDetails = ({ profile }) => {
                             </div>
                             <ThemeIconComp iconComp={<IconCircleCheck size="18" />}></ThemeIconComp>
                         </div>
-                        <Divider mt={10} size="sm" />
+                        <Divider mt={10} size="sm" /> */}
 
                     </div>
 

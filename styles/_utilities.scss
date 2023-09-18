@@ -564,3 +564,15 @@
 .border-1-top {
   border-top: 1px solid $primaryColor;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.disable {
+  cursor: not-allowed;
+}
+
+.btn-clicked {
+  transform: translateY(4px);
+}

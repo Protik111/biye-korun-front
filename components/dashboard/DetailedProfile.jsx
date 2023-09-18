@@ -3,6 +3,9 @@ import { Tabs } from '@mantine/core';
 import ProfileDetails from './ProfileDetails';
 
 const DetailedProfile = ({ profile }) => {
+
+    console.log('profile', profile);
+
     return (
         <div className='detailedProfile container-box-bg p-15 mt-25'>
             <Tabs defaultValue="detailed-profile" color='pink'>

@@ -1,5 +1,7 @@
+import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
+import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { Badge, Button, Divider, List, ThemeIcon } from "@mantine/core";
 import {
   IconCircleCheck,
@@ -10,9 +12,30 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 
-const BasicProfile = ({ profile }) => {
+const message = {
+  success: 'Invitation sent successfully!',
+  error: 'Error occurred!'
+}
 
-  // console.log('profile', profile);
+const BasicProfile = ({ profile }) => {
+  const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
+
+  console.log('data, loading, error,', data, loading, error);
+
+  const handleSendRequest = () => {
+    // console.log('data');
+    sendPostRequest({
+      recipient: profile?._id
+    });
+
+    // if (data?.success) {
+    //   notifySuccess("Invitation sent successfully!")
+    // } else {
+    //   notifyError(error?.response?.data?.message)
+    // }
+  };
+
+  // console.log('basic profile', profile);
 
   const {
     location: { city, residencyStatus } = {},
@@ -26,6 +49,7 @@ const BasicProfile = ({ profile }) => {
     phone, profilePicture: { url } = {},
     firstName,
     lastName,
+    friendships,
     userId,
     dateOfBirth,
     postedBy,
@@ -35,6 +59,16 @@ const BasicProfile = ({ profile }) => {
   } = profile || {};
 
   // console.log('country', country);
+
+  // Check if 'friendships' exists in profile and has a 'status' property
+  const friendshipsStatus = profile && profile.friendships && profile.friendships.status;
+
+  // Use the value of 'friendshipsStatus' for the 'status' property
+  const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
+
+  const friendships2 = true
+
+  console.log('status', status, friendships);
 
   return (
     <div className="basicProfile container-box-bg p-15">
@@ -47,14 +81,25 @@ const BasicProfile = ({ profile }) => {
               2-Way
             </Badge>
           </div>
-          <Button
+          {!friendships ? <Button
             rightIcon={<IconRocket />}
             sx={{ backgroundColor: "#e64980", color: "white" }}
             color="pink"
             variant="white"
+            onClick={handleSendRequest}
           >
             Connect with her
-          </Button>
+          </Button> :
+            <Button
+              disabled
+              rightIcon={<IconRocket />}
+              sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="white"
+            // onClick={handleSendRequest}
+            >
+              Request Pending
+            </Button>}
         </div>
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
