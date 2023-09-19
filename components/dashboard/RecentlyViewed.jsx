@@ -73,7 +73,9 @@ const RecentlyViewed = () => {
           }
         </>}
 
-      {data?.data?.length === 0 && <h2 className="text-center">You didn't view any profile yet!</h2>}
+      {data?.data?.length === 0 && <div className="container flex justify-center">
+        <h2 className="text-center">You didn't view any profile yet!</h2>
+      </div>}
     </div>
   );
 };
