@@ -10,6 +10,7 @@ import { useState } from "react"
 import { notifyError, notifySuccess } from "@/utils/showNotification"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import { useSelector } from "react-redux"
 
 // Define the minimum and maximum heights in inches
 const minHeightInches = 58; // 4' 10'' in inches
@@ -20,19 +21,34 @@ const minIncome = 10000; // 10000 BDT
 const maxIncome = 200000; // 200,000 BDT
 
 const PartnerPreference = ({ profile }) => {
+    const { userInfo } = useSelector(state => state.user);
+
+
+    const {
+        basicDetails: { ageRange: { max, min } = {}, heightRange, maritalStatus } = {},
+        community: { community, motherTongue, religion } = {},
+        educationCareer: { annualIncome, profession, qualification, workingWith } = {},
+        location: { country, residencyStatus, stateLiving } = {},
+        family: { children, livingWith } = {},
+        // profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
+        trait: { aboutMe } = {},
+        phone, profilePicture: { url } = {},
+
+    } = userInfo?.partnerpreference || {};
+
     const [seeMore, setSeemore] = useState(false);
     const [formData, setFormData] = useState({
         ages: [18, 25],
         height: '',
-        maritalStatus: '',
-        religion: '',
-        motherTongue: '',
-        livingIn: '',
-        stateLiving: '',
-        residency: '',
-        qualification: '',
-        workingWith: '',
-        profession: '',
+        maritalStatus: maritalStatus ? maritalStatus : '',
+        religion: religion ? religion : '',
+        motherTongue: motherTongue ? motherTongue : '',
+        livingIn: country ? country : '',
+        stateLiving: stateLiving ? stateLiving : '',
+        residency: residencyStatus ? residencyStatus : '',
+        qualification: qualification ? qualification : '',
+        workingWith: workingWith ? workingWith : '',
+        profession: profession ? profession : '',
         income: ''
     })
     const [minHeight, setMinHeight] = useState(minHeightInches);
@@ -120,6 +136,8 @@ const PartnerPreference = ({ profile }) => {
                 notifyError(err.response.data.message)
             })
     }
+
+    console.log('user', userInfo);
 
     return (
         <div className='partenerPref'>

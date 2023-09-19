@@ -44,7 +44,7 @@ const Step3 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
             <Textarea
                 placeholder="Describe yourself"
-                label="About you"
+                label="Share your bio"
                 autosize
                 minRows={3}
                 withAsterisk
