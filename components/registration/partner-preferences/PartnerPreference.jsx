@@ -21,8 +21,8 @@ const minIncome = 10000; // 10000 BDT
 const maxIncome = 200000; // 200,000 BDT
 
 const PartnerPreference = ({ profile }) => {
-    const { userInfo } = useSelector(state => state.user);
 
+    const { userInfo } = useSelector(state => state.user);
 
     const {
         basicDetails: { ageRange: { max, min } = {}, heightRange, maritalStatus } = {},
@@ -137,7 +137,7 @@ const PartnerPreference = ({ profile }) => {
             })
     }
 
-    console.log('user', userInfo);
+    // console.log('user', userInfo);
 
     return (
         <div className='partenerPref'>

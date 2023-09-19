@@ -1,8 +1,11 @@
 import ThemeIconComp from '@/components/global/ThemeIconComp';
+import useCountry from '@/hooks/common/useCountry';
 import { countries, recidencies, states } from '@/staticData/InputFields/inputFields';
 import { labelStyles, useStyles } from '@/styles/library/mantine';
+import { getCountryCodeByLabel, getStateCodeByLabel } from '@/utils/getCountryLabelCode';
 import { Accordion, RangeSlider, Select, ThemeIcon } from '@mantine/core';
 import { IconCalendarTime, IconFall, IconHearts, IconHome2, IconMapPin, IconPray, IconWorld } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 
 function valueLabelFormat(value) {
     const units = ['KB', 'MB', 'GB', 'TB'];
@@ -19,6 +22,18 @@ function valueLabelFormat(value) {
 }
 
 function Location({ formData, setFormData }) {
+
+    const [countryList, setCountryList] = useState([]);
+    const [stateList, setStateList] = useState([]);
+
+    const [countryCode, setCountryCode] = useState('')
+    const [stateCode, setStateCode] = useState('')
+
+    console.log('countryCode, stateCode', countryCode, stateCode);
+
+    //custom hooks to get country, state, city
+    const { data, error, loading } = useCountry(countryCode, stateCode);
+
     const { classes } = useStyles();
 
     const handleFormChange = (name, value) => {
@@ -27,6 +42,43 @@ function Location({ formData, setFormData }) {
             [name]: value,
         }));
     };
+
+    console.log('data from country', data.country);
+    console.log('state data from country', data.state);
+
+    useEffect(() => {
+        if (!loading?.country) {
+            const convertedList = data?.country?.map((item) => ({
+                label: item?.name,
+                value: item?.name,
+                code: item?.iso2
+            }));
+
+            setCountryList(convertedList);
+
+            //get country code
+            setCountryCode(getCountryCodeByLabel(convertedList, formData?.livingIn))
+
+        }
+
+        if (!loading?.state) {
+            console.log('data?.state?', data?.state);
+            const stateConvertedList = data?.state?.map((item) => ({
+                label: item?.name,
+                value: item?.name,
+                code: item?.iso2
+            }));
+
+            setStateList(stateConvertedList);
+
+            //get state code
+            setStateCode(getStateCodeByLabel(stateConvertedList, formData?.stateLiving))
+        }
+    }, [data?.country, data?.state, loading, formData]);
+
+    console.log('stateList', stateList);
+
+    console.log('formData', formData);
 
     return (
         <div className='pt-15'>
@@ -49,12 +101,14 @@ function Location({ formData, setFormData }) {
                         <Accordion.Panel>
 
                             <Select
+                                searchable
                                 size="md"
                                 placeholder="Select"
                                 label="Country"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={countries}
+                                // data={countryList}
                                 name="livingIn"
                                 value={formData.livingIn}
                                 onChange={(event) => handleFormChange('livingIn', event)}
@@ -80,6 +134,7 @@ function Location({ formData, setFormData }) {
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={states}
+                                // data={stateList}
                                 name="stateLiving"
                                 value={formData.stateLiving}
                                 onChange={(event) => handleFormChange('stateLiving', event)}

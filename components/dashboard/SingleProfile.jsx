@@ -1,3 +1,4 @@
+import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import { imageUrl } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
@@ -11,7 +12,16 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 
+const message = {
+  success: 'Invitation sent successfully!',
+  error: 'Error occurred!'
+}
+
 const SingleProfile = ({ profile }) => {
+  const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
+
+  // console.log('profile', profile);
+
   const {
     location: { city, residencyStatus } = {},
     doctrine: { caste } = {},
@@ -24,13 +34,31 @@ const SingleProfile = ({ profile }) => {
     phone, profilePicture: { url } = {},
     firstName,
     lastName,
+    friendships,
     userId,
     dateOfBirth,
     postedBy,
     religion,
     community,
-    country
+    country,
+    _id
   } = profile || {};
+
+  // console.log('country', country);
+
+  // Check if 'friendships' exists in profile and has a 'status' property
+  const friendshipsStatus = profile && profile.friendships && profile.friendships.status;
+
+  // Use the value of 'friendshipsStatus' for the 'status' property
+  const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
+
+  const handleSendRequest = (id) => {
+    sendPostRequest({
+      recipient: id
+    });
+  }
+
+
   return (
     <div className="singleProfile container-box-bg p-15">
       <div className="singleProfile__image">
@@ -46,14 +74,25 @@ const SingleProfile = ({ profile }) => {
                 2-Way
               </Badge>
             </div>
-            <Button
+            {!friendships ? <Button
               rightIcon={<IconRocket />}
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
+              onClick={() => handleSendRequest(_id)}
             >
               Connect with her
-            </Button>
+            </Button> :
+              <Button
+                disabled
+                rightIcon={<IconRocket />}
+                sx={{ backgroundColor: "#e64980", color: "white" }}
+                color="pink"
+                variant="white"
+              // onClick={handleSendRequest}
+              >
+                Request Pending
+              </Button>}
           </div>
           <div className="flex align-center mt-15">
             <div className="flex align-center flex-gap-5 flex-item">

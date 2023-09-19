@@ -8,7 +8,7 @@ function useAxiosPost(url, initialData = null, message) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    console.log('message', message);
+    // console.log('message', message);
 
     const postData = async (postData) => {
         configureAxiosHeader()

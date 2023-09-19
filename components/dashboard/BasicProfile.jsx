@@ -20,7 +20,7 @@ const message = {
 const BasicProfile = ({ profile }) => {
   const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
-  console.log('data, loading, error,', data, loading, error);
+  // console.log('data, loading, error,', data, loading, error);
 
   const handleSendRequest = () => {
     // console.log('data');
@@ -125,7 +125,7 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            <List.Item>{calculateAge(dateOfBirth)}yrs, {heightCalculator(height)}</List.Item>
+            <List.Item>{calculateAge(dateOfBirth)} yrs, {heightCalculator(height)}</List.Item>
             <List.Item>{community}</List.Item>
             <List.Item>{religion}, {caste}</List.Item>
             <List.Item>{city}</List.Item>
