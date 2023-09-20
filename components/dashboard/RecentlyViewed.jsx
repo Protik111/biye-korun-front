@@ -18,7 +18,7 @@ const RecentlyViewed = () => {
   const { data, error, loading, refetch } = useAxios("user/view-profile");
   const { data: data2, loading: loading2, error: error2, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
-  console.log('data, loading, error,', data, loading, error);
+  // console.log('data, loading, error,', data, loading, error);
 
 
   const handleSendRequest = (userId) => {

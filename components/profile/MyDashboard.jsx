@@ -7,10 +7,34 @@ import MyDashboardBottom from './MyDashboardBottom'
 import { useSelector } from 'react-redux'
 import { imageUrl } from '@/staticData/image'
 import { useRouter } from 'next/navigation'
+import useAxios from '@/hooks/axios/useAxios'
 
 const MyDashboard = () => {
     const { userInfo } = useSelector(state => state.user) || {};
     const router = useRouter();
+    const { data, error, loading, refetch } = useAxios("user/invitefriendship/all");
+
+    // console.log('data', data);
+
+    // const statusSum = data?.data?.reduce((sum, item) => {
+    //     if (item.status === 'pending') {
+    //         return sum + 1;
+    //     }
+    //     return sum;
+    // }, 0);
+
+    let acceptedCount = 0;
+    let pendingCount = 0;
+
+    data?.data?.forEach((item) => {
+        if (item.status === 'accepted') {
+            acceptedCount++;
+        } else if (item.status === 'pending') {
+            pendingCount++;
+        }
+    });
+
+    // console.log(pendingCount);
 
     const {
         location: { city, residencyStatus } = {},
@@ -80,18 +104,18 @@ const MyDashboard = () => {
                     <h3>Your Activity</h3>
                     <div className='container-box-bg flex justify-between p-15 flex-wrap mt-10'>
                         <div>
-                            <h2>1</h2>
+                            <h2>{pendingCount ? pendingCount : ''}</h2>
                             <p>Pending Invitations</p>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
-                            <h2>1</h2>
+                            <h2>{acceptedCount}</h2>
                             <p>Accepted Invitations</p>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <div className='flex align-center flex-gap-5'>
-                                <h2>1</h2>
+                                <h2>{pendingCount}</h2>
                                 <Badge variant="outline" color="pink">
                                     5 New
                                 </Badge>
@@ -109,13 +133,13 @@ const MyDashboard = () => {
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
-                            <h2>1</h2>
+                            <h2>{acceptedCount}</h2>
                             <p>Accepted Invitations</p>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <div className='flex align-center flex-gap-5'>
-                                <h2>1</h2>
+                                <h2>{pendingCount ? pendingCount : ''}</h2>
                             </div>
                             <p>Pending Invitations</p>
                         </div>

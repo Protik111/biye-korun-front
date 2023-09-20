@@ -1,4 +1,8 @@
+import useAxios from "@/hooks/axios/useAxios";
+import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import { btnBackground } from "@/styles/library/mantine";
+import { calculateAge } from "@/utils/calculateAge";
+import { heightCalculator } from "@/utils/heightCalculator";
 import { Avatar, Button, Divider } from "@mantine/core";
 
 const imageUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
@@ -72,23 +76,57 @@ const profileImg = [
     // },
 ];
 
+const message = {
+    success: 'Invitation sent successfully!',
+    error: 'Error occurred!'
+}
+
 const MyDashboardBottom = () => {
+    const { data, error, loading, refetch } = useAxios("user/view-profile");
+
+    const { data: data2, loading: loading2, error: error2, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
+
+    // console.log('data, loading, error,', data, loading, error);
+
+
+    const handleSendRequest = (userId) => {
+        console.log('userId', userId);
+
+        sendPostRequest({
+            recipient: userId
+        });
+    };
+
+    // const destructuredData = data?.data?.map(({ friendships, ...rest }) => ({ ...rest, friendships }));
+
+    // console.log('destructuredData', destructuredData);
+
+    // console.log('country', country);
+
+    // Check if 'friendships' exists in profile and has a 'status' property
+    //   const friendshipsStatus = profile && profile.friendships && profile.friendships.status;
+
+    // Use the value of 'friendshipsStatus' for the 'status' property
+    //   const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
+
+    console.log('data', data);
+
     return (
         <div className='myDashboard__bottom mt-20'>
             <h3 className="mb-5">Recent Visitors</h3>
             <div className="myDashboard__bottom--profileContainerRoot">
                 <div className="myDashboard__bottom--profileContainer">
                     {
-                        profileImg?.map(profile => <div className="single container-box-bg py-15">
+                        data?.data?.map(profile => <div className="single container-box-bg py-15">
                             <Avatar
                                 size="xl"
                                 radius="xl"
-                                src={profile?.profileImage?.url}
+                                src={profile?.visit?.profilePicture?.url?.medium}
                                 alt="it's me"
                             />
                             <div className="mt-10">
-                                <h3>{profile?.name}</h3>
-                                <p>{profile?.age}{" "}{profile?.height}{" "}{profile?.community}</p>
+                                <h3>{profile?.visit?.firstName + " " + profile?.visit?.lastName}</h3>
+                                <p>{calculateAge(profile?.visit?.dateOfBirth)}{" "}{heightCalculator(profile?.visit?.appearance?.height)}{" "}{profile?.visit?.community}</p>
                             </div>
                             <Button
                                 size="xs"
@@ -96,6 +134,7 @@ const MyDashboardBottom = () => {
                                 // leftIcon={<IconArrowNarrowLeft />}
                                 style={btnBackground} type="button"
                                 className={`button mt-10`}
+                                onClick={() => handleSendRequest(profile?.visit?._id)}
                             >
                                 Connect Now
                             </Button>

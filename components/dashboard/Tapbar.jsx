@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 const Tapbar = () => {
   const { data, error, loading, refetch } = useAxios("user/match-count")
 
-  console.log('data', data);
+  // console.log('data', data);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -19,7 +19,6 @@ const Tapbar = () => {
 
   const { data: { myMatchTotal, newMatchTotal, recentViewTotal, todayMatchTotal } = {} } = data || {};
 
-  console.log('myMatchTotal, newMatchTotal, recentViewTotal, todayMatchTotal', myMatchTotal, newMatchTotal, recentViewTotal, todayMatchTotal);
 
   return (
     <div className="tapbar">

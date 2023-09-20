@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { loadUserData } from '@/redux/features/user/userSlice';
 
 
-function UploadImage({ isMultiple = false, multipleRefetch }) {
+function UploadImage({ isMultiple = false, multipleRefetch, fullWidth }) {
     const [files, setFiles] = useState([]);
     const [imageLoading, setImageLoading] = useState(false);
     const router = useRouter();
@@ -102,7 +102,7 @@ function UploadImage({ isMultiple = false, multipleRefetch }) {
     });
 
     return (
-        <div className='w-50 w-md-100-responsive'>
+        <div className={`${fullWidth ? 'w-100 w-md-100-responsive' : 'w-50 w-md-100-responsive'}`}>
             {
                 isMultiple ? <h3 className='mb-5'>Upload your photos</h3> : <h3 className='mb-5'>Upload your profile photo</h3>
             }
