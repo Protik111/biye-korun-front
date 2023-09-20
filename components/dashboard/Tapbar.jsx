@@ -14,6 +14,7 @@ const Tapbar = () => {
 
   const handleChangeTab = (value) => {
     router.push(`/${value}`);
+    refetch()
   };
 
   const { data: { myMatchTotal, newMatchTotal, recentViewTotal, todayMatchTotal } = {} } = data || {};

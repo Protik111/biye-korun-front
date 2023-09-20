@@ -50,13 +50,20 @@ const useCountry = (selectedCountryCode, selectedStateCode) => {
             const response = await fetch(`${config.cUrl}/${selectedCountryCode}/states`, { headers: { "X-CSCAPI-KEY": config.ckey } });
             const res = await response.json();
             console.log('res state', res);
+            console.log('selectedCountryCode in if block in fecthState try', selectedCountryCode, res);
             setData({ ...data, state: res });
         } catch (error) {
+            console.log('selectedCountryCode in if block in fecthState catch', selectedCountryCode);
             console.error('Error loading state:', error);
             setError({ ...error, state: error });
         } finally {
+            console.log('selectedCountryCode in if block in fecthState finally', selectedCountryCode);
+
             setLoading({ ...loading, state: false });
         }
+
+        console.log('selectedCountryCode in if block in fecthState data', data);
+
     };
 
     // fetch city data
@@ -79,7 +86,11 @@ const useCountry = (selectedCountryCode, selectedStateCode) => {
     useEffect(() => {
         fetchCountry();
 
+        console.log('selectedCountryCode outer if block', selectedCountryCode);
+
+
         if (selectedCountryCode) {
+            console.log('selectedCountryCode in if block', selectedCountryCode);
             fetchState(selectedCountryCode);
         }
 
@@ -87,6 +98,8 @@ const useCountry = (selectedCountryCode, selectedStateCode) => {
             fetchCities(selectedCountryCode, selectedStateCode);
         }
     }, [selectedCountryCode, selectedStateCode]); // Include dependencies in the useEffect dependencies array
+
+    console.log('data before returning from hooks', data);
 
     return { data, error, loading, refetch: fetchCountry };
 }

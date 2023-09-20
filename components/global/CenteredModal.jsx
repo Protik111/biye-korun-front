@@ -1,6 +1,6 @@
 import { Modal, useMantineTheme } from "@mantine/core";
 
-const CenteredModal = ({ modalOpen, handleModalClose, children }) => {
+const CenteredModal = ({ modalOpen, handleModalClose, modalTitle = "", children }) => {
     const theme = useMantineTheme();
 
     return (
@@ -8,8 +8,12 @@ const CenteredModal = ({ modalOpen, handleModalClose, children }) => {
             <Modal
                 opened={modalOpen}
                 onClose={handleModalClose}
-                // title="Let's set up your account, while
-                // we find Matches for you!"
+                // title={<div className="flex justify-center align-center">
+                //     {modalTitle}
+                // </div>}
+                title={<div className="flex justify-center align-center">
+                    <h3 className="text-center">Let's create an account!</h3>
+                </div>}
                 centered
                 overlayColor={
                     theme.colorScheme === "dark"

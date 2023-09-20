@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { imageUrl } from "@/staticData/image";
 import CardSkeleton from "../global/CardSkeleton";
 import NoDataFound from "../global/NoDataFound";
+import axios from "axios";
 
 const TodaysMatch = () => {
   const [limit, setLimit] = useState(1)
@@ -17,9 +18,27 @@ const TodaysMatch = () => {
     isToday: true
   });
 
-  const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/create-view-profile", "POST", null, {}, {
-    userId: data?.data[index]?._id
-  });
+  const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/match-count")
+
+  // const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/create-view-profile", "POST", null, {}, {
+  //   userId: data?.data[index]?._id
+  // });
+
+  useEffect(() => {
+    axios.post('user/create-view-profile', {
+      userId: data?.data[index]?._id
+    })
+      .then((response) => {
+        if (response?.data?.success) {
+          console.log('Sent successfully!');
+          //call counts api
+          refetch2()
+        }
+      })
+      .catch((error) => {
+        console.log('Error occurred!', error);
+      });
+  }, [data?.data[index]])
 
   console.log('data today', data);
 
@@ -62,7 +81,7 @@ const TodaysMatch = () => {
         </div>
 
         <div className="todaysMatch__wrapper">
-          {loading && data?.data?.length > 0 ? <div className="todaysMatch__wrapper--requestBox">
+          {data?.data?.length > 0 ? <div className="todaysMatch__wrapper--requestBox">
             <div className="requestBox-container">
               <div className="requestPhoto">
                 <img src={data?.data[index]?.profilePicture?.url?.medium || imageUrl} alt="Request Photo" />
@@ -85,14 +104,14 @@ const TodaysMatch = () => {
           }
 
           <div className="todaysMatch__wrapper--contentBox">
-            {loading && data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]}></BasicProfile> :
+            {data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]}></BasicProfile> :
               !loading && data?.data?.length === 0 ?
                 <></> :
                 <div className="container-box-bg p-30">
                   <CardSkeleton></CardSkeleton>
                 </div>}
 
-            {loading && data?.data?.length > 0 ? <DetailedProfile profile={data?.data[index]}></DetailedProfile> :
+            {data?.data?.length > 0 ? <DetailedProfile profile={data?.data[index]}></DetailedProfile> :
               !loading && data?.data?.length === 0 ?
                 <></> :
                 <div className="container-box-bg p-30 mt-20 min-vh-75">

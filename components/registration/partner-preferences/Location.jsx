@@ -29,7 +29,8 @@ function Location({ formData, setFormData }) {
     const [countryCode, setCountryCode] = useState('')
     const [stateCode, setStateCode] = useState('')
 
-    console.log('countryCode, stateCode', countryCode, stateCode);
+    console.log('countryCode', countryCode);
+    console.log('stateCode', stateCode);
 
     //custom hooks to get country, state, city
     const { data, error, loading } = useCountry(countryCode, stateCode);
@@ -43,8 +44,7 @@ function Location({ formData, setFormData }) {
         }));
     };
 
-    console.log('data from country', data.country);
-    console.log('state data from country', data.state);
+    console.log('country, state, city data', data);
 
     useEffect(() => {
         if (!loading?.country) {
@@ -62,7 +62,7 @@ function Location({ formData, setFormData }) {
         }
 
         if (!loading?.state) {
-            console.log('data?.state?', data?.state);
+            console.log('data?.state?', stateList);
             const stateConvertedList = data?.state?.map((item) => ({
                 label: item?.name,
                 value: item?.name,
@@ -74,7 +74,7 @@ function Location({ formData, setFormData }) {
             //get state code
             setStateCode(getStateCodeByLabel(stateConvertedList, formData?.stateLiving))
         }
-    }, [data?.country, data?.state, loading, formData]);
+    }, [data, loading, formData?.livingIn, formData?.stateLiving]);
 
     console.log('stateList', stateList);
 

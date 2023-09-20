@@ -94,7 +94,7 @@ const BrideGroom = () => {
                 </Button>
             </div>
             {
-                modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose}>
+                modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose} modalTitle={<h3 className="text-center">Let's create an account!</h3>}>
                     {/* <MultistepRegistration></MultistepRegistration> */}
                     <FormProvider>
                         <Form></Form>
