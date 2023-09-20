@@ -5,6 +5,7 @@ import useAxios from "@/hooks/axios/useAxios";
 import { useEffect, useState } from "react";
 import { imageUrl } from "@/staticData/image";
 import CardSkeleton from "../global/CardSkeleton";
+import NoDataFound from "../global/NoDataFound";
 
 const TodaysMatch = () => {
   const [limit, setLimit] = useState(1)
@@ -16,7 +17,7 @@ const TodaysMatch = () => {
     isToday: true
   });
 
-  const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/view-profile", "POST", null, {}, {
+  const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/create-view-profile", "POST", null, {}, {
     userId: data?.data[index]?._id
   });
 
@@ -48,7 +49,7 @@ const TodaysMatch = () => {
           <h2 className="text-center mb-15">
             Here are Today's top Matches for you. Connect with them now!
           </h2>
-          <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
+          {!loading && data?.data?.length !== 0 && <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
             <Tooltip
               label={data?.data?.length >= data?.total ? "This is the last profile" : "Click to see next match"}
               color="pink"
@@ -57,11 +58,11 @@ const TodaysMatch = () => {
 
               <img style={{ height: '35px', objectFit: 'cover' }} className={`${isDisable ? 'disable' : 'pointer'}`} src="/profile/next-chevron.svg" alt="next"></img>
             </Tooltip>
-          </button>
+          </button>}
         </div>
 
         <div className="todaysMatch__wrapper">
-          {!loading ? <div className="todaysMatch__wrapper--requestBox">
+          {loading && data?.data?.length > 0 ? <div className="todaysMatch__wrapper--requestBox">
             <div className="requestBox-container">
               <div className="requestPhoto">
                 <img src={data?.data[index]?.profilePicture?.url?.medium || imageUrl} alt="Request Photo" />
@@ -72,22 +73,39 @@ const TodaysMatch = () => {
               </Anchor>
             </div> */}
             </div>
-          </div> : <div className="requestBox-container container-box-bg p-30">
-            <Skeleton height={150} circle mb="xl" />
-            <Skeleton height={8} radius="xl" width="85%" />
-            <Skeleton height={8} mt={6} radius="xl" />
-          </div>}
+          </div> :
+            !loading && data?.data?.length === 0 ?
+              <>
+              </> :
+              <div className="requestBox-container container-box-bg p-30">
+                <Skeleton height={150} circle mb="xl" />
+                <Skeleton height={8} radius="xl" width="85%" />
+                <Skeleton height={8} mt={6} radius="xl" />
+              </div>
+          }
 
           <div className="todaysMatch__wrapper--contentBox">
-            {!loading ? <BasicProfile profile={data?.data[index]}></BasicProfile> : <div className="container-box-bg p-30">
-              <CardSkeleton></CardSkeleton>
-            </div>}
+            {loading && data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]}></BasicProfile> :
+              !loading && data?.data?.length === 0 ?
+                <></> :
+                <div className="container-box-bg p-30">
+                  <CardSkeleton></CardSkeleton>
+                </div>}
 
-            {!loading ? <DetailedProfile profile={data?.data[index]}></DetailedProfile> : <div className="container-box-bg p-30 mt-20 min-vh-75">
-              <CardSkeleton></CardSkeleton>
-            </div>}
+            {loading && data?.data?.length > 0 ? <DetailedProfile profile={data?.data[index]}></DetailedProfile> :
+              !loading && data?.data?.length === 0 ?
+                <></> :
+                <div className="container-box-bg p-30 mt-20 min-vh-75">
+                  <CardSkeleton></CardSkeleton>
+                </div>}
 
           </div>
+        </div>
+
+        <div>
+          {
+            !loading && data?.data?.length === 0 ? <NoDataFound></NoDataFound> : <></>
+          }
         </div>
       </>
     </div>

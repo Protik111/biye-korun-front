@@ -6,6 +6,7 @@ import { heightCalculator } from "@/utils/heightCalculator";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import CardSkeleton from "../global/CardSkeleton";
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
+import NoDataFound from "../global/NoDataFound";
 
 const skeletons = new Array(5).fill();
 const message = {
@@ -28,55 +29,59 @@ const RecentlyViewed = () => {
   };
 
   return (
-    <div className="container recentlyViewed">
-      {!loading ?
-        <>
-          {data?.data?.map((item, i) => (
-            <div key={i} className="recentlyViewed__singleContainer">
-              <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section>
-                  <Image
-                    src={item?.visit?.profilePicture?.url?.large}
-                    height={250}
-                    alt="Norway"
-                    fit="contain"
-                  />
-                </Card.Section>
+    <>
+      <div className="container recentlyViewed">
+        {!loading ?
+          <>
+            {data?.data?.map((item, i) => (
+              <div key={i} className="recentlyViewed__singleContainer">
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                  <Card.Section>
+                    <Image
+                      src={item?.visit?.profilePicture?.url?.large}
+                      height={250}
+                      alt="Norway"
+                      fit="contain"
+                    />
+                  </Card.Section>
 
-                <Group position="apart" mt="md" mb="xs">
-                  <Text weight={500}>{item?.visit?.firstName + " " + item?.visit?.lastName}</Text>
-                  <Badge color="pink" variant="light" size="md">
-                    Online 2h ago
-                  </Badge>
-                </Group>
+                  <Group position="apart" mt="md" mb="xs">
+                    <Text weight={500}>{item?.visit?.firstName + " " + item?.visit?.lastName}</Text>
+                    <Badge color="pink" variant="light" size="md">
+                      Online 2h ago
+                    </Badge>
+                  </Group>
 
-                <Text size="sm" color="dimmed">
-                  {calculateAge(item?.visit?.dateOfBirth)} yrs, {heightCalculator(item?.visit?.appearance?.height)}, {item?.visit?.religion},
-                  <br />
-                  {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country}
-                </Text>
+                  <Text size="sm" color="dimmed">
+                    {calculateAge(item?.visit?.dateOfBirth)} yrs, {heightCalculator(item?.visit?.appearance?.height)}, {item?.visit?.religion},
+                    <br />
+                    {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country}
+                  </Text>
 
-                <h3 className="text-center pt-15">Connect with her?</h3>
+                  <h3 className="text-center pt-15">Connect with her?</h3>
 
-                <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
-                  Yes
-                </Button>
-              </Card>
-            </div>
-          ))}
-        </> :
-        <>
-          {
-            skeletons?.map((item, i) => <div className="mt-15" key={i}>
-              <CardSkeleton></CardSkeleton>
-            </div>)
-          }
-        </>}
+                  <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
+                    Yes
+                  </Button>
+                </Card>
+              </div>
+            ))}
+          </> :
+          <>
+            {
+              skeletons?.map((item, i) => <div className="mt-15" key={i}>
+                <CardSkeleton></CardSkeleton>
+              </div>)
+            }
+          </>}
 
-      {data?.data?.length === 0 && <div className="container flex justify-center">
+      </div>
+      {data?.data?.length === 0 && <div className="text-center">
         <h2 className="text-center">You didn't view any profile yet!</h2>
       </div>}
-    </div>
+
+      {data?.data?.length === 0 && <NoDataFound></NoDataFound>}
+    </>
   );
 };
 
