@@ -5,7 +5,7 @@ import { Checkbox } from '@mantine/core'
 import React from 'react'
 
 const SingleMatch = ({ item, handleUserIds }) => {
-    const { dateOfBirth, firstName, lastName, appearance: { height } = {}, community, country, location: { city }, lifestyle: { maritalStatus } = {}, profilePicture: { url } = {} } = item;
+    const { dateOfBirth, firstName, lastName, appearance: { height } = {}, community, country, location: { city } = {}, lifestyle: { maritalStatus } = {}, profilePicture: { url } = {} } = item;
 
     const handleUserIdsCheckBox = (e, user) => {
         // console.log('e', e.currentTarget.checked, user);

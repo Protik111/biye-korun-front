@@ -11,13 +11,14 @@ import {
   IconRocket,
 } from "@tabler/icons-react";
 import React from "react";
+import LoaderWithText from "../global/LoaderWithText";
 
 const message = {
   success: 'Invitation sent successfully!',
   error: 'Error occurred!'
 }
 
-const SingleProfile = ({ profile }) => {
+const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
   const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
   // console.log('profile', profile);
@@ -56,7 +57,7 @@ const SingleProfile = ({ profile }) => {
   const handleSendRequest = (id) => {
     sendPostRequest({
       recipient: id
-    });
+    }, refetch);
   }
 
 
@@ -80,9 +81,18 @@ const SingleProfile = ({ profile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
+              disabled={loading}
               onClick={() => handleSendRequest(_id)}
             >
-              Connect with her
+              {loading ? (
+                <>
+                  <LoaderWithText text="Connecting.." color="white"></LoaderWithText>
+                </>
+              ) : (
+                <>
+                  Connect with her
+                </>
+              )}
             </Button> :
               <Button
                 disabled

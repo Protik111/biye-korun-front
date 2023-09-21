@@ -3,14 +3,18 @@ import axios from 'axios';
 import { configureAxiosHeader } from '@/utils/setAxiosHeader';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
 
-function useAxiosPost(url, initialData = null, message) {
+const toBeCalled = () => {
+    console.log('toBeCalled func');
+}
+
+function useAxiosPost(url, initialData = null, message, postDataFunction = toBeCalled) {
     const [data, setData] = useState(initialData);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     // console.log('message', message);
 
-    const postData = async (postData) => {
+    const postData = async (postData, toBeCalled = postDataFunction) => {
         configureAxiosHeader()
         try {
             setLoading(true);
@@ -18,6 +22,7 @@ function useAxiosPost(url, initialData = null, message) {
             setData(response.data);
             setError(null);
             notifySuccess(message.success)
+            toBeCalled()
         } catch (error) {
             setError(error);
             notifyError(error?.response?.data?.message)

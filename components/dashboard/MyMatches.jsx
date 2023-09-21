@@ -196,7 +196,7 @@ const MyMatches = () => {
           <div className="myMatches__wrapper--contentBox mt-10">
             {data?.data?.length > 0 ? data?.data?.map((profile, i) => (
               <div key={i} className="mt-15">
-                <SingleProfile profile={profile}></SingleProfile>
+                <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
               </div>
             )) : (
               skeletons?.map((item, i) => <div className="mt-15" key={i}>
