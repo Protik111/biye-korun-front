@@ -30,7 +30,10 @@ const MyProfile = () => {
         lifestyle: { diet, maritalStatus } = {},
         profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
         trait: { aboutMe } = {},
-        phone, profilePicture: { url } = {},
+        phone,
+        profilePicture,
+        // profilePicture: { url } = {},
+        // profilePicture: { url } = { url: null },
         fullName,
         firstName,
         lastName,
@@ -41,6 +44,9 @@ const MyProfile = () => {
         community,
         country
     } = userInfo || {};
+
+    const url = profilePicture ? profilePicture.url : null;
+
 
     const scrollToPartnerPreferences = () => {
         if (partnerPreferencesRef.current) {

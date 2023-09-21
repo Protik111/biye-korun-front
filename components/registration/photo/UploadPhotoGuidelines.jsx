@@ -12,38 +12,38 @@ const UploadPhotoGuidelines = () => {
             <div className='flex flex-wrap flex-gap-25 mt-10'>
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Close up</p>
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/closeup.jpg" />
                 </div>
 
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Half View</p>
 
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/mid-shoot.jpg" />
                 </div>
 
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Full view</p>
 
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/full-size.jpg" />
                 </div>
             </div>
 
             <div className='flex flex-wrap flex-gap-25 mt-25'>
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Side face</p>
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/side-view.jpg" />
                 </div>
 
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Group</p>
 
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/group.jpg" />
                 </div>
 
                 <div>
                     <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Unclear</p>
 
-                    <Avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+                    <Avatar size="xl" src="/potrait/unclear.jpg" />
                 </div>
             </div>
 

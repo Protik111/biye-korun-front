@@ -12,7 +12,7 @@ import ProfileSettings from './EditProfiles/ProfileSettings'
 const MyPhotos = () => {
     const { userInfo } = useSelector(state => state.user) || {};
     const { data, error, loading, refetch } = useAxios("user/myphotos");
-    const [profilePicture, setProfilePicture] = useState({});
+    const [profilePictureState, setProfilePicture] = useState({});
 
     console.log('data', data);
 
@@ -26,7 +26,8 @@ const MyPhotos = () => {
         profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
         trait: { aboutMe } = {},
         phone,
-        profilePicture: { url } = { url: null }, // provide a default value
+        // profilePicture: { url } = { url: null },
+        profilePicture,
         fullName,
         firstName,
         lastName,
@@ -38,21 +39,23 @@ const MyPhotos = () => {
         country
     } = userInfo || {};
 
+    const url = profilePicture ? profilePicture?.url : null
+
     const handleProfileImage = (item) => {
         setProfilePicture(item)
     }
 
-    console.log(profilePicture, 'profilePicture');
+    // console.log(profilePicture, 'profilePicture');
 
     return (
         <div className='myPhotos container container-box-bg mt-15'>
-            {!profilePicture?.url && <div className='flex justify-center align-center'>
+            {!profilePictureState?.url && <div className='flex justify-center align-center'>
                 <UploadImage isMultiple={true} multipleRefetch={refetch}></UploadImage>
             </div>}
 
-            {profilePicture?.url && <div className='grid grid-cols-2 grid-cols-2-responsive grid-gap-20 border-1 rounded-10 p-15'>
+            {profilePictureState?.url && <div className='grid grid-cols-2 grid-cols-2-responsive grid-gap-20 border-1 rounded-10 p-15'>
                 <UploadImage fullWidth={true} isMultiple={true} multipleRefetch={refetch}></UploadImage>
-                <ProfileSettings profilePicture={profilePicture} setProfilePictureBlank={() => setProfilePicture({})} refetch={refetch}></ProfileSettings>
+                <ProfileSettings profilePicture={profilePictureState} setProfilePictureBlank={() => setProfilePicture({})} refetch={refetch}></ProfileSettings>
             </div>}
 
             <div className='text-center w-75 m-auto mt-15 w-md-100-responsive'>
@@ -62,7 +65,7 @@ const MyPhotos = () => {
             </div>
 
             <h3 className='mt-20'>Your photos</h3>
-            <div className='profile-img--container flex flex-gap-15 flex-wrap justify-center'>
+            <div className='profile-img--container flex flex-gap-15 flex-wrap'>
                 <div className="profile-img">
                     <Box maw={220}>
                         <Image

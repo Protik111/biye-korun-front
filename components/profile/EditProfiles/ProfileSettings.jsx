@@ -1,11 +1,13 @@
 import LoaderWithText from "@/components/global/LoaderWithText";
 import useAxios from "@/hooks/axios/useAxios";
 import useDeleteReq from "@/hooks/axios/useDeleteReq";
+import { loadUserData } from "@/redux/features/user/userSlice";
 import { imageUrl } from "@/staticData/image"
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { Button, Divider, Group, Image, Radio } from "@mantine/core"
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const message = {
     success: 'Photo deleted successfully!',
@@ -15,6 +17,8 @@ const message = {
 const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) => {
     const { data, error, isLoading, deleteData } = useDeleteReq();
     const { loading: loading2, } = useAxios("user/myphotos");
+    const dispatch = useDispatch();
+
 
     const [fieldData, setFieldData] = useState({
         isBlur: profilePicture?.isBlur || false,
@@ -42,7 +46,6 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
             })
     }
 
-    console.log('fieldData', fieldData);
 
     const deletePhoto = (id) => {
         // console.log('id', id);
@@ -51,7 +54,23 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
         // setProfilePictureBlank();
     }
 
-    console.log('data', data, error, isLoading);
+    const handleMakeProfile = (id) => {
+        // console.log('id', id);
+        axios.patch(`user/update-user-profile`, {
+            profilePicture: id
+        })
+            .then(res => {
+                notifySuccess('Profile picture successfully!')
+                refetch()
+                dispatch(loadUserData())
+                setProfilePictureBlank()
+            })
+            .catch(err => {
+                console.log(err.response.data);
+                notifyError(err.response.data.message)
+            })
+    }
+
     return (
         <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-20">
             <div>
@@ -121,7 +140,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
                 <Divider my={10}></Divider>
 
                 <div className="flex flex-gap-10">
-                    <Button className="mt-5" size="xs" variant="outline" radius="xl">Make profile photo</Button>
+                    <Button onClick={() => handleMakeProfile(profilePicture?._id)} className="mt-5" size="xs" variant="outline" radius="xl">Make profile photo</Button>
 
                     <Button onClick={() => deletePhoto(profilePicture?._id)} className="mt-5" size="xs" color="red" variant="outline" radius="xl">
                         {loading2 ? (
