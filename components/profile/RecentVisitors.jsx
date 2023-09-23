@@ -4,6 +4,7 @@ import { calculateAge } from "@/utils/calculateAge"
 import { heightCalculator } from "@/utils/heightCalculator"
 import { Avatar, Button } from "@mantine/core";
 import LoaderWithText from "../global/LoaderWithText";
+import Link from "next/link";
 
 const message = {
     success: 'Invitation sent successfully!',
@@ -37,15 +38,19 @@ const RecentVisitors = ({ profile, refetch }) => {
 
     return (
         <div className="single container-box-bg py-15">
-            <Avatar
-                size="xl"
-                radius="xl"
-                src={profile?.visit?.profilePicture?.url?.medium}
-                alt="it's me"
-            />
+            <Link href={`/view-profile/${profile._id}`} className="flex justify-center align-center">
+                <Avatar
+                    size="xl"
+                    radius="xl"
+                    src={profile?.visit?.profilePicture?.url?.medium}
+                    alt="it's me"
+                />
+            </Link>
             <div className="mt-10">
-                <h3>{profile?.visit?.firstName + " " + profile?.visit?.lastName}</h3>
-                <p>{calculateAge(profile?.visit?.dateOfBirth)}{" "}{heightCalculator(profile?.visit?.appearance?.height)}{" "}{profile?.visit?.community}</p>
+                <Link style={{ color: 'black' }} href={`/view-profile/${profile._id}`} >
+                    <h3>{profile?.visit?.firstName + " " + profile?.visit?.lastName}</h3>
+                    <p>{calculateAge(profile?.visit?.dateOfBirth)}{" "}{heightCalculator(profile?.visit?.appearance?.height)}{" "}{profile?.visit?.community}</p>
+                </Link>
             </div>
             {/* <Button
                 size="xs"

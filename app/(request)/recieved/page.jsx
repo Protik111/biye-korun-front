@@ -1,8 +1,11 @@
+import AcceptedList from '@/components/request/Accepted/AcceptedList'
 import React from 'react'
 
 const page = () => {
     return (
-        <div>Recieved</div>
+        <>
+            <AcceptedList></AcceptedList>
+        </>
     )
 }
 

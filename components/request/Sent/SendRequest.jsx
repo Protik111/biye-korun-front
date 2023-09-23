@@ -1,17 +1,13 @@
 "use client"
 import useAxios from "@/hooks/axios/useAxios";
-import NoDataFound from "../global/NoDataFound";
-import CardSkeleton from "../global/CardSkeleton";
+import NoDataFound from "../../global/NoDataFound";
+import CardSkeleton from "../../global/CardSkeleton";
 import { Badge, Button, Card, Group, Text } from "@mantine/core";
 import { imageUrl } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
 
-const message = {
-    success: 'Invitation sent successfully!',
-    error: 'Error occurred!'
-}
 
 const SendRequest = () => {
     const { data, error, loading, refetch } = useAxios("user/invitefriendship/all");

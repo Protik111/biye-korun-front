@@ -122,7 +122,7 @@ const MyDashboardBottom = () => {
                     }
                 </div>
 
-                <div className="myDashboard__bottom--noti container-box-bg mx-10 p-15">
+                {/* <div className="myDashboard__bottom--noti container-box-bg mx-10 p-15">
                     <div className="flex flex-wrap justify-between align-center flex-gap-10">
                         <Avatar
                             size="md"
@@ -206,7 +206,7 @@ const MyDashboardBottom = () => {
                         <p className="small-text">Syeda added a photo to her profile</p>
                     </div>
                     <Divider my={5}></Divider>
-                </div>
+                </div> */}
             </div>
         </div>
     )

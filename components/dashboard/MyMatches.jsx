@@ -1,22 +1,68 @@
 import { Checkbox, Divider, Group, Radio } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleProfile from "./SingleProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import CardSkeleton from "../global/CardSkeleton";
+import NoDataFound from "../global/NoDataFound";
 
 const MyMatches = () => {
   const [filterData, setFilterData] = useState({
+    maritalStatus: ['all'],
+    religion: '',
+    motherTongue: '',
+    country: '',
+    education: '',
 
   })
+
+  const { maritalStatus, religion, motherTongue, country, education } = filterData;
   const skeletons = new Array(5).fill();
 
-  const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
+  const payload = {
     page: 1,
     limit: 10,
-    sort_by: "newest",
-  });
+    sort_by: "newest"
+  }
+
+  if (maritalStatus.length > 0) {
+    payload.marital = maritalStatus;
+  }
+
+  if (motherTongue !== '') {
+    payload.motherLanguage = motherTongue;
+  }
+
+  if (country !== '') {
+    payload.country = country;
+  }
+
+  if (education !== '') {
+    payload.education = education;
+  }
+
+  if (religion !== '') {
+    payload.religion = religion;
+  }
+
+  const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, payload);
+
+
+
+  useEffect(() => {
+    refetch();
+
+  }, [filterData])
 
   // console.log('data', data);
+
+  const handleChange = (name, value) => {
+    setFilterData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  // console.log('filterData', filterData);
 
   return (
     <div>
@@ -116,73 +162,73 @@ const MyMatches = () => {
 
               {/* <Divider my={10}></Divider> */}
 
-              <Checkbox.Group defaultValue={["all"]} label="Marital status">
+              <Checkbox.Group onChange={(e) => handleChange('maritalStatus', e)} name="maritalStatus" defaultValue={["All"]} label="Marital status">
                 <Group mt="xs" className="flex-column align-start">
                   <Checkbox color="pink" value="all" label="All" />
                   <Checkbox
                     color="pink"
-                    value="neverMarried"
-                    label="Never married"
+                    value="Never Married"
+                    label="Never Married"
                   />
-                  <Checkbox color="pink" value="divorced" label="Divorced" />
+                  <Checkbox color="pink" value="Divorced" label="Divorced" />
                   <Checkbox
                     color="pink"
-                    value="awaitingDivorced"
-                    label="Awaiting divorced"
+                    value="Awaiting Divorced"
+                    label="Awaiting Divorced"
                   />
 
-                  <Checkbox color="pink" value="widowed" label="Widowed" />
+                  <Checkbox color="pink" value="Widowed" label="Widowed" />
                 </Group>
               </Checkbox.Group>
 
               <Divider my={10}></Divider>
 
-              <Radio.Group name="religion" label="Religion">
+              <Radio.Group onChange={(e) => handleChange('religion', e)} name="religion" label="Religion">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="muslim" label="Muslim" />
-                  <Radio color="pink" value="hindu" label="Hindu" />
-                  <Radio color="pink" value="christain" label="Christain" />
+                  <Radio color="pink" value="Muslim" label="Muslim" />
+                  <Radio color="pink" value="Hindu" label="Hindu" />
+                  <Radio color="pink" value="Christain" label="Christain" />
                 </Group>
               </Radio.Group>
 
               <Divider my={10}></Divider>
 
-              <Radio.Group name="motherTongue" label="Mother Tongue">
+              <Radio.Group onChange={(e) => handleChange('motherTongue', e)} name="motherTongue" label="Mother Tongue">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="bengali" label="Bengali" />
-                  <Radio color="pink" value="english" label="English" />
-                  <Radio color="pink" value="hindi" label="Hindi" />
+                  <Radio color="pink" value="Bengali" label="Bengali" />
+                  <Radio color="pink" value="English" label="English" />
+                  <Radio color="pink" value="Hindi" label="Hindi" />
                 </Group>
               </Radio.Group>
 
               <Divider my={10}></Divider>
 
-              <Radio.Group name="countryLivingIn" label="Country Living in">
+              <Radio.Group onChange={(e) => handleChange('country', e)} name="country" label="Country Living in">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="bangladesh" label="Bangladesh" />
-                  <Radio color="pink" value="usa" label="USA" />
-                  <Radio color="pink" value="canada" label="Canada" />
-                  <Radio color="pink" value="india" label="India" />
+                  <Radio color="pink" value="Bangladesh" label="Bangladesh" />
+                  <Radio color="pink" value="USA" label="USA" />
+                  <Radio color="pink" value="Canada" label="Canada" />
+                  <Radio color="pink" value="India" label="India" />
                 </Group>
               </Radio.Group>
 
               <Divider my={10}></Divider>
 
-              <Radio.Group name="educationLevel" label="Education Level">
+              <Radio.Group name="education" onChange={(e) => handleChange('education', e)} label="Education Level">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="bachelor" label="Bachelor" />
-                  <Radio color="pink" value="honors" label="Honors" />
-                  <Radio color="pink" value="masters" label="Masters" />
-                  <Radio color="pink" value="diploma" label="Diploma" />
-                  <Radio color="pink" value="highSchool" label="High school" />
+                  <Radio color="pink" value="BSC" label="BSC" />
+                  <Radio color="pink" value="BA (Hons)" label="BA (Hons)" />
+                  <Radio color="pink" value="B.Arch (Hons)" label="B.Arch (Hons)" />
+                  <Radio color="pink" value="M.A" label="M.A" />
+                  <Radio color="pink" value="M.Arch" label="M.Arch" />
                 </Group>
               </Radio.Group>
 
-              <Radio.Group name="educationArea" label="Education Area">
+              {/* <Radio.Group name="educationArea" label="Education Area">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio color="pink" value="engineering" label="Engineering" />
@@ -190,7 +236,7 @@ const MyMatches = () => {
                   <Radio color="pink" value="science" label="Science" />
                   <Radio color="pink" value="commerce" label="Commerce" />
                 </Group>
-              </Radio.Group>
+              </Radio.Group> */}
 
               <Divider my={10}></Divider>
             </div>
@@ -201,11 +247,15 @@ const MyMatches = () => {
               <div key={i} className="mt-15">
                 <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
               </div>
-            )) : (
-              skeletons?.map((item, i) => <div className="mt-15" key={i}>
-                <CardSkeleton></CardSkeleton>
-              </div>)
-            )}
+            )) :
+              !loading && data?.data?.length === 0 ?
+                <div className="flex justify-center flex-column align-center">
+                  <h2>There is no data!</h2>
+                  <NoDataFound></NoDataFound>
+                </div> :
+                loading ? <div className="container-box-bg p-30 mt-20 min-vh-75">
+                  <CardSkeleton></CardSkeleton>
+                </div> : <></>}
           </div>
         </div>
       </div>

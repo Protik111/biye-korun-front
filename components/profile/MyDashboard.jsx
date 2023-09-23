@@ -14,6 +14,7 @@ const MyDashboard = () => {
     const { userInfo } = useSelector(state => state.user) || {};
     const router = useRouter();
     const { data, error, loading, refetch } = useAxios("user/invitefriendship/all");
+    const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/view-profile"); //todo '/user/recent-visitors'
 
     // console.log('data', data);
 
@@ -120,7 +121,8 @@ const MyDashboard = () => {
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <div className='flex align-center flex-gap-5'>
-                                <h2>{pendingCount}</h2>
+                                {/* <h2>{pendingCount}</h2> */}
+                                <h2>{data2?.data?.length}</h2>
                                 {/* <Badge variant="outline" color="pink">
                                     5 New
                                 </Badge> */}

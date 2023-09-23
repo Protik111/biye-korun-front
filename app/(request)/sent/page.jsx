@@ -1,4 +1,4 @@
-import SendRequest from '@/components/request/SendRequest'
+import SendRequest from '@/components/request/Sent/SendRequest'
 import React from 'react'
 
 const page = () => {
