@@ -58,7 +58,7 @@ const TodaysMatch = () => {
 
   // console.log('isDisable', isDisable);
 
-  console.log('data', data);
+  // console.log('data todays', data);
 
 
   return (

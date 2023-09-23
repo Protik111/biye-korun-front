@@ -31,12 +31,15 @@
 
     img {
       max-width: 100%;
-      height: auto;
+      // height: auto;
+      height: 250px;
+      width: 230px;
       object-fit: cover;
       border-radius: 10px;
 
       @include smMaxBreakPoint {
         height: 150px;
+        object-fit: contain;
       }
     }
   }

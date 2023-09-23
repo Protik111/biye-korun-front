@@ -4,7 +4,7 @@ import ProfileDetails from './ProfileDetails';
 
 const DetailedProfile = ({ profile }) => {
 
-    console.log('profile', profile);
+    // console.log('profile', profile);
 
     return (
         <div className='detailedProfile container-box-bg p-15 mt-25'>

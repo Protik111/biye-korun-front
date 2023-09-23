@@ -68,7 +68,7 @@ const BasicProfile = ({ profile }) => {
 
   const friendships2 = true
 
-  console.log('status', status, friendships);
+  // console.log('status', status, friendships);
 
   return (
     <div className="basicProfile container-box-bg p-15">

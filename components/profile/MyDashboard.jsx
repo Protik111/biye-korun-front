@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { imageUrl } from '@/staticData/image'
 import { useRouter } from 'next/navigation'
 import useAxios from '@/hooks/axios/useAxios'
+import Link from 'next/link'
 
 const MyDashboard = () => {
     const { userInfo } = useSelector(state => state.user) || {};
@@ -67,12 +68,12 @@ const MyDashboard = () => {
                         <img src={url?.large || imageUrl} alt="Profile" />
                         <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
                             <div>
-                                <h3>{fullName}</h3>
+                                <h3>{firstName + " " + lastName}</h3>
                                 <p className='small-text'>{userId}</p>
                             </div>
-                            <Button variant="light" color="red" radius="xl" size="xs">
+                            {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
-                            </Button>
+                            </Button> */}
                         </div>
                         <Divider my={10}></Divider>
 
@@ -103,24 +104,28 @@ const MyDashboard = () => {
                 <div className='myDashboard__topBox--middle'>
                     <h3>Your Activity</h3>
                     <div className='container-box-bg flex justify-between p-15 flex-wrap mt-10'>
-                        <div>
-                            <h2>{pendingCount ? pendingCount : ''}</h2>
-                            <p>Pending Invitations</p>
+                        <div className='pointer'>
+                            <Link href="/sent" style={{ color: 'black' }}>
+                                <h2>{pendingCount ? pendingCount : ''}</h2>
+                                <p>Pending Invitations</p>
+                            </Link>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
-                            <h2>{acceptedCount}</h2>
-                            <p>Accepted Invitations</p>
+                            <Link href="/accepted" style={{ color: 'black' }}>
+                                <h2>{acceptedCount}</h2>
+                                <p>Accepted Invitations</p>
+                            </Link>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <div className='flex align-center flex-gap-5'>
                                 <h2>{pendingCount}</h2>
-                                <Badge variant="outline" color="pink">
+                                {/* <Badge variant="outline" color="pink">
                                     5 New
-                                </Badge>
+                                </Badge> */}
                             </div>
-                            <p>Pending Invitations</p>
+                            <p>Recent Visitors</p>
                         </div>
                     </div>
 
@@ -133,15 +138,15 @@ const MyDashboard = () => {
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
-                            <h2>{acceptedCount}</h2>
-                            <p>Accepted Invitations</p>
+                            <h2 className='opacity-4'>0</h2>
+                            <p className='opacity-4'>Contacts viewed</p>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <div className='flex align-center flex-gap-5'>
-                                <h2>{pendingCount ? pendingCount : ''}</h2>
+                                <h2 className='opacity-4'>0</h2>
                             </div>
-                            <p>Pending Invitations</p>
+                            <p className='opacity-4'>Chats initiated</p>
                         </div>
                     </div>
 

@@ -12,6 +12,7 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 import LoaderWithText from "../global/LoaderWithText";
+import Link from "next/link";
 
 const message = {
   success: 'Invitation sent successfully!',
@@ -63,18 +64,22 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
 
   return (
     <div className="singleProfile container-box-bg p-15">
-      <div className="singleProfile__image">
-        <img src={url?.medium || imageUrl} alt="profile" />
+      <div className="singleProfile__image cursor">
+        <Link href={`/view-profile/${_id}`}>
+          <img src={url?.medium || imageUrl} alt="profile" />
+        </Link>
       </div>
       <div>
         <div className="basiscProfile__top">
           <div className="basiscProfile__top--wrapper flex align-center justify-between">
             <div className="flex align-center justify-between flex-gap-5">
-              <h3>{firstName + " " + lastName}</h3>
+              <Link style={{ color: 'black' }} href={`/view-profile/${_id}`}>
+                <h3>{firstName + " " + lastName}</h3>
+              </Link>
               <IconLock color="#E64980"></IconLock>
-              <Badge variant="outline" color="pink">
+              {/* <Badge variant="outline" color="pink">
                 2-Way
-              </Badge>
+              </Badge> */}
             </div>
             {!friendships ? <Button
               rightIcon={<IconRocket />}

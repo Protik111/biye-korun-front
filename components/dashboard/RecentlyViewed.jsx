@@ -7,6 +7,8 @@ import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import CardSkeleton from "../global/CardSkeleton";
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import NoDataFound from "../global/NoDataFound";
+import { imageUrl } from "@/staticData/image";
+import Link from "next/link";
 
 const skeletons = new Array(5).fill();
 const message = {
@@ -28,6 +30,9 @@ const RecentlyViewed = () => {
     });
   };
 
+
+  // console.log('data', data);
+
   return (
     <>
       <div className="container recentlyViewed">
@@ -36,13 +41,16 @@ const RecentlyViewed = () => {
             {data?.data?.map((item, i) => (
               <div key={i} className="recentlyViewed__singleContainer">
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
-                  <Card.Section>
-                    <Image
-                      src={item?.visit?.profilePicture?.url?.large}
-                      height={250}
-                      alt="Norway"
-                      fit="contain"
-                    />
+                  <Card.Section className="pointer">
+                    <Link href={`/view-profile/${item?.visit?._id}`}>
+                      <img
+                        src={item?.visit?.profilePicture?.url?.large || imageUrl}
+                        height={250}
+                        alt="Profile"
+                        fit="contain"
+                        className="recently_img"
+                      />
+                    </Link>
                   </Card.Section>
 
                   <Group position="apart" mt="md" mb="xs">
@@ -58,7 +66,7 @@ const RecentlyViewed = () => {
                     {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country}
                   </Text>
 
-                  <h3 className="text-center pt-15">Connect with her?</h3>
+                  <h3 className="text-center pt-15">Connect with {item?.visit?.gender === "Male" ? 'him' : 'her'}?</h3>
 
                   <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
                     Yes

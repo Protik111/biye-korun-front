@@ -107,23 +107,29 @@ const MyProfile = () => {
                             <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Edit Personal Profile
-                                    </Anchor>
+                                    <Link href="/edit-profile">
+                                        <Anchor>
+                                            Edit Personal Profile
+                                        </Anchor>
+                                    </Link>
                                 </div>
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        View Profile Stats
-                                    </Anchor>
+                                    <Link href="/">
+                                        <Anchor>
+                                            View Profile Stats
+                                        </Anchor>
+                                    </Link>
                                 </div>
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Set Contact Filters
-                                    </Anchor>
+                                    <Link href="/">
+                                        <Anchor>
+                                            Set Contact Filters
+                                        </Anchor>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -131,32 +137,40 @@ const MyProfile = () => {
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Edit Partner Profile
-                                    </Anchor>
+                                    <Link href="/partner-preferences">
+                                        <Anchor>
+                                            Edit Partner Profile
+                                        </Anchor>
+                                    </Link>
                                 </div>
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Add Photos
-                                    </Anchor>
+                                    <Link href="/my-photos">
+                                        <Anchor>
+                                            Add Photos
+                                        </Anchor>
+                                    </Link>
                                 </div>
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Delete Profile
-                                    </Anchor>
+                                    <Link href="/">
+                                        <Anchor>
+                                            Delete Profile
+                                        </Anchor>
+                                    </Link>
                                 </div>
                             </div>
 
                             <div className="mt-10 flex align-center flex-gap-15">
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Anchor href="/" target="_blank">
-                                        Edit Contact Details
-                                    </Anchor>
+                                    <Link href="/edit-profile">
+                                        <Anchor>
+                                            Edit Contact Details
+                                        </Anchor>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

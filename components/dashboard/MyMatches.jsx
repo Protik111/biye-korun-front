@@ -1,10 +1,13 @@
 import { Checkbox, Divider, Group, Radio } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import SingleProfile from "./SingleProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import CardSkeleton from "../global/CardSkeleton";
 
 const MyMatches = () => {
+  const [filterData, setFilterData] = useState({
+
+  })
   const skeletons = new Array(5).fill();
 
   const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
@@ -22,7 +25,7 @@ const MyMatches = () => {
           <div className="myMatches__wrapper--requestBox">
             <h3 className="text-center pb-5 secondary-text">Refine Searches</h3>
             <div className="requestBox-container">
-              <Radio.Group name="matches" label="Matches">
+              {/* <Radio.Group name="matches" label="Matches">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio
@@ -109,9 +112,9 @@ const MyMatches = () => {
                     label="Upto BDT 80K TO 100k+"
                   />
                 </Group>
-              </Checkbox.Group>
+              </Checkbox.Group> */}
 
-              <Divider my={10}></Divider>
+              {/* <Divider my={10}></Divider> */}
 
               <Checkbox.Group defaultValue={["all"]} label="Marital status">
                 <Group mt="xs" className="flex-column align-start">
