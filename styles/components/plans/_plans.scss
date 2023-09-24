@@ -1,18 +1,20 @@
 .plans {
     &__box {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        // grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, 300px);
         // background-color: $whiteColor;
-        gap: 20px;
-        z-index: 100;
+        gap: 30px;
+        // z-index: 100;
+        justify-content: center;
 
-        @include lgMaxBreakPoint {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        // @include lgMaxBreakPoint {
+        //     grid-template-columns: repeat(2, 1fr);
+        // }
 
-        @include smMaxBreakPoint {
-            grid-template-columns: repeat(1, 1fr);
-        }
+        // @include smMaxBreakPoint {
+        //     grid-template-columns: repeat(1, 1fr);
+        // }
 
     }
 
