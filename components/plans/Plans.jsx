@@ -24,7 +24,11 @@ const Plans = () => {
                     data?.data?.length > 0 ?
                         data?.data?.map((plan, i) => <SinglePlan key={plan?.id} plan={plan}>
                         </SinglePlan>) :
-                        (error || data?.data?.length == 0) ? <h2 style={{ color: 'white' }}>There is no package available for you!</h2> : <></>
+                        (error || data?.data?.length == 0) ?
+                            <div className="title">
+                                <h2 style={{ color: 'white' }}>There is no package available for you!</h2>
+                            </div>
+                            : <></>
             }
         </div>
     )

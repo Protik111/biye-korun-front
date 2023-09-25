@@ -4,10 +4,32 @@ import ThemeIconComp from '../global/ThemeIconComp';
 import { useSelector } from 'react-redux';
 import { imageUrl } from '@/staticData/image';
 import useAxios from '@/hooks/axios/useAxios';
+import axios from 'axios';
+import { useState } from 'react';
 
 const ProfileDetails = ({ profile }) => {
     const { userInfo } = useSelector(state => state.user);
     const { data, error, loading, refetch } = useAxios(`user/compare-partner-preference/${userInfo._id}`);
+    const [contactInfo, setContactInfo] = useState({})
+
+    const { expire } = userInfo?.validPackage;
+
+    console.log('profile', profile);
+
+    const handleContactView = (id) => {
+        axios.get(`user/get-contact/${id}`)
+            .then((response) => {
+                if (response?.data?.success) {
+                    // console.log(response?.data);
+                    setContactInfo(response?.data?.data)
+                }
+            })
+            .catch((error) => {
+                notifyError("Error occurred!")
+            });
+    }
+
+    console.log('contactInfo', contactInfo);
 
     return (
         <div>
@@ -23,32 +45,64 @@ const ProfileDetails = ({ profile }) => {
 
                 <Timeline.Item bullet={<IconAddressBook size={24} />} title="Contact Details">
                     <div className='border-1 p-15 w-50 rounded-15 flex justify-between align-center'>
-                        <div>
-                            <div className='flex flex-gap-10'>
+                        {
+                            (contactInfo?.email || contactInfo?.phone) ?
                                 <div>
-                                    <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
-                                </div>
-                                <div>
-                                    <p>Contact Number</p>
-                                    <p>+880985 XXXXX</p>
-                                </div>
-                            </div>
+                                    <div className='flex flex-gap-10'>
+                                        <div>
+                                            <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
+                                        </div>
+                                        <div>
+                                            <p>Contact Number</p>
+                                            <p>{contactInfo?.phone}</p>
+                                        </div>
+                                    </div>
 
-                            <div className='flex flex-gap-10 mt-10'>
+                                    <div className='flex flex-gap-10 mt-10'>
+                                        <div>
+                                            <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
+                                        </div>
+                                        <div>
+                                            <p>Email Id</p>
+                                            <p>{contactInfo?.email}</p>
+                                        </div>
+                                    </div>
+                                </div> :
                                 <div>
-                                    <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
+                                    <div className='flex flex-gap-10'>
+                                        <div>
+                                            <img style={{ height: '25px' }} src="/profile/phone-call.svg" alt="phone" />
+                                        </div>
+                                        <div>
+                                            <p>Contact Number</p>
+                                            <p>+880985 XXXXX</p>
+                                        </div>
+                                    </div>
+
+                                    <div className='flex flex-gap-10 mt-10'>
+                                        <div>
+                                            <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
+                                        </div>
+                                        <div>
+                                            <p>Email Id</p>
+                                            <p>XXXXXXXXXX@gmail.com</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>Email Id</p>
-                                    <p>XXXXXXXXXX@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
+                        }
 
                         <div>
-                            <Button rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
+                            {!expire ? <Button onClick={() => handleContactView(profile?._id)} rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
                                 View Details
-                            </Button>
+                            </Button> :
+                                !expire && !expire?.isContactValid ?
+                                    <Button onClick={() => window.open('/plans')} rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
+                                        Upgrade Plan
+                                    </Button> :
+                                    <Button onClick={() => window.open('/plans')} rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
+                                        Buy Premium
+                                    </Button>
+                            }
                         </div>
                     </div>
                 </Timeline.Item>

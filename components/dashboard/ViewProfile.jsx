@@ -16,7 +16,7 @@ const ViewProfile = () => {
 
     const { data, error, loading, refetch } = useAxios(`user/user-profile/${userId}`);
 
-    // console.log('data today', userId);
+    // console.log('data today', data);
 
     const handleNext = () => {
         setLimit(limit + 1);

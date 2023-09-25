@@ -40,7 +40,7 @@ const TodaysMatch = () => {
       });
   }, [data?.data[index]])
 
-  console.log('data today', data);
+  // console.log('data today', data);
 
   const handleNext = () => {
     setLimit(limit + 1);

@@ -1,8 +1,9 @@
-import React from "react";
+"use client"
+import NewMatches from "@/components/dashboard/NewMatches";
 
 const Profile = () => {
   return <div className="container">
-    <h2 className="text-center">Sorry, no new Matches that meet your Partner Preferences.</h2>
+    <NewMatches></NewMatches>
   </div>;
 };
 
