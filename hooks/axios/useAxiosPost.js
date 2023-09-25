@@ -7,7 +7,7 @@ const toBeCalled = () => {
     console.log('toBeCalled func');
 }
 
-function useAxiosPost(url, initialData = null, message, postDataFunction = toBeCalled) {
+function useAxiosPost(url, initialData = null, message = {}, postDataFunction = toBeCalled) {
     const [data, setData] = useState(initialData);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -21,7 +21,9 @@ function useAxiosPost(url, initialData = null, message, postDataFunction = toBeC
             const response = await axios.post(url, postData);
             setData(response.data);
             setError(null);
-            notifySuccess(message.success)
+            if (message?.success) {
+                notifySuccess(message.success)
+            }
             toBeCalled()
         } catch (error) {
             setError(error);

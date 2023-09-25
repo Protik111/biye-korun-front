@@ -10,5 +10,14 @@
     // -webkit-clip-path: polygon(0 0, 100% 0, 100% 46%, 0 62%);
     // clip-path: polygon(0 0, 100% 0, 100% 46%, 0 62%);
     // min-height: 90vh;
-    min-height: calc(100vh - 100px)
+    min-height: calc(100vh - 100px);
+
+    .payment-status {
+
+        img {
+            max-width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+    }
 }

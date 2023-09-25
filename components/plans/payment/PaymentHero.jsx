@@ -1,13 +1,22 @@
 import useAxios from "@/hooks/axios/useAxios";
+import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import { notifyError } from "@/utils/showNotification";
 import { Button, Divider, Loader, Radio } from "@mantine/core"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
+
+const message = {
+    success: '',
+    error: ''
+}
 
 const PaymentHero = () => {
     const [filterPackage, setFilterPackage] = useState([]);
     const { packageId } = useParams();
     const { data, error, loading, refetch } = useAxios('/package');
+    const { data: data2, loading: loading2, error: error2, postData: sendPostRequest } = useAxiosPost('payment/sslinit', null);
+    const router = useRouter();
+
 
     const filterData = !loading && data?.data?.filter(item => item?._id == packageId);
 
@@ -17,7 +26,18 @@ const PaymentHero = () => {
         // setLoggedInUser(selectedBooking);
     }, [packageId, loading])
 
-    console.log('filterPackage', filterPackage);
+    // console.log('filterPackage', filterPackage);
+    const handlePayment = (id) => {
+        sendPostRequest({
+            currency: "BDT",
+            packageId: id
+        });
+    }
+    useEffect(() => {
+        if (data2?.success) {
+            router.push(data2.url)
+        }
+    }, [data2])
 
 
     return (
@@ -68,7 +88,7 @@ const PaymentHero = () => {
                 </div>
 
                 <div className="flex justify-center mt-25">
-                    <Button onClick={() => notifyError("Payment is not implemented yet!")} className="w-25" variant="filled" color="red" size="md" radius="xl">Continue to Buy</Button>
+                    <Button onClick={() => handlePayment(filterPackage?._id)} className="w-25" variant="filled" color="red" size="md" radius="xl">Continue to Buy</Button>
                 </div>
             </div>
         </div>
