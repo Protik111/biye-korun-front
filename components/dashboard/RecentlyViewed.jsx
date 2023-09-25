@@ -40,6 +40,7 @@ const RecentlyViewed = () => {
           <>
             {data?.data?.map((item, i) => (
               <div key={i} className="recentlyViewed__singleContainer">
+                {console.log('item', item)}
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                   <Card.Section className="pointer">
                     <Link href={`/view-profile/${item?.visit?._id}`}>
@@ -68,9 +69,15 @@ const RecentlyViewed = () => {
 
                   <h3 className="text-center pt-15">Connect with {item?.visit?.gender === "Male" ? 'him' : 'her'}?</h3>
 
-                  <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
-                    Yes
-                  </Button>
+                  {
+                    item?.visit?.friendships ?
+                      <Button disabled onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
+                        Sent Request
+                      </Button> :
+                      <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
+                        Yes
+                      </Button>
+                  }
                 </Card>
               </div>
             ))}
