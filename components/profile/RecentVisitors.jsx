@@ -22,10 +22,12 @@ const RecentVisitors = ({ profile, refetch }) => {
         }, refetch);
     };
 
+    console.log('profile', profile);
+
     const {
         friendships,
         userId,
-    } = profile?.visit || {};
+    } = profile?.owner || {};
 
 
     // Check if 'friendships' exists in profile and has a 'status' property
@@ -38,18 +40,18 @@ const RecentVisitors = ({ profile, refetch }) => {
 
     return (
         <div className="single container-box-bg py-15">
-            <Link href={`/view-profile/${profile._id}`} className="flex justify-center align-center">
+            <Link href={`/view-profile/${profile?.owner?._id}`} className="flex justify-center align-center">
                 <Avatar
                     size="xl"
                     radius="xl"
-                    src={profile?.visit?.profilePicture?.url?.medium}
+                    src={profile?.owner?.profilePicture?.url?.medium}
                     alt="it's me"
                 />
             </Link>
             <div className="mt-10">
                 <Link style={{ color: 'black' }} href={`/view-profile/${profile._id}`} >
-                    <h3>{profile?.visit?.firstName + " " + profile?.visit?.lastName}</h3>
-                    <p>{calculateAge(profile?.visit?.dateOfBirth)}{" "}{heightCalculator(profile?.visit?.appearance?.height)}{" "}{profile?.visit?.community}</p>
+                    <h3>{profile?.owner?.firstName + " " + profile?.owner?.lastName}</h3>
+                    <p>{calculateAge(profile?.owner?.dateOfBirth)}{" "}{heightCalculator(profile?.owner?.appearance?.height)}{" "}{profile?.owner?.community}</p>
                 </Link>
             </div>
             {/* <Button
@@ -58,7 +60,7 @@ const RecentVisitors = ({ profile, refetch }) => {
                 // leftIcon={<IconArrowNarrowLeft />}
                 style={btnBackground} type="button"
                 className={`button mt-10`}
-                onClick={() => handleSendRequest(profile?.visit?._id)}
+                onClick={() => handleSendRequest(profile?.owner?._id)}
             >
                 Connect Now
             </Button> */}
@@ -70,7 +72,7 @@ const RecentVisitors = ({ profile, refetch }) => {
                 style={btnBackground} type="button"
                 className={`button mt-10`}
                 disabled={loading}
-                onClick={() => handleSendRequest(profile?.visit?._id)}
+                onClick={() => handleSendRequest(profile?.owner?._id)}
             >
                 {loading ? (
                     <>

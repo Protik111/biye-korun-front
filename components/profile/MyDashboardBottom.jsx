@@ -83,7 +83,7 @@ const message = {
 }
 
 const MyDashboardBottom = () => {
-    const { data, error, loading, refetch } = useAxios("user/view-profile"); //todo '/user/recent-visitors'
+    const { data, error, loading, refetch } = useAxios("user/recent-visitors"); //todo '/user/recent-visitors'
 
     const { data: data2, loading: loading2, error: error2, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 

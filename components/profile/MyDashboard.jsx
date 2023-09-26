@@ -14,7 +14,7 @@ const MyDashboard = () => {
     const { userInfo } = useSelector(state => state.user) || {};
     const router = useRouter();
     const { data, error, loading, refetch } = useAxios("user/invitefriendship/all");
-    const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/view-profile"); //todo '/user/recent-visitors'
+    const { data: data2, error: error2, loading: loading2, refetch: refetch2 } = useAxios("user/recent-visitors"); //todo '/user/recent-visitors'
 
     // console.log('data', data);
 

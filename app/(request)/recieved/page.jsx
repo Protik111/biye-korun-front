@@ -1,10 +1,10 @@
-import AcceptedList from '@/components/request/Accepted/AcceptedList'
+import RecievedList from '@/components/request/Recieved/RecievedList'
 import React from 'react'
 
 const page = () => {
     return (
         <>
-            <AcceptedList></AcceptedList>
+            <RecievedList></RecievedList>
         </>
     )
 }

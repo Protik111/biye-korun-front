@@ -1,44 +1,49 @@
 "use client"
-import AcceptedList from '@/components/request/Accepted/AcceptedList'
+import Accepted from '@/components/request/MyRequests/Accepted';
+import Pending from '@/components/request/MyRequests/Pending';
+import SendRequest from '@/components/request/Sent/SendRequest';
 import { fontSizeMnd } from "@/styles/library/mantine";
 import { Tabs } from "@mantine/core";
-import { usePathname, useRouter } from "next/navigation";
 
 const page = () => {
-    const router = useRouter();
-    const pathname = usePathname();
 
-    const handleChangeTab = (value) => {
-        // router.push(`/${value}`);
-    };
     return (
         <div className='container'>
-            <Tabs defaultValue={pathname.replace(/^\/+/, '')} color="pink">
+            <Tabs defaultValue={"recieved"} color="pink">
                 <Tabs.List grow position="apart">
                     <Tabs.Tab
                         sx={fontSizeMnd}
                         value="recieved"
-                        onClick={() => handleChangeTab("recieved")}
                     >
                         Pending Requests
                     </Tabs.Tab>
                     <Tabs.Tab
                         sx={fontSizeMnd}
                         value="accepted"
-                        onClick={() => handleChangeTab("accepted")}
                     >
                         Accepted Requests
                     </Tabs.Tab>
                     <Tabs.Tab
                         sx={fontSizeMnd}
-                        value="requests"
-                        onClick={() => handleChangeTab("requests")}
+                        value="sent"
                     >
                         Sent Requests
                     </Tabs.Tab>
                 </Tabs.List>
+
+                <Tabs.Panel value="recieved">
+                    <Pending></Pending>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="accepted">
+                    <Accepted></Accepted>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="sent">
+                    <SendRequest></SendRequest>
+                </Tabs.Panel>
+
             </Tabs>
-            <AcceptedList></AcceptedList>
         </div>
     )
 }

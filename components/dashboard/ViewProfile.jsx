@@ -23,6 +23,22 @@ const ViewProfile = () => {
     }
 
     useEffect(() => {
+        axios.post('user/create-view-profile', {
+            userId: userId
+        })
+            .then((response) => {
+                if (response?.data?.success) {
+                    // console.log('Sent successfully!');
+                    //call counts api
+                    refetch()
+                }
+            })
+            .catch((error) => {
+                // console.log('Error occurred!', error);
+            });
+    }, [userId])
+
+    useEffect(() => {
         if (data?.data?.length > 0 && index < data.data.length - 1) {
             setIndex((prev) => prev + 1);
         }

@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 const SendRequest = () => {
-    const { data, error, loading, refetch } = useAxios("user/invitefriendship/all");
+    const { data, error, loading, refetch } = useAxios("user/invitefriendship/pending");
 
     const skeletons = new Array(5).fill();
 
@@ -47,7 +47,8 @@ const SendRequest = () => {
                                         {item?.recipient?.community}, {item?.recipient?.doctrine?.caste}, Lives in {item?.recipient?.country}
                                     </Text>
 
-                                    <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3>
+                                    {/* <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3> */}
+                                    <h3 className="text-center pt-15">Send Biye Korun Request?</h3>
 
                                     <Button disabled variant="filled" color="pink" fullWidth mt="md" radius="md">
                                         Already sent request

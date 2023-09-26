@@ -9,8 +9,8 @@ import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
 
 
-const AcceptedList = () => {
-    const { data, error, loading, refetch } = useAxios("user/friendship/accepted");
+const RecievedList = () => {
+    const { data, error, loading, refetch } = useAxios("user/friendship/pending");
 
     const skeletons = new Array(5).fill();
 
@@ -47,7 +47,8 @@ const AcceptedList = () => {
                                         {item?.recipient?.community}, {item?.recipient?.doctrine?.caste}, Lives in {item?.recipient?.country}
                                     </Text>
 
-                                    <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3>
+                                    {/* <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3> */}
+                                    <h3 className="text-center pt-15">Send Biye Korun Request?</h3>
 
                                     <Button disabled variant="filled" color="pink" fullWidth mt="md" radius="md">
                                         Already accepted request
@@ -66,7 +67,7 @@ const AcceptedList = () => {
 
             </div>
             {data?.data?.length === 0 && <div className="text-center">
-                <h2 className="text-center">There is no accepted request!</h2>
+                <h2 className="text-center">There is no recieved request!</h2>
             </div>}
 
             {data?.data?.length === 0 && <NoDataFound></NoDataFound>}
@@ -74,4 +75,4 @@ const AcceptedList = () => {
     )
 }
 
-export default AcceptedList
+export default RecievedList

@@ -27,7 +27,7 @@ const RecentlyViewed = () => {
     // console.log('userId', userId);
     sendPostRequest({
       recipient: userId
-    });
+    }, refetch);
   };
 
 
