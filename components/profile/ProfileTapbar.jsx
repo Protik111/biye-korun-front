@@ -44,7 +44,13 @@ const ProfileTapbar = () => {
                         >
                             Partner Preferences
                         </Tabs.Tab>
-                        {/* <Tabs.Tab sx={fontSizeMnd} value="more-matches">More Matches</Tabs.Tab> */}
+                        <Tabs.Tab
+                            sx={fontSizeMnd}
+                            value="settings"
+                            onClick={() => handleChangeTab("settings")}
+                        >
+                            Settings
+                        </Tabs.Tab>
                     </Tabs.List>
                 </Tabs>
             </div>
