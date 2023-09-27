@@ -43,22 +43,6 @@ const ProfileCreation = () => {
         phone: phone ? phone : '',
         motherTongue: motherTongue ? motherTongue : '',
         bloodGroup: bloodGroup ? bloodGroup : ''
-        // city: '',
-        // livesWithFamily: '',
-        // residency: '',
-        // maritalStatus: '',
-        // hasChildren: '',
-        // diet: '',
-        // height: '',
-        // subCommunity: '',
-        // qualification: '',
-        // college: '',
-        // worksWith: '',
-        // profession: '',
-        // company: '',
-        // income: '',
-        // about: '',
-        // phone: ''
     });
 
     const [formErrors, setFormErrors] = useState({

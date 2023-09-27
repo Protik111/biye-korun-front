@@ -2,6 +2,13 @@ import { Button, Divider, NavLink } from "@mantine/core"
 import { IconHome2 } from "@tabler/icons-react"
 import { useState } from "react";
 import { IconGauge, IconFingerprint, IconActivity, IconChevronRight } from '@tabler/icons-react';
+import NameComp from "./NameComp";
+import { useSelector } from "react-redux";
+import PhoneComp from "./PhoneComp";
+import EmailComp from "./EmailComp";
+import PhotoComp from "./PhotoComp";
+import DobComp from "./DobComp";
+import IncomeComp from "./IncomeComp";
 
 const data = [
     {
@@ -24,47 +31,88 @@ const data = [
     { icon: IconActivity, label: 'Messages' },
 ];
 
-const listItems = [
-    {
-        id: 1,
-        label: 'Display Name as',
-        value: 'Rafiur Rahman Protik',
-        hiddenComp: "Comming soon"
-    },
-    {
-        id: 2,
-        label: 'Phone',
-        value: 'Only Premium Members',
-        hiddenComp: "Comming soon"
-    },
-    {
-        id: 3,
-        label: 'Email',
-        value: 'Visible to all Premium Members',
-        hiddenComp: "Comming soon"
-    },
-    {
-        id: 4,
-        label: 'Photo',
-        value: 'Visible to all Members',
-        hiddenComp: "Comming soon"
-    },
-    {
-        id: 5,
-        label: 'Date of Birth',
-        value: 'Show my full Date of Birth (dd/mm/yyyy)',
-        hiddenComp: "Comming soon"
-    },
-    {
-        id: 6,
-        label: 'Annual Income',
-        value: 'Visible to all Members',
-        hiddenComp: "Comming soon"
-    },
-]
 
 const Settings = () => {
+    const { userInfo, message } = useSelector(state => state.user)
     const [active, setActive] = useState(0);
+    const [openHidden, setOpenHidden] = useState({});
+
+    const { firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
+
+    const [profileData, setProfileData] = useState({
+        firstName: firstName ? firstName : '',
+        lastName: lastName ? lastName : '',
+        phone: '',
+        email: '',
+        photo: ''
+    })
+
+    console.log('userInfo', userInfo);
+
+
+    const listItems = [
+        {
+            id: 1,
+            label: 'Display Name as',
+            value: 'Rafiur Rahman Protik',
+            hiddenComp: <NameComp profileData={profileData} setProfileData={setProfileData}></NameComp>,
+            hiddenCompVisible: false
+        },
+        {
+            id: 2,
+            label: 'Phone',
+            value: 'Only Premium Members',
+            hiddenComp: <PhoneComp profileData={profileData} setProfileData={setProfileData}></PhoneComp>
+        },
+        {
+            id: 3,
+            label: 'Email',
+            value: 'Visible to all Premium Members',
+            hiddenComp: <EmailComp profileData={profileData} setProfileData={setProfileData}></EmailComp>
+        },
+        {
+            id: 4,
+            label: 'Photo',
+            value: 'Visible to all Members',
+            hiddenComp: <PhotoComp profileData={profileData} setProfileData={setProfileData}></PhotoComp>
+        },
+        {
+            id: 5,
+            label: 'Date of Birth',
+            value: 'Show my full Date of Birth (dd/mm/yyyy)',
+            hiddenComp: <DobComp profileData={profileData} setProfileData={setProfileData}></DobComp>
+        },
+        {
+            id: 6,
+            label: 'Annual Income',
+            value: 'Visible to all Members',
+            hiddenComp: <IncomeComp profileData={profileData} setProfileData={setProfileData}></IncomeComp>
+        },
+        {
+            id: 7,
+            label: 'Visitors Setting',
+            value: 'Let other Members know that I have visited their Profile',
+            hiddenComp: "Comming soon"
+        },
+        {
+            id: 8,
+            label: 'Do not disturb',
+            value: 'Can call me for Premium Membership related offers.',
+            hiddenComp: "Comming soon"
+        },
+        {
+            id: 9,
+            label: 'Profile Privacy',
+            value: 'Visible to all, including unregistered visitors',
+            hiddenComp: "Comming soon"
+        },
+        {
+            id: 10,
+            label: 'Web Notifications',
+            value: 'Unsubscribed',
+            hiddenComp: "Comming soon"
+        },
+    ]
 
     const items = data.map((item, index) => (
         <NavLink
@@ -74,7 +122,9 @@ const Settings = () => {
             description={item.description}
             rightSection={item.rightSection}
             icon={<item.icon size="1rem" stroke={1.5} />}
-            onClick={() => setActive(index)}
+            onClick={() => {
+                setActive(index)
+            }}
             color="pink"
             variant="filled"
             className="rounded-10"
@@ -82,6 +132,10 @@ const Settings = () => {
     ));
 
     const handleEdit = (id) => {
+        setOpenHidden((prevItem) => ({
+            ...prevItem,
+            [id]: !prevItem[id]
+        }))
 
     }
 
@@ -109,126 +163,22 @@ const Settings = () => {
                                 <div className="privacy-items">
                                     <div className="privacy-items-single">
                                         <p className="left opacity-4">{item?.label}</p>
-                                        <p className="right">{item?.value}</p>
+                                        <div>
+                                            <p className="right">{item?.value}</p>
+                                        </div>
                                     </div>
                                     <div className="flex justify-start">
                                         <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
                                     </div>
                                 </div>
+                                {openHidden[item?.id] && (
+                                    <div className={`hidden-component ${openHidden[item.id] ? "open" : ""}`}>
+                                        {item.hiddenComp}
+                                    </div>
+                                )}
                                 <Divider my="sm" variant="dotted" />
                             </>)
                         }
-                        {/* <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Display Name as</p>
-                                <p className="right">Rafiur Rahman Protik</p>
-                            </div>
-                            <div className="flex justify-start">
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Phone</p>
-                                <p className="right">Only Premium Members</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Email</p>
-                                <p className="right">Visible to all Premium Members</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Photo</p>
-                                <p className="right">Visible to all Members</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Date of birth</p>
-                                <p className="right">Show my full Date of Birth (dd/mm/yyyy)</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Annual Income</p>
-                                <p className="right">Visible to all Members</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Visitors Setting</p>
-                                <p className="right">Let other Members know that I have visited their Profile</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Do not disturb</p>
-                                <p className="right">can call me for Premium Membership related offers and on behalf of Premium Members who wish to Connect with me</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Profile Privacy</p>
-                                <p className="right">Visible to all, including unregistered visitors (Photo and Name will not be visible on Profile)</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" />
-
-                        <div className="privacy-items">
-                            <div className="privacy-items-single">
-                                <p className="left opacity-4">Web Notifications</p>
-                                <p className="right">Unsubscribed</p>
-                            </div>
-                            <div>
-                                <Button variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                            </div>
-                        </div>
-                        <Divider my="sm" variant="dotted" /> */}
                     </div>
                 </div>
             </>

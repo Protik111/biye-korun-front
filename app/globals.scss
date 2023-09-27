@@ -161,3 +161,15 @@ body {
     align-items: center;
   }
 }
+
+/* CSS for smooth transition */
+.hidden-component {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.hidden-component.open {
+  max-height: 1000px;
+  /* Adjust this value to fit your content */
+}
