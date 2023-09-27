@@ -9,6 +9,8 @@ import EmailComp from "./EmailComp";
 import PhotoComp from "./PhotoComp";
 import DobComp from "./DobComp";
 import IncomeComp from "./IncomeComp";
+import AccountSettings from "./AccountSettings";
+import HideDelete from "./HideDelete";
 
 const data = [
     {
@@ -34,17 +36,18 @@ const data = [
 
 const Settings = () => {
     const { userInfo, message } = useSelector(state => state.user)
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(3);
     const [openHidden, setOpenHidden] = useState({});
 
-    const { firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
+    const { email = {}, firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
 
     const [profileData, setProfileData] = useState({
         firstName: firstName ? firstName : '',
         lastName: lastName ? lastName : '',
         phone: '',
         email: '',
-        photo: ''
+        photo: '',
+        email: email ? email : ''
     })
 
     console.log('userInfo', userInfo);
@@ -158,26 +161,50 @@ const Settings = () => {
                         </div>
                     </div>
                     <div className="settings__wrapper--contentBox">
-                        {
-                            listItems?.map(item => <>
-                                <div className="privacy-items">
-                                    <div className="privacy-items-single">
-                                        <p className="left opacity-4">{item?.label}</p>
-                                        <div>
-                                            <p className="right">{item?.value}</p>
+                        {active === 3 ? <>
+                            {
+                                listItems?.map(item => <>
+                                    <div className="privacy-items">
+                                        <div className="privacy-items-single">
+                                            <p className="left opacity-4">{item?.label}</p>
+                                            <div>
+                                                <p className="right">{item?.value}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-start">
+                                            <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
                                         </div>
                                     </div>
-                                    <div className="flex justify-start">
-                                        <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-                                    </div>
-                                </div>
-                                {openHidden[item?.id] && (
-                                    <div className={`hidden-component ${openHidden[item.id] ? "open" : ""}`}>
-                                        {item.hiddenComp}
-                                    </div>
-                                )}
-                                <Divider my="sm" variant="dotted" />
-                            </>)
+                                    {openHidden[item?.id] && (
+                                        <div className={`hidden-component ${openHidden[item.id] ? "open" : ""}`}>
+                                            {item.hiddenComp}
+                                        </div>
+                                    )}
+                                    <Divider my="sm" variant="dotted" />
+                                </>)
+                            }
+                        </> :
+                            active === 0 ?
+                                <AccountSettings profileData={profileData} setProfileData={setProfileData}></AccountSettings>
+                                :
+                                active === 1 ?
+                                    <>
+                                        Comming soon!
+                                    </> :
+
+                                    active === 2 ?
+                                        <>
+                                            Comming soon!
+                                        </> :
+                                        active === 4 ?
+                                            <>
+                                                <HideDelete></HideDelete>
+                                            </> :
+                                            active === 5 ?
+                                                <>
+                                                    Comming soon!
+                                                </> :
+                                                <></>
                         }
                     </div>
                 </div>
