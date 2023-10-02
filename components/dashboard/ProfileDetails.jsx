@@ -29,7 +29,7 @@ const ProfileDetails = ({ profile }) => {
             });
     }
 
-    console.log('contactInfo', contactInfo);
+    // console.log('contactInfo', contactInfo);
 
     return (
         <div>
@@ -44,7 +44,7 @@ const ProfileDetails = ({ profile }) => {
                 </Timeline.Item>
 
                 <Timeline.Item bullet={<IconAddressBook size={24} />} title="Contact Details">
-                    <div className='border-1 p-15 w-50 rounded-15 flex justify-between align-center'>
+                    <div className='border-1 p-15 w-50 w-md-100-responsive rounded-15 flex justify-between align-center flex-wrap flex-gap-5'>
                         {
                             (contactInfo?.email || contactInfo?.phone) ?
                                 <div>
