@@ -1,9 +1,10 @@
-import { Checkbox, Divider, Group, Radio } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import { Checkbox, Divider, Group, Pagination, Radio } from "@mantine/core";
+import React, { useEffect, useMemo, useState } from "react";
 import SingleProfile from "./SingleProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import CardSkeleton from "../global/CardSkeleton";
 import NoDataFound from "../global/NoDataFound";
+
 
 const MyMatches = () => {
   const [filterData, setFilterData] = useState({
@@ -12,15 +13,16 @@ const MyMatches = () => {
     motherTongue: '',
     country: '',
     education: '',
-
   })
+  const [activePage, setActivePage] = useState(1);
+  const pageSize = 5;
 
   const { maritalStatus, religion, motherTongue, country, education } = filterData;
   const skeletons = new Array(5).fill();
 
   const payload = {
-    page: 1,
-    limit: 10,
+    page: activePage,
+    limit: pageSize,
     sort_by: "newest"
   }
 
@@ -46,12 +48,15 @@ const MyMatches = () => {
 
   const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, payload);
 
+  //for page count in the pagination component
+  const totalCount = Math.ceil(data?.total / pageSize)
+
+
 
 
   useEffect(() => {
     refetch();
-
-  }, [filterData])
+  }, [filterData, activePage])
 
   // console.log('data', data);
 
@@ -62,6 +67,11 @@ const MyMatches = () => {
     }))
   }
 
+  const handlePageChange = (page) => {
+    console.log('page', page);
+    setActivePage(page);
+  };
+
   // console.log('filterData', filterData);
 
   return (
@@ -71,7 +81,8 @@ const MyMatches = () => {
           <div className="myMatches__wrapper--requestBox">
             <h3 className="text-center pb-5 secondary-text">Refine Searches</h3>
             <div className="requestBox-container">
-              {/* <Radio.Group name="matches" label="Matches">
+              <>
+                {/* <Radio.Group name="matches" label="Matches">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio
@@ -159,6 +170,7 @@ const MyMatches = () => {
                   />
                 </Group>
               </Checkbox.Group> */}
+              </>
 
               {/* <Divider my={10}></Divider> */}
 
@@ -244,9 +256,11 @@ const MyMatches = () => {
 
           <div className="myMatches__wrapper--contentBox mt-10">
             {data?.data?.length > 0 ? data?.data?.map((profile, i) => (
-              <div key={i} className="mt-15">
-                <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
-              </div>
+              <>
+                <div key={i} className="mt-15">
+                  <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
+                </div>
+              </>
             )) :
               !loading && data?.data?.length === 0 ?
                 <div className="flex justify-center flex-column align-center">
@@ -256,6 +270,10 @@ const MyMatches = () => {
                 loading ? <div className="container-box-bg p-30 mt-20 min-vh-75">
                   <CardSkeleton></CardSkeleton>
                 </div> : <></>}
+
+            <div className="flex justify-center mt-15 px-10">
+              <Pagination color="pink" value={activePage} onChange={handlePageChange} total={totalCount} />
+            </div>
           </div>
         </div>
       </div>

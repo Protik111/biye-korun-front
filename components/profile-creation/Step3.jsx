@@ -7,6 +7,8 @@ import 'react-international-phone/style.css';
 const Step3 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
     const { about, phone } = formValues;
 
+    console.log('phone length', phone.length);
+
     const validateForm = () => {
         const errors = {};
 
@@ -16,6 +18,8 @@ const Step3 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
 
         if (!phone) {
             errors.phone = 'Phone is required';
+        } else if (phone.length !== 15) {
+            errors.phone = 'Enter a valid number';
         }
 
         setFormErrors(errors);

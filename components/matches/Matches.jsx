@@ -15,6 +15,7 @@ const Matches = () => {
     const [profiles, setProfiles] = useState([]);
     const router = useRouter();
     const [userIds, setUserIds] = useState([])
+    const [invitationLoading, setInvitationLoading] = useState(false);
 
     const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, {
         page: 1,
@@ -70,8 +71,10 @@ const Matches = () => {
             //     notifyError("Error occurred!")
             // }
 
+            setInvitationLoading(true)
             axios.post('user/invitefriends', userIdList)
                 .then((response) => {
+                    setInvitationLoading(false)
                     if (response?.data?.success) {
                         notifySuccess("Invitation sent successfully")
                         router.push('/todays-matches')
@@ -79,6 +82,7 @@ const Matches = () => {
                 })
                 .catch((error) => {
                     notifyError("Error occurred!")
+                    setInvitationLoading(false)
                 });
         }
     }
@@ -99,7 +103,7 @@ const Matches = () => {
             <div className="flex justify-center align-center container">
                 {
                     data?.data?.length > 0 ?
-                        <Button loading={loading} size="md" style={btnBackground} onClick={handleSendInvitations}>
+                        <Button disabled={invitationLoading} size="md" style={btnBackground} onClick={handleSendInvitations}>
                             Save & Continue
                         </Button>
                         :

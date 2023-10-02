@@ -1,6 +1,6 @@
 'use client'
 
-import { colleges, companies, incomes, professions, qualifications, worksWiths } from "@/staticData/InputFields/inputFields"
+import { colleges, companies, incomes, professions, qualifications, worksWithsOwn } from "@/staticData/InputFields/inputFields"
 import { Button, Select } from "@mantine/core"
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 
@@ -95,7 +95,7 @@ const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                 placeholder="Select"
                 label="Works with"
                 // styles={{ label: labelStyles }}
-                data={worksWiths}
+                data={worksWithsOwn}
                 value={formValues.worksWith}
                 withAsterisk
                 name="worksWith"

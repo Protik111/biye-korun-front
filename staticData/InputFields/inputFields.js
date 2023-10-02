@@ -137,6 +137,8 @@ export const qualifications = [
 // export const worksWiths = ["Private Company", "Government", "Business", "Defense"]
 export const worksWiths = ["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]
 
+export const worksWithsOwn = ["Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]
+
 
 export const professions = ["Banking Professional", "Chatered Accountant", "Software Engineer"]
 

@@ -66,7 +66,7 @@ const ProfileCreation = () => {
         bloodGroup: ''
     });
 
-    console.log('formValues', formValues);
+    // console.log('formValues', formValues);
 
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
 
