@@ -18,7 +18,7 @@ export default function Home() {
       <PremiumPlan />
       <WhyChoose />
       <Faqs></Faqs>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </>
   )
 }
