@@ -105,7 +105,7 @@ const HideDelete = () => {
                         <div className='flex justify-end flex-gap-10 mt-10'>
                             <Button onClick={() => setShowModalDelete(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
 
-                            <Button onClick={() => handleDelete()} variant="filled" color="indigo" size="xs" radius="xl">Confirm</Button>
+                            <Button onClick={() => handleDelete()} variant="filled" color="pink" size="xs" radius="xl">Delete Permanently</Button>
                         </div>
                     </div>
                 </ConfirmModal>

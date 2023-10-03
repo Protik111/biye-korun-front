@@ -1,6 +1,6 @@
 import { Button, Divider, NavLink } from "@mantine/core"
 import { IconHome2 } from "@tabler/icons-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconGauge, IconFingerprint, IconActivity, IconChevronRight } from '@tabler/icons-react';
 import NameComp from "./NameComp";
 import { useSelector } from "react-redux";
@@ -11,6 +11,8 @@ import DobComp from "./DobComp";
 import IncomeComp from "./IncomeComp";
 import AccountSettings from "./AccountSettings";
 import HideDelete from "./HideDelete";
+import PartnerPreference from "@/components/registration/partner-preferences/PartnerPreference";
+import { useSearchParams } from "next/navigation";
 
 const data = [
     {
@@ -38,6 +40,8 @@ const Settings = () => {
     const { userInfo, message } = useSelector(state => state.user)
     const [active, setActive] = useState(0);
     const [openHidden, setOpenHidden] = useState({});
+    const search = useSearchParams();
+    const queryParam = search.get('state');
 
     const { email = {}, firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
 
@@ -54,22 +58,22 @@ const Settings = () => {
         {
             id: 1,
             label: 'Display Name as',
-            value: 'Rafiur Rahman Protik',
+            value: firstName + " " + lastName,
             hiddenComp: <NameComp profileData={profileData} setProfileData={setProfileData}></NameComp>,
             hiddenCompVisible: false
         },
-        {
-            id: 2,
-            label: 'Phone',
-            value: 'Only Premium Members',
-            hiddenComp: <PhoneComp profileData={profileData} setProfileData={setProfileData}></PhoneComp>
-        },
-        {
-            id: 3,
-            label: 'Email',
-            value: 'Visible to all Premium Members',
-            hiddenComp: <EmailComp profileData={profileData} setProfileData={setProfileData}></EmailComp>
-        },
+        // {
+        //     id: 2,
+        //     label: 'Phone',
+        //     value: 'Only Premium Members',
+        //     hiddenComp: <PhoneComp profileData={profileData} setProfileData={setProfileData}></PhoneComp>
+        // },
+        // {
+        //     id: 3,
+        //     label: 'Email',
+        //     value: 'Visible to all Premium Members',
+        //     hiddenComp: <EmailComp profileData={profileData} setProfileData={setProfileData}></EmailComp>
+        // },
         {
             id: 4,
             label: 'Photo',
@@ -139,6 +143,11 @@ const Settings = () => {
 
     }
 
+    useEffect(() => {
+        if (queryParam) {
+            setActive(parseInt(queryParam))
+        }
+    }, [queryParam])
 
     return (
         <div className="settings container">
@@ -169,7 +178,19 @@ const Settings = () => {
                                             </div>
                                         </div>
                                         <div className="flex justify-start">
-                                            <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
+
+                                            {/* <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button> */}
+                                            {
+                                                openHidden[item?.id] ?
+                                                    <div className="flex flex-gap-5">
+                                                        <Button onClick={() => handleEdit(item?.id)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
+
+                                                        <Button onClick={() => handleEdit(item?.id)} variant="filled" size="xs" radius="xl">Save</Button>
+                                                    </div>
+                                                    :
+                                                    <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
+
+                                            }
                                         </div>
                                     </div>
                                     {openHidden[item?.id] && (
@@ -186,7 +207,7 @@ const Settings = () => {
                                 :
                                 active === 1 ?
                                     <>
-                                        Comming soon!
+                                        <PartnerPreference header=""></PartnerPreference>
                                     </> :
 
                                     active === 2 ?

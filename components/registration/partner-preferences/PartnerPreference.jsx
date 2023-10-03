@@ -20,7 +20,7 @@ const maxHeightInches = 83; // 6' 11'' in inches
 const minIncome = 10000; // 10000 BDT
 const maxIncome = 200000; // 200,000 BDT
 
-const PartnerPreference = ({ profile }) => {
+const PartnerPreference = ({ profile, header = "Recommended Partner Preferences" }) => {
 
     const { userInfo } = useSelector(state => state.user);
 
@@ -141,7 +141,9 @@ const PartnerPreference = ({ profile }) => {
 
     return (
         <div className='partenerPref'>
-            <h2 className='text-center py-15'>Recommended Partner Preferences</h2>
+            <h2 className='text-center py-15'>
+                {header ? header : ''}
+            </h2>
 
             <BasicInformation formData={formData} setFormData={setFormData} minHeight={minHeight} setMinHeight={setMinHeight} maxHeight={maxHeight} setMaxHeight={setMaxHeight}></BasicInformation>
             <Communities formData={formData} setFormData={setFormData}></Communities>

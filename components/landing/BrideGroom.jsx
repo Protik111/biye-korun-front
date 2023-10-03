@@ -62,7 +62,7 @@ const BrideGroom = () => {
 
     return (
         <div className='bridegroom'>
-            <h2 className="text-center">Match bride & groom for you</h2>
+            <h2 className="text-center">Match Bride & Groom For You</h2>
             <div className="container bridegroom__wrapper">
                 {
                     brides?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center" key={i}>

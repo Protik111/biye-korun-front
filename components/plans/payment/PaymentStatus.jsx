@@ -4,7 +4,7 @@ const PaymentStatus = () => {
     const params = useParams();
     const search = useSearchParams();
 
-    console.log('params', params.status);
+    // console.log('params', params.status);
     const queryParam = search.get('id');
 
     return (

@@ -56,7 +56,7 @@ const MyProfile = () => {
         }
     };
 
-    console.log('userinfo', userInfo);
+    // console.log('userinfo', userInfo);
 
     return (
         <div className="myProfile container">
@@ -155,7 +155,7 @@ const MyProfile = () => {
 
                                 <div className="flex align-center flex-gap-5">
                                     <ThemeIconComp iconComp={<IconPlayerRecordFilled size="10" />} size="10"></ThemeIconComp>
-                                    <Link href="/">
+                                    <Link href="/settings?state=4">
                                         <Anchor>
                                             Delete Profile
                                         </Anchor>

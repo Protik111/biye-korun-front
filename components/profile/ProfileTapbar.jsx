@@ -2,14 +2,18 @@
 import { fontSizeMnd } from "@/styles/library/mantine";
 import { Tabs } from "@mantine/core";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const ProfileTapbar = () => {
     const router = useRouter();
     const pathname = usePathname();
+    const [activeState, setActiveState] = useState("dashboard");
 
     const handleChangeTab = (value) => {
         router.push(`/${value}`);
     };
+
+    // console.log('pathname', pathname.replace(/^\/+/, ''))
 
     return (
         <div className="tapbar">

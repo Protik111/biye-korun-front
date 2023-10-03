@@ -4,7 +4,7 @@ const WhyChoose = () => {
   return (
     <div className="whychoose_main">
       <div className="container py-25">
-        <h2 className="text-center">Why choose us</h2>
+        <h2 className="text-center">Why Choose Us</h2>
         <h3 className="text-center">
           There is lot of matrimony website worldwide and also lot of services
           in Bangladesh or USA. Now the topic of discussion is why you should
@@ -45,19 +45,19 @@ const WhyChoose = () => {
             </div>
           </div>
         </div>
-          <div className="choose_content2">
+        <div className="choose_content2">
           <div className="choose_list_item">
             <p>
-             Most trusted matrimonial site service based on Bangladesh & USA
+              Most trusted matrimonial site service based on Bangladesh & USA
             </p>
             <p>
               Your privacy is one of our major concern. Your photo, location, contact can remain private
             </p>
             <p>
-           All the profiles go thru our phone verification process
+              All the profiles go thru our phone verification process
             </p>
             <p>
-          We have a large database of potential groom and bride all over the world
+              We have a large database of potential groom and bride all over the world
             </p>
           </div>
           <div className="circle_main2">
