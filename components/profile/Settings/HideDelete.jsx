@@ -1,8 +1,10 @@
 import ConfirmModal from '@/components/global/ConfirmModal';
+import { logout } from '@/redux/features/auth/authSlice';
 import { loadUserData } from '@/redux/features/user/userSlice';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
 import { Button } from '@mantine/core'
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -10,6 +12,8 @@ const HideDelete = () => {
     const { userInfo } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false)
+    const router = useRouter();
 
     const { isHide = {} } = userInfo || {}
 
@@ -32,6 +36,21 @@ const HideDelete = () => {
                     setShowModal(false)
                 }
                 dispatch(loadUserData());
+
+            })
+            .catch(err => {
+                console.log(err.response.data);
+                notifyError(err.response.data.message)
+            })
+    }
+
+    const handleDelete = () => {
+        axios.delete(`user/delete`)
+            .then(res => {
+                dispatch(logout());
+                notifySuccess('Your profile is deleted permanently!')
+                router.push('/')
+                setShowModalDelete(false)
 
             })
             .catch(err => {
@@ -64,7 +83,7 @@ const HideDelete = () => {
                     <h3>Delete Profile</h3>
                     <p className='mt-5'>You will permanently lose all profile information, Match interactions and paid memberships.</p>
                 </div>
-                <Button variant="filled" color="pink" size="xs" radius="xl">Delete</Button>
+                <Button onClick={() => setShowModalDelete(true)} variant="filled" color="pink" size="xs" radius="xl">Delete</Button>
             </div>
             {
                 showModal && <ConfirmModal modalOpen={showModal} handleModalClose={() => setShowModal(false)}>
@@ -74,6 +93,19 @@ const HideDelete = () => {
                             <Button onClick={() => setShowModal(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
 
                             <Button onClick={() => handleHideUnhide()} variant="filled" color="indigo" size="xs" radius="xl">Confirm</Button>
+                        </div>
+                    </div>
+                </ConfirmModal>
+            }
+
+            {
+                showModalDelete && <ConfirmModal modalOpen={showModalDelete} handleModalClose={() => setShowModalDelete(false)}>
+                    <div className=''>
+                        <h3>Are you sure to delete your profile?</h3>
+                        <div className='flex justify-end flex-gap-10 mt-10'>
+                            <Button onClick={() => setShowModalDelete(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
+
+                            <Button onClick={() => handleDelete()} variant="filled" color="indigo" size="xs" radius="xl">Confirm</Button>
                         </div>
                     </div>
                 </ConfirmModal>

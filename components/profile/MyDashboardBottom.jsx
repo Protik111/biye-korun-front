@@ -5,6 +5,7 @@ import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { Avatar, Button, Divider } from "@mantine/core";
 import RecentVisitors from "./RecentVisitors";
+import CardSkeleton from "../global/CardSkeleton";
 
 const imageUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
@@ -87,7 +88,7 @@ const MyDashboardBottom = () => {
 
     const { data: data2, loading: loading2, error: error2, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
-    console.log('data, loading, error,', data, loading, error);
+    // console.log('data, loading, error,', data, loading, error);
 
 
     const handleSendRequest = (userId) => {
@@ -119,6 +120,12 @@ const MyDashboardBottom = () => {
                 <div className="myDashboard__bottom--profileContainer">
                     {
                         data?.data?.map(profile => <RecentVisitors profile={profile} refetch={refetch}></RecentVisitors>)
+                    }
+
+                    {loading &&
+                        <div className="container-box-bg p-30 mt-20 min-vh-75">
+                            <CardSkeleton></CardSkeleton>
+                        </div>
                     }
                 </div>
 

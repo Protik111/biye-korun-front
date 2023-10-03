@@ -9,20 +9,21 @@ const page = () => {
 
     return (
         <div className='container'>
-            <Tabs defaultValue={"recieved"} color="pink">
+            <Tabs defaultValue={"accepted"} color="pink">
                 <Tabs.List grow position="apart">
-                    <Tabs.Tab
-                        sx={fontSizeMnd}
-                        value="recieved"
-                    >
-                        Pending Requests
-                    </Tabs.Tab>
                     <Tabs.Tab
                         sx={fontSizeMnd}
                         value="accepted"
                     >
                         Accepted Requests
                     </Tabs.Tab>
+                    <Tabs.Tab
+                        sx={fontSizeMnd}
+                        value="recieved"
+                    >
+                        Pending Requests
+                    </Tabs.Tab>
+
                     <Tabs.Tab
                         sx={fontSizeMnd}
                         value="sent"

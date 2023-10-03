@@ -36,7 +36,7 @@ const MyDashboard = () => {
         }
     });
 
-    // console.log(pendingCount);
+    console.log(data?.data);
 
     const {
         location: { city, residencyStatus } = {},
@@ -113,7 +113,7 @@ const MyDashboard = () => {
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
-                            <Link href="/accepted" style={{ color: 'black' }}>
+                            <Link href="/requests" style={{ color: 'black' }}>
                                 <h2>{acceptedCount}</h2>
                                 <p>Accepted Invitations</p>
                             </Link>
