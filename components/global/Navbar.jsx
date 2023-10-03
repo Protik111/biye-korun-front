@@ -35,9 +35,9 @@ function Navbar() {
       .unwrap()
       .then(() => {
         notifySuccess("Logout successfully!")
-        setTimeout(() => {
-          router.push('/')
-        }, 500)
+        router.push('/')
+        // setTimeout(() => {
+        // }, 500)
       })
       .catch(() => {
         notifyError("Error Occurred!")

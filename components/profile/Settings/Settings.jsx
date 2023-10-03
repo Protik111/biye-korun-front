@@ -36,7 +36,7 @@ const data = [
 
 const Settings = () => {
     const { userInfo, message } = useSelector(state => state.user)
-    const [active, setActive] = useState(3);
+    const [active, setActive] = useState(0);
     const [openHidden, setOpenHidden] = useState({});
 
     const { email = {}, firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
@@ -45,12 +45,9 @@ const Settings = () => {
         firstName: firstName ? firstName : '',
         lastName: lastName ? lastName : '',
         phone: '',
-        email: '',
         photo: '',
         email: email ? email : ''
     })
-
-    console.log('userInfo', userInfo);
 
 
     const listItems = [
