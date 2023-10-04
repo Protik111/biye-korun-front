@@ -6,9 +6,8 @@ import { Button, Group, Input, Radio, Select, TextInput } from "@mantine/core"
 const Basic1 = () => {
 
     const { data, handleChange, fieldErrors } = useFormContext()
-    const genderDisable = (data?.basic1postedBy === "My Son" || data?.basic1postedBy === "My Daughter" || data?.basic1postedBy === "My Brother" || data?.basic1postedBy === "My Sister")
 
-    console.log('genderDisable', genderDisable);
+    const genderDisable = (data?.basic1postedBy === "My Son" || data?.basic1postedBy === "My Daughter" || data?.basic1postedBy === "My Brother" || data?.basic1postedBy === "My Sister")
 
     const content = (
         <div className="mutlistep__registration px-10">

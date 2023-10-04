@@ -1,13 +1,28 @@
+import useCountry from "@/hooks/common/useCountry"
 import useFormContext from "@/hooks/common/useFormContext"
 import { countries, profileFor } from "@/staticData/InputFields/inputFields"
 import { btnBackground } from "@/styles/library/mantine"
 import { generate18YearBefore } from "@/utils/generate18YearBefore"
 import { Button, Group, Input, PasswordInput, Radio, Select, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { useEffect, useState } from "react"
 
 const Basic2 = () => {
-
     const { data, handleChange, fieldErrors } = useFormContext()
+    const [countryList, setCountryList] = useState([]);
+    const { data: data2, error: error2, loading: loading2 } = useCountry();
+
+    useEffect(() => {
+        if (!loading2?.country) {
+            const convertedList = data2?.country?.map((item) => ({
+                label: item?.name,
+                value: item?.name,
+                code: item?.iso2
+            }));
+
+            setCountryList(convertedList);
+        }
+    }, [data2]);
 
     const content = (
         <div className="mutlistep__registration px-10 py-10">
@@ -46,7 +61,8 @@ const Basic2 = () => {
                 placeholder="Select"
                 label="Your Country"
                 // styles={{ label: labelStyles }}
-                data={countries}
+                // data={countries}
+                data={countryList}
                 value={data.basic2country}
                 withAsterisk
                 name="basic2country"

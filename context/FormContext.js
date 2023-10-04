@@ -156,7 +156,7 @@ export const FormProvider = ({ children }) => {
         }
     };
 
-    console.log('dat', data);
+    // console.log('data', data);
 
     const {
         community,

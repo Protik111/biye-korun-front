@@ -49,7 +49,7 @@ const RecentVisitors = ({ profile, refetch }) => {
                 />
             </Link>
             <div className="mt-10">
-                <Link style={{ color: 'black' }} href={`/view-profile/${profile._id}`} >
+                <Link style={{ color: 'black' }} href={`/view-profile/${profile?.owner?._id}`} >
                     <h3>{profile?.owner?.firstName + " " + profile?.owner?.lastName}</h3>
                     <p>{calculateAge(profile?.owner?.dateOfBirth)}{" "}{heightCalculator(profile?.owner?.appearance?.height)}{" "}{profile?.owner?.community}</p>
                 </Link>
