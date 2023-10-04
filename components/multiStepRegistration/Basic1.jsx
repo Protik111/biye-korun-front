@@ -6,6 +6,9 @@ import { Button, Group, Input, Radio, Select, TextInput } from "@mantine/core"
 const Basic1 = () => {
 
     const { data, handleChange, fieldErrors } = useFormContext()
+    const genderDisable = (data?.basic1postedBy === "My Son" || data?.basic1postedBy === "My Daughter" || data?.basic1postedBy === "My Brother" || data?.basic1postedBy === "My Sister")
+
+    console.log('genderDisable', genderDisable);
 
     const content = (
         <div className="mutlistep__registration px-10">
@@ -60,10 +63,11 @@ const Basic1 = () => {
                 onChange={(event) => handleChange('basic1gender', event)}
                 value={data.basic1gender}
                 error={fieldErrors.basic1gender}
+                className="custom-disable"
             >
                 <Group mt="xs">
-                    <Radio checked={data.gender === 'Male'} color="pink" value="Male" label="Male" />
-                    <Radio checked={data.gender === 'Female'} color="pink" value="Female" label="Female" />
+                    <Radio disabled={genderDisable} checked={data.gender === 'Male'} color="pink" value="Male" label="Male" />
+                    <Radio disabled={genderDisable} checked={data.gender === 'Female'} color="pink" value="Female" label="Female" />
                 </Group>
             </Radio.Group>
 

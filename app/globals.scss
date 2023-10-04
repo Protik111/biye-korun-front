@@ -176,3 +176,29 @@ body {
   max-height: 1000px;
   /* Adjust this value to fit your content */
 }
+
+//overriding mantine disabled radio label
+
+.custom-disable {
+
+  // .mantine-ges9mf {
+  //   cursor: no-drop !important;
+  // }
+
+  // .mantine-Radio-body {
+  //   cursor: no-drop !important;
+  // }
+}
+
+.mantine-hqx0d1:has(input:disabled) {
+  color: red !important;
+}
+
+.mantine-1nolaf:disabled {
+  // background-color: $secondaryColor !important;
+  border-color: white !important;
+}
+
+.mantine-hqx0d1:has(input:disabled) label {
+  color: black !important;
+}

@@ -14,7 +14,6 @@ export const FormProvider = ({ children }) => {
     const [fieldErrors, setFieldErrors] = useState({});
 
     const [data, setData] = useState({
-
         basic1postedBy: '',
         basic1firstName: '',
         basic1lastName: '',
@@ -112,11 +111,52 @@ export const FormProvider = ({ children }) => {
     };
 
     const handleChange = (name, value) => {
-        setData((prevFormValues) => ({
-            ...prevFormValues,
-            [name]: value,
-        }));
+        if (name === "basic1posteBy" && (value === "My Friend" || value === "My Relative")) {
+            setData((prevFormValues) => ({
+                ...prevFormValues,
+                [name]: value,
+            }));
+        } else if (name !== "basic1posteBy") {
+            setData((prevFormValues) => ({
+                ...prevFormValues,
+                [name]: value,
+            }));
+        }
+
+        //change the gender based on profile for select option
+        if (name === "basic1postedBy") {
+            switch (value) {
+                case "My Son":
+                    setData((prevFormValues) => ({
+                        ...prevFormValues,
+                        ["basic1gender"]: "Male",
+                    }));
+                    break;
+                case "My Daughter":
+                    setData((prevFormValues) => ({
+                        ...prevFormValues,
+                        ["basic1gender"]: "Female",
+                    }));
+                    break;
+                case "My Brother":
+                    setData((prevFormValues) => ({
+                        ...prevFormValues,
+                        ["basic1gender"]: "Male",
+                    }));
+                    break;
+                case "My Sister":
+                    setData((prevFormValues) => ({
+                        ...prevFormValues,
+                        ["basic1gender"]: "Female",
+                    }));
+                    break;
+                default:
+                    break;
+            }
+        }
     };
+
+    console.log('dat', data);
 
     const {
         community,

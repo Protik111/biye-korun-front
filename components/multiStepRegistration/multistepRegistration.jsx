@@ -54,6 +54,13 @@ const MultistepRegistration = () => {
             ...prevFormValues,
             [name]: value,
         }));
+
+        // if(name === "basic1postedBy") {
+        //     setFormValues((prevFormValues) => ({
+        //         ...prevFormValues,
+        //         ['gender']: value,
+        //     }));
+        // }
     };
 
     const handleFormSubmit = () => {
