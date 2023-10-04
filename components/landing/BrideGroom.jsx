@@ -73,7 +73,7 @@ const BrideGroom = () => {
                     data?.data?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center" key={i}>
                         <div className="info">
                             <Avatar sx={{ objectFit: 'contain' }} mx="auto" size="xl" radius="xl" src={item?.profilePicture[0]?.url?.medium || imageUrl} alt={item?.name} />
-                            <h3 className="mt-5">{item?.firstName + item?.lastName}</h3>
+                            <h3 className="mt-5">{item?.firstName + " " + item?.lastName}</h3>
                             <p>{calculateAge(item?.dateOfBirth)}</p>
                             <p>{heightCalculator(item?.appearance?.height) || ''}</p>
                         </div>

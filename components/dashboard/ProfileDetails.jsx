@@ -9,12 +9,12 @@ import { useState } from 'react';
 
 const ProfileDetails = ({ profile }) => {
     const { userInfo } = useSelector(state => state.user);
-    const { data, error, loading, refetch } = useAxios(`user/compare-partner-preference/${userInfo._id}`);
+    const { data, error, loading, refetch } = useAxios(`user/compare-partner-preference/${profile._id}`);
     const [contactInfo, setContactInfo] = useState({})
 
     const { expire } = userInfo?.validPackage;
 
-    console.log('profile', profile);
+    console.log('userInfo', userInfo);
 
     const handleContactView = (id) => {
         axios.get(`user/get-contact/${id}`)
@@ -29,7 +29,12 @@ const ProfileDetails = ({ profile }) => {
             });
     }
 
-    // console.log('contactInfo', contactInfo);
+    const totalMatchesCount = data?.data?.reduce((count, item) => {
+        if (item.isMatch) {
+            return count + 1;
+        }
+        return count;
+    }, 0);
 
     return (
         <div>
@@ -97,10 +102,10 @@ const ProfileDetails = ({ profile }) => {
                             </Button> :
                                 !expire && !expire?.isContactValid ?
                                     <Button onClick={() => window.open('/plans')} rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
-                                        Upgrade Plan
+                                        Buy Plan
                                     </Button> :
                                     <Button onClick={() => window.open('/plans')} rightIcon={<IconEye></IconEye>} size='xs' variant="light" color="red">
-                                        Buy Premium
+                                        Upgrade Plan
                                     </Button>
                             }
                         </div>
@@ -118,16 +123,18 @@ const ProfileDetails = ({ profile }) => {
                     //     <IconCircleCheck size="12" />
                     // }
                     >
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>{profile?.education?.education}</List.Item>
+                        {profile?.education?.education && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>{profile?.education?.education}</List.Item>}
 
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>{profile?.education?.college}</List.Item>
+                        {profile?.education?.college && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>{profile?.education?.college}</List.Item>}
 
-                        <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, {profile?.profession?.employer}</List.Item>
+                        {profile?.profession?.employer && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, {profile?.profession?.employer}</List.Item>}
 
                         {/* <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item> */}
                         {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.max}K monthly</List.Item>
                             :
-                            <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.min}K - {profile?.profession?.income?.max}K monthly</List.Item>}
+                            profile?.profession?.income?.min ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.min}K - {profile?.profession?.income?.max}K monthly</List.Item>
+                                :
+                                <>No Data Available</>}
                     </List>
                 </Timeline.Item>
 
@@ -143,7 +150,7 @@ const ProfileDetails = ({ profile }) => {
                             <p>Your Preferences</p>
                         </div>
                         <div>
-                            --------<Badge size='lg' color="pink">You matches 7/7 of her preferences</Badge>--------
+                            --------<Badge size='lg' color="pink">You matches {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>--------
                         </div>
 
 

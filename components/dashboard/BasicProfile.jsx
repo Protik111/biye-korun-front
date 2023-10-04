@@ -77,9 +77,6 @@ const BasicProfile = ({ profile }) => {
           <div className="flex align-center justify-between flex-gap-5">
             <h3>{firstName + " " + lastName}</h3>
             <IconLock color="#E64980"></IconLock>
-            <Badge variant="outline" color="pink">
-              2-Way
-            </Badge>
           </div>
           {!friendships ? <Button
             rightIcon={<IconRocket />}
@@ -125,10 +122,11 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            <List.Item>{calculateAge(dateOfBirth)} yrs, {heightCalculator(height)}</List.Item>
+            <List.Item>{calculateAge(dateOfBirth)} yrs {height ? `, ${heightCalculator(height)}` : ''}</List.Item>
+
             <List.Item>{community}</List.Item>
-            <List.Item>{religion}, {caste}</List.Item>
-            <List.Item>{city}</List.Item>
+            <List.Item>{religion} {caste ? `, ${caste}` : ''}</List.Item>
+            {city && <List.Item>{city}</List.Item>}
           </List>
         </div>
 
@@ -143,10 +141,14 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            <List.Item>{maritalStatus}</List.Item>
-            <List.Item>Lives in {country}</List.Item>
+            {maritalStatus && <List.Item>{maritalStatus}</List.Item>}
+            {country && <List.Item>Lives in {country}</List.Item>}
             {/* <List.Item>Works at </List.Item> */}
-            {(!min && max) ? <List.Item>Earns Upto BDT {max}K monthly</List.Item> : <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>}
+            {(!min && max) ? <List.Item>Earns Upto BDT {max}K monthly</List.Item>
+              :
+              min ? <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>
+                :
+                <></>}
           </List>
         </div>
       </div>

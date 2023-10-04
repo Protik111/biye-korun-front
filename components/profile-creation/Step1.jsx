@@ -4,26 +4,37 @@ import useCountry from "@/hooks/common/useCountry";
 import { bloodGroups, cities, heights, maritalStatuses, motherTongues2, recidencies, subCommunities } from "@/staticData/InputFields/inputFields"
 import { Button, Select, TextInput, Chip, Autocomplete } from "@mantine/core"
 import { IconArrowNarrowRight } from '@tabler/icons-react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 
 const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
     const { userInfo, message } = useSelector(state => state.user)
-    const { data: data2, error: error2, loading: loading2 } = useCountry();
+    const [countryCode, setCountryCode] = useState('')
+    const [stateList, setStateList] = useState([]);
+
+    const { data: data2, error: error2, loading: loading2 } = useCountry(countryCode);
 
     const { city, livesWithFamily, residency, maritalStatus, hasChildren, diet, height, subCommunity, motherTongue, bloodGroup } = formValues;
 
     const { country } = userInfo;
-
-    console.log('country', country);
-    console.log('country', data2);
+    const { state } = data2;
 
     useEffect(() => {
         const countryWithCode = data2?.country?.find(item => item?.name == country);
-        console.log('countryWithCode', countryWithCode);
-        // setLoggedInUser(selectedBooking);
-    }, [data2, country])
+        if (countryWithCode) {
+            setCountryCode(countryWithCode.iso2);
+        }
+    }, [data2.country, country])
+
+    useEffect(() => {
+        if (data2 && data2.state && !loading2.state) {
+            console.log('state', state);
+            const modifiedState = state?.map(state => state?.name)
+            console.log('modifiedState', modifiedState);
+            setStateList(modifiedState);
+        }
+    }, [data2, loading2.state])
 
     const validateForm = () => {
         const errors = {};
@@ -104,7 +115,8 @@ const Step1 = ({ onNextStep, formValues, setFormValues, formErrors, setFormError
                 size="md"
                 withAsterisk
                 name="city"
-                data={cities}
+                // data={cities}
+                data={stateList}
                 value={formValues.city}
                 onChange={(event) => handleFormChange('city', event)}
                 error={formErrors.city}
