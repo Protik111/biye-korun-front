@@ -36,7 +36,7 @@ const MyDashboard = () => {
         }
     });
 
-    console.log(data?.data);
+    console.log(userInfo);
 
     const {
         location: { city, residencyStatus } = {},
@@ -56,7 +56,8 @@ const MyDashboard = () => {
         postedBy,
         religion,
         community,
-        country
+        country,
+        isPremium
     } = userInfo || {};
 
     // console.log('userInfo', userInfo);
@@ -80,13 +81,21 @@ const MyDashboard = () => {
 
 
                         <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
-                            <div>
-                                <p className='small-text'>Account Type</p>
-                                <h5>Free Membership</h5>
-                            </div>
-                            <Button onClick={() => window.open("/plans")} variant="light" color="red" radius="xl" size="xs">
-                                Upgrade
-                            </Button>
+                            {isPremium ?
+                                <div>
+                                    <p className='small-text'>Account Type</p>
+                                    <h5>Premium Membership</h5>
+                                </div>
+                                :
+                                <>
+                                    <div>
+                                        <p className='small-text'>Account Type</p>
+                                        <h5>Free Membership</h5>
+                                    </div>
+                                    <Button onClick={() => window.open("/plans")} variant="light" color="red" radius="xl" size="xs">
+                                        Upgrade
+                                    </Button>
+                                </>}
                         </div>
                         <Divider my={10}></Divider>
 
@@ -107,14 +116,14 @@ const MyDashboard = () => {
                     <div className='container-box-bg flex justify-between p-15 flex-wrap mt-10'>
                         <div className='pointer'>
                             <Link href="/sent" style={{ color: 'black' }}>
-                                <h2>{pendingCount ? pendingCount : ''}</h2>
+                                <h2>{pendingCount ? pendingCount : '0'}</h2>
                                 <p>Pending Invitations</p>
                             </Link>
                         </div>
                         <Divider size="sm" style={{ height: '60px' }} orientation="vertical" />
                         <div>
                             <Link href="/requests" style={{ color: 'black' }}>
-                                <h2>{acceptedCount}</h2>
+                                <h2>{acceptedCount || 0}</h2>
                                 <p>Accepted Invitations</p>
                             </Link>
                         </div>
@@ -122,7 +131,7 @@ const MyDashboard = () => {
                         <div>
                             <div className='flex align-center flex-gap-5'>
                                 {/* <h2>{pendingCount}</h2> */}
-                                <h2>{data2?.data?.length}</h2>
+                                <h2>{data2?.data?.length || 0}</h2>
                                 {/* <Badge variant="outline" color="pink">
                                     5 New
                                 </Badge> */}

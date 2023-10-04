@@ -22,7 +22,7 @@ const RecentVisitors = ({ profile, refetch }) => {
         }, refetch);
     };
 
-    console.log('profile', profile);
+    // console.log('profile', profile);
 
     const {
         friendships,
@@ -36,7 +36,7 @@ const RecentVisitors = ({ profile, refetch }) => {
     // Use the value of 'friendshipsStatus' for the 'status' property
     const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
 
-    console.log('friendshipsStatus, status', status);
+    // console.log('friendshipsStatus, status', status);
 
     return (
         <div className="single container-box-bg py-15">

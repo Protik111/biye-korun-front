@@ -5,6 +5,10 @@ import Form from "../multiStepRegistration/Form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import useAxios from "@/hooks/axios/useAxios";
+import { calculateAge } from "@/utils/calculateAge";
+import { heightCalculator } from "@/utils/heightCalculator";
+import { imageUrl } from "@/staticData/image";
 
 const brides = [
     {
@@ -46,6 +50,7 @@ const brides = [
 
 const BrideGroom = () => {
     const { isAuthenticated } = useSelector(state => state.auth)
+    const { data, error, loading, refetch } = useAxios("user/public-profile");
     const router = useRouter();
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -65,11 +70,13 @@ const BrideGroom = () => {
             <h2 className="text-center">Match Bride & Groom For You</h2>
             <div className="container bridegroom__wrapper">
                 {
-                    brides?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center" key={i}>
-                        <Avatar mx="auto" size="xl" src={item?.image} alt={item?.name} />
-                        <h3 className="mt-5">{item?.name}</h3>
-                        <p>{item?.years}</p>
-                        <p>{item?.tall}</p>
+                    data?.data?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center" key={i}>
+                        <div className="info">
+                            <Avatar sx={{ objectFit: 'contain' }} mx="auto" size="xl" radius="xl" src={item?.profilePicture[0]?.url?.medium || imageUrl} alt={item?.name} />
+                            <h3 className="mt-5">{item?.firstName + item?.lastName}</h3>
+                            <p>{calculateAge(item?.dateOfBirth)}</p>
+                            <p>{heightCalculator(item?.appearance?.height) || ''}</p>
+                        </div>
                         <Button
                             sx={{ backgroundColor: "#e64980", color: "white" }}
                             color="pink"

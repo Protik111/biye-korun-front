@@ -6,9 +6,14 @@
         grid-template-columns: repeat(auto-fill, 250px);
         gap: 15px;
         justify-content: center;
-        /* Center horizontally */
         align-content: center;
-        /* Center vertically */
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 1;
+            justify-content: flex-start;
+        }
 
         @include smMaxBreakPoint {
             grid-template-columns: repeat(auto-fill, 250px);
