@@ -13,7 +13,7 @@
     position: absolute;
     left: 50%;
     // bottom: 100px;
-    top: 40%;
+    top: 45%;
     transform: translateX(-50%);
 
     @include mdMaxBreakPoint {
@@ -26,7 +26,8 @@
     }
 
     &--form {
-      background-color: $primaryColor;
+      background-color: $secondaryColorLight;
+      opacity: 0.8;
     }
 
     &--to {

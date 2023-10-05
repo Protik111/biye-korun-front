@@ -9,6 +9,7 @@ import { imageUrl } from '@/staticData/image'
 import { useRouter } from 'next/navigation'
 import useAxios from '@/hooks/axios/useAxios'
 import Link from 'next/link'
+import { DisableRightClick } from '@/utils/DisableRightClick'
 
 const MyDashboard = () => {
     const { userInfo } = useSelector(state => state.user) || {};
@@ -62,12 +63,13 @@ const MyDashboard = () => {
 
     // console.log('userInfo', userInfo);
 
+
     return (
         <div className='myDashboard container'>
             <div className='myDashboard__topBox'>
                 <div className='myDashboard__topBox--left container-box-bg rounded-10'>
                     <div className='profile--img'>
-                        <img src={url?.large || imageUrl} alt="Profile" />
+                        <img onContextMenu={(e) => DisableRightClick(e)} src={url?.large || imageUrl} alt="Profile" />
                         <div className='flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5'>
                             <div>
                                 <h3>{firstName + " " + lastName}</h3>
@@ -142,7 +144,7 @@ const MyDashboard = () => {
 
                     <div className='container-box-bg flex justify-between p-15 mt-15 flex-wrap'>
                         <div className='flex align-center flex-gap-5'>
-                            <p>Only Premium <Anchor href="/" target="_blank">
+                            <p>Only Premium <Anchor href="/plans" target="_blank">
                                 Members
                             </Anchor> <br /> can avail these benefits</p>
                             <ThemeIconComp iconComp={<IconLock size={16} />} />

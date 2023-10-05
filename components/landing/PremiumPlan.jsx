@@ -36,7 +36,7 @@ const PremiumPlan = () => {
   return (
     <div className="premiumPlan_main">
       <div className="container py-25">
-        <h2 className="text-center">Premium Plans</h2>
+        <h1 className="text-center">Premium Plans</h1>
         <h3 className="text-center">
           The search of any profiles is primarily free. a search upgrade for a
           personalized one. With a premium membership, you may communicate
@@ -105,15 +105,15 @@ const PremiumPlan = () => {
               );
             })}
             <Button
-       
-            sx={{ backgroundColor: "#B82EB8", color: "white", width: "200px", position: "absolute", left: "15%", bottom:"10%"}}
-            color="pink"
-            variant="white"
-          >
-            Get Premium
-          </Button>
+              onClick={() => window.open("/plans")}
+              sx={{ backgroundColor: "#FD123F", color: "white", width: "200px", position: "absolute", left: "15%", bottom: "10%" }}
+              color="pink"
+              variant="white"
+            >
+              Upgrade Now
+            </Button>
           </div>
-          
+
         </div>
       </div>
     </div>

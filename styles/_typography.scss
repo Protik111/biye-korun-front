@@ -2,10 +2,12 @@
 
 h1 {
     font-style: normal;
-    font-weight: bold;
-    font-size: 34px;
+    font-weight: normal;
+    // font-size: 34px;
+    font-size: 50px;
     line-height: 1.2em;
     margin: 0;
+    color: $secondaryColorLight;
 
     @include smMinBreakPoint {
         font-size: 48px;
@@ -17,6 +19,7 @@ h2 {
     font-weight: normal;
     font-size: 36px;
     line-height: 43px;
+    color: $secondaryColorLight;
 
     @include smMaxBreakPoint {
         font-size: 28px;
@@ -30,6 +33,7 @@ h3 {
     font-size: 16px;
     line-height: 125%;
     margin: 0;
+    color: #713ABE;
 
     @include smMaxBreakPoint {
         font-weight: 400;

@@ -2,7 +2,7 @@ import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import { imageUrl } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
-import { Badge, Button, Divider, List, ThemeIcon } from "@mantine/core";
+import { AspectRatio, Badge, Button, Divider, List, Overlay, ThemeIcon } from "@mantine/core";
 import {
   IconCircleCheck,
   IconCircleDashed,
@@ -13,6 +13,8 @@ import {
 import React from "react";
 import LoaderWithText from "../global/LoaderWithText";
 import Link from "next/link";
+import { DisableRightClick } from "@/utils/DisableRightClick";
+import { useSelector } from "react-redux";
 
 const message = {
   success: 'Invitation sent successfully!',
@@ -20,6 +22,7 @@ const message = {
 }
 
 const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
+  const { userInfo } = useSelector(state => state.user);
   const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
   // console.log('profile', profile);
@@ -34,7 +37,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
     trait: { aboutMe } = {},
     phone,
-    profilePicture: { url } = {},
+    profilePicture: { url, isBlur, isVisible } = {},
     firstName,
     lastName,
     friendships,
@@ -47,7 +50,13 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     _id
   } = profile || {};
 
-  // console.log('country', country);
+  const { isPremium = {} } = userInfo || {}
+
+  console.log('profile', profile);
+  console.log('userInfo', userInfo);
+
+  const photoVisible = isPremium || (!isPremium && isVisible);
+  const photoVisibleWithBlur = isPremium || (!isPremium && isBlur);
 
   // Check if 'friendships' exists in profile and has a 'status' property
   const friendshipsStatus = profile && profile.friendships && profile.friendships.status;
@@ -66,7 +75,16 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     <div className="singleProfile container-box-bg p-15">
       <div className="singleProfile__image cursor">
         <Link href={`/view-profile/${_id}`}>
-          <img src={url?.medium || imageUrl} alt="profile" />
+          {photoVisible ? <img onContextMenu={(e) => DisableRightClick(e)} src={url?.medium || imageUrl} alt="profile" />
+            :
+            <AspectRatio ratio={10 / 10} onContextMenu={(e) => DisableRightClick(e)}>
+              <img
+                src={url?.medium || imageUrl}
+                alt="Profile"
+              />
+              <Overlay className="rounded-10" color="#000" backgroundOpacity={0.55} blur={5} />
+            </AspectRatio>
+          }
         </Link>
       </div>
       <div>

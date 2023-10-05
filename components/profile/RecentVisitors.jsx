@@ -5,6 +5,7 @@ import { heightCalculator } from "@/utils/heightCalculator"
 import { Avatar, Button } from "@mantine/core";
 import LoaderWithText from "../global/LoaderWithText";
 import Link from "next/link";
+import { DisableRightClick } from "@/utils/DisableRightClick";
 
 const message = {
     success: 'Invitation sent successfully!',
@@ -42,6 +43,7 @@ const RecentVisitors = ({ profile, refetch }) => {
         <div className="single container-box-bg py-15">
             <Link href={`/view-profile/${profile?.owner?._id}`} className="flex justify-center align-center">
                 <Avatar
+                    onContextMenu={(e) => DisableRightClick(e)}
                     size="xl"
                     radius="xl"
                     src={profile?.owner?.profilePicture?.url?.medium}

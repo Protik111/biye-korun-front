@@ -1,6 +1,15 @@
 .howWorks {
-    background-color: #d9e9e4;
+    // background-color: #d9e9e4;
     // background-color: $whiteColor;
+
+    background-image: url("/landing/Ellipse 46.svg"), url("/landing/Ellipse 47.svg");
+    background-repeat: no-repeat;
+    background-position: left top, right bottom;
+
+    // background-image: url("/landing/Ellipse 47.svg");
+    // background-repeat: no-repeat;
+    // background-position: right bottom;
+
 
     &__wrapper {
         background-image: url("/landing/howWorksBG.png");

@@ -30,7 +30,7 @@ export const logininput = {
 
 export const btnBackground = {
     // backgroundColor: '#F143CB',
-    backgroundColor: '#E64980',
+    backgroundColor: '#FD123F',
 
     '&:hover': {
         backgroundColor: '#9880E7',

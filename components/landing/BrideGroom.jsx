@@ -9,6 +9,8 @@ import useAxios from "@/hooks/axios/useAxios";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { imageUrl } from "@/staticData/image";
+import { DisableRightClick } from "@/utils/DisableRightClick";
+import { btnBackground } from "@/styles/library/mantine";
 
 const brides = [
     {
@@ -67,21 +69,22 @@ const BrideGroom = () => {
 
     return (
         <div className='bridegroom'>
-            <h2 className="text-center">Match Bride & Groom For You</h2>
+            <h1 className="text-center">Match Bride & Groom For You</h1>
             <div className="container bridegroom__wrapper">
                 {
-                    data?.data?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container p-40 text-center" key={i}>
+                    data?.data?.map((item, i) => <div className="container-box-bg bridegroom__wrapper--container py-30 text-center" key={i}>
                         <div className="info">
-                            <Avatar sx={{ objectFit: 'contain' }} mx="auto" size="xl" radius="xl" src={item?.profilePicture[0]?.url?.medium || imageUrl} alt={item?.name} />
+                            <Avatar onContextMenu={(e) => DisableRightClick(e)} sx={{ objectFit: 'contain', borderRadius: '50%', height: '100px', width: '100px' }} mx="auto" size="xl" src={item?.profilePicture[0]?.url?.medium || imageUrl} alt={item?.name} />
                             <h3 className="mt-5">{item?.firstName + " " + item?.lastName}</h3>
-                            <p>{calculateAge(item?.dateOfBirth)}</p>
-                            <p>{heightCalculator(item?.appearance?.height) || ''}</p>
+                            <p>{item?.dateOfBirth ? `${calculateAge(item?.dateOfBirth)} years` : "18 years"}</p>
+                            <p>{heightCalculator(item?.appearance?.height) || `5' 10"`}</p>
                         </div>
                         <Button
-                            sx={{ backgroundColor: "#e64980", color: "white" }}
+                            sx={{ backgroundColor: "#770DD5", color: "white" }}
                             color="pink"
                             variant="white"
                             className="mt-10"
+                            radius="lg"
                         >
                             View Profile
                         </Button>
@@ -94,6 +97,7 @@ const BrideGroom = () => {
                     sx={{ width: '180px' }}
                     // color="pink"
                     className="mt-10"
+                    style={btnBackground}
                     size="md"
                     onClick={handleRegister}
                 >

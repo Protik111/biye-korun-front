@@ -52,10 +52,10 @@ const LandingV2 = () => {
                     <div className="landing__meet--form p-30 rounded-10">
                         <h2 className="landing__meet--title text-center">Find the right person to spend rest of your life</h2>
 
-                        <div className="flex justify-center align-center flex-gap-10 flex-wrap mt-10">
+                        <div className="flex justify-center align-center flex-gap-25 flex-wrap mt-15">
                             <Select
                                 size="md"
-                                label="I am looking for a"
+                                label="Looking For"
                                 styles={{ label: labelStyles }}
                                 defaultValue="woman"
                                 data={[
@@ -67,13 +67,13 @@ const LandingV2 = () => {
 
                             <Select
                                 size="md"
-                                label="aged"
+                                label="Age"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={ages}
                                 sx={selectMobileStylesV2}
                             />
-                            <p className="landing__meet--to">to</p>
+                            {/* <p className="landing__meet--to">to</p>
 
                             <Select
                                 size="md"
@@ -84,12 +84,12 @@ const LandingV2 = () => {
                                 sx={selectMobileStylesV2}
 
 
-                            />
+                            /> */}
 
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="of religion"
+                                label="Religion"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={religions}
@@ -100,7 +100,7 @@ const LandingV2 = () => {
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="and mother tongue"
+                                label="Language"
                                 defaultValue="20"
                                 styles={{ label: labelStyles }}
                                 data={motherTongues}
@@ -108,14 +108,20 @@ const LandingV2 = () => {
                                 sx={selectMobileStyles}
 
                             />
+
+                            <div>
+                                <Button className="mt-25" style={btnBackground} size="md" onClick={handleLetsBegin}>
+                                    Let's start...
+                                </Button>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="flex justify-center mt-15">
+                    {/* <div className="flex justify-center mt-15">
                         <Button style={btnBackground} size="md" onClick={handleLetsBegin}>
                             Let's Begin
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
