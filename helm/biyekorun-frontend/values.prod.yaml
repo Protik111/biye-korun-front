@@ -1,33 +1,33 @@
-# # Default values for ts4u-backend.
-# # This is a YAML-formatted file.
-# # Declare variables to be passed into your templates.
+# Default values for ts4u-backend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-# replicaCount: 2
+replicaCount: 1
 
-# namespace: ts4u-production
-
-# # limits:
-# #   cpu: 1
-# #   memory: "2Gi"
-
-# # requests:
-# #   cpu: 1
-# #   memory: "2Gi"
+namespace: biyekorun
 
 # limits:
 #   cpu: 1
 #   memory: "2Gi"
 
 # requests:
-#   cpu: "500m"
-#   memory: "1Gi"
+#   cpu: 1
+#   memory: "2Gi"
 
-# host: portal.ts4u.us
+limits:
+  cpu: "750M"
+  memory: "1Gi"
 
-# image:
-#   name: ts4u-portal
-#   repository: ts4udocker/ts4u-portal
-#   tag: staging-latest
-#   pullPolicy: IfNotPresent
-# imagePullSecrets:
-#   name: regcred
+requests:
+  cpu: "500m"
+  memory: "512Mi"
+
+host: biyekorun.us
+
+image:
+  name: biyekorun-frontend
+  repository: ts4udocker/biyekorun-frontend
+  tag: production-latest
+  pullPolicy: IfNotPresent
+imagePullSecrets:
+  name: regcred

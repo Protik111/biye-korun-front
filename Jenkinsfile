@@ -12,6 +12,8 @@ pipeline {
                 script{
                     if(BRANCH == 'main'){
                          dockerImage = docker.build("${IMAGE}","-f Dockerfile.staging .")
+                     }else if(BRANCH == 'production'){
+                         dockerImage = docker.build("${IMAGE}","-f Dockerfile.prod .")
                      }
                 }
 
@@ -50,12 +52,29 @@ pipeline {
                                 '''
                             }
 
-                        }
-                     }
-                    
-                }
+                    }
 
+
+                     if(BRANCH == 'production'){
+
+                         withCredentials([string(credentialsId: 'doctl_token', variable: 'DO_API_KEY')]) {
+                           
+                                sh '''
+                                doctl auth init --access-token $DO_API_KEY && \
+                                doctl kubernetes cluster kubeconfig save ts4u-k8s --set-current-context && \
+                                helm upgrade --install biyekorun-frontend-prod ./helm/biyekorun-frontend -f ./helm/biyekorun-frontend/values.prod.yaml --set image.tag=${BRANCH}-${VERSION}
+                                '''
+                            }
+
+                    }
+
+
+
+                }
+                    
             }
+
+        }
         
 
 
