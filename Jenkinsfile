@@ -13,7 +13,7 @@ pipeline {
                     if(BRANCH == 'main'){
                          dockerImage = docker.build("${IMAGE}","-f Dockerfile.staging .")
                      }else if(BRANCH == 'production'){
-                         dockerImage = docker.build("${IMAGE}","-f Dockerfile.prod .")
+                         dockerImage = docker.build("${IMAGE}","-f Dockerfile.production .")
                      }
                 }
 
