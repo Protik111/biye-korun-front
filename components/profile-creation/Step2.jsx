@@ -1,166 +1,182 @@
-'use client'
+"use client";
 
-import { colleges, companies, incomes, professions, qualifications, worksWithsOwn } from "@/staticData/InputFields/inputFields"
-import { Button, Select } from "@mantine/core"
-import { IconArrowNarrowRight } from '@tabler/icons-react';
+import {
+  colleges,
+  companies,
+  incomes,
+  professions,
+  qualifications,
+  worksWithsOwn,
+} from "@/staticData/InputFields/inputFields";
+import { Button, Select } from "@mantine/core";
+import { IconArrowNarrowRight } from "@tabler/icons-react";
 
+const Step2 = ({
+  onNextStep,
+  formValues,
+  setFormValues,
+  formErrors,
+  setFormErrors,
+}) => {
+  const { qualification, worksWith, profession, income, college, company } =
+    formValues;
 
-const Step2 = ({ onNextStep, formValues, setFormValues, formErrors, setFormErrors }) => {
+  const validateForm = () => {
+    const errors = {};
 
-    const { qualification, worksWith, profession, income, college, company } = formValues;
+    if (!qualification) {
+      errors.qualification = "Qualification is required";
+    }
 
-    const validateForm = () => {
-        const errors = {};
+    if (!college) {
+      errors.college = "College is required";
+    }
 
-        if (!qualification) {
-            errors.qualification = 'Qualification is required';
-        }
+    if (!company) {
+      errors.company = "Company is required";
+    }
 
-        if (!college) {
-            errors.college = 'College is required';
-        }
+    if (!worksWith) {
+      errors.worksWith = "Works with is required";
+    }
 
-        if (!company) {
-            errors.company = 'Company is required';
-        }
+    if (!profession) {
+      errors.profession = "Profession is required";
+    }
 
-        if (!worksWith) {
-            errors.worksWith = 'Works with is required';
-        }
+    if (!income) {
+      errors.income = "Income Status is required";
+    }
 
-        if (!profession) {
-            errors.profession = 'Profession is required';
-        }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
 
-        if (!income) {
-            errors.income = 'Income Status is required';
-        }
+  const handleNextStep = () => {
+    if (validateForm()) {
+      // Call the parent component's callback with the formValues
+      onNextStep(formValues);
+    }
+  };
 
-        setFormErrors(errors);
-        return Object.keys(errors).length === 0; // Return true if no errors
-    };
+  const handleFormChange = (name, value) => {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+    }));
+  };
 
-    const handleNextStep = () => {
-        if (validateForm()) {
-            // Call the parent component's callback with the formValues
-            onNextStep(formValues);
-        }
-    };
+  return (
+    <div className="step1">
+      <h2 className="text-center">Education And Qualifications</h2>
+      {console.log("qualifications", qualifications)}
+      <Select
+        size="md"
+        placeholder="Select"
+        label="Education Qualification"
+        data={qualifications}
+        dataKey="value"
+        groupKey="label"
+        // value={formValues.qualification}
+        withAsterisk
+        name="qualification"
+        onChange={(event) => handleFormChange("qualification", event)}
+        error={formErrors.qualification}
+      />
 
+      <br />
 
-    const handleFormChange = (name, value) => {
-        setFormValues((prevFormValues) => ({
-            ...prevFormValues,
-            [name]: value,
-        }));
-    };
+      {qualification && (
+        <>
+          <Select
+            size="md"
+            placeholder="Select"
+            label="College"
+            data={colleges}
+            value={formValues.college}
+            withAsterisk
+            name="college"
+            onChange={(event) => handleFormChange("college", event)}
+            error={formErrors.college}
+          />
 
-    return (
-        <div className="step1">
+          <br />
+        </>
+      )}
 
-            <h2 className='text-center'>Education and Qualifications</h2>
+      <Select
+        size="md"
+        placeholder="Select"
+        label="Works With"
+        // styles={{ label: labelStyles }}
+        data={worksWithsOwn}
+        value={formValues.worksWith}
+        withAsterisk
+        name="worksWith"
+        onChange={(event) => handleFormChange("worksWith", event)}
+        error={formErrors.worksWith}
+      />
 
-            <Select
-                size="md"
-                placeholder="Select"
-                label="Education qualification"
-                data={qualifications}
-                value={formValues.qualification}
-                withAsterisk
-                name="qualification"
-                onChange={(event) => handleFormChange('qualification', event)}
-                error={formErrors.qualification}
-            />
+      <br />
 
-            <br />
+      <Select
+        size="md"
+        placeholder="Select"
+        label="As"
+        data={professions}
+        value={formValues.profession}
+        withAsterisk
+        name="profession"
+        onChange={(event) => handleFormChange("profession", event)}
+        error={formErrors.profession}
+      />
 
-            {qualification && <>
-                <Select
-                    size="md"
-                    placeholder="Select"
-                    label="College"
-                    data={colleges}
-                    value={formValues.college}
-                    withAsterisk
-                    name="college"
-                    onChange={(event) => handleFormChange('college', event)}
-                    error={formErrors.college}
-                />
+      <br />
 
-                <br />
-            </>}
+      {profession && (
+        <>
+          <Select
+            size="md"
+            placeholder="Select"
+            label="Company"
+            data={companies}
+            value={formValues.company}
+            withAsterisk
+            name="company"
+            onChange={(event) => handleFormChange("company", event)}
+            error={formErrors.company}
+          />
 
-            <Select
-                size="md"
-                placeholder="Select"
-                label="Works with"
-                // styles={{ label: labelStyles }}
-                data={worksWithsOwn}
-                value={formValues.worksWith}
-                withAsterisk
-                name="worksWith"
-                onChange={(event) => handleFormChange('worksWith', event)}
-                error={formErrors.worksWith}
-            />
+          <br />
+        </>
+      )}
 
-            <br />
+      <Select
+        size="md"
+        placeholder="Select"
+        label="Income Monthly"
+        data={incomes}
+        value={formValues.income}
+        withAsterisk
+        name="income"
+        onChange={(event) => handleFormChange("income", event)}
+        error={formErrors.income}
+      />
 
-            <Select
-                size="md"
-                placeholder="Select"
-                label="As"
-                data={professions}
-                value={formValues.profession}
-                withAsterisk
-                name="profession"
-                onChange={(event) => handleFormChange('profession', event)}
-                error={formErrors.profession}
-            />
+      <br />
 
-            <br />
-
-            {profession && <>
-                <Select
-                    size="md"
-                    placeholder="Select"
-                    label="Company"
-                    data={companies}
-                    value={formValues.company}
-                    withAsterisk
-                    name="company"
-                    onChange={(event) => handleFormChange('company', event)}
-                    error={formErrors.company}
-                />
-
-                <br />
-            </>}
-
-
-            <Select
-                size="md"
-                placeholder="Select"
-                label="Income Monthly"
-                data={incomes}
-                value={formValues.income}
-                withAsterisk
-                name="income"
-                onChange={(event) => handleFormChange('income', event)}
-                error={formErrors.income}
-            />
-
-            <br />
-
-            <Button
-                fullWidth
-                // sx={{ width: '180px' }}
-                size="md"
-                type="submit"
-                rightIcon={<IconArrowNarrowRight />}
-                onClick={handleNextStep}
-            >Continue</Button>
-
-        </div>
-    )
-}
+      <Button
+        fullWidth
+        // sx={{ width: '180px' }}
+        size="md"
+        type="submit"
+        rightIcon={<IconArrowNarrowRight />}
+        onClick={handleNextStep}
+      >
+        Continue
+      </Button>
+    </div>
+  );
+};
 
 export default Step2;

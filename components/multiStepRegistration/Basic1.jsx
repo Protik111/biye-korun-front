@@ -5,7 +5,15 @@ import {
   religions,
 } from "@/staticData/InputFields/inputFields";
 import { btnBackground } from "@/styles/library/mantine";
-import { Button, Group, Input, Radio, Select, TextInput } from "@mantine/core";
+import {
+  Button,
+  Group,
+  Input,
+  MultiSelect,
+  Radio,
+  Select,
+  TextInput,
+} from "@mantine/core";
 
 const Basic1 = () => {
   const { data, handleChange, fieldErrors } = useFormContext();
@@ -21,7 +29,7 @@ const Basic1 = () => {
       <Select
         size="md"
         placeholder="Select"
-        label="Profile for"
+        label="Profile For"
         // styles={{ label: labelStyles }}
         data={profileFor}
         value={data.basic1postedBy}
@@ -108,16 +116,17 @@ const Basic1 = () => {
 
       <br />
 
-      <Select
+      <MultiSelect
         size="md"
-        placeholder="Select Community"
-        label="Community"
+        placeholder="Select Community "
+        label="Language "
         data={communities}
         value={data.basic1community}
         withAsterisk
         name="basic1community"
         onChange={(event) => handleChange("basic1community", event)}
         error={fieldErrors.basic1community}
+        searchable
       />
 
       <br />
