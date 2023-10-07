@@ -7,7 +7,14 @@ import {
   selectMobileStylesV2,
   selectMultiStyles,
 } from "@/styles/library/mantine";
-import { Button, Select, MultiSelect } from "@mantine/core";
+import {
+  Button,
+  Select,
+  MultiSelect,
+  RangeSlider,
+  Popover,
+  Text,
+} from "@mantine/core";
 import { useState } from "react";
 import CenteredModal from "../global/CenteredModal";
 import MultistepRegistration from "../multiStepRegistration/multistepRegistration";
@@ -24,6 +31,9 @@ const LandingV2 = () => {
   const router = useRouter();
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    ages: [18, 25],
+  });
 
   // console.log('matches', matches);
 
@@ -41,6 +51,13 @@ const LandingV2 = () => {
     } else {
       router.push("/my-matches");
     }
+  };
+
+  const handleFormChange = (name, value) => {
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+    }));
   };
 
   return (
@@ -74,6 +91,33 @@ const LandingV2 = () => {
                 sx={selectMobileStyles}
               />
 
+              <div>
+                {/* <Popover width={200} position="bottom" withArrow shadow="md">
+                  <Popover.Target>
+                    <Button>Toggle popover</Button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <RangeSlider
+                      size="md"
+                      color="pink"
+                      py="xl"
+                      // scale={(v) => 2 ** v}
+                      step={1}
+                      min={18}
+                      max={39}
+                      name="ages"
+                      labelAlwaysOn
+                      values={formData.ages}
+                      defaultValue={formData.ages}
+                      range={2}
+                      // onChange={handleAge}
+                      //   style={{ width: "200px" }}
+                      onChange={(event) => handleFormChange("ages", event)}
+                    />
+                  </Popover.Dropdown>
+                </Popover> */}
+              </div>
+
               <Select
                 size="md"
                 label="Age"
@@ -84,7 +128,7 @@ const LandingV2 = () => {
                 min={20}
               />
 
-              <p style={{ marginTop: "21px", color: "white" }}>to</p>
+              <p className="to_text">to</p>
               <Select
                 size="md"
                 label=""
@@ -107,7 +151,6 @@ const LandingV2 = () => {
 
 
                             /> */}
-
               <Select
                 size="md"
                 placeholder="Select"
@@ -117,7 +160,6 @@ const LandingV2 = () => {
                 data={religions}
                 sx={selectMobileStyles}
               />
-
               <MultiSelect
                 size="md"
                 placeholder="Select"
@@ -127,8 +169,8 @@ const LandingV2 = () => {
                 data={motherTongues}
                 // style={{ height: "40px", overflow: "auto" }}
                 sx={selectMultiStyles}
+                searchable
               />
-
               <div>
                 <Button
                   className="mt-25"
