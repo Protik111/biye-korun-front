@@ -19,7 +19,7 @@ const CenteredModal = ({
         // </div>}
         title={
           <div className="flex justify-center align-center">
-            <h3 className="text-center">Let's create an account!</h3>
+            <h3 className="text-center">Let's Create An Account! </h3>
           </div>
         }
         centered
