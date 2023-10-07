@@ -37,8 +37,8 @@ const Basic2 = () => {
       <br />
 
       <TextInput
-        label="Your Email"
-        placeholder="Enter your email"
+        label="Email"
+        placeholder="Enter email"
         size="md"
         withAsterisk
         name="basic2email"
@@ -49,8 +49,8 @@ const Basic2 = () => {
       <br />
 
       <PasswordInput
-        label="Your Password"
-        placeholder="Enter your password"
+        label="Password"
+        placeholder="Enter password"
         size="md"
         withAsterisk
         name="basic2password"
@@ -63,7 +63,7 @@ const Basic2 = () => {
       <Select
         size="md"
         placeholder="Select"
-        label="Your Country"
+        label="Country"
         // styles={{ label: labelStyles }}
         // data={countries}
         data={countryList}
@@ -80,8 +80,8 @@ const Basic2 = () => {
         clearable
         // defaultValue={today}
         // description="Years must be at least 18"
-        label="Your date of birth"
-        placeholder="Pick date"
+        label="Date of Birth"
+        placeholder="Pick a date"
         mx="auto"
         size="sm"
         maw={400}

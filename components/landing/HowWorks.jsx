@@ -3,9 +3,9 @@ import { Avatar } from "@mantine/core";
 const HowWorks = () => {
   return (
     <div className="howWorks py-25">
-      <h1 className="text-center">How Biye Korun Works</h1>
+      <h1 className="text-center">How Biye Korun Works</h1> 
       <h3 className="text-center py-10">
-        Get started with 3 simple step to find your partner
+      A Simple Guide to Finding Your Life Partner
       </h3>
 
       <div className="howWorks__wrapper container grid grid-cols-3 grid-cols-3-responsive place-center">
