@@ -15,7 +15,7 @@ namespace: biyekorun
 #   memory: "2Gi"
 
 limits:
-  cpu: "750M"
+  cpu: "750m"
   memory: "1Gi"
 
 requests:
