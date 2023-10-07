@@ -43,7 +43,7 @@ const Basic1 = () => {
 
       <div className="flex flex-gap-10">
         <TextInput
-          label="Your First Name"
+          label="First Name"
           placeholder="First name"
           size="md"
           withAsterisk
@@ -57,7 +57,7 @@ const Basic1 = () => {
 
         <TextInput
           // style={{ display: 'flex', alignSelf: 'flex-end' }}
-          label="Your Last Name"
+          label="Last Name"
           placeholder="Last name"
           size="md"
           withAsterisk
@@ -103,7 +103,7 @@ const Basic1 = () => {
 
       <Select
         size="md"
-        placeholder="Select Religion"
+        placeholder="Select religion"
         label="Religion"
         data={religions}
         value={data.basic1religion}
@@ -118,8 +118,8 @@ const Basic1 = () => {
 
       <MultiSelect
         size="md"
-        placeholder="Select Community "
-        label="Language "
+        placeholder="Select community "
+        label="Community "
         data={communities}
         value={data.basic1community}
         withAsterisk

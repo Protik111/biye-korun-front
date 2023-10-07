@@ -5,7 +5,7 @@ const PlansHero = () => {
     return (
         <div className='planshero'>
             <div className="container">
-                <h2 className="text-center text-white-light">Upgrade now & Get Premium benefits!</h2>
+                <h2 className="text-center text-white-light">Upgrade now & Get Premium Benefits!</h2>
 
                 <div className="flex align-center justify-center mt-15">
                     <Avatar.Group spacing="sm">

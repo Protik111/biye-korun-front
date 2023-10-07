@@ -134,7 +134,7 @@ const BrideGroom = () => {
               modalOpen={modalOpen}
               handleModalClose={handleModalClose}
               modalTitle={
-                <h3 className="text-center">Let's create an account!</h3>
+                <h3 className="text-center">Let's Create an Account!</h3>
               }
             >
               {/* <MultistepRegistration></MultistepRegistration> */}

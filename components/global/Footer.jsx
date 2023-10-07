@@ -18,11 +18,11 @@ const Footer = () => {
                             </li>
 
                             <li>
-                                <a href="#">Partner search</a>
+                                <a href="#">Partner Search</a>
                             </li>
 
                             <li>
-                                <a href="#">Premium membership</a>
+                                <a href="#">Premium Membership</a>
                             </li>
 
                             <li>
@@ -36,7 +36,7 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                <a href="#">About us</a>
+                                <a href="#">About Us</a>
                             </li>
 
                             <li>

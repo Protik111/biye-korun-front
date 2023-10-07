@@ -75,7 +75,7 @@ const LandingV2 = () => {
         <div className="landing__meet">
           <div className="landing__meet--form p-30 rounded-10">
             <h2 className="landing__meet--title text-center">
-              Find the right person to spend rest of your life
+              Find the Right Person to Spend Rest of Your Life
             </h2>
 
             <div className="flex justify-center align-center flex-gap-10 flex-wrap mt-15">
@@ -178,7 +178,7 @@ const LandingV2 = () => {
                   size="md"
                   onClick={handleLetsBegin}
                 >
-                  Let's start...
+                  Let's Start...
                 </Button>
               </div>
             </div>
@@ -197,7 +197,7 @@ const LandingV2 = () => {
           modalOpen={modalOpen}
           size="md"
           handleModalClose={handleModalClose}
-          modalTitle={<h3 className="text-center">Let's create an account!</h3>}
+          modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}
         >
           {/* <MultistepRegistration></MultistepRegistration> */}
           <FormProvider>

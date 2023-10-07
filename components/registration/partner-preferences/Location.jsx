@@ -97,7 +97,7 @@ function Location({ formData, setFormData }) {
                             icon={
                                 <ThemeIconComp iconComp={<IconWorld size={16} />} />
                             }
-                        >Country living in</Accordion.Control>
+                        >Country</Accordion.Control>
                         <Accordion.Panel>
 
                             <Select
@@ -124,7 +124,7 @@ function Location({ formData, setFormData }) {
                             icon={
                                 <ThemeIconComp iconComp={<IconMapPin size={16} />} />
                             }
-                        >State living in</Accordion.Control>
+                        >State</Accordion.Control>
                         <Accordion.Panel>
 
                             <Select

@@ -57,7 +57,7 @@ function Navbar() {
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
             <Link href="/">
-              <p >Home</p>
+              <p>Home</p>
             </Link>
             {/* <a href="">Profiles</a> */}
             <Link href={isAuthenticated ? '/dashboard' : '/login'}>
@@ -67,6 +67,7 @@ function Navbar() {
             <Link href="/plans">
               <p>Plans</p>
             </Link>
+
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
             {!isAuthenticated ?

@@ -86,8 +86,8 @@ const LoginComp = () => {
                     <br />
 
                     <TextInput
-                        label="Your Email"
-                        placeholder="Enter your email"
+                        label="Email"
+                        placeholder="Enter Email"
                         size="md"
                         withAsterisk
                         name="email"
@@ -102,8 +102,8 @@ const LoginComp = () => {
 
 
                     <PasswordInput
-                        label="Your Password"
-                        placeholder="Enter your password"
+                        label="Password"
+                        placeholder="Enter Password"
                         size="md"
                         withAsterisk
                         name="password"
