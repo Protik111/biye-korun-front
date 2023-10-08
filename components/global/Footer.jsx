@@ -22,7 +22,7 @@ const Footer = () => {
                             </li>
 
                             <li>
-                                <a href="#">Premium Membership</a>
+                                <a href="/plans">Premium Membership</a>
                             </li>
 
                             <li>
@@ -40,7 +40,7 @@ const Footer = () => {
                             </li>
 
                             <li>
-                                <a href="#">Terms & Condition</a>
+                                <a href="#">Terms & Conditions</a>
                             </li>
 
                             <li>
@@ -65,10 +65,16 @@ const Footer = () => {
                                 <a href="#">Sitemap</a>
                             </li>
                         </ul> */}
+                        <p className="">USA Office</p>
+                        <p>30500 Van Dyke, Ste - 201 <br />
+                            Warren, MI 48093 <br />
+                            <p>+1 (586) 276-7347</p>
+                        </p>
+                        <br />
                         <p className="">Bangladesh Office</p>
                         <p>9143, Plot 2, Baunia Bazar <br />
                             Uttara, Dhaka-1230 <br />
-                            <p>+880161171308</p>
+                            <p>+880 16-1171308</p>
                         </p>
                     </p>
                 </ul>
