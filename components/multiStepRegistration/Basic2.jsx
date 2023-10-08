@@ -72,6 +72,7 @@ const Basic2 = () => {
         name="basic2country"
         onChange={(event) => handleChange("basic2country", event)}
         error={fieldErrors.basic2country}
+        searchable
       />
 
       <br />
