@@ -10,7 +10,7 @@ const Faqs = () => {
     };
 
     return (
-        <div className='faqs py-30'>
+        <div className='faqs py-30' id="faqs">
             <h2 className='text-center text-white'>FAQs</h2>
             <div className='faqs__container container'>
                 <Accordion defaultValue="customization" variant='contained'>

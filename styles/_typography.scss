@@ -22,7 +22,7 @@ h2 {
     color: $secondaryColorLight;
 
     @include smMaxBreakPoint {
-        font-size: 28px;
+        font-size: 24px;
         line-height: 28px;
     }
 }

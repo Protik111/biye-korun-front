@@ -41,7 +41,7 @@ const TermsCondition = () => {
                 <h1 className="text-center">Terms & Conditions</h1>
             </div>
 
-            <div className="w-75 m-auto mt-25">
+            <div className="w-75 w-md-100-responsive m-auto mt-25">
                 <h4>Terms & Conditions for Biyekorun</h4>
                 <p className="">Welcome to biyekorun.us, the premier online matrimonial platform dedicated to bringing individuals together for the sacred bond of marriage. When accessing or using our platform, users are expected to comply with the terms outlined in this document. As our commitment is to provide a seamless experience, we might occasionally update these terms. Users are encouraged to review this section frequently to stay updated.
 
@@ -49,7 +49,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div className="w-75 m-auto mt-25">
+            <div className="w-75 w-md-100-responsive m-auto mt-25">
                 <h4>Table of Contents</h4>
                 <div className="all_contents">
                     {contents?.map((content, i) => (
@@ -60,7 +60,7 @@ const TermsCondition = () => {
                 </div>
             </div>
 
-            <div id='Platform' className="w-75 m-auto mt-25">
+            <div id='Platform' className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>1. Platform Overview</h4>
                 </Alert>
@@ -75,7 +75,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Agreement" className="w-75 m-auto mt-25">
+            <div id="Agreement" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>2. User Agreement & Membership</h4>
                 </Alert>
@@ -88,7 +88,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Eligibility" className="w-75 m-auto mt-25">
+            <div id="Eligibility" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>3. Eligibility Criteria</h4>
                 </Alert>
@@ -101,7 +101,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Account" className="w-75 m-auto mt-25">
+            <div id="Account" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>4. Account Security & Management</h4>
                 </Alert>
@@ -114,7 +114,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Membership" className="w-75 m-auto mt-25">
+            <div id="Membership" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>5. Membership Termination</h4>
                 </Alert>
@@ -129,7 +129,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Usage" className="w-75 m-auto mt-25">
+            <div id="Usage" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>6. Usage Policy & Conduct</h4>
                 </Alert>
@@ -146,7 +146,7 @@ const TermsCondition = () => {
                 </p>
             </div>
 
-            <div id="Safety" className="w-75 m-auto mt-25">
+            <div id="Safety" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>7. Safety, Security, & Interactions</h4>
                 </Alert>
