@@ -64,9 +64,9 @@ function Navbar() {
               <p>Dashboard</p>
             </Link>
 
-            <Link href="/plans">
+            {/* <Link href="/plans">
               <p>Plans</p>
-            </Link>
+            </Link> */}
 
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
