@@ -6,6 +6,7 @@ import {
   cities,
   heights,
   maritalStatuses,
+  motherTongues,
   motherTongues2,
   recidencies,
   subCommunities,
@@ -40,6 +41,7 @@ const Step1 = ({
     hasChildren,
     diet,
     height,
+    weight,
     subCommunity,
     motherTongue,
     bloodGroup,
@@ -96,9 +98,8 @@ const Step1 = ({
     if (!height) {
       errors.height = "Height is required";
     }
-
-    if (!subCommunity) {
-      errors.subCommunity = "Sub Community is required";
+    if (!weight) {
+      errors.height = "Weight is required";
     }
 
     if (!bloodGroup) {
@@ -114,8 +115,9 @@ const Step1 = ({
   };
 
   const handleNextStep = () => {
+    console.log("122", weight);
     if (validateForm()) {
-      // console.log('success validation');
+      console.log("success validation");
       // Call the parent component's callback with the formValues
       onNextStep(formValues);
     } else {
@@ -134,8 +136,8 @@ const Step1 = ({
       <h2 className="text-center">Create An Account</h2>
 
       <Autocomplete
-        label="City You Lives In?"
-        placeholder="Enter the city you lives in"
+        label="City"
+        placeholder="Enter the city "
         size="md"
         withAsterisk
         name="city"
@@ -150,7 +152,7 @@ const Step1 = ({
 
       <div>
         <label htmlFor="livesWithFamily" className="label label-required">
-          Lives With Your Family?
+          Do You Live With Your Family?
           <span className="required-field">*</span>
         </label>
         <Chip.Group
@@ -186,6 +188,7 @@ const Step1 = ({
         name="residency"
         onChange={(event) => handleFormChange("residency", event)}
         error={formErrors.residency}
+        searchable
       />
 
       <br />
@@ -248,7 +251,7 @@ const Step1 = ({
 
       <div>
         <label htmlFor="diet" className="label">
-          Your Diet?
+          Select Diets
         </label>
         <Chip.Group
           multiple={false}
@@ -257,13 +260,13 @@ const Step1 = ({
           name="diet"
         >
           <div className="flex flex-gap-10 flex-wrap mt-5">
-            <Chip variant="filled" color="pink" value="Veg">
-              Veg
+            <Chip variant="filled" color="pink" value="Vegetarian">
+              Vegetarian
             </Chip>
             <Chip variant="filled" color="pink" value="Non-Veg">
-              Non-Veg
+              Non Vegetarian
             </Chip>
-            <Chip variant="filled" color="pink" value="Eggetarian">
+            {/* <Chip variant="filled" color="pink" value="Eggetarian">
               Eggetarian
             </Chip>
             <Chip variant="filled" color="pink" value="Jain">
@@ -271,7 +274,7 @@ const Step1 = ({
             </Chip>
             <Chip variant="filled" color="pink" value="Vegan">
               Vegan
-            </Chip>
+            </Chip> */}
           </div>
           {formErrors.diet && (
             <p className="error-message">{formErrors.diet}</p>
@@ -295,7 +298,22 @@ const Step1 = ({
 
       <br />
 
-      <Select
+      <TextInput
+        size="md"
+        placeholder="Enter weight"
+        label="Weight(kg)"
+        value={formValues.weight}
+        withAsterisk
+        name="weight"
+        onChange={(event) =>
+          handleFormChange("weight", event.currentTarget.value)
+        }
+        error={formErrors.weight}
+      />
+
+      <br />
+
+      {/* <Select
         size="md"
         placeholder="Select"
         label="Sub-Community"
@@ -307,18 +325,19 @@ const Step1 = ({
         error={formErrors.subCommunity}
       />
 
-      <br />
+      <br /> */}
 
       <Select
         size="md"
         placeholder="Select"
-        label="Mother Tongue"
-        data={motherTongues2}
+        label="Native Language"
+        data={motherTongues}
         value={formValues.motherTongue}
         withAsterisk
         name="motherTongue"
         onChange={(event) => handleFormChange("motherTongue", event)}
         error={formErrors.motherTongue}
+        searchable
       />
 
       <br />

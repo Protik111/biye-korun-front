@@ -36,14 +36,14 @@ const PremiumPlan = () => {
   return (
     <div className="premiumPlan_main">
       <div className="container py-25">
-        <h1 className="text-center">Premium Plans</h1>
-        <h3 className="text-center">
+        <h1 className="text-center">Plans</h1>
+        {/* <h3 className="text-center">
           The search of any profiles is primarily free. a search upgrade for a
           personalized one. With a premium membership, you may communicate
           easily with your prospect and receive more responses. Many people have
           found their love. Awaiting your soul mate are you ready?
-        </h3>
-
+        </h3> */}
+        <br />
         <div className="plan_card">
           <div className="free_card">
             <h1>FREE</h1>
@@ -106,14 +106,20 @@ const PremiumPlan = () => {
             })}
             <Button
               onClick={() => window.open("/plans")}
-              sx={{ backgroundColor: "#FD123F", color: "white", width: "200px", position: "absolute", left: "15%", bottom: "10%" }}
+              sx={{
+                backgroundColor: "#FD123F",
+                color: "white",
+                width: "200px",
+                position: "absolute",
+                left: "15%",
+                bottom: "10%",
+              }}
               color="pink"
               variant="white"
             >
               Upgrade Now
             </Button>
           </div>
-
         </div>
       </div>
     </div>

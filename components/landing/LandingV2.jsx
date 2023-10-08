@@ -14,6 +14,7 @@ import {
   RangeSlider,
   Popover,
   Text,
+  TextInput,
 } from "@mantine/core";
 import { useState } from "react";
 import CenteredModal from "../global/CenteredModal";
@@ -32,7 +33,7 @@ const LandingV2 = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    ages: [18, 25],
+    ages: [18, 50],
   });
 
   // console.log('matches', matches);
@@ -92,9 +93,20 @@ const LandingV2 = () => {
               />
 
               <div>
-                {/* <Popover width={200} position="bottom" withArrow shadow="md">
+                <Popover width={200} position="bottom" withArrow shadow="md">
                   <Popover.Target>
-                    <Button>Toggle popover</Button>
+                    {/* <div style={{ width: "200px" }}>
+                      <option value="0">Select car</option>
+                    </div> */}
+                    <TextInput
+                      label="Age"
+                      styles={{ label: labelStyles }}
+                      value={`${formData.ages[0]} - ${formData.ages[1]}`}
+                      size="md"
+                      data={[]}
+                      // style={{ width: "150px" }}
+                      sx={selectMobileStyles}
+                    />
                   </Popover.Target>
                   <Popover.Dropdown>
                     <RangeSlider
@@ -115,10 +127,10 @@ const LandingV2 = () => {
                       onChange={(event) => handleFormChange("ages", event)}
                     />
                   </Popover.Dropdown>
-                </Popover> */}
+                </Popover>
               </div>
 
-              <Select
+              {/* <Select
                 size="md"
                 label="Age"
                 defaultValue="20"
@@ -138,7 +150,7 @@ const LandingV2 = () => {
                 sx={selectMobileStylesV2}
                 max={70}
                 style={{ marginTop: "21px", color: "white" }}
-              />
+              /> */}
               {/* <p className="landing__meet--to">to</p>
 
                             <Select
@@ -151,7 +163,7 @@ const LandingV2 = () => {
 
 
                             /> */}
-              <Select
+              <MultiSelect
                 size="md"
                 placeholder="Select"
                 label="Religion"
@@ -159,6 +171,7 @@ const LandingV2 = () => {
                 styles={{ label: labelStyles }}
                 data={religions}
                 sx={selectMobileStyles}
+                searchable
               />
               <MultiSelect
                 size="md"
