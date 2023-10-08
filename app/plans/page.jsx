@@ -9,7 +9,7 @@ const page = () => {
     return (
         <div className='plans'>
             <PlansHero></PlansHero>
-            <MatchMaking></MatchMaking>
+            {/* <MatchMaking></MatchMaking> */}
             <QuestionAnswer></QuestionAnswer>
             <Footer></Footer>
         </div>
