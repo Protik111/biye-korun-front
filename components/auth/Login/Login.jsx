@@ -1,4 +1,7 @@
+import CenteredModal from "@/components/global/CenteredModal"
 import LoaderWithText from "@/components/global/LoaderWithText"
+import Form from "@/components/multiStepRegistration/Form"
+import { FormProvider } from "@/context/FormContext"
 import { loadUser, login } from "@/redux/features/auth/authSlice"
 import { loadUserData } from "@/redux/features/user/userSlice"
 import { btnBackground, logininput } from "@/styles/library/mantine"
@@ -25,6 +28,8 @@ const LoginComp = () => {
         email: '',
         password: ''
     })
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleModalClose = () => setModalOpen(false)
 
     const handleChange = (name, value) => {
         setFormData((prevFormValues) => ({
@@ -82,7 +87,9 @@ const LoginComp = () => {
     return (
         <div className="loginComp flex justify-center align-center min-vh-75 container">
             <div className="loginComp__wrapper container-box-vh-50 grid grid-cols-2 grid-cols-2-responsive place-center px-15">
-                <div className="loginComp__wrapper--left">
+                <div className="loginComp__wrapper--left box-shadow px-25 py-30 rounded-10">
+
+                    <h4 className="text-center">Sign In</h4>
                     <br />
 
                     <TextInput
@@ -135,11 +142,34 @@ const LoginComp = () => {
                             </>
                         )}
                     </Button>
+
+                    {/* <Button
+                        size="md"
+                        fullWidth
+                        // variant="outline"
+                        // leftIcon={<IconArrowNarrowLeft />}
+                        // style={btnBackground}
+                        type="button"
+                        className={`button mt-10`}
+                        onClick={() => setModalOpen(true)}
+                    // disabled={loading}
+                    >
+                        Register
+                    </Button> */}
                 </div>
                 <div className="loginComp__wrapper--right">
                     <img src="/auth/login-password.svg" alt="login" />
                 </div>
             </div>
+
+            {
+                modalOpen && <CenteredModal modalOpen={modalOpen} handleModalClose={handleModalClose} modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}>
+                    {/* <MultistepRegistration></MultistepRegistration> */}
+                    <FormProvider>
+                        <Form handleModalClose={handleModalClose}></Form>
+                    </FormProvider>
+                </CenteredModal>
+            }
         </div>
     )
 }

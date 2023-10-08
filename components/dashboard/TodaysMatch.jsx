@@ -66,7 +66,7 @@ const TodaysMatch = () => {
       <>
         <div className="flex justify-between align-center">
           <h2 className="text-center mb-15">
-            Here are Today's top Matches for you. Connect with them now!
+            Here are today's top matches for you. Connect with them now!
           </h2>
           {!loading && data?.data?.length !== 0 && <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
             <Tooltip

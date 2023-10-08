@@ -15,6 +15,7 @@
 
                 @include lgMaxBreakPoint {
                     height: 200px;
+                    display: none;
                 }
 
                 @include smMaxBreakPoint {

@@ -27,9 +27,9 @@ const Footer = () => {
                                 <a href="/plans">Premium Membership</a>
                             </li>
 
-                            <li>
-                                <a href="#">FAQs</a>
-                            </li>
+                            {/* <li>
+                                <a href="#faqs">FAQs</a>
+                            </li> */}
                         </ul>
                     </li>
 
@@ -38,7 +38,7 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                <a href="#">About Us</a>
+                                {/* <a href="#">About Us</a> */}
                             </li>
 
                             <li>

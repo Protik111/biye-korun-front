@@ -61,14 +61,14 @@ const PrivacyContent = () => {
                 <h1 className="text-center">Privacy Policy</h1>
             </div>
 
-            <div className="w-75 m-auto mt-25">
+            <div className="w-75 w-md-100-responsive m-auto mt-25">
                 <h4>Your Privacy Matters</h4>
                 <p className="">Your privacy matters deeply to us. This policy aims to elucidate how we handle, collect, and share your personal information.
 
                 </p>
             </div>
 
-            <div className="w-75 m-auto mt-25">
+            <div className="w-75 w-md-100-responsive m-auto mt-25">
                 <h4>Table of Contents</h4>
                 <div className="all_contents">
                     {contents?.map((content, i) => (
@@ -79,7 +79,7 @@ const PrivacyContent = () => {
                 </div>
             </div>
 
-            <div id="information" className="w-75 m-auto mt-25">
+            <div id="information" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>1. Information Collection by Biyekorun.us</h4>
                 </Alert>
@@ -88,7 +88,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id='submitted' className="w-75 m-auto mt-25">
+            <div id='submitted' className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>2. Information Submitted Voluntarily by You</h4>
                 </Alert>
@@ -109,7 +109,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="provided" className="w-75 m-auto mt-25">
+            <div id="provided" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>3. Information Indirectly Provided by You</h4>
                 </Alert>
@@ -122,7 +122,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Obtained" className="w-75 m-auto mt-25">
+            <div id="Obtained" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>4. Information Obtained from Third Parties</h4>
                 </Alert>
@@ -135,7 +135,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Collected" className="w-75 m-auto mt-25">
+            <div id="Collected" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>5. Utilization of Collected Information</h4>
                 </Alert>
@@ -155,7 +155,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Sharing" className="w-75 m-auto mt-25">
+            <div id="Sharing" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>6. Information Sharing</h4>
                 </Alert>
@@ -173,7 +173,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Managing" className="w-75 m-auto mt-25">
+            <div id="Managing" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>7. Managing Your Information</h4>
                 </Alert>
@@ -182,7 +182,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Security" className="w-75 m-auto mt-25">
+            <div id="Security" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>8. Security Measures</h4>
                 </Alert>
@@ -191,7 +191,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Data" className="w-75 m-auto mt-25">
+            <div id="Data" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>9. Data Retention</h4>
                 </Alert>
@@ -200,7 +200,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Cookies" className="w-75 m-auto mt-25">
+            <div id="Cookies" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>10. Cookies and Tracking</h4>
                 </Alert>
@@ -209,7 +209,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="International" className="w-75 m-auto mt-25">
+            <div id="International" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>11. International Data Transfers</h4>
                 </Alert>
@@ -218,7 +218,7 @@ const PrivacyContent = () => {
                 </p>
             </div>
 
-            <div id="Privacy" className="w-75 m-auto mt-25">
+            <div id="Privacy" className="w-75 w-md-100-responsive m-auto mt-25">
                 <Alert variant="light" color="indigo">
                     <h4>12. Updates to Privacy Policys</h4>
                 </Alert>
