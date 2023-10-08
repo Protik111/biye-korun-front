@@ -67,7 +67,7 @@ const MatchMaking = () => {
                 </div>
             </div>
 
-            <div className="text-center mt-15">
+            {/* <div className="text-center mt-15">
                 <p>Need more information?</p>
                 <div className="flex align-center justify-center">
                     <div className="mr-5">
@@ -76,7 +76,7 @@ const MatchMaking = () => {
                     <Anchor href="https://mantine.dev/" target="_blank">Request a free biye consultation</Anchor>
 
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
