@@ -10,7 +10,13 @@ import {
   getCountryCodeByLabel,
   getStateCodeByLabel,
 } from "@/utils/getCountryLabelCode";
-import { Accordion, RangeSlider, Select, ThemeIcon } from "@mantine/core";
+import {
+  Accordion,
+  MultiSelect,
+  RangeSlider,
+  Select,
+  ThemeIcon,
+} from "@mantine/core";
 import {
   IconCalendarTime,
   IconFall,
@@ -43,8 +49,8 @@ function Location({ formData, setFormData }) {
   const [countryCode, setCountryCode] = useState("");
   const [stateCode, setStateCode] = useState("");
 
-  // console.log('countryCode', countryCode);
-  // console.log('stateCode', stateCode);
+  console.log("countryCode", countryCode);
+  console.log("stateCode", stateCode);
 
   //custom hooks to get country, state, city
   const { data, error, loading } = useCountry(countryCode, stateCode);
@@ -58,7 +64,7 @@ function Location({ formData, setFormData }) {
     }));
   };
 
-  // console.log('country, state, city data', data);
+  console.log("country, state, city data", data);
 
   useEffect(() => {
     if (!loading?.country) {
@@ -91,9 +97,9 @@ function Location({ formData, setFormData }) {
     }
   }, [data, loading, formData?.livingIn, formData?.stateLiving]);
 
-  // console.log('stateList', stateList);
+  console.log("stateList", stateList);
 
-  // console.log('formData', formData);
+  console.log("formData", formData);
 
   return (
     <div className="pt-15">
@@ -114,17 +120,16 @@ function Location({ formData, setFormData }) {
               Country
             </Accordion.Control>
             <Accordion.Panel>
-              <Select
+              <MultiSelect
                 searchable
                 size="md"
-                placeholder="Select"
+                placeholder="Select country"
                 label="Country"
-                defaultValue="20"
                 styles={{ label: labelStyles }}
-                data={countries}
-                // data={countryList}
+                // data={countries}
+                data={countryList}
                 name="livingIn"
-                value={formData.livingIn}
+                defaultValue={formData.livingIn}
                 onChange={(event) => handleFormChange("livingIn", event)}
                 // style={{ width: '180px' }}
                 // sx={selectMobileStyles}
@@ -132,21 +137,21 @@ function Location({ formData, setFormData }) {
             </Accordion.Panel>
           </Accordion.Item>
 
-          <Accordion.Item value="item-2">
+          {/* <Accordion.Item value="item-2">
             <Accordion.Control
               icon={<ThemeIconComp iconComp={<IconMapPin size={16} />} />}
             >
-              State
+              City
             </Accordion.Control>
             <Accordion.Panel>
-              <Select
+              <MultiSelect
                 size="md"
                 placeholder="Select"
                 label="Country"
                 defaultValue="20"
                 styles={{ label: labelStyles }}
-                data={states}
-                // data={stateList}
+                // data={states}
+                data={stateList}
                 name="stateLiving"
                 value={formData.stateLiving}
                 onChange={(event) => handleFormChange("stateLiving", event)}
@@ -154,7 +159,7 @@ function Location({ formData, setFormData }) {
                 // sx={selectMobileStyles}
               />
             </Accordion.Panel>
-          </Accordion.Item>
+          </Accordion.Item> */}
 
           <Accordion.Item value="item-3">
             <Accordion.Control
@@ -163,15 +168,22 @@ function Location({ formData, setFormData }) {
               Residency Status
             </Accordion.Control>
             <Accordion.Panel>
-              <Select
+              <MultiSelect
                 size="md"
                 placeholder="Select"
-                label="Country"
-                defaultValue="20"
+                label="Residency Status"
+                // defaultValue="20"
                 styles={{ label: labelStyles }}
-                data={recidencies}
+                data={[
+                  // "Open to All",
+                  "Citizen",
+                  "Permanent Resident",
+                  "Student Visa",
+                  "Temporary Visa",
+                  "Work Permit",
+                ]}
                 name="residency"
-                value={formData.residency}
+                defaultValue={formData.residency}
                 onChange={(event) => handleFormChange("residency", event)}
                 // style={{ width: '180px' }}
                 // sx={selectMobileStyles}

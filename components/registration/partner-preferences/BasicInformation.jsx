@@ -1,7 +1,13 @@
 import ThemeIconComp from "@/components/global/ThemeIconComp";
 import { maritalStatuses } from "@/staticData/InputFields/inputFields";
 import { useStyles } from "@/styles/library/mantine";
-import { Accordion, RangeSlider, Select, ThemeIcon } from "@mantine/core";
+import {
+  Accordion,
+  MultiSelect,
+  RangeSlider,
+  Select,
+  ThemeIcon,
+} from "@mantine/core";
 import { IconCalendarTime, IconFall, IconHearts } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -106,21 +112,22 @@ function BasicInformation({
               Marital Status
             </Accordion.Control>
             <Accordion.Panel>
-              <Select
+              <MultiSelect
                 size="md"
                 placeholder="Select"
                 label="Marital status"
                 // styles={{ label: labelStyles }}
                 // data={maritalStatuses}
                 data={[
-                  "Open to All",
+                  //   "Open to All",
                   "Never Married",
                   "Divorced",
                   "Widowed",
                   "Awaiting Divorce",
                   "Annulled",
                 ]}
-                value={formData.maritalStatus}
+                // defaultValue={formData.maritalStatus}
+                defaultValue={formData.maritalStatus}
                 withAsterisk
                 name="maritalStatus"
                 onChange={(event) => handleFormChange("maritalStatus", event)}

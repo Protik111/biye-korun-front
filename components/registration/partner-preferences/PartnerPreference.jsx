@@ -46,7 +46,7 @@ const PartnerPreference = ({
     phone,
     profilePicture: { url } = {},
   } = userInfo?.partnerpreference || {};
-  console.log("49", userInfo?.partnerpreference);
+
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
     ages: [18, 25],
@@ -97,10 +97,10 @@ const PartnerPreference = ({
       maxHeight: maxHeight.toString(),
       maritalStatus: maritalStatus,
       religion,
-      community: "Muslim",
+      //   community: "Muslim",
       motherTongue,
       country: livingIn,
-      stateLiving,
+      //   stateLiving,
       residencyStatus: residency,
       qualification,
       workingWith,
