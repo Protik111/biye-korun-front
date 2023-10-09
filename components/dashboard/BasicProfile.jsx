@@ -144,7 +144,7 @@ const BasicProfile = ({ profile }) => {
             {maritalStatus && <List.Item>{maritalStatus}</List.Item>}
             {country && <List.Item>Lives in {country}</List.Item>}
             {/* <List.Item>Works at </List.Item> */}
-            {(!min && max) ? <List.Item>Earns Upto BDT {max}K monthly</List.Item>
+            {(!min && max) ? <List.Item> {max}K monthly</List.Item>
               :
               min ? <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>
                 :

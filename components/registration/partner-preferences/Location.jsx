@@ -106,7 +106,8 @@ function Location({ formData, setFormData }) {
                                 placeholder="Select"
                                 label="Country"
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                // styles={{ label: labelStyles }}
+                                withAsterisk
                                 data={countries}
                                 // data={countryList}
                                 name="livingIn"
@@ -130,9 +131,10 @@ function Location({ formData, setFormData }) {
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Country"
+                                label="State"
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                withAsterisk
+                                // styles={{ label: labelStyles }}
                                 data={states}
                                 // data={stateList}
                                 name="stateLiving"
@@ -156,9 +158,10 @@ function Location({ formData, setFormData }) {
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Country"
+                                label="Residency Status"
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                withAsterisk
+                                // styles={{ label: labelStyles }}
                                 data={recidencies}
                                 name="residency"
                                 value={formData.residency}
