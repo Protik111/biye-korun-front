@@ -77,7 +77,7 @@ const AccountSettings = ({ profileData, setProfileData }) => {
             otp: otp
         })
             .then(res => {
-                console.log('res', res);
+                // console.log('res', res);
                 notifySuccess('Email updated successfully!')
                 dispatch(loadUserData());
                 setOtp('')

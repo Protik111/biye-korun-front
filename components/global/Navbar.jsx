@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/features/auth/authSlice";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { useRouter } from "next/navigation";
+import { btnBackground } from "@/styles/library/mantine";
 
 function Navbar() {
   const { isAuthenticated } = useSelector(state => state.auth);
@@ -52,7 +53,7 @@ function Navbar() {
         <nav className="container">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="/biye-korun-logo-bangla-v2.png" alt="Biye Korun Logo" />
+              <img src="/biye-korun-logo-v2.png" alt="Biye Korun Logo" />
             </Link>
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
@@ -72,7 +73,7 @@ function Navbar() {
             {/* <a href="">Help</a> */}
             {!isAuthenticated ?
               <Link href="/login">
-                <Button mt={5} mr={5} color="pink" radius="xl" size="md">
+                <Button mt={5} mr={5} style={btnBackground} radius="xl" size="md">
                   Login
                 </Button>
               </Link> :

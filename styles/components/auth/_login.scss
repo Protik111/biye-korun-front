@@ -22,6 +22,19 @@
                     height: 200px;
                 }
             }
+
+            .forgot-img {
+                height: 500px;
+
+                @include lgMaxBreakPoint {
+                    height: 200px;
+                    display: none;
+                }
+
+                @include smMaxBreakPoint {
+                    height: 200px;
+                }
+            }
         }
     }
 }
