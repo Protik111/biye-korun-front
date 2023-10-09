@@ -61,9 +61,9 @@ const Step1 = ({
 
   useEffect(() => {
     if (data2 && data2.state && !loading2.state) {
-      console.log("state", state);
+      // console.log("state", state);
       const modifiedState = state?.map((state) => state?.name);
-      console.log("modifiedState", modifiedState);
+      // console.log("modifiedState", modifiedState);
       setStateList(modifiedState);
     }
   }, [data2, loading2.state]);
