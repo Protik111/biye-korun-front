@@ -53,7 +53,7 @@ function Navbar() {
         <nav className="container">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="/biye-korun-logo-v2.png" alt="Biye Korun Logo" />
+              <img src="/biye-korun-logo-with-tagline.png" alt="Biye Korun Logo" />
             </Link>
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
