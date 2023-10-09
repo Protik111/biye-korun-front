@@ -53,7 +53,8 @@ function Communities({ formData, setFormData }) {
                                 placeholder="Select"
                                 label="Religion"
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                withAsterisk
+                                // styles={{ label: labelStyles }}
                                 // data={religions}
                                 data={["Open to All", "Muslim", "Hindu", "Christian", "Sikh", "Parsi", "Jain", "Buddhist", "Jewish", "No Religion", "Spirtual-not religious", "Other"]}
                                 name="religion"
@@ -77,8 +78,9 @@ function Communities({ formData, setFormData }) {
                                 size="md"
                                 placeholder="Select"
                                 label="Mother Tongue"
+                                withAsterisk
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                // styles={{ label: labelStyles }}
                                 data={motherTongues}
                                 name="motherTongue"
                                 value={formData.motherTongue}

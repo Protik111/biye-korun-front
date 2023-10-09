@@ -13,7 +13,7 @@ const DobComp = ({ profileData, setProfileData }) => {
         <div>
             <Radio.Group onChange={(e) => handleChange('dob', e)} name="email">
                 <Group mt="xs" className="flex-column align-start">
-                    <Radio color="pink" value="Show my full Date of Birth (dd/mm/yyyy)" label="Show my full Date of Birth (dd/mm/yyyy)" />
+                    <Radio color="pink" value="Show my full Date of Birth (mm/dd/yyyy)" label="Show my full Date of Birth (mm/dd/yyyy)" />
                     <Radio color="pink" value="Show only the Month & Year (mm/yyyy)" label="Show only the Month & Year (mm/yyyy)" />
                 </Group>
             </Radio.Group>

@@ -12,6 +12,8 @@ import { Button, Loader, PasswordInput, TextInput } from "@mantine/core"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Link from "next/link"
+
 
 const LoginComp = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
@@ -142,6 +144,13 @@ const LoginComp = () => {
                             </>
                         )}
                     </Button>
+                    <br></br>
+
+                    <div>
+                        <p style={{ color: '#828282' }}>Forgot Password?<Link href='/forgot-password'><span style={{ color: "#F87A1D" }}> Recover now!</span></Link></p>
+                        <p style={{ color: '#828282' }}>New to Biye Korun? <Link href=''><span style={{ color: "#F87A1D" }}>Create an Account!</span></Link></p>
+                    </div>
+
 
                     {/* <Button
                         size="md"

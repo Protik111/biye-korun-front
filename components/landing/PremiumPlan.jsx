@@ -1,6 +1,6 @@
 import React from "react";
 import { IconCircleCheckFilled } from "@tabler/icons-react";
-import { Button } from "@mantine/core";
+import { Button, Tooltip } from "@mantine/core";
 
 let _mocDataFree_card = [
   {
@@ -104,21 +104,27 @@ const PremiumPlan = () => {
                 </div>
               );
             })}
-            <Button
-              onClick={() => window.open("/plans")}
-              sx={{
-                backgroundColor: "#FD123F",
-                color: "white",
-                width: "200px",
-                position: "absolute",
-                left: "15%",
-                bottom: "10%",
-              }}
-              color="pink"
-              variant="white"
+            <Tooltip
+                label={"Upgrade to Premium"}
+                color="pink"
+                withArrow
             >
-              Upgrade Now
-            </Button>
+              <Button
+                onClick={() => window.open("/plans")}
+                sx={{
+                  backgroundColor: "#FD123F",
+                  color: "white",
+                  width: "200px",
+                  position: "absolute",
+                  left: "15%",
+                  bottom: "10%",
+                }}
+                color="pink"
+                variant="white"
+              >
+                Upgrade Now
+              </Button>
+            </Tooltip>
           </div>
         </div>
       </div>
