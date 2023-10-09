@@ -139,7 +139,7 @@ const BrideGroom = () => {
             >
               {/* <MultistepRegistration></MultistepRegistration> */}
               <FormProvider>
-                <Form></Form>
+                <Form handleModalClose={handleModalClose}></Form>
               </FormProvider>
             </CenteredModal>
           )}

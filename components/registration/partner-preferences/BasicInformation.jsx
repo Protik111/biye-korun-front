@@ -1,13 +1,7 @@
 import ThemeIconComp from "@/components/global/ThemeIconComp";
 import { maritalStatuses } from "@/staticData/InputFields/inputFields";
 import { useStyles } from "@/styles/library/mantine";
-import {
-  Accordion,
-  MultiSelect,
-  RangeSlider,
-  Select,
-  ThemeIcon,
-} from "@mantine/core";
+import { Accordion, RangeSlider, Select, ThemeIcon } from "@mantine/core";
 import { IconCalendarTime, IconFall, IconHearts } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -112,7 +106,7 @@ function BasicInformation({
               Marital Status
             </Accordion.Control>
             <Accordion.Panel>
-              <MultiSelect
+              <Select
                 size="md"
                 placeholder="Select"
                 label="Marital status"

@@ -1,7 +1,7 @@
 const QuestionAnswer = () => {
     return (
         <div className="questionAnswer container">
-            <h2 className="text-center">You have <b>Questions.</b>We have the <b>Answers...</b></h2>
+            <h2 className="text-center">You have <b>Questions.</b> We have the <b>Answers...</b></h2>
 
             <div className="questionAnswer__box mt-15">
                 <div className="questionAnswer__box--single">

@@ -97,7 +97,11 @@
     .legal {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         color: #999;
+        p{
+            margin: 0px auto;
+        }
     }
 
     .legal__links {

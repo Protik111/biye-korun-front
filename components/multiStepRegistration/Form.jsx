@@ -69,15 +69,19 @@ const Form = ({ handleModalClose }) => {
 
 
         if (isSubmittable) {
+            console.log('test');
             setLoading(true)
             dispatch(register(datas))
                 .unwrap()
                 .then(() => {
                     notifySuccess("Registered successfully!")
                     setLoading(false)
+                    console.log('yes');
                     handleModalClose()
 
                     const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+
+                    console.log('token', token);
 
                     if (parsedToken?.accessToken) {
                         setAuthToken(parsedToken.accessToken);
@@ -85,6 +89,7 @@ const Form = ({ handleModalClose }) => {
                         dispatch(loadUser())
                         dispatch(loadUserData())
                     }
+                    console.log('registerred');
                     setTimeout(() => {
                         router.push('/profile-creation')
                     }, 500)
@@ -92,6 +97,7 @@ const Form = ({ handleModalClose }) => {
                 .catch(() => {
                     notifyError(message)
                     setLoading(false)
+                    console.log('no');
                 })
         }
 

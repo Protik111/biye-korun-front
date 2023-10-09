@@ -1,0 +1,40 @@
+.privacyContent {
+    p {}
+
+    .all_contents {
+        padding: 10px 15px;
+
+        ul {
+            li {
+                color: #062539;
+                font-size: 15px;
+                font-family: "Poppins", sans-serif;
+                position: relative;
+                list-style: none;
+                padding-left: 20px;
+                margin-top: 15px;
+
+                a {
+                    color: black;
+
+                    &:hover {
+                        color: black;
+                        text-decoration: underline;
+                    }
+                }
+
+                &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 4.5px;
+                    height: 9px;
+                    width: 9px;
+                    border-radius: 10px;
+                    content: "";
+                    background: $secondaryColorLight;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

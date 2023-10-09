@@ -150,7 +150,7 @@ const ProfileDetails = ({ profile }) => {
                             <p>Your Preferences</p>
                         </div>
                         <div>
-                            --------<Badge size='lg' color="pink">You matches {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>--------
+                            --------<Badge size='sm' color="pink">You matches {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>--------
                         </div>
 
 
