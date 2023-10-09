@@ -33,6 +33,7 @@ const ForgotPassword = () => {
     const [isOTPSend, setIsOTPSend] = useState(false);
     const [switchSection, setSwithSection] = useState(false);
     const [newCodeTimer, setNewCodeTimer] = useState(Date.now() + 10 * 60 * 1000);
+
     const [formData, setFormData] = useState({
         email: '',
     })
@@ -143,21 +144,24 @@ const ForgotPassword = () => {
 
     const handleSendOTP = () => {
         // sendPostRequest(payload)
-        configureAxiosHeader()
-        setLoading(true)
-        axios.patch('user/forgotpassword', payload)
-            .then(res => {
-                setLoading(false);
-                if (res.data?.success) {
-                    setIsOTPSend(true)
-                }
-            })
-            .catch(err => {
-                setLoading(false);
+        if (validateForm()) {
+            configureAxiosHeader()
+            setLoading(true)
+            axios.patch('user/forgotpassword', payload)
+                .then(res => {
+                    setLoading(false);
+                    if (res.data?.success) {
+                        setIsOTPSend(true)
+                        notifySuccess("A verification code has been sent to your email.")
+                    }
+                })
+                .catch(err => {
+                    setLoading(false);
 
-                console.log(err.response.data);
-                notifyError(err.response.data.message)
-            })
+                    console.log(err.response.data);
+                    notifyError(err.response.data.message)
+                })
+        }
     }
 
     useEffect(() => {
