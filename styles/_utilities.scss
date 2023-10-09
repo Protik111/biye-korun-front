@@ -592,3 +592,11 @@
 .opacity-4 {
   opacity: 0.4;
 }
+
+.underline {
+
+  &:hover {
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+}

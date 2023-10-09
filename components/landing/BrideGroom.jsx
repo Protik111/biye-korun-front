@@ -11,6 +11,7 @@ import { heightCalculator } from "@/utils/heightCalculator";
 import { imageUrl } from "@/staticData/image";
 import { DisableRightClick } from "@/utils/DisableRightClick";
 import { btnBackground } from "@/styles/library/mantine";
+import Link from "next/link";
 
 const brides = [
   {
@@ -104,15 +105,19 @@ const BrideGroom = () => {
                     {heightCalculator(item?.appearance?.height) || `5' 10"`}
                   </p>
                 </div>
-                <Button
-                  sx={{ backgroundColor: "#770DD5", color: "white" }}
-                  color="pink"
-                  variant="white"
-                  className="mt-10"
-                  radius="lg"
-                >
-                  View Profile
-                </Button>
+                <div className="flex justify-center">
+                  <Link href="/login">
+                    <Button
+                      sx={{ backgroundColor: "#770DD5", color: "white" }}
+                      color="pink"
+                      variant="white"
+                      className="mt-10"
+                      radius="lg"
+                    >
+                      View Profile
+                    </Button>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
