@@ -110,7 +110,7 @@ function BasicInformation({ formData, setFormData, minHeight, setMinHeight, maxH
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Marital status"
+                                label="Marital Status"
                                 // styles={{ label: labelStyles }}
                                 // data={maritalStatuses}
                                 data={["Open to All", "Never Married", "Divorced", "Widowed", "Awaiting Divorce", "Annulled"]}

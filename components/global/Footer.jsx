@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="footer container">
                 <div className="footer__addr">
                     <img src="biyekorun-logo.png" alt="logo" />
-                    <p>Biye Korun: Bridging Hearts with Trust. Discover your perfect life partner through our secure and intuitive platform. Celebrate love, commitment, and new beginnings with us.</p>
+                    <p>Bridging Hearts with Trust. Discover your perfect life partner through our secure and intuitive platform. Celebrate love, commitment, and new beginnings with us.</p>
 
                 </div>
 
@@ -76,13 +76,13 @@ const Footer = () => {
                         <p className="">Bangladesh Office</p>
                         <p>9143, Plot 2, Baunia Bazar <br />
                             Uttara, Dhaka-1230 <br />
-                            <p>+880 16-1171308</p>
+                            <p>+880 16-11171308</p>
                         </p>
                     </p>
                 </ul>
 
-                <div className="legal text-center">
-                    <p>&copy; TS4U.Inc All rights reserved.</p>
+                <div className="legal">
+                    <p className="mt-15">&copy; TS4U.Inc All Rights Reserved.</p>
                 </div>
             </div>
         </div>

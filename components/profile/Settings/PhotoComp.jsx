@@ -21,7 +21,7 @@ const PhotoComp = ({ profileData, setProfileData }) => {
                 </Group>
             </Radio.Group>
 
-            <div className="profile-img">
+            <div className="profile-img mt-20">
                 <img src={userInfo?.profilePicture?.url?.medium} alt="profile" />
             </div>
         </div>

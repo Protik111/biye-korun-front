@@ -83,7 +83,7 @@ const Settings = () => {
         {
             id: 5,
             label: 'Date of Birth',
-            value: 'Show my full Date of Birth (dd/mm/yyyy)',
+            value: 'Show my full Date of Birth (mm/dd/yyyy)',
             hiddenComp: <DobComp profileData={profileData} setProfileData={setProfileData}></DobComp>
         },
         {

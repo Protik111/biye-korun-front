@@ -1,5 +1,6 @@
 "use client";
 
+import useAxios from "@/hooks/axios/useAxios";
 import {
   colleges,
   companies,
@@ -8,8 +9,15 @@ import {
   qualifications,
   worksWithsOwn,
 } from "@/staticData/InputFields/inputFields";
-import { Button, Select } from "@mantine/core";
+import {
+  Button,
+  Select,
+  MultiSelect,
+  TextInput,
+  Autocomplete,
+} from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 const Step2 = ({
   onNextStep,
@@ -20,7 +28,7 @@ const Step2 = ({
 }) => {
   const { qualification, worksWith, profession, income, college, company } =
     formValues;
-
+  const [filterValue, setFilterValue] = useState("");
   const validateForm = () => {
     const errors = {};
 
@@ -60,12 +68,24 @@ const Step2 = ({
   };
 
   const handleFormChange = (name, value) => {
+    // console.log("name", name, value);
+    // if (name === "college" && value.length >= 3) {
+    //   // Filter the data only when at least 3 characters are entered
+    //   const filteredData = colleges.filter((institution) =>
+    //     institution.name.toLowerCase().includes(value.toLowerCase())
+    //   );
+    //   console.log("filtered data 73", filteredData);
+    //   setFilterValue(filteredData);
+    // }
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
     }));
   };
 
+  useEffect(() => {
+    console.log("73", colleges);
+  }, []);
   return (
     <div className="step1">
       <h2 className="text-center">Education And Qualifications</h2>
@@ -82,6 +102,7 @@ const Step2 = ({
         name="qualification"
         onChange={(event) => handleFormChange("qualification", event)}
         error={formErrors.qualification}
+        searchable
       />
 
       <br />
@@ -90,7 +111,7 @@ const Step2 = ({
         <>
           <Select
             size="md"
-            placeholder="Select"
+            placeholder="Enter college"
             label="College"
             data={colleges}
             value={formValues.college}
@@ -98,6 +119,7 @@ const Step2 = ({
             name="college"
             onChange={(event) => handleFormChange("college", event)}
             error={formErrors.college}
+            searchable
           />
 
           <br />
@@ -107,7 +129,7 @@ const Step2 = ({
       <Select
         size="md"
         placeholder="Select"
-        label="Works With"
+        label="Job Sector"
         // styles={{ label: labelStyles }}
         data={worksWithsOwn}
         value={formValues.worksWith}
@@ -122,7 +144,7 @@ const Step2 = ({
       <Select
         size="md"
         placeholder="Select"
-        label="As"
+        label="Job Title"
         data={professions}
         value={formValues.profession}
         withAsterisk
@@ -154,7 +176,7 @@ const Step2 = ({
       <Select
         size="md"
         placeholder="Select"
-        label="Income Monthly"
+        label="Monthly Income"
         data={incomes}
         value={formValues.income}
         withAsterisk

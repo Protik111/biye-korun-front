@@ -1,0 +1,12 @@
+// @import './mixins';
+
+.no-data-found{
+    // @include smMinBreakPoint {
+    //     // font-size: 48px;
+    //     width: 100px;
+    // }
+    @media (max-width: 576px) {
+        width: 200px;
+        margin: auto;
+    }
+}

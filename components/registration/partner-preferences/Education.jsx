@@ -46,9 +46,10 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Country"
+                                label="Qualification"
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                // styles={{ label: labelStyles }}
+                                withAsterisk
                                 data={qualifications}
                                 // data={["Open to All", "Doctorate", "Masters", "Bachelor/Undergraduate", "Associate/Diploma", "High School and below"]}
                                 name="qualification"
@@ -66,15 +67,16 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
                             icon={
                                 <ThemeIconComp iconComp={<IconWorld size={16} />} />
                             }
-                        >Working with</Accordion.Control>
+                        >Working With</Accordion.Control>
                         <Accordion.Panel>
 
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Country"
+                                label="Working With"
+                                withAsterisk
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                // styles={{ label: labelStyles }}
                                 data={worksWiths}
                                 // data={["Open to All", "Private Company", "Government/Public Sector", "Defense/Civil Services", "Business/Self Employed", "Non Working"]}
                                 name="workingWith"
@@ -98,9 +100,10 @@ function Education({ formData, setFormData, minIncomeValue, setMinIncomeValue, m
                             <Select
                                 size="md"
                                 placeholder="Select"
-                                label="Country"
+                                label="Profession"
+                                withAsterisk
                                 defaultValue="20"
-                                styles={{ label: labelStyles }}
+                                // styles={{ label: labelStyles }}
                                 data={professions}
                                 name="profession"
                                 value={formData.profession}
