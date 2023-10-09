@@ -1,0 +1,53 @@
+.aboutUsHeader {
+    background-color: $secondaryColorLight;
+    padding: 80px 20px;
+    background-image: url("/landing/Ellipse 46 (2).svg");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 380px;
+
+    @include smMaxBreakPoint {
+        padding: 30px 20px;
+    }
+
+    h2,
+    p {
+        color: white;
+    }
+
+    .text-container {
+        // justify-content: center;
+        // align-content: center;
+
+        .text-container-single {
+
+            h3,
+            h1,
+            h2,
+            p {
+                color: white;
+            }
+
+            h2 {
+                font-style: normal;
+                font-weight: 600;
+                font-size: 26px;
+                line-height: 25px;
+                text-align: right;
+
+                @include smMaxBreakPoint {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+        }
+
+        .text-container-single:nth-child(1) {
+            border-right: 3px solid white;
+        }
+
+        .text-container-single:nth-child(2) {
+            border-right: 3px solid white;
+        }
+    }
+}

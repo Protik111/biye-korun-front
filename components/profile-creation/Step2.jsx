@@ -15,6 +15,8 @@ import {
   MultiSelect,
   TextInput,
   Autocomplete,
+  ComboboxItem,
+  OptionsFilter,
 } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -68,24 +70,18 @@ const Step2 = ({
   };
 
   const handleFormChange = (name, value) => {
-    // console.log("name", name, value);
-    // if (name === "college" && value.length >= 3) {
-    //   // Filter the data only when at least 3 characters are entered
-    //   const filteredData = colleges.filter((institution) =>
-    //     institution.name.toLowerCase().includes(value.toLowerCase())
-    //   );
-    //   console.log("filtered data 73", filteredData);
-    //   setFilterValue(filteredData);
-    // }
+    console.log("name", name, value);
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
     }));
   };
 
-  useEffect(() => {
-    console.log("73", colleges);
-  }, []);
+  const collegeOptions = colleges.map((college) => ({
+    value: college.name,
+    label: college.name,
+  }));
+
   return (
     <div className="step1">
       <h2 className="text-center">Education And Qualifications</h2>
@@ -109,19 +105,31 @@ const Step2 = ({
 
       {qualification && (
         <>
-          <Select
+          {/* <Select
             size="md"
             placeholder="Enter college"
             label="College"
-            data={colleges}
+            data={options}
             value={formValues.college}
             withAsterisk
             name="college"
             onChange={(event) => handleFormChange("college", event)}
             error={formErrors.college}
             searchable
+          /> */}
+          <Autocomplete
+            size="md"
+            placeholder="Enter college"
+            label="College"
+            data={collegeOptions}
+            value={formValues.college}
+            withAsterisk
+            name="college"
+            limit={5}
+            onChange={(event) => handleFormChange("college", event)}
+            error={formErrors.college}
+            searchable
           />
-
           <br />
         </>
       )}
@@ -151,13 +159,14 @@ const Step2 = ({
         name="profession"
         onChange={(event) => handleFormChange("profession", event)}
         error={formErrors.profession}
+        searchable
       />
 
       <br />
 
       {profession && (
         <>
-          <Select
+          {/* <Select
             size="md"
             placeholder="Select"
             label="Company"
@@ -167,6 +176,20 @@ const Step2 = ({
             name="company"
             onChange={(event) => handleFormChange("company", event)}
             error={formErrors.company}
+            searchable
+          /> */}
+
+          <Autocomplete
+            size="md"
+            placeholder="Select"
+            label="Company"
+            data={companies}
+            value={formValues.company}
+            withAsterisk
+            name="company"
+            onChange={(event) => handleFormChange("company", event)}
+            error={formErrors.company}
+            searchable
           />
 
           <br />
@@ -176,7 +199,7 @@ const Step2 = ({
       <Select
         size="md"
         placeholder="Select"
-        label="Monthly Income"
+        label="Yearly Income"
         data={incomes}
         value={formValues.income}
         withAsterisk

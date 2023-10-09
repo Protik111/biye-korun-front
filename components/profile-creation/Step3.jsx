@@ -47,11 +47,13 @@ const Step3 = ({
 
   return (
     <div className="step1">
-      <h2 className="text-center">About Yourself</h2>
+      <h2 className="text-center">
+        About Yourself <span style={{ color: "red" }}>*</span>
+      </h2>
 
       <Textarea
-        placeholder="Describe yourself"
-        label="Share Your Bio"
+        placeholder="Copy and paste your resume"
+        // label="Share Your Bio"
         autosize
         minRows={3}
         withAsterisk
@@ -69,7 +71,7 @@ const Step3 = ({
           onChange={(phone) => handleFormChange("phone", phone)}
         />
         {formErrors.phone && (
-          <p className="error-message">{formErrors.phone}</p>
+          <p className="error-message">{formErrors.phone} </p>
         )}
       </div>
 

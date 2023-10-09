@@ -147,8 +147,8 @@ const LoginComp = () => {
                     <br></br>
 
                     <div>
-                        <p style={{ color: '#828282' }}>Forgot Password?<Link href='/forgot-password'><span style={{ color: "#F87A1D" }}> Recover now!</span></Link></p>
-                        <p style={{ color: '#828282' }}>New to Biye Korun? <Link href=''><span style={{ color: "#F87A1D" }}>Create an Account!</span></Link></p>
+                        <p style={{ color: '#828282' }}>Forgot Password?<Link href='/forgot-password'><span style={{ color: "#F87A1D" }} className="underline"> Recover now!</span></Link></p>
+                        <p style={{ color: '#828282' }}>New to Biye Korun? <span style={{ color: "#F87A1D" }} onClick={() => setModalOpen(true)} className="underline pointer">Create an Account!</span></p>
                     </div>
 
 
