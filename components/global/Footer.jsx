@@ -16,7 +16,7 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                <a href="#">Registration</a>
+                                <Link href="/login">Registration</Link>
                             </li>
 
                             <li>
