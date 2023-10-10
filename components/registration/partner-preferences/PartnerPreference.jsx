@@ -147,7 +147,7 @@ const PartnerPreference = ({
       maxHeight: maxHeight.toString(),
       maritalStatus: maritalStatus,
       religion,
-      community: "Muslim",
+      // community: "Muslim",
       motherTongue,
       country: livingIn,
       stateLiving,

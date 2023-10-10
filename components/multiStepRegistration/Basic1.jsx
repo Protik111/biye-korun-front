@@ -119,7 +119,7 @@ const Basic1 = () => {
       <MultiSelect
         size="md"
         placeholder="Select community "
-        label="Language "
+        label="Language"
         data={communities}
         value={data.basic1community}
         withAsterisk

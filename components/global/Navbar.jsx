@@ -1,10 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
-import { IconLogout2, IconMenu2, IconUserCircle, IconX } from "@tabler/icons-react";
+import {
+  IconLogout2,
+  IconMenu2,
+  IconUserCircle,
+  IconX,
+} from "@tabler/icons-react";
 import { Avatar, Button } from "@mantine/core";
 import Link from "next/link";
-import { Menu, Text } from '@mantine/core';
-import { IconSettings, IconSearch, IconPhoto, IconMessageCircle, IconTrash, IconArrowsLeftRight } from '@tabler/icons-react';
+import { Menu, Text } from "@mantine/core";
+import {
+  IconSettings,
+  IconSearch,
+  IconPhoto,
+  IconMessageCircle,
+  IconTrash,
+  IconArrowsLeftRight,
+} from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/features/auth/authSlice";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
@@ -12,8 +24,8 @@ import { useRouter } from "next/navigation";
 import { btnBackground } from "@/styles/library/mantine";
 
 function Navbar() {
-  const { isAuthenticated } = useSelector(state => state.auth);
-  const { userInfo } = useSelector(state => state.user) || {}
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.user) || {};
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -35,15 +47,15 @@ function Navbar() {
     dispatch(logout())
       .unwrap()
       .then(() => {
-        notifySuccess("Logout successfully!")
-        router.push('/')
+        notifySuccess("Logout successfully!");
+        router.push("/");
         // setTimeout(() => {
         // }, 500)
       })
       .catch(() => {
-        notifyError("Error Occurred!")
-      })
-  }
+        notifyError("Error Occurred!");
+      });
+  };
 
   // console.log('profilePicture', profilePicture);
 
@@ -53,16 +65,17 @@ function Navbar() {
         <nav className="container">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="/biye-korun-logo-with-tagline.png" alt="Biye Korun Logo" />
+              <img
+                src="/biye-korun-logo-with-tagline.png"
+                alt="Biye Korun Logo"
+              />
             </Link>
           </div>
           <div className={`links ${clicked ? "active" : ""}`}>
-            <Link href="/">
-              <p>Home</p>
-            </Link>
+            <Link href="/">{/* <p>Home</p> */}</Link>
             {/* <a href="">Profiles</a> */}
-            <Link href={isAuthenticated ? '/dashboard' : '/login'}>
-              <p>Dashboard</p>
+            <Link href={isAuthenticated ? "/dashboard" : "/login"}>
+              <p>{isAuthenticated ? "Dashboard" : ""}</p>
             </Link>
 
             {/* <Link href="/plans">
@@ -71,19 +84,26 @@ function Navbar() {
 
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
-            {!isAuthenticated ?
+            {!isAuthenticated ? (
               <Link href="/login">
-                <Button mt={5} mr={5} style={btnBackground} radius="xl" size="md">
+                <Button
+                  mt={5}
+                  mr={5}
+                  style={btnBackground}
+                  radius="xl"
+                  size="md"
+                >
                   Login
                 </Button>
-              </Link> :
+              </Link>
+            ) : (
               <div className="user-profile mt-10 mr-10">
                 <Menu shadow="md" width={200}>
-                  <Menu.Target sx={{ cursor: 'pointer' }}>
+                  <Menu.Target sx={{ cursor: "pointer" }}>
                     <Avatar
                       size="md"
                       radius="xl"
-                      src={profilePicture?.url?.large || '/profile.svg'}
+                      src={profilePicture?.url?.large || "/profile.svg"}
                       alt="it's me"
                     />
                   </Menu.Target>
@@ -92,22 +112,27 @@ function Navbar() {
                     {/* <Menu.Label>User Profile</Menu.Label> */}
 
                     <Menu.Item icon={<IconUserCircle size={14} />}>
-                      <Link style={{ color: 'black' }} href="/dashboard">
+                      <Link style={{ color: "black" }} href="/dashboard">
                         View Profile
                       </Link>
                     </Menu.Item>
 
                     <Menu.Item icon={<IconUserCircle size={14} />}>
-                      <Link style={{ color: 'black' }} href="/my-matches">
+                      <Link style={{ color: "black" }} href="/my-matches">
                         My Matches
                       </Link>
                     </Menu.Item>
 
-                    <Menu.Item onClick={() => handleLogout()} icon={<IconLogout2 size={14} />}>Log out</Menu.Item>
-
+                    <Menu.Item
+                      onClick={() => handleLogout()}
+                      icon={<IconLogout2 size={14} />}
+                    >
+                      Log out
+                    </Menu.Item>
                   </Menu.Dropdown>
                 </Menu>
-              </div>}
+              </div>
+            )}
           </div>
           <div className="burguer" onClick={handleClick}>
             {!clicked ? (
