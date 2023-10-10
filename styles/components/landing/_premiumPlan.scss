@@ -1,6 +1,6 @@
 .premiumPlan_main {
 
-  background-image: url("/landing/Ellipse 46 (1).svg"), url("/landing/Ellipse 46 (2).svg");
+  background-image: url("/landing/Ellipse 46 (1).svg"), url("/landing/Ellipse 46.svg");
   background-repeat: no-repeat;
   background-position: left top, right bottom;
 
@@ -16,6 +16,10 @@
     /* 48px */
     padding: 20px 0;
     margin-top: 22px;
+
+    @include smMaxBreakPoint {
+      font-size: 28px;
+    }
   }
 
   @mixin list_content {
@@ -42,6 +46,10 @@
     justify-content: center;
     padding-top: 30px;
 
+    @include mdMaxBreakPoint {
+      padding-top: 0;
+    }
+
     .free_card {
       border-top-left-radius: 8px;
       background: white;
@@ -54,6 +62,10 @@
       background-image: url("/landing/freetree.png");
       background-repeat: no-repeat;
       background-position: left bottom;
+
+      @include mdMaxBreakPoint {
+        height: 400px;
+      }
 
       h1 {
         @include heading_content();
@@ -79,6 +91,10 @@
       background-repeat: no-repeat;
       background-position: left bottom;
       position: relative;
+
+      @include mdMaxBreakPoint {
+        height: 400px;
+      }
 
       h1 {
         @include heading_content();

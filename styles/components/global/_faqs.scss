@@ -1,21 +1,41 @@
 .faqs {
-    background-color: #3c3b6e;
+    // background-color: #3c3b6e;
+    background-image: url("/landing/faq-bg2.svg"), url("/landing/faq-bg.svg");
+    background-repeat: no-repeat;
+    background-position: left top, right bottom;
 
     .mantive-custom_accordion {
-        background-color: #3c3b6e !important;
+        background-color: $secondaryColor !important;
+        // background: linear-gradient(90deg, #A035FF 0%, #770DD5 20%, #770DD5 100%) !important;
         color: white;
+        margin-top: 15px;
+        border-radius: 10px;
+        padding: 10px 0;
+    }
+
+    .mantine-Accordion-content {
+        opacity: 0.8;
     }
 
     .mantive-custom_accordion:hover {
-        background-color: #3c3b6e;
+        background-color: $secondaryColor;
+        border-radius: 10px;
+
+    }
+
+    .mantine-Accordion-item {
+        border-radius: 10px;
+
     }
 
     .mantive-custom_control {
-        color: #e6a8ae;
+        color: white;
         font-size: 18px;
     }
 
     .mantive-custom_control:hover {
-        background-color: #3c3b6e;
+        background-color: $secondaryColor;
+        border-radius: 10px;
+
     }
 }

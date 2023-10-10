@@ -11,7 +11,7 @@ const Faqs = () => {
 
     return (
         <div className='faqs py-30' id="faqs">
-            <h2 className='text-center text-white'>FAQs</h2>
+            <h2 className='text-center'>FAQs</h2>
             <div className='faqs__container container'>
                 <Accordion defaultValue="customization" variant='contained'>
                     <Accordion.Item value="customization" className='mantive-custom_accordion'>

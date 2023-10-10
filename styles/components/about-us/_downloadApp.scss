@@ -1,0 +1,31 @@
+.downloadApp {
+    background-color: #770DD5;
+    background: linear-gradient(90deg, #770DD5 0%, #A035FF 100%);
+    margin-top: 80px;
+
+    .downloadApp__wrapper {
+        .mobile-demo {
+            img {
+                max-width: 100%;
+                object-fit: cover;
+                margin-top: -80px;
+
+                @include smMaxBreakPoint {
+                    height: 180px;
+                }
+            }
+        }
+    }
+
+    .app-btn {
+        background-color: #FD123F;
+        font-size: 28px;
+        height: 60px;
+
+        @include smMaxBreakPoint {
+            height: 40px;
+            font-size: 16px;
+        }
+    }
+
+}

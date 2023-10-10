@@ -1,91 +1,87 @@
 .myProfile {
-    &__top {
+  &__top {
+    &--wrapper {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      gap: 15px;
 
-        &--wrapper {
-            margin-top: 15px;
-            display: grid;
-            grid-template-columns: 20% 80%;
-            gap: 15px;
+      @include mdMaxBreakPoint {
+        grid-template-columns: 30% 70%;
+      }
 
-            @include mdMaxBreakPoint {
-                grid-template-columns: 30% 70%;
-            }
+      @include smMaxBreakPoint {
+        grid-template-columns: 100%;
+      }
 
-            @include smMaxBreakPoint {
-                grid-template-columns: 100%;
-            }
+      .profile-img {
+        border: 0.5px solid $primaryColor;
+        padding: 10px;
+        border-radius: 10px;
 
-            .profile-img {
-                border: 0.5px solid $primaryColor;
-                padding: 10px;
-                border-radius: 10px;
+        img {
+          max-width: 100%;
+          width: 100%;
+          min-height: auto;
+          height: 250px;
+          object-fit: cover;
 
-                img {
-                    max-width: 100%;
-                    width: 100%;
-                    min-height: auto;
-                    height: 250px;
-                    object-fit: cover;
+          @include smMaxBreakPoint {
+            height: 150px;
+            object-fit: contain;
+          }
+        }
+      }
 
+      .profile-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
-                    @include smMaxBreakPoint {
-                        height: 150px;
-                        object-fit: contain;
-                    }
-                }
-            }
-
-            .profile-info {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-
-                @include mdMaxBreakPoint {
-                    grid-template-columns: 1fr;
-                }
-
-                .single-item {
-                    display: flex;
-
-                    .left {
-                        flex-basis: 50%;
-                        opacity: 0.5;
-                    }
-
-                    .right {
-                        flex-basis: 50%;
-                        width: 100%;
-                    }
-                }
-            }
+        @include mdMaxBreakPoint {
+          grid-template-columns: 1fr;
         }
 
-        &--about {
-            .info-section {
-                .profile-info {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
+        .single-item {
+          display: flex;
 
-                    @include mdMaxBreakPoint {
-                        grid-template-columns: 1fr;
-                    }
+          .left {
+            flex-basis: 50%;
+            opacity: 0.5;
+          }
 
-                    .single-item {
-                        display: flex;
-
-                        .left {
-                            flex-basis: 50%;
-                            opacity: 0.5;
-                        }
-
-                        .right {
-                            flex-basis: 50%;
-                            width: 100%;
-                        }
-                    }
-                }
-            }
+          .right {
+            flex-basis: 50%;
+            width: 100%;
+          }
         }
+      }
     }
 
+    &--about {
+      .info-section {
+        .profile-info {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
 
+          @include mdMaxBreakPoint {
+            grid-template-columns: 1fr;
+          }
+
+          .single-item {
+            display: flex;
+            margin: 15px 0;
+            .left {
+              flex-basis: 50%;
+              opacity: 0.5;
+            }
+
+            .right {
+              flex-basis: 50%;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 }

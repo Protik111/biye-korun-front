@@ -11,7 +11,7 @@ export const AboutUsHeader = () => {
                 </div>
 
                 <div className="text-container-single flex flex-gap-15">
-                    <h2 className="w-75">Trust And Security</h2>
+                    <h2 className="w-75 unique-div">Trust And Security</h2>
                     <p >Guarantee that you're connected with individuals who resonate with your values</p>
                 </div>
 
