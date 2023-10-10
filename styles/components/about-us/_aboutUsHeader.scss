@@ -21,11 +21,28 @@
 
         .text-container-single {
 
+            @include smMaxBreakPoint {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 15px;
+            }
+
+            .unique-div {
+                @include smMaxBreakPoint {
+                    width: 60% !important;
+                }
+            }
+
             h3,
             h1,
             h2,
             p {
                 color: white;
+
+                @include smMaxBreakPoint {
+                    text-align: center;
+                }
             }
 
             h2 {
@@ -44,10 +61,18 @@
 
         .text-container-single:nth-child(1) {
             border-right: 3px solid white;
+
+            @include smMaxBreakPoint {
+                border-right: none;
+            }
         }
 
         .text-container-single:nth-child(2) {
             border-right: 3px solid white;
+
+            @include smMaxBreakPoint {
+                border-right: none;
+            }
         }
     }
 }

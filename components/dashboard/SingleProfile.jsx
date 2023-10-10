@@ -77,13 +77,19 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
         <Link href={`/view-profile/${_id}`}>
           {photoVisible ? <img onContextMenu={(e) => DisableRightClick(e)} src={url?.medium || imageUrl} alt="profile" />
             :
-            <AspectRatio ratio={10 / 10} onContextMenu={(e) => DisableRightClick(e)}>
+            // <AspectRatio ratio={10 / 10} onContextMenu={(e) => DisableRightClick(e)}>
+            //   <img
+            //     src={url?.medium || imageUrl}
+            //     alt="Profile"
+            //   />
+            //   <Overlay className="rounded-10" color="#000" backgroundOpacity={0.55} blur={5} />
+            // </AspectRatio>
+            <>
               <img
                 src={url?.medium || imageUrl}
                 alt="Profile"
               />
-              <Overlay className="rounded-10" color="#000" backgroundOpacity={0.55} blur={5} />
-            </AspectRatio>
+            </>
           }
         </Link>
       </div>

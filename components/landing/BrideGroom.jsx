@@ -111,7 +111,7 @@ const BrideGroom = () => {
                       sx={{ backgroundColor: "#770DD5", color: "white" }}
                       color="pink"
                       variant="white"
-                      className="mt-10"
+                      className="mt-10 view-btn"
                       radius="lg"
                     >
                       View Profile
