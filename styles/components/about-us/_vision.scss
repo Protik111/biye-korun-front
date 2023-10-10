@@ -1,0 +1,61 @@
+.vision {
+    margin-top: 80px;
+    background-image: url("/landing/Ellipse 46.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 300px;
+
+    @include smMaxBreakPoint {
+        margin-top: 15px;
+    }
+
+    &__wrapper {
+        &--left {
+            margin: auto;
+        }
+
+        h2 {
+            font-weight: 600;
+        }
+
+        p {
+            color: $secondaryColor;
+        }
+
+        &--right {
+            img {
+                max-width: 100%;
+                object-fit: cover;
+
+                @include smMaxBreakPoint {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}
+
+.visionContainer {
+    background-image: url("/landing/Ellipse 48.svg");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 170px;
+
+    .list-item {
+        p {
+            font-weight: 500;
+        }
+    }
+}
+
+.testimonial {
+    background-image: url("/landing/Subtract.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 50px;
+    padding: 100px 20px;
+
+    @include smMaxBreakPoint {
+        padding: 20px;
+    }
+}

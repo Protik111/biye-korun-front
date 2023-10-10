@@ -5,8 +5,8 @@ const Footer = () => {
         <div className="footer_container py-30">
             <div className="footer container">
                 <div className="footer__addr">
-                    <img src="biyekorun-logo.png" alt="logo" />
-                    <p>Bridging Hearts with Trust. Discover your perfect life partner through our secure and intuitive platform. Celebrate love, commitment, and new beginnings with us.</p>
+                    <img src="biye-korun-logo-with-tagline.png" alt="logo" />
+                    <p className="mt-10">Bridging Hearts with Trust. Discover your perfect life partner through our secure and intuitive platform. Celebrate love, commitment, and new beginnings with us.</p>
 
                 </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
 
                         <ul className="nav__ul">
                             <li>
-                                {/* <a href="#">About Us</a> */}
+                                <Link href="/about-us">About Us</Link>
                             </li>
 
                             <li>
