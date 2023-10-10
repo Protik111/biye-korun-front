@@ -45,7 +45,7 @@ const PartnerPreference = ({
     trait: { aboutMe } = {},
     phone,
     profilePicture: { url } = {},
-  } = userInfo?.partnerpreference || {};
+  } = (userInfo?.partnerpreference || {}).basicDetails || {}
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
