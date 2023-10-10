@@ -10,15 +10,19 @@ const SinglePlan = ({ plan }) => {
     const {
         badgeName,
         benefits,
-        price,
         description,
+        price,
         discountPrice,
+        usdPrice,
+        usdDiscountPrice,
         name,
         _id
     } = plan;
 
     const isFromBD = country.toLowerCase() === 'bangladesh' ? true : false;
     const currency = isFromBD ? "BDT" : "USD";
+
+    // console.log('plan', plan);
 
     return (
         <div className="plans__singlePlan rounded-10 p-15">
@@ -27,8 +31,16 @@ const SinglePlan = ({ plan }) => {
                 <Badge variant="light" color="violet">{badgeName ? badgeName : ''}</Badge>
             </div>
             {/* <>{header}</> */}
-            <p className="text-small text-center mt-20" style={{ color: 'red' }}>{discountPrice ? currency + " " + discountPrice + " Discount!" : ''}</p>
-            <h2 className="text-center">{price ? currency + " " + price : ''}</h2>
+            {
+                isFromBD ?
+                    <p className="text-small text-center mt-20" style={{ color: 'red' }}>{discountPrice ? currency + " " + discountPrice + " Discount!" : ''}</p> :
+                    <p className="text-small text-center mt-20" style={{ color: 'red' }}>{usdDiscountPrice ? currency + " " + usdDiscountPrice + " Discount!" : ''}</p>
+            }
+            {
+                isFromBD ?
+                    <h2 className="text-center">{price ? currency + " " + price : ''}</h2> :
+                    <h2 className="text-center">{usdPrice ? currency + " " + usdPrice : ''}</h2>
+            }
             <div className="text-center">
                 {/* <Badge color="violet" variant="filled" size="lg">{name ? name : ''}</Badge> */}
                 <p className="text-small text-center">{description ? description : ''}</p>
@@ -55,7 +67,6 @@ const SinglePlan = ({ plan }) => {
                         && <List.Item><b>View Contact: </b>{plan?.permission?.viewContact?.name
                         }</List.Item>}
 
-                    <List.Item>Your Photo should be front facing and your entire face should be visible.</List.Item>
                     {
                         benefits?.map((feature, i) => <List.Item className={`${feature?.isActive ? '' : 'plans__singlePlan--feature'}`} key={i}>
                             {feature?.name}</List.Item>)

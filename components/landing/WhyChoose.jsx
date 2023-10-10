@@ -38,7 +38,7 @@ const WhyChoose = () => {
             <div className="circle1">
               <div className="circle2">
                 <div className="circle3">
-                  <img src="/landing/privacy.png" alt="privacy" />
+                  <img src="/landing/privacy-2.svg" alt="privacy" />
                   <h3>Privacy</h3>
                 </div>
               </div>
@@ -64,7 +64,7 @@ const WhyChoose = () => {
             <div className="circle1">
               <div className="circle2">
                 <div className="circle3">
-                  <img src="/landing/trust.png" alt="privacy" />
+                  <img src="/landing/trust2.svg" alt="privacy" />
                   <h3>Trust</h3>
                 </div>
               </div>
