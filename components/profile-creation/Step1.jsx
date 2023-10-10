@@ -251,7 +251,7 @@ const Step1 = ({
 
       <div>
         <label htmlFor="diet" className="label">
-          Select Diets
+          Select Diet
         </label>
         <Chip.Group
           multiple={false}
