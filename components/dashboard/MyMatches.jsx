@@ -1,20 +1,23 @@
-import { Checkbox, Divider, Group, Pagination, Radio } from "@mantine/core";
+import { Checkbox, Divider, Group, MultiSelect, Pagination, Radio } from "@mantine/core";
 import React, { useEffect, useMemo, useState } from "react";
 import SingleProfile from "./SingleProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import CardSkeleton from "../global/CardSkeleton";
 import NoDataFound from "../global/NoDataFound";
+import { communities, qualifications } from "@/staticData/InputFields/inputFields";
+import useCountry from "@/hooks/common/useCountry";
 
 
 const MyMatches = () => {
   const [filterData, setFilterData] = useState({
     maritalStatus: ['all'],
     religion: '',
-    motherTongue: '',
-    country: '',
-    education: '',
+    motherTongue: [],
+    country: [],
+    education: [],
   })
   const [activePage, setActivePage] = useState(1);
+  const [countryList, setCountryList] = useState([]);
   const pageSize = 5;
 
   const { maritalStatus, religion, motherTongue, country, education } = filterData;
@@ -30,19 +33,22 @@ const MyMatches = () => {
     payload.marital = maritalStatus;
   }
 
-  if (motherTongue !== '') {
+  if (motherTongue?.length !== 0) {
     payload.motherLanguage = motherTongue;
   }
 
-  if (country !== '') {
+  if (country?.length !== 0) {
     payload.country = country;
+    // payload.country = payload.country.map(function (country) {
+    //   return country.replace(/\u00A0/g, ' '); // Replace non-breaking space with a regular space
+    // });
   }
 
-  if (education !== '') {
+  if (education?.length !== 0) {
     payload.education = education;
   }
 
-  if (religion !== '') {
+  if (religion?.length !== 0) {
     payload.religion = religion;
   }
 
@@ -50,8 +56,6 @@ const MyMatches = () => {
 
   //for page count in the pagination component
   const totalCount = Math.ceil(data?.total / pageSize)
-
-
 
 
   useEffect(() => {
@@ -68,11 +72,25 @@ const MyMatches = () => {
   }
 
   const handlePageChange = (page) => {
-    console.log('page', page);
+    // console.log('page', page);
     setActivePage(page);
   };
 
-  // console.log('filterData', filterData);
+  const { data: data2, error: error2, loading: loading2 } = useCountry();
+
+  useEffect(() => {
+    if (!loading2?.country) {
+      const convertedList = data2?.country?.map((item) => ({
+        label: item?.name,
+        value: item?.name,
+        code: item?.iso2,
+      }));
+
+      setCountryList(convertedList);
+    }
+  }, [data2]);
+
+  console.log('filterData', filterData);
 
   return (
     <div>
@@ -206,18 +224,30 @@ const MyMatches = () => {
 
               <Divider my={10}></Divider>
 
-              <Radio.Group onChange={(e) => handleChange('motherTongue', e)} name="motherTongue" label="Mother Tongue">
+              {/* <Radio.Group onChange={(e) => handleChange('motherTongue', e)} name="motherTongue" label="Mother Tongue">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio color="pink" value="Bengali" label="Bengali" />
                   <Radio color="pink" value="English" label="English" />
                   <Radio color="pink" value="Hindi" label="Hindi" />
                 </Group>
-              </Radio.Group>
+              </Radio.Group> */}
+
+              <MultiSelect
+                variant="unstyled"
+                size="md"
+                placeholder="Select community"
+                label="Language"
+                data={communities}
+                value={filterData.motherTongue}
+                name="motherTongue"
+                onChange={(event) => handleChange("motherTongue", event)}
+                searchable
+              />
 
               <Divider my={10}></Divider>
 
-              <Radio.Group onChange={(e) => handleChange('country', e)} name="country" label="Country Living in">
+              {/* <Radio.Group onChange={(e) => handleChange('country', e)} name="country" label="Country Living in">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio color="pink" value="Bangladesh" label="Bangladesh" />
@@ -225,11 +255,26 @@ const MyMatches = () => {
                   <Radio color="pink" value="Canada" label="Canada" />
                   <Radio color="pink" value="India" label="India" />
                 </Group>
-              </Radio.Group>
+              </Radio.Group> */}
+
+
+              <MultiSelect
+                variant="unstyled"
+                size="md"
+                placeholder="Select"
+                label="Country"
+                // styles={{ label: labelStyles }}
+                // data={countries}
+                data={countryList}
+                value={filterData.country}
+                name="country"
+                onChange={(event) => handleChange("country", event)}
+                searchable
+              />
 
               <Divider my={10}></Divider>
 
-              <Radio.Group name="education" onChange={(e) => handleChange('education', e)} label="Education Level">
+              {/* <Radio.Group name="education" onChange={(e) => handleChange('education', e)} label="Education Level">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
                   <Radio color="pink" value="BSC" label="BSC" />
@@ -238,7 +283,21 @@ const MyMatches = () => {
                   <Radio color="pink" value="M.A" label="M.A" />
                   <Radio color="pink" value="M.Arch" label="M.Arch" />
                 </Group>
-              </Radio.Group>
+              </Radio.Group> */}
+
+              <MultiSelect
+                variant="unstyled"
+                size="md"
+                placeholder="Select"
+                label="Education Qualification"
+                data={qualifications}
+                dataKey="value"
+                groupKey="label"
+                // value={formValues.qualification}
+                name="education"
+                onChange={(event) => handleChange("education", event)}
+                searchable
+              />
 
               {/* <Radio.Group name="educationArea" label="Education Area">
                 <Group mt="xs" className="flex-column align-start">
@@ -255,7 +314,7 @@ const MyMatches = () => {
           </div>
 
           <div className="myMatches__wrapper--contentBox mt-10">
-            {data?.data?.length > 0 ? data?.data?.map((profile, i) => (
+            {(!loading && data?.data?.length > 0) ? data?.data?.map((profile, i) => (
               <>
                 <div key={i} className="mt-15">
                   <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
@@ -271,9 +330,9 @@ const MyMatches = () => {
                   <CardSkeleton></CardSkeleton>
                 </div> : <></>}
 
-            <div className="flex justify-center mt-15 px-10">
+            {data?.data?.length > 0 && <div className="flex justify-center mt-15 px-10">
               <Pagination color="pink" value={activePage} onChange={handlePageChange} total={totalCount} />
-            </div>
+            </div>}
           </div>
         </div>
       </div>

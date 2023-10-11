@@ -7,12 +7,12 @@ export const AboutUsHeader = () => {
             <div className="mt-30 text-container grid grid-cols-3 grid-cols-3-responsive flex-gap-10">
                 <div className="text-container-single flex flex-gap-15">
                     <h2>Advanced Matchmaking</h2>
-                    <p>Guarantee that you're connected with individuals who resonate with your values</p>
+                    <p>Ensuring that you're connected with individuals who resonate with your values</p>
                 </div>
 
                 <div className="text-container-single flex flex-gap-15">
                     <h2 className="w-75 unique-div">Trust And Security</h2>
-                    <p >Guarantee that you're connected with individuals who resonate with your values</p>
+                    <p >Ensuring that you're connected with individuals who resonate with your values</p>
                 </div>
 
                 <div className="text-container-single flex flex-gap-15">

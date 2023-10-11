@@ -1,10 +1,10 @@
 "use client"
 
 const lists = [
-    "Register for Free!",
-    "100% human verified profiles",
-    "Chatting with matches",
-    "Halal, safe and secured Matrimony site",
+    "Unique Selling Point",
+    "Interactions and Engagement",
+    "Chat Features including voice, video and text",
+    "Fund Raise Features",
     "Private, personalized, and highly confidential service",
     "Trusted service for matrimony"
 ]
