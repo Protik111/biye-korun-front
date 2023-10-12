@@ -123,8 +123,9 @@ const MyProfile = () => {
     educationCareer,
     location,
     community: communityData,
-  } = userInfo?.partnerpreference;
-  console.log("userInfo", userInfo);
+  } = (userInfo?.partnerpreference || {}).basicDetails || {};
+
+  // console.log("userInfo", userInfo);
   const url = profilePicture ? profilePicture.url : null;
 
   const scrollToPartnerPreferences = () => {
@@ -666,15 +667,15 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Age</p>
                     <p className="right">
-                      : {basicDetails.ageRange.min} to{" "}
-                      {basicDetails.ageRange.max}
+                      : {basicDetails?.ageRange.min} to{" "}
+                      {basicDetails?.ageRange.max}
                     </p>
                   </div>
                   <div className="single-item">
                     <p className="left">Height</p>
                     <p className="right">
-                      : {heightCalculator(basicDetails.heightRange.min)} to{" "}
-                      {heightCalculator(basicDetails.heightRange.max)}
+                      : {heightCalculator(basicDetails?.heightRange.min)} to{" "}
+                      {heightCalculator(basicDetails?.heightRange.max)}
                     </p>
                   </div>
                   {/* <div className="single-item">
