@@ -10,11 +10,12 @@ const useAxios = (url, method = "GET", initialData = null, config = {}, requestD
     // console.log('url', url);
 
     const fetchData = async () => {
+        setLoading(true);
         try {
             const response = await axios.request({
                 url,
                 method,
-                data: requestData, // Include the request data (e.g., POST or PUT body)
+                data: requestData,
                 ...config,
             });
             // console.log('response.data', response.data);

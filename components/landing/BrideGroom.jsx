@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@mantine/core";
+import { Avatar, Button, Tooltip } from "@mantine/core";
 import CenteredModal from "../global/CenteredModal";
 import { FormProvider } from "@/context/FormContext";
 import Form from "../multiStepRegistration/Form";
@@ -106,17 +106,25 @@ const BrideGroom = () => {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/login">
-                    <Button
-                      sx={{ backgroundColor: "#770DD5", color: "white" }}
+                  <Tooltip
+                      label={"Click to View Profile"}
                       color="pink"
-                      variant="white"
-                      className="mt-10 view-btn"
-                      radius="lg"
-                    >
-                      View Profile
-                    </Button>
-                  </Link>
+                      withArrow
+                      position="top"
+                  >
+                    <Link href="/login">
+                      <Button
+                        sx={{ backgroundColor: "#770DD5", color: "white" }}
+                        color="pink"
+                        variant="white"
+                        className="mt-10 view-btn"
+                        radius="lg"
+                      >
+                        View Profile
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                  
                 </div>
               </div>
             ))}

@@ -7,9 +7,18 @@ const Vision = () => {
         <div className='vision container border-1 rounded-10'>
             <div className='vision__wrapper grid grid-cols-2 grid-cols-2-responsive grid-gap-20'>
                 <div className='vision__wrapper--left'>
-                    <h2>Our Vision</h2>
-                    <p>We aspire to inspire and nurture love, building a community where meaningful relationships flourish. Our mission is to bring people together, making the world a happier and more loving place. We believe that love transcends borders, and our mission is to help you find it, wherever you are.
-                        Let Biyekorun.us be your passport to a world of possibilities.</p>
+
+                    <div>
+                        <h2>Our Mission & Vission</h2>
+                        <p>BiyeKorun's mission is to bridge the gap for Bangladeshis around the world seeking marital ties. Currently, no platform caters specifically to this community's matrimonial needs. BiyeKorun envisions a world where Bangladeshis globally can confidently rely on a platform that ensures accurate, validated, and verified information to help them find their life partner. Family members can also engage in the search for potential brides or grooms for their loved ones.</p>
+                    </div>
+
+                    {/* <div className='mt-30'>
+                        <h2>Our Vision</h2>
+                        <p></p>
+                    </div> */}
+
+
                     <Button
                         className="mt-25"
                         style={btnBackground}

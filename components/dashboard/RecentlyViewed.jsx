@@ -54,20 +54,34 @@ const RecentlyViewed = () => {
                     </Link>
                   </Card.Section>
 
-                  <Group position="apart" mt="md" mb="xs">
+                  <Group position="apart" mt="" mb="xs">
                     <Text weight={500}>{item?.visit?.firstName + " " + item?.visit?.lastName}</Text>
-                    <Badge color="pink" variant="light" size="md">
+                    {/* <Badge color="pink" variant="light" size="md">
                       Online 2h ago
-                    </Badge>
+                    </Badge> */}
                   </Group>
 
                   <Text size="sm" color="dimmed">
-                    {calculateAge(item?.visit?.dateOfBirth)} yrs, {heightCalculator(item?.visit?.appearance?.height)}, {item?.visit?.religion},
-                    <br />
-                    {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country}
+                    <b>Age: </b>{calculateAge(item?.visit?.dateOfBirth)}
                   </Text>
 
-                  <h3 className="text-center pt-15">Connect with {item?.visit?.gender === "Male" ? 'him' : 'her'}?</h3>
+                  <Text size="sm" color="dimmed">
+                    <b>Height: </b>{heightCalculator(item?.visit?.appearance?.height)}
+                  </Text>
+
+                  <Text size="sm" color="dimmed">
+                    <b>Religion: </b>{item?.visit?.religion}
+                  </Text>
+
+                  <Text size="sm" color="dimmed">
+                    <b>Country: </b>{item?.visit?.country}
+                  </Text>
+
+
+                  <br />
+                  {/* {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country} */}
+
+                  <h3 className="text-center pt-5">Connect with {item?.visit?.gender === "Male" ? 'him' : 'her'}?</h3>
 
                   {
                     item?.visit?.friendships ?

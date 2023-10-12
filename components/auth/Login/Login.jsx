@@ -80,7 +80,7 @@ const LoginComp = () => {
                     }, 500)
                 })
                 .catch(() => {
-                    notifyError(message)
+                    notifyError("Please try again!")
                     setLoading(false)
                 })
         }
