@@ -1,6 +1,18 @@
 "use client";
 
-import { Alert, Anchor, Button, Divider, Input, Tooltip } from "@mantine/core";
+import {
+  Alert,
+  Anchor,
+  Button,
+  Divider,
+  Input,
+  Tooltip,
+  Textarea,
+  Select,
+  Chip,
+  MultiSelect,
+  TextInput,
+} from "@mantine/core";
 import { List, ThemeIcon } from "@mantine/core";
 import {
   IconCircleCheck,
@@ -8,8 +20,8 @@ import {
   IconPlayerRecordFilled,
 } from "@tabler/icons-react";
 import ThemeIconComp from "../global/ThemeIconComp";
-import { btnBackground } from "@/styles/library/mantine";
-import React, { useRef } from "react";
+import { btnBackground, labelStyles } from "@/styles/library/mantine";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { heightCalculator } from "@/utils/heightCalculator";
@@ -17,15 +29,40 @@ import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
 import { format } from "date-fns";
 import Link from "next/link";
+import ReuseModal from "../global/ReuseModal";
+import {
+  bloodGroups,
+  heights,
+  maritalStatuses,
+  motherTongues,
+} from "@/staticData/InputFields/inputFields";
+import { DatePickerInput } from "@mantine/dates";
+import useCountry from "@/hooks/common/useCountry";
+import { cityData } from "@/staticData/InputFields/city";
 
 const imageUrl =
   "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
+  const { data, error, loading } = useCountry();
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
+  const [isModal1Open, setIsModal1Open] = useState(false);
+  const [isModal2Open, setIsModal2Open] = useState(false);
+  const [isModal3Open, setIsModal3Open] = useState(false);
+  const [isModal4Open, setIsModal4Open] = useState(false);
+  const [countryList, setCountryList] = useState([]);
 
+  const openModal1 = () => setIsModal1Open(true);
+  const closeModal1 = () => setIsModal1Open(false);
+
+  const openModal2 = () => setIsModal2Open(true);
+  const closeModal2 = () => setIsModal2Open(false);
+  const openModal3 = () => setIsModal3Open(true);
+  const closeModal3 = () => setIsModal3Open(false);
+  const openModal4 = () => setIsModal4Open(true);
+  const closeModal4 = () => setIsModal4Open(false);
   const {
     location: { city, residencyStatus } = {},
     doctrine: { caste } = {},
@@ -60,8 +97,9 @@ const MyProfile = () => {
     educationCareer,
     location,
     community: communityData,
-  } = userInfo?.partnerpreference;
-  console.log("userInfo", userInfo);
+  } = (userInfo?.partnerpreference || {}).basicDetails || {}
+
+  // console.log("userInfo", userInfo);
   const url = profilePicture ? profilePicture.url : null;
 
   const scrollToPartnerPreferences = () => {
@@ -71,6 +109,18 @@ const MyProfile = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (!loading?.country) {
+      const convertedList = data?.country?.map((item) => ({
+        label: item?.name,
+        value: item?.name,
+        code: item?.iso2,
+      }));
+
+      setCountryList(convertedList);
+    }
+  }, [data]);
 
   // console.log('userinfo', userInfo);
 
@@ -95,7 +145,7 @@ const MyProfile = () => {
             <div className="profile-info">
               <div>
                 <div className="single-item">
-                  <p className="left">Age/Height</p>
+                  <p className="left">Age & Height</p>
                   <p className="right">
                     : {calculateAge(dateOfBirth)}/{heightCalculator(height)}
                   </p>
@@ -241,17 +291,17 @@ const MyProfile = () => {
           <div className="personality mt-20" id="myself">
             <div className="flex justify-between align-center">
               <h3 className="secondary-text">About</h3>
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal1}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <p className="mt-5">{aboutMe}</p>
@@ -263,17 +313,17 @@ const MyProfile = () => {
               <Tooltip label="Basic & Lifestyle" color="red">
                 <h3 className="secondary-text">Basic & Lifestyle</h3>
               </Tooltip>
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal2}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <div className="profile-info mt-10">
@@ -332,17 +382,16 @@ const MyProfile = () => {
                 <h3 className="secondary-text">Religion</h3>
               </Tooltip>
 
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal3}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <div className="profile-info mt-10">
@@ -377,17 +426,16 @@ const MyProfile = () => {
                 <h3 className="secondary-text">Family Details</h3>
               </Tooltip>
 
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal4}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <div className="profile-info mt-10">
@@ -556,15 +604,15 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Age</p>
                     <p className="right">
-                      : {basicDetails.ageRange.min} to{" "}
-                      {basicDetails.ageRange.max}
+                      : {basicDetails?.ageRange.min} to{" "}
+                      {basicDetails?.ageRange.max}
                     </p>
                   </div>
                   <div className="single-item">
                     <p className="left">Height</p>
                     <p className="right">
-                      : {heightCalculator(basicDetails.heightRange.min)} to{" "}
-                      {heightCalculator(basicDetails.heightRange.max)}
+                      : {heightCalculator(basicDetails?.heightRange.min)} to{" "}
+                      {heightCalculator(basicDetails?.heightRange.max)}
                     </p>
                   </div>
                   {/* <div className="single-item">
@@ -724,8 +772,8 @@ const MyProfile = () => {
                             {item}
                             {index !==
                               educationCareer?.qualification.length - 1 && (
-                              <br />
-                            )}
+                                <br />
+                              )}
                           </React.Fragment>
                         );
                       })}
@@ -781,6 +829,232 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
+
+      <ReuseModal isOpen={isModal1Open} onClose={closeModal1} title="About">
+        {" "}
+        <Textarea
+          autosize
+          minRows={5}
+          maxRows={10}
+        // value={value}
+        // onChange={(event) => setValue(event.currentTarget.value)}
+        />
+        <div className="flex justify-end mt-10">
+          <Button variant="filled" color="violet" size="sm">
+            Save
+          </Button>
+        </div>
+      </ReuseModal>
+      <ReuseModal
+        isOpen={isModal2Open}
+        onClose={closeModal2}
+        title="Basic & Lifestyle"
+      >
+        <div className="mt-25">
+          <div>
+            <label htmlFor="diet" className="label">
+              Select Diets
+            </label>
+            <Chip.Group
+              multiple={false}
+              // value={formValues.diet}
+              // onChange={(event) => handleFormChange("diet", event)}
+              name="diet"
+            >
+              <div className="flex flex-gap-10 flex-wrap mt-5">
+                <Chip variant="filled" color="pink" value="Vegetarian">
+                  Vegetarian
+                </Chip>
+                <Chip variant="filled" color="pink" value="Non-Veg">
+                  Non Vegetarian
+                </Chip>
+              </div>
+              {/* {formErrors.diet && (
+                <p className="error-message">{formErrors.diet}</p>
+              )} */}
+            </Chip.Group>
+          </div>
+          <br />
+          <Select
+            size="md"
+            placeholder="Select"
+            label="Blood Group"
+            data={bloodGroups}
+            // value={formValues.bloodGroup}
+            withAsterisk
+          // name="bloodGroup"
+          // onChange={(event) => handleFormChange("bloodGroup", event)}
+          // error={formErrors.bloodGroup}
+          />
+          <br />
+          <Select
+            size="md"
+            placeholder="Select"
+            label="Marital Status"
+            // styles={{ label: labelStyles }}
+            data={maritalStatuses}
+          // value={formValues.maritalStatus}
+          // withAsterisk
+          // name="maritalStatus"
+          // onChange={(event) => handleFormChange("maritalStatus", event)}
+          // error={formErrors.maritalStatus}
+          />
+          <br />
+          <Select
+            size="md"
+            placeholder="Select"
+            label="Height"
+            data={heights}
+          // value={formValues.height}
+          // withAsterisk
+          // name="height"
+          // onChange={(event) => handleFormChange("height", event)}
+          // error={formErrors.height}
+          />
+
+          <br />
+
+          <MultiSelect
+            searchable
+            size="md"
+            placeholder="Select country"
+            label="Born And Raised"
+            // data={countries}
+            data={countryList}
+            name="livingIn"
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+          />
+          <br />
+          <DatePickerInput
+            clearable
+            // defaultValue={today}
+            // description="Years must be at least 18"
+            label="Date of Birth"
+            placeholder="Pick a date"
+            mx="auto"
+            size="sm"
+            // maw={400}
+            withAsterisk
+          // value={data.basic2dob}
+          // onChange={(event) => handleChange("basic2dob", event)}
+          // error={fieldErrors.basic2dob}
+          //disableBeforeDate={minDate} // Use the disableDate function
+          // maxDate={generate18YearBefore()}
+          />
+
+          <div className="flex justify-end mt-10">
+            <Button variant="filled" color="violet" size="sm">
+              Save
+            </Button>
+          </div>
+          <br />
+        </div>
+      </ReuseModal>
+
+      <ReuseModal isOpen={isModal3Open} onClose={closeModal3} title="Religion">
+        {" "}
+        <div className="mt-25 mb-25">
+          <br />
+
+          <MultiSelect
+            size="md"
+            placeholder="Select"
+            label="Religion"
+            withAsterisk
+            data={[
+              "Islam",
+              "Hinduism",
+              "Christianity",
+              "Buddhism",
+              "Judaism",
+              "Others",
+            ]}
+            name="religion"
+          // defaultValue={formData.religion}
+          // onChange={(event) => handleFormChange("religion", event)}
+          />
+          <br />
+          <MultiSelect
+            size="md"
+            placeholder="Select"
+            label="Native Language"
+            withAsterisk
+            defaultValue="20"
+            data={motherTongues}
+            // name="motherTongue"
+            // value={formData.motherTongue}
+            // onChange={(event) => handleFormChange("motherTongue", event)}
+            searchable
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+          />
+          <br />
+          <Select
+            size="md"
+            placeholder="Select"
+            label="Language"
+            withAsterisk
+            defaultValue="20"
+            data={motherTongues}
+            // name="motherTongue"
+            // value={formData.motherTongue}
+            // onChange={(event) => handleFormChange("motherTongue", event)}
+            searchable
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+          />
+          <div className="flex justify-end mt-10">
+            <Button variant="filled" color="violet" size="sm">
+              Save
+            </Button>
+          </div>
+        </div>
+      </ReuseModal>
+
+      <ReuseModal
+        isOpen={isModal4Open}
+        onClose={closeModal4}
+        title="Family Details"
+      >
+        {" "}
+        <div className="mt-25 mb-25">
+          <TextInput label="Father's Status" placeholder="Father's Status" />
+          <br />
+          <TextInput
+            label="Mother's Status"
+            placeholder="Mother's Status"
+          />{" "}
+          <br />
+          <TextInput label="Family Location" placeholder="Family Location" />
+          <br />
+          <TextInput label="No. of Brothers" placeholder="No. of Brothers" />
+          <br />
+          <TextInput label="No. of Sisters" placeholder="No. of Sisters" />
+          <br />
+          <MultiSelect
+            searchable
+            size="md"
+            placeholder="Select country"
+            label="Country"
+            // data={countries}
+            data={countryList}
+            name="livingIn"
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+          />
+          <br />
+          <div className="flex justify-end mt-10">
+            <Button variant="filled" color="violet" size="sm">
+              Save
+            </Button>
+          </div>
+        </div>
+      </ReuseModal>
     </div>
   );
 };
