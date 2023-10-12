@@ -97,9 +97,7 @@ function Location({ formData, setFormData }) {
     }
   }, [data, loading, formData?.livingIn, formData?.stateLiving]);
 
-  console.log("stateList", stateList);
-
-  console.log("formData", formData);
+  // console.log("stateList", stateList);
 
   return (
     <div className="pt-15">
