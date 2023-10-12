@@ -1,0 +1,95 @@
+.solution_service_container {
+
+    .single_solution_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        gap: 20px;
+        padding: 50px 0;
+
+        @media screen and (max-width: 592px) {
+            grid-template-columns: 1fr;
+            padding: 10px;
+        }
+
+        .single_solution {
+            background-color: #EEF0F2;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid $secondaryColor;
+            border-radius: 10px;
+
+            &:hover {
+                // border: 1px solid #E7E7E7;
+                border-radius: 7px;
+                box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+            }
+
+            .single_image {
+                img {
+                    // width: 100%;
+                    // height: 180px;
+                    object-fit: cover;
+                    padding: 10px 20px;
+                    height: 100px;
+                    opacity: 0.8;
+                    // object-position: top;
+                    // background-position: center;
+                }
+            }
+
+            .details {
+                // background-color: #4f6777;
+                padding: 10px 30px;
+
+
+                @media screen and (max-width: 592px) {
+                    padding: 10px;
+                }
+
+                .hr {
+                    border: 2px solid $secondaryColor;
+                    width: 20%;
+                    margin: 10px 0 5px 0;
+                    // height: 5px;
+                }
+
+                h2 {
+                    color: #001B35;
+                    font-size: 24px;
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    line-height: 1.1;
+                }
+
+                p {
+                    color: #4f6777;
+                    font-family: 'Roboto', sans-serif;
+                }
+            }
+
+            .btn_details {
+                padding: 10px 30px 20px 30px;
+                margin-top: auto;
+
+                @media screen and (max-width: 672px) {
+                    padding: 10px 30px 20px 10px;
+                }
+
+
+                button {
+                    border: none;
+                    padding: 10px 15px;
+                    font-size: 16px;
+                    font-weight: 300;
+                    font-family: 'Roboto', sans-serif;
+                    cursor: pointer;
+                    background-color: #1D3060;
+                    color: #ffffff;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

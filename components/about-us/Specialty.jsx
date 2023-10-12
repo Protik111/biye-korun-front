@@ -1,10 +1,10 @@
 "use client"
 
 const lists = [
-    "Unique Selling Point",
+    // "Unique Selling Point",
     "Interactions and Engagement",
     "Chat Features including voice, video and text",
-    "Fund Raise Features",
+    // "Fund Raise Features",
     "Private, personalized, and highly confidential service",
     "Trusted service for matrimony"
 ]
