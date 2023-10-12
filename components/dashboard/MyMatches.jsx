@@ -323,7 +323,7 @@ const MyMatches = () => {
             )) :
               !loading && data?.data?.length === 0 ?
                 <div className="flex justify-center flex-column align-center">
-                  <h2>There is no data!</h2>
+                  <h2>No Matches Found!</h2>
                   <NoDataFound></NoDataFound>
                 </div> :
                 loading ? <div className="container-box-bg p-30 mt-20 min-vh-75">

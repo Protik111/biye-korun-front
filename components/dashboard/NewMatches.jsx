@@ -69,9 +69,16 @@ const NewMatches = () => {
         <div className="todaysMatch container">
             <>
                 <div className="flex justify-between align-center">
-                    <h2 className="text-center mb-15">
+                    <div>
+                        {!loading && data?.data?.length === 0 ? (
+                            <h2 className="text-center mb-15">You do not have any new matches!</h2>
+                        ) : (
+                            <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
+                        )}
+                    </div>
+                    {/* <h2 className="text-center mb-15">
                         Here are new matches for you. Connect with them now!
-                    </h2>
+                    </h2> */}
                     {!loading && data?.data?.length !== 0 && <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
                         <Tooltip
                             label={data?.data?.length >= data?.total ? "This is the last profile" : "Click to see next match"}
