@@ -2,6 +2,9 @@ import Navbar from "@/components/global/Navbar";
 import "./globals.scss";
 import { ReduxProvider } from "@/redux/provider";
 import { ToastContainer } from "react-toastify";
+import NProgress from 'nprogress';
+// import { useRouter } from "next/navigation";
+// const router = useRouter();
 
 export const metadata = {
   title: "Biye Korun",
@@ -10,6 +13,11 @@ export const metadata = {
     url: 'biyekorun-logo.ico',
   },
 };
+
+
+// NProgress.configure({ showSpinner: false });
+// //Binding events. 
+// router.events.on('routeChangeStart', () => NProgress.start()); router.events.on('routeChangeComplete', () => NProgress.done()); router.events.on('routeChangeError', () => NProgress.done());
 
 export default function RootLayout({ children }) {
 

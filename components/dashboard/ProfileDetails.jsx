@@ -149,11 +149,10 @@ const ProfileDetails = ({ profile }) => {
                             />
                             <p>Your Preferences</p>
                         </div>
-                        <div>
-                            --------<Badge size='sm' color="pink">You matches {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>--------
+
+                        <div className="responsive-badge">
+                            <Badge size='sm' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>
                         </div>
-
-
 
                         <div className='flex flex-column align-center'>
                             <Avatar

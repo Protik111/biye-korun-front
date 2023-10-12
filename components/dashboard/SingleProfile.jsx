@@ -25,7 +25,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
   const { userInfo } = useSelector(state => state.user);
   const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
 
-  // console.log('profile', profile);
+  console.log('profile', profile);
 
   const {
     location: { city, residencyStatus } = {},
@@ -52,8 +52,8 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
 
   const { isPremium = {} } = userInfo || {}
 
-  console.log('profile', profile);
-  console.log('userInfo', userInfo);
+  // console.log('profile', profile);
+  // console.log('userInfo', userInfo);
 
   const photoVisible = isPremium || (!isPremium && isVisible);
   const photoVisibleWithBlur = isPremium || (!isPremium && isBlur);
@@ -69,6 +69,8 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
       recipient: id
     }, refetch);
   }
+
+  // console.log('c', community);
 
 
   return (
@@ -136,8 +138,8 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
           </div>
           <div className="flex align-center mt-15">
             <div className="flex align-center flex-gap-5 flex-item">
-              <IconMessages color="#E64980"></IconMessages>
-              <p>Online 2d ago</p>
+              {/* <IconMessages color="#E64980"></IconMessages>
+              <p>Online 2d ago</p> */}
             </div>
             <div className="flex-item">
               <p>You & her</p>
@@ -158,10 +160,14 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 </ThemeIcon>
               }
             >
-              <List.Item>{calculateAge(dateOfBirth)}yrs, {heightCalculator(height)}</List.Item>
-              <List.Item>{community}</List.Item>
-              <List.Item>{religion}, {caste}</List.Item>
-              <List.Item>{city}</List.Item>
+              {dateOfBirth && <List.Item><b>Age:</b> {calculateAge(dateOfBirth)}</List.Item>}
+
+              {height && <List.Item><b>Height:</b> {heightCalculator(height)}</List.Item>}
+
+              {community?.length > 0 && <List.Item><b>Native Language:</b> {community?.map((item, i) => <>{item} {(community.length - 1) !== i ? "," : ""} </>)}</List.Item>}
+
+              {religion && <List.Item><b>Religion: </b>{religion}</List.Item>}
+              {city && <List.Item><b>City: </b>{city}</List.Item>}
             </List>
           </div>
 
@@ -176,10 +182,12 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 </ThemeIcon>
               }
             >
-              <List.Item>{maritalStatus}</List.Item>
-              <List.Item>Lives in {country}</List.Item>
+              {maritalStatus && <List.Item><b>Marital Status: </b>{maritalStatus}</List.Item>}
+
+              {country && <List.Item> <b>Country: </b> {country}</List.Item>}
+
               {/* <List.Item>Works at </List.Item> */}
-              {(!min && max) ? <List.Item>Earns Upto BDT {max}K monthly</List.Item> : <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>}
+              {(!min && max) ? <List.Item><b>Year Income: &#36;</b> {max}K monthly</List.Item> : <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>}
             </List>
           </div>
         </div>
