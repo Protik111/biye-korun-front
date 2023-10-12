@@ -12,6 +12,7 @@ import {
   Chip,
   MultiSelect,
   TextInput,
+  Autocomplete,
 } from "@mantine/core";
 import { List, ThemeIcon } from "@mantine/core";
 import {
@@ -32,13 +33,23 @@ import Link from "next/link";
 import ReuseModal from "../global/ReuseModal";
 import {
   bloodGroups,
+  companies,
   heights,
+  incomes,
   maritalStatuses,
   motherTongues,
+  professions,
+  qualifications,
+  worksWithsOwn,
 } from "@/staticData/InputFields/inputFields";
 import { DatePickerInput } from "@mantine/dates";
 import useCountry from "@/hooks/common/useCountry";
 import { cityData } from "@/staticData/InputFields/city";
+import {
+  getCities,
+  getCountries,
+  getStatesForCountry,
+} from "@/hooks/common/countryApi";
 
 const imageUrl =
   "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80";
@@ -52,7 +63,18 @@ const MyProfile = () => {
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
   const [isModal4Open, setIsModal4Open] = useState(false);
+  const [isModal5Open, setIsModal5Open] = useState(false);
+  const [isModal6Open, setIsModal6Open] = useState(false);
   const [countryList, setCountryList] = useState([]);
+  // list of country
+  const [contries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState();
+
+  const [states, setStates] = useState([]);
+  const [selectedState, setSelectedState] = useState();
+
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState();
 
   const openModal1 = () => setIsModal1Open(true);
   const closeModal1 = () => setIsModal1Open(false);
@@ -63,6 +85,10 @@ const MyProfile = () => {
   const closeModal3 = () => setIsModal3Open(false);
   const openModal4 = () => setIsModal4Open(true);
   const closeModal4 = () => setIsModal4Open(false);
+  const openModal5 = () => setIsModal5Open(true);
+  const closeModal5 = () => setIsModal5Open(false);
+  const openModal6 = () => setIsModal6Open(true);
+  const closeModal6 = () => setIsModal6Open(false);
   const {
     location: { city, residencyStatus } = {},
     doctrine: { caste } = {},
@@ -97,7 +123,7 @@ const MyProfile = () => {
     educationCareer,
     location,
     community: communityData,
-  } = (userInfo?.partnerpreference || {}).basicDetails || {}
+  } = (userInfo?.partnerpreference || {}).basicDetails || {};
 
   // console.log("userInfo", userInfo);
   const url = profilePicture ? profilePicture.url : null;
@@ -109,18 +135,57 @@ const MyProfile = () => {
       });
     }
   };
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event);
+  };
+
+  const handleStateChange = (event) => {
+    setSelectedState(event);
+  };
+
+  const handleCityChange = (event) => {
+    setSelectedCity(event);
+  };
 
   useEffect(() => {
-    if (!loading?.country) {
-      const convertedList = data?.country?.map((item) => ({
+    getCountries().then((result) => {
+      const convertedList = result?.data.data?.map((item) => ({
         label: item?.name,
         value: item?.name,
-        code: item?.iso2,
       }));
+      setCountries(convertedList);
+    });
+  }, []);
 
-      setCountryList(convertedList);
+  useEffect(() => {
+    setSelectedState("");
+    setSelectedCity("");
+    setStates([]);
+    setCities([]);
+
+    if (selectedCountry !== "Select Country" && selectedCountry) {
+      getStatesForCountry(selectedCountry).then((result) => {
+        const convertedList = result?.data.data?.states.map((item) => ({
+          label: item?.name,
+          value: item?.name,
+        }));
+        console.log("150", convertedList);
+        setStates(convertedList);
+      });
     }
-  }, [data]);
+  }, [selectedCountry]);
+
+  useEffect(() => {
+    setCities([]);
+    setSelectedCity("");
+
+    if (selectedState !== "Select State" && selectedCountry && selectedState) {
+      getCities(selectedCountry, selectedState).then((result) => {
+        console.log("result.data.data", result.data.data);
+        setCities(result.data.data);
+      });
+    }
+  }, [selectedState]);
 
   // console.log('userinfo', userInfo);
 
@@ -478,17 +543,16 @@ const MyProfile = () => {
                 <h3 className="secondary-text">Education & Career</h3>
               </Tooltip>
 
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal5}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <div className="profile-info mt-10">
@@ -534,17 +598,16 @@ const MyProfile = () => {
                 <h3 className="secondary-text">Locations</h3>
               </Tooltip>
 
-              <Link href="/edit-profile">
-                <Button
-                  variant="light"
-                  size="xs"
-                  radius="xl"
-                  color="pink"
-                  className={`button mt-10`}
-                >
-                  Edit
-                </Button>
-              </Link>
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal6}
+              >
+                Edit
+              </Button>
             </div>
             <Divider mt={5}></Divider>
             <div className="profile-info mt-10">
@@ -772,8 +835,8 @@ const MyProfile = () => {
                             {item}
                             {index !==
                               educationCareer?.qualification.length - 1 && (
-                                <br />
-                              )}
+                              <br />
+                            )}
                           </React.Fragment>
                         );
                       })}
@@ -836,8 +899,8 @@ const MyProfile = () => {
           autosize
           minRows={5}
           maxRows={10}
-        // value={value}
-        // onChange={(event) => setValue(event.currentTarget.value)}
+          // value={value}
+          // onChange={(event) => setValue(event.currentTarget.value)}
         />
         <div className="flex justify-end mt-10">
           <Button variant="filled" color="violet" size="sm">
@@ -882,9 +945,9 @@ const MyProfile = () => {
             data={bloodGroups}
             // value={formValues.bloodGroup}
             withAsterisk
-          // name="bloodGroup"
-          // onChange={(event) => handleFormChange("bloodGroup", event)}
-          // error={formErrors.bloodGroup}
+            // name="bloodGroup"
+            // onChange={(event) => handleFormChange("bloodGroup", event)}
+            // error={formErrors.bloodGroup}
           />
           <br />
           <Select
@@ -893,11 +956,11 @@ const MyProfile = () => {
             label="Marital Status"
             // styles={{ label: labelStyles }}
             data={maritalStatuses}
-          // value={formValues.maritalStatus}
-          // withAsterisk
-          // name="maritalStatus"
-          // onChange={(event) => handleFormChange("maritalStatus", event)}
-          // error={formErrors.maritalStatus}
+            // value={formValues.maritalStatus}
+            // withAsterisk
+            // name="maritalStatus"
+            // onChange={(event) => handleFormChange("maritalStatus", event)}
+            // error={formErrors.maritalStatus}
           />
           <br />
           <Select
@@ -905,11 +968,11 @@ const MyProfile = () => {
             placeholder="Select"
             label="Height"
             data={heights}
-          // value={formValues.height}
-          // withAsterisk
-          // name="height"
-          // onChange={(event) => handleFormChange("height", event)}
-          // error={formErrors.height}
+            // value={formValues.height}
+            // withAsterisk
+            // name="height"
+            // onChange={(event) => handleFormChange("height", event)}
+            // error={formErrors.height}
           />
 
           <br />
@@ -922,10 +985,10 @@ const MyProfile = () => {
             // data={countries}
             data={countryList}
             name="livingIn"
-          // defaultValue={formData.livingIn}
-          // onChange={(event) => handleFormChange("livingIn", event)}
-          // style={{ width: '180px' }}
-          // sx={selectMobileStyles}
+            // defaultValue={formData.livingIn}
+            // onChange={(event) => handleFormChange("livingIn", event)}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
           />
           <br />
           <DatePickerInput
@@ -938,11 +1001,11 @@ const MyProfile = () => {
             size="sm"
             // maw={400}
             withAsterisk
-          // value={data.basic2dob}
-          // onChange={(event) => handleChange("basic2dob", event)}
-          // error={fieldErrors.basic2dob}
-          //disableBeforeDate={minDate} // Use the disableDate function
-          // maxDate={generate18YearBefore()}
+            // value={data.basic2dob}
+            // onChange={(event) => handleChange("basic2dob", event)}
+            // error={fieldErrors.basic2dob}
+            //disableBeforeDate={minDate} // Use the disableDate function
+            // maxDate={generate18YearBefore()}
           />
 
           <div className="flex justify-end mt-10">
@@ -973,8 +1036,8 @@ const MyProfile = () => {
               "Others",
             ]}
             name="religion"
-          // defaultValue={formData.religion}
-          // onChange={(event) => handleFormChange("religion", event)}
+            // defaultValue={formData.religion}
+            // onChange={(event) => handleFormChange("religion", event)}
           />
           <br />
           <MultiSelect
@@ -988,8 +1051,8 @@ const MyProfile = () => {
             // value={formData.motherTongue}
             // onChange={(event) => handleFormChange("motherTongue", event)}
             searchable
-          // style={{ width: '180px' }}
-          // sx={selectMobileStyles}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
           />
           <br />
           <Select
@@ -1003,8 +1066,8 @@ const MyProfile = () => {
             // value={formData.motherTongue}
             // onChange={(event) => handleFormChange("motherTongue", event)}
             searchable
-          // style={{ width: '180px' }}
-          // sx={selectMobileStyles}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
           />
           <div className="flex justify-end mt-10">
             <Button variant="filled" color="violet" size="sm">
@@ -1034,18 +1097,52 @@ const MyProfile = () => {
           <br />
           <TextInput label="No. of Sisters" placeholder="No. of Sisters" />
           <br />
-          <MultiSelect
+          <Select
             searchable
             size="md"
             placeholder="Select country"
             label="Country"
             // data={countries}
-            data={countryList}
+            data={contries}
             name="livingIn"
-          // defaultValue={formData.livingIn}
-          // onChange={(event) => handleFormChange("livingIn", event)}
-          // style={{ width: '180px' }}
-          // sx={selectMobileStyles}
+            onChange={handleCountryChange}
+            value={selectedCountry}
+            // defaultValue={formData.livingIn}
+            // onChange={(event) => handleFormChange("livingIn", event)}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
+          />
+          <br />
+          <Select
+            searchable
+            size="md"
+            placeholder="Select country"
+            label="State"
+            // data={countries}
+            data={states}
+            name="livingIn"
+            onChange={handleStateChange}
+            value={selectedState}
+            // defaultValue={formData.livingIn}
+            // onChange={(event) => handleFormChange("livingIn", event)}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
+          />
+          <br />
+          <Select
+            searchable
+            size="md"
+            placeholder="Select country"
+            label="City"
+            // data={countries}
+            data={cities}
+            name="livingIn"
+            onChange={handleCityChange}
+            value={selectedCity}
+            // defaultValue={formData.livingIn}
+            // onChange={(event) => handleFormChange("livingIn", event)}
+            // style={{ width: '180px' }}
+            // sx={selectMobileStyles}
           />
           <br />
           <div className="flex justify-end mt-10">
@@ -1053,6 +1150,142 @@ const MyProfile = () => {
               Save
             </Button>
           </div>
+        </div>
+      </ReuseModal>
+
+      <ReuseModal
+        isOpen={isModal5Open}
+        onClose={closeModal5}
+        title="Education & Career"
+      >
+        <br />
+        <MultiSelect
+          size="md"
+          placeholder="Select"
+          label="Qualification"
+          withAsterisk
+          defaultValue="20"
+          data={qualifications}
+          name="profession"
+          searchable
+          // value={formData.profession}
+          // onChange={(event) => handleFormChange("profession", event)}
+        />
+        <br />
+        <Select
+          size="md"
+          placeholder="Select"
+          label="Job Sector"
+          withAsterisk
+          defaultValue="20"
+          data={worksWithsOwn}
+          name="workingWith"
+          searchable
+        />
+
+        <br />
+        <Select
+          size="md"
+          placeholder="Select"
+          label=" Job Title"
+          withAsterisk
+          defaultValue="20"
+          data={professions}
+          name="profession"
+          searchable
+          // value={formData.profession}
+          // onChange={(event) => handleFormChange("profession", event)}
+        />
+        <br />
+
+        <Autocomplete
+          size="md"
+          placeholder="Select"
+          label="Company"
+          data={companies}
+          // value={formValues.company}
+          withAsterisk
+          name="company"
+          // onChange={(event) => handleFormChange("company", event)}
+          // error={formErrors.company}
+          searchable
+        />
+        <br />
+        <Select
+          size="md"
+          placeholder="Select"
+          label="Yearly Income"
+          data={incomes}
+          // value={formValues.income}
+          withAsterisk
+          name="income"
+          // onChange={(event) => handleFormChange("income", event)}
+          // error={formErrors.income}
+        />
+        <br />
+        <div className="flex justify-end mt-10">
+          <Button variant="filled" color="violet" size="sm">
+            Save
+          </Button>
+        </div>
+      </ReuseModal>
+
+      <ReuseModal isOpen={isModal6Open} onClose={closeModal6} title="Locations">
+        <br />
+        <TextInput label="Zip / Pin code" placeholder="Zip / Pin code" />
+        <br />
+        <Select
+          searchable
+          size="md"
+          placeholder="Select country"
+          label="Country"
+          // data={countries}
+          data={contries}
+          name="livingIn"
+          onChange={handleCountryChange}
+          value={selectedCountry}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+        />
+        <br />
+        <Select
+          searchable
+          size="md"
+          placeholder="Select country"
+          label="State"
+          // data={countries}
+          data={states}
+          name="livingIn"
+          onChange={handleStateChange}
+          value={selectedState}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+        />
+        <br />
+        <Select
+          searchable
+          size="md"
+          placeholder="Select country"
+          label="City"
+          // data={countries}
+          data={cities}
+          name="livingIn"
+          onChange={handleCityChange}
+          value={selectedCity}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
+        />
+        <br />
+        <div className="flex justify-end mt-10">
+          <Button variant="filled" color="violet" size="sm">
+            Save
+          </Button>
         </div>
       </ReuseModal>
     </div>

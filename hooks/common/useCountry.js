@@ -74,9 +74,6 @@ const useCountry = (selectedCountryCode, selectedStateCode) => {
       setLoading({ ...loading, city: false });
     }
   };
-  useEffect(() => {
-    fetchCountry();
-  }, []);
 
   useEffect(() => {
     fetchCountry();
