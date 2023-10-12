@@ -97,8 +97,9 @@ const MyProfile = () => {
     educationCareer,
     location,
     community: communityData,
-  } = userInfo?.partnerpreference;
-  console.log("userInfo", userInfo);
+  } = (userInfo?.partnerpreference || {}).basicDetails || {}
+
+  // console.log("userInfo", userInfo);
   const url = profilePicture ? profilePicture.url : null;
 
   const scrollToPartnerPreferences = () => {
@@ -119,7 +120,6 @@ const MyProfile = () => {
 
       setCountryList(convertedList);
     }
-    console.log("cityList", cityData);
   }, [data]);
 
   // console.log('userinfo', userInfo);
@@ -604,15 +604,15 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Age</p>
                     <p className="right">
-                      : {basicDetails.ageRange.min} to{" "}
-                      {basicDetails.ageRange.max}
+                      : {basicDetails?.ageRange.min} to{" "}
+                      {basicDetails?.ageRange.max}
                     </p>
                   </div>
                   <div className="single-item">
                     <p className="left">Height</p>
                     <p className="right">
-                      : {heightCalculator(basicDetails.heightRange.min)} to{" "}
-                      {heightCalculator(basicDetails.heightRange.max)}
+                      : {heightCalculator(basicDetails?.heightRange.min)} to{" "}
+                      {heightCalculator(basicDetails?.heightRange.max)}
                     </p>
                   </div>
                   {/* <div className="single-item">
@@ -772,8 +772,8 @@ const MyProfile = () => {
                             {item}
                             {index !==
                               educationCareer?.qualification.length - 1 && (
-                              <br />
-                            )}
+                                <br />
+                              )}
                           </React.Fragment>
                         );
                       })}
@@ -836,8 +836,8 @@ const MyProfile = () => {
           autosize
           minRows={5}
           maxRows={10}
-          // value={value}
-          // onChange={(event) => setValue(event.currentTarget.value)}
+        // value={value}
+        // onChange={(event) => setValue(event.currentTarget.value)}
         />
         <div className="flex justify-end mt-10">
           <Button variant="filled" color="violet" size="sm">
@@ -882,9 +882,9 @@ const MyProfile = () => {
             data={bloodGroups}
             // value={formValues.bloodGroup}
             withAsterisk
-            // name="bloodGroup"
-            // onChange={(event) => handleFormChange("bloodGroup", event)}
-            // error={formErrors.bloodGroup}
+          // name="bloodGroup"
+          // onChange={(event) => handleFormChange("bloodGroup", event)}
+          // error={formErrors.bloodGroup}
           />
           <br />
           <Select
@@ -893,11 +893,11 @@ const MyProfile = () => {
             label="Marital Status"
             // styles={{ label: labelStyles }}
             data={maritalStatuses}
-            // value={formValues.maritalStatus}
-            // withAsterisk
-            // name="maritalStatus"
-            // onChange={(event) => handleFormChange("maritalStatus", event)}
-            // error={formErrors.maritalStatus}
+          // value={formValues.maritalStatus}
+          // withAsterisk
+          // name="maritalStatus"
+          // onChange={(event) => handleFormChange("maritalStatus", event)}
+          // error={formErrors.maritalStatus}
           />
           <br />
           <Select
@@ -905,11 +905,11 @@ const MyProfile = () => {
             placeholder="Select"
             label="Height"
             data={heights}
-            // value={formValues.height}
-            // withAsterisk
-            // name="height"
-            // onChange={(event) => handleFormChange("height", event)}
-            // error={formErrors.height}
+          // value={formValues.height}
+          // withAsterisk
+          // name="height"
+          // onChange={(event) => handleFormChange("height", event)}
+          // error={formErrors.height}
           />
 
           <br />
@@ -922,10 +922,10 @@ const MyProfile = () => {
             // data={countries}
             data={countryList}
             name="livingIn"
-            // defaultValue={formData.livingIn}
-            // onChange={(event) => handleFormChange("livingIn", event)}
-            // style={{ width: '180px' }}
-            // sx={selectMobileStyles}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
           />
           <br />
           <DatePickerInput
@@ -938,11 +938,11 @@ const MyProfile = () => {
             size="sm"
             // maw={400}
             withAsterisk
-            // value={data.basic2dob}
-            // onChange={(event) => handleChange("basic2dob", event)}
-            // error={fieldErrors.basic2dob}
-            //disableBeforeDate={minDate} // Use the disableDate function
-            // maxDate={generate18YearBefore()}
+          // value={data.basic2dob}
+          // onChange={(event) => handleChange("basic2dob", event)}
+          // error={fieldErrors.basic2dob}
+          //disableBeforeDate={minDate} // Use the disableDate function
+          // maxDate={generate18YearBefore()}
           />
 
           <div className="flex justify-end mt-10">
@@ -973,8 +973,8 @@ const MyProfile = () => {
               "Others",
             ]}
             name="religion"
-            // defaultValue={formData.religion}
-            // onChange={(event) => handleFormChange("religion", event)}
+          // defaultValue={formData.religion}
+          // onChange={(event) => handleFormChange("religion", event)}
           />
           <br />
           <MultiSelect
@@ -988,8 +988,8 @@ const MyProfile = () => {
             // value={formData.motherTongue}
             // onChange={(event) => handleFormChange("motherTongue", event)}
             searchable
-            // style={{ width: '180px' }}
-            // sx={selectMobileStyles}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
           />
           <br />
           <Select
@@ -1003,8 +1003,8 @@ const MyProfile = () => {
             // value={formData.motherTongue}
             // onChange={(event) => handleFormChange("motherTongue", event)}
             searchable
-            // style={{ width: '180px' }}
-            // sx={selectMobileStyles}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
           />
           <div className="flex justify-end mt-10">
             <Button variant="filled" color="violet" size="sm">
@@ -1042,10 +1042,10 @@ const MyProfile = () => {
             // data={countries}
             data={countryList}
             name="livingIn"
-            // defaultValue={formData.livingIn}
-            // onChange={(event) => handleFormChange("livingIn", event)}
-            // style={{ width: '180px' }}
-            // sx={selectMobileStyles}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+          // style={{ width: '180px' }}
+          // sx={selectMobileStyles}
           />
           <br />
           <div className="flex justify-end mt-10">
