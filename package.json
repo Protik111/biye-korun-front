@@ -9,7 +9,7 @@
     "lint": "next lint",
     "dev:staging": "env-cmd -f .env.staging next dev -p 4000",
     "build:staging": "env-cmd -f .env.staging next build",
-    "build:production": "env-cmd -f .env.production next build"
+    "build:production": "NODE_OPTIONS='--max-old-space-size=4096' env-cmd -f .env.production next build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
