@@ -82,7 +82,7 @@ const Footer = () => {
                 </ul>
 
                 <div className="legal">
-                    <p className="mt-15">&copy; TS4U.Inc All Rights Reserved.</p>
+                    <p className="mt-15">&copy; TS4U Inc. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

@@ -125,7 +125,6 @@ function Education({
                 label=" Job Title"
                 withAsterisk
                 defaultValue="20"
-                // styles={{ label: labelStyles }}
                 data={professions}
                 name="profession"
                 value={formData.profession}
@@ -169,8 +168,8 @@ function Education({
                 valueLabel={(value) => `${value} BDT`}
               />
               <div>
-                <div>Min Income: {minIncomeValue} BDT</div>
-                <div>Max Income: {maxIncomeValue} BDT</div>
+                <div>Min Income: ${minIncomeValue} </div>
+                <div>Max Income: ${maxIncomeValue} </div>
               </div>
             </Accordion.Panel>
           </Accordion.Item>

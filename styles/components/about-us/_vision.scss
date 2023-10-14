@@ -1,9 +1,10 @@
 .vision {
-    margin-top: 80px;
+    // margin-top: 80px;
     background-image: url("/landing/Ellipse 46.svg");
     background-repeat: no-repeat;
     background-position: left top;
     background-size: 300px;
+    // margin: 10px;
 
     @include smMaxBreakPoint {
         margin-top: 15px;
@@ -26,6 +27,7 @@
             img {
                 max-width: 100%;
                 object-fit: cover;
+                height: 400px;
 
                 @include smMaxBreakPoint {
                     margin-top: 15px;

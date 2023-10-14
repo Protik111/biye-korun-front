@@ -1,10 +1,11 @@
 "use client"
 import { btnBackground } from '@/styles/library/mantine'
 import { Button } from '@mantine/core'
+import Link from 'next/link'
 
 const Vision = () => {
     return (
-        <div className='vision container border-1 rounded-10'>
+        <div className='vision container rounded-10'>
             <div className='vision__wrapper grid grid-cols-2 grid-cols-2-responsive grid-gap-20'>
                 <div className='vision__wrapper--left'>
 
@@ -19,19 +20,21 @@ const Vision = () => {
                     </div> */}
 
 
-                    <Button
-                        className="mt-25"
-                        style={btnBackground}
-                        size="md"
-                        radius="lg"
-                    // onClick={handleLetsBegin}
-                    >
-                        Register Now
-                    </Button>
+                    <Link href="/login">
+                        <Button
+                            className="mt-25"
+                            style={btnBackground}
+                            size="md"
+                            radius="lg"
+                        // onClick={handleLetsBegin}
+                        >
+                            Register Now
+                        </Button>
+                    </Link>
                 </div>
 
                 <div className='vision__wrapper--right '>
-                    <img src="/about-us/vision-image.svg" alt="Vision" />
+                    <img className='rounded-10' src="/about-us/vision-image.svg" alt="Vision" />
                 </div>
             </div>
         </div>
