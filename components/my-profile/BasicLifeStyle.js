@@ -26,7 +26,7 @@ import axios from "axios";
 import { btnBackground, labelStyles } from "@/styles/library/mantine";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
@@ -42,11 +42,14 @@ import { DatePickerInput } from "@mantine/dates";
 import { getCountries } from "@/hooks/common/countryApi";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { generate18YearBefore } from "@/utils/generate18YearBefore";
+import { loadUserData } from "@/redux/features/user/userSlice";
+import LoaderWithText from "../global/LoaderWithText";
 
-const BasicLifeStyle = () => {
+const BasicLifeStyle = ({ closeModal2 }) => {
   const { userInfo } = useSelector((state) => state.user) || {};
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
+  const dispatch = useDispatch();
   const {
     appearance: { height } = {},
     lifestyle: { diet, maritalStatus } = {},
@@ -102,7 +105,10 @@ const BasicLifeStyle = () => {
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
-        close();
+        dispatch(loadUserData());
+        setTimeout(() => {
+          closeModal2();
+        }, 4000);
       })
       .catch((err) => {
         setLoading(false);
@@ -218,7 +224,11 @@ const BasicLifeStyle = () => {
             size="sm"
             onClick={handleSubmit}
           >
-            Save
+            {loading ? (
+              <LoaderWithText text="Saving.."></LoaderWithText>
+            ) : (
+              "Save"
+            )}
           </Button>
         </div>
         <br />

@@ -26,7 +26,6 @@ import axios from "axios";
 import { btnBackground, labelStyles } from "@/styles/library/mantine";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
@@ -45,25 +44,22 @@ import {
   worksWithsOwn,
 } from "@/staticData/InputFields/inputFields";
 import { DatePickerInput } from "@mantine/dates";
-import useCountry from "@/hooks/common/useCountry";
-import { cityData } from "@/staticData/InputFields/city";
 import {
   getCities,
   getCountries,
   getStatesForCountry,
 } from "@/hooks/common/countryApi";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
-import { generate18YearBefore } from "@/utils/generate18YearBefore";
-import BasicLifeStyle from "../my-profile/BasicLifeStyle";
-import Religion from "../my-profile/Religion";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUserData } from "@/redux/features/user/userSlice";
+import LoaderWithText from "../global/LoaderWithText";
 
-const imageUrl =
-  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80";
-
-const FamilyDetails = () => {
+const FamilyDetails = ({ closeModal4 }) => {
   const { userInfo } = useSelector((state) => state.user) || {};
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const {
     family: {
       familyCountry,
@@ -138,7 +134,11 @@ const FamilyDetails = () => {
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
-        close();
+
+        dispatch(loadUserData());
+        setTimeout(() => {
+          closeModal4();
+        }, 4000);
       })
       .catch((err) => {
         setLoading(false);
@@ -208,14 +208,22 @@ const FamilyDetails = () => {
           }
         />{" "}
         <br />
-        <TextInput
+        <Select
+          searchable
+          size="md"
+          placeholder="Select Family Type"
           label="Family Type"
-          placeholder="Family Type"
+          data={[
+            "Nuclear Family",
+            "Extended Family",
+            "Step Family",
+            "Same sex Family",
+            "Grandparent Family",
+            "Single Parent Family",
+          ]}
           name="type"
           value={formValues.type}
-          onChange={(event) =>
-            handleFormChange("type", event.currentTarget.value)
-          }
+          onChange={(event) => handleFormChange("type", event)}
         />
         <br />
         <Select
@@ -256,7 +264,11 @@ const FamilyDetails = () => {
             size="sm"
             onClick={handleSubmit}
           >
-            Save
+            {loading ? (
+              <LoaderWithText text="Saving.."></LoaderWithText>
+            ) : (
+              "Save"
+            )}
           </Button>
         </div>
       </div>
