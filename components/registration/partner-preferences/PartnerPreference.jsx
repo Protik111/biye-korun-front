@@ -12,10 +12,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
-// Define the minimum and maximum heights in inches
-const minHeightInches = 58; // 4' 10'' in inches
-const maxHeightInches = 83; // 6' 11'' in inches
-
 // Define the minimum and maximum income values
 const minIncome = 10000; // 10000 BDT
 const maxIncome = 200000; // 200,000 BDT
@@ -45,11 +41,16 @@ const PartnerPreference = ({
     trait: { aboutMe } = {},
     phone,
     profilePicture: { url } = {},
-  } = (userInfo?.partnerpreference || {}).basicDetails || {}
+  }
+    // = (userInfo?.partnerpreference || {}).basicDetails || {}
+    = (userInfo?.partnerpreference || {})
+
+  console.log('heightRange', heightRange);
+
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
-    ages: [18, 25],
+    ages: [min, max] || [18, 25],
     height: "",
     maritalStatus: maritalStatus ? maritalStatus : "",
     religion: religion ? religion : "",
@@ -62,8 +63,8 @@ const PartnerPreference = ({
     profession: profession ? profession : "",
     income: "",
   });
-  const [minHeight, setMinHeight] = useState(minHeightInches);
-  const [maxHeight, setMaxHeight] = useState(maxHeightInches);
+  const [minHeight, setMinHeight] = useState(heightRange?.min);
+  const [maxHeight, setMaxHeight] = useState(heightRange?.max);
 
   // Initial income range values
   const [minIncomeValue, setMinIncomeValue] = useState(minIncome);
@@ -150,7 +151,7 @@ const PartnerPreference = ({
       // community: "Muslim",
       motherTongue,
       country: livingIn,
-      stateLiving,
+      // stateLiving,
       residencyStatus: residency,
       qualification,
       workingWith,
@@ -172,7 +173,6 @@ const PartnerPreference = ({
       });
   };
 
-  // console.log('user', userInfo);
 
   return (
     <div className="partenerPref">

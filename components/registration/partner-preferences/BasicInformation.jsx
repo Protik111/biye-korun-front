@@ -9,7 +9,6 @@ import {
   ThemeIcon,
 } from "@mantine/core";
 import { IconCalendarTime, IconFall, IconHearts } from "@tabler/icons-react";
-import { useState } from "react";
 
 function BasicInformation({
   formData,
@@ -42,6 +41,11 @@ function BasicInformation({
     setMaxHeight(newValues[1]);
   };
 
+  console.log('min', minHeight, maxHeight);
+  console.log('[parseInt(minHeight), parseInt(maxHeight)]', [minHeight, maxHeight]);
+  console.log('fomrAges', formData.ages);
+
+
   return (
     <>
       <div className="partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive">
@@ -68,12 +72,12 @@ function BasicInformation({
                 // scale={(v) => 2 ** v}
                 step={1}
                 min={18}
-                max={39}
+                max={65}
                 name="ages"
                 labelAlwaysOn
                 values={formData.ages}
                 defaultValue={formData.ages}
-                range={2}
+                // range={2}
                 // onChange={handleAge}
                 onChange={(event) => handleFormChange("ages", event)}
               />
@@ -90,13 +94,14 @@ function BasicInformation({
               <RangeSlider
                 size="md"
                 color="pink"
+                py="xl"
                 step={1}
-                min={58}
+                min={28}
                 max={83}
                 labelAlwaysOn
                 values={[minHeight, maxHeight]}
                 onChange={handleRangeChange}
-                valueLabel={(value) => formatHeight(value)}
+              // valueLabel={(value) => formatHeight(value)}
               />
               <div>
                 <div>Min Height: {formatHeight(minHeight)}</div>
@@ -131,7 +136,7 @@ function BasicInformation({
                 withAsterisk
                 name="maritalStatus"
                 onChange={(event) => handleFormChange("maritalStatus", event)}
-                // error={formErrors.maritalStatus}
+              // error={formErrors.maritalStatus}
               />
             </Accordion.Panel>
           </Accordion.Item>

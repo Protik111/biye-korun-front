@@ -175,7 +175,7 @@ const LoginComp = () => {
                     </Button> */}
                 </div>
                 <div className="loginComp__wrapper--right">
-                    <img src="/auth/login-password.svg" alt="login" />
+                    {/* <img src="/auth/login-password.svg" alt="login" /> */}
                 </div>
             </div>
 
