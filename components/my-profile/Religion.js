@@ -26,7 +26,7 @@ import axios from "axios";
 import { btnBackground, labelStyles } from "@/styles/library/mantine";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { heightCalculator } from "@/utils/heightCalculator";
 import { calculateAge } from "@/utils/calculateAge";
 import { notSpecfied } from "@/staticData/image";
@@ -46,7 +46,6 @@ import {
 } from "@/staticData/InputFields/inputFields";
 import { DatePickerInput } from "@mantine/dates";
 import useCountry from "@/hooks/common/useCountry";
-import { cityData } from "@/staticData/InputFields/city";
 import {
   getCities,
   getCountries,
@@ -54,12 +53,15 @@ import {
 } from "@/hooks/common/countryApi";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { generate18YearBefore } from "@/utils/generate18YearBefore";
+import LoaderWithText from "../global/LoaderWithText";
+import { loadUserData } from "@/redux/features/user/userSlice";
 
-const Religion = () => {
+const Religion = ({ closeModal3 }) => {
   const { userInfo } = useSelector((state) => state.user) || {};
   const [opened, { open, close }] = useDisclosure(false);
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
+  const dispatch = useDispatch();
   const {
     doctrine: { motherTongue } = {},
     religion,
@@ -100,9 +102,12 @@ const Religion = () => {
     axios
       .patch("/user/update-user-profile", data)
       .then((res) => {
-        notifySuccess("Profile updated successfully!");
         setLoading(false);
-        close();
+        notifySuccess("Profile updated successfully!");
+        dispatch(loadUserData());
+        setTimeout(() => {
+          closeModal3();
+        }, 4000);
       })
       .catch((err) => {
         setLoading(false);
@@ -165,7 +170,11 @@ const Religion = () => {
             size="sm"
             onClick={handleSubmit}
           >
-            Save
+            {loading ? (
+              <LoaderWithText text="Saving.."></LoaderWithText>
+            ) : (
+              "Save"
+            )}
           </Button>
         </div>
       </div>

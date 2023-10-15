@@ -85,7 +85,7 @@ const Step2 = ({
   return (
     <div className="step1">
       <h2 className="text-center">Education And Qualifications</h2>
-      {console.log("qualifications", qualifications)}
+
       <Select
         size="md"
         placeholder="Select"

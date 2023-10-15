@@ -43,7 +43,6 @@ function BasicInformation({
 
   console.log('min', minHeight, maxHeight);
   console.log('[parseInt(minHeight), parseInt(maxHeight)]', [minHeight, maxHeight]);
-  console.log('fomrAges', formData.ages);
 
 
   return (
@@ -99,7 +98,7 @@ function BasicInformation({
                 min={28}
                 max={83}
                 labelAlwaysOn
-                values={[minHeight, maxHeight]}
+                value={[minHeight, maxHeight]}
                 onChange={handleRangeChange}
               // valueLabel={(value) => formatHeight(value)}
               />

@@ -45,8 +45,6 @@ const PartnerPreference = ({
     // = (userInfo?.partnerpreference || {}).basicDetails || {}
     = (userInfo?.partnerpreference || {})
 
-  console.log('heightRange', heightRange);
-
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
