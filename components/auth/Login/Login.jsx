@@ -77,7 +77,8 @@ const LoginComp = () => {
                     }
 
                     // if (Object.keys(userInfo).length !== 0) {
-                    router.push("/dashboard")
+                    // router.push("/dashboard")
+                    window.location.href = "/dashboard"
                     // router.reload()
                     // }
 
