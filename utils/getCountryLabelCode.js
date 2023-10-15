@@ -9,10 +9,7 @@ export function getCountryCodeByLabel(contryList, label) {
 }
 
 export function getStateCodeByLabel(stateList, label) {
-    console.log('stateList, label from function', stateList, label);
     const state = stateList.find(state => state.label === label);
-
-    console.log('state from function', state);
 
     if (state) {
         return state.code;

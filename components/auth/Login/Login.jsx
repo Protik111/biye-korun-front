@@ -17,6 +17,8 @@ import Link from "next/link"
 
 const LoginComp = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth)
+    const { userInfo } = useSelector(state => state.user);
+
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         email: '',
@@ -74,10 +76,16 @@ const LoginComp = () => {
                         dispatch(loadUserData())
                     }
 
-                    setTimeout(() => {
-                        router.push('/my-profile', '/my-profile', { shallow: true })
-                        // window.location.href("/dashboard")
-                    }, 500)
+                    // if (Object.keys(userInfo).length !== 0) {
+                    // router.push("/dashboard")
+                    window.location.href = "/dashboard"
+                    // router.reload()
+                    // }
+
+
+                    // setTimeout(() => {
+                    //     // router.push('/my-profile', '/my-profile', { shallow: true })
+                    // }, 500)
                 })
                 .catch(() => {
                     notifyError("Please try again!")
@@ -167,7 +175,7 @@ const LoginComp = () => {
                     </Button> */}
                 </div>
                 <div className="loginComp__wrapper--right">
-                    <img src="/auth/login-password.svg" alt="login" />
+                    {/* <img src="/auth/login-password.svg" alt="login" /> */}
                 </div>
             </div>
 

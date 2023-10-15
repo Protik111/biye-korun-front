@@ -49,8 +49,8 @@ function Location({ formData, setFormData }) {
   const [countryCode, setCountryCode] = useState("");
   const [stateCode, setStateCode] = useState("");
 
-  console.log("countryCode", countryCode);
-  console.log("stateCode", stateCode);
+  // console.log("countryCode", countryCode);
+  // console.log("stateCode", stateCode);
 
   //custom hooks to get country, state, city
   const { data, error, loading } = useCountry(countryCode, stateCode);
@@ -64,14 +64,14 @@ function Location({ formData, setFormData }) {
     }));
   };
 
-  console.log("country, state, city data", data);
+  // console.log("country, state, city data", data);
 
   useEffect(() => {
     if (!loading?.country) {
       const convertedList = data?.country?.map((item) => ({
         label: item?.name,
         value: item?.name,
-        code: item?.iso2,
+        // code: item?.iso2,
       }));
 
       setCountryList(convertedList);
@@ -81,7 +81,7 @@ function Location({ formData, setFormData }) {
     }
 
     if (!loading?.state) {
-      console.log("data?.state?", stateList);
+      // console.log("data?.state?", stateList);
       const stateConvertedList = data?.state?.map((item) => ({
         label: item?.name,
         value: item?.name,
@@ -96,8 +96,6 @@ function Location({ formData, setFormData }) {
       );
     }
   }, [data, loading, formData?.livingIn, formData?.stateLiving]);
-
-  // console.log("stateList", stateList);
 
   return (
     <div className="pt-15">
@@ -128,10 +126,10 @@ function Location({ formData, setFormData }) {
                 // data={countries}
                 data={countryList}
                 name="livingIn"
-                defaultValue={formData.livingIn}
+                value={formData.livingIn}
                 onChange={(event) => handleFormChange("livingIn", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -185,8 +183,8 @@ function Location({ formData, setFormData }) {
                 name="residency"
                 defaultValue={formData.residency}
                 onChange={(event) => handleFormChange("residency", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>

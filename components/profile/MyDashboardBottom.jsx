@@ -120,7 +120,7 @@ const MyDashboardBottom = () => {
 
   return (
     <div className="myDashboard__bottom mt-20">
-      <h3 className="mb-5">Recent Visitors</h3>
+      {data?.data?.length > 0 && <h3 className="mb-5">Recent Visitors</h3>}
       <div className="myDashboard__bottom--profileContainerRoot">
         <div className="myDashboard__bottom--profileContainer">
           {data?.data?.map((profile) => (
