@@ -1,7 +1,12 @@
-import { Button, Divider, NavLink } from "@mantine/core"
-import { IconHome2 } from "@tabler/icons-react"
+import { Button, Divider, NavLink } from "@mantine/core";
+import { IconHome2 } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { IconGauge, IconFingerprint, IconActivity, IconChevronRight } from '@tabler/icons-react';
+import {
+  IconGauge,
+  IconFingerprint,
+  IconActivity,
+  IconChevronRight,
+} from "@tabler/icons-react";
 import NameComp from "./NameComp";
 import { useSelector } from "react-redux";
 import PhoneComp from "./PhoneComp";
@@ -15,220 +20,276 @@ import PartnerPreference from "@/components/registration/partner-preferences/Par
 import { useSearchParams } from "next/navigation";
 
 const data = [
-    {
-        icon: IconFingerprint,
-        label: 'Account Settings',
-    },
-    {
-        icon: IconFingerprint,
-        label: 'Contact Filters',
-    },
-    {
-        icon: IconFingerprint,
-        label: 'Email / SMS Alerts',
-    },
-    { icon: IconGauge, label: 'Privacy Options', description: 'All about your basic info' },
-    {
-        icon: IconFingerprint,
-        label: 'Hide / Delete Profile',
-    },
-    { icon: IconActivity, label: 'Messages' },
+  {
+    icon: IconFingerprint,
+    label: "Account Settings",
+  },
+  {
+    icon: IconFingerprint,
+    label: "Contact Filters",
+  },
+  //   {
+  //     icon: IconFingerprint,
+  //     label: "Email / SMS Alerts",
+  //   },
+  //   {
+  //     icon: IconGauge,
+  //     label: "Privacy Options",
+  //     description: "All about your basic info",
+  //   },
+  {
+    icon: IconFingerprint,
+    label: "Hide / Delete Profile",
+  },
+  //   { icon: IconActivity, label: "Messages" },
 ];
 
-
 const Settings = () => {
-    const { userInfo, message } = useSelector(state => state.user)
-    const [active, setActive] = useState(0);
-    const [openHidden, setOpenHidden] = useState({});
-    const search = useSearchParams();
-    const queryParam = search.get('state');
+  const { userInfo, message } = useSelector((state) => state.user);
+  const [active, setActive] = useState(0);
+  const [openHidden, setOpenHidden] = useState({});
+  const search = useSearchParams();
+  const queryParam = search.get("state");
 
-    const { email = {}, firstName = {}, lastName = {}, location: { city, residencyStatus } = {}, doctrine: { caste, motherTongue } = {}, appearance: { height } = {}, education: { college, education } = {}, family: { children, livingWith } = {}, lifestyle: { diet, maritalStatus } = {}, profession: { employer, income, occupation, workingWith } = {}, trait: { aboutMe } = {}, phone, bloodGroup } = userInfo || {};
+  const {
+    email = {},
+    firstName = {},
+    lastName = {},
+    location: { city, residencyStatus } = {},
+    doctrine: { caste, motherTongue } = {},
+    appearance: { height } = {},
+    education: { college, education } = {},
+    family: { children, livingWith } = {},
+    lifestyle: { diet, maritalStatus } = {},
+    profession: { employer, income, occupation, workingWith } = {},
+    trait: { aboutMe } = {},
+    phone,
+    bloodGroup,
+  } = userInfo || {};
 
-    const [profileData, setProfileData] = useState({
-        firstName: firstName ? firstName : '',
-        lastName: lastName ? lastName : '',
-        phone: '',
-        photo: '',
-        email: email ? email : ''
-    })
+  const [profileData, setProfileData] = useState({
+    firstName: firstName ? firstName : "",
+    lastName: lastName ? lastName : "",
+    phone: "",
+    photo: "",
+    email: email ? email : "",
+  });
 
+  const listItems = [
+    {
+      id: 1,
+      label: "Display Name as",
+      value: firstName + " " + lastName,
+      hiddenComp: (
+        <NameComp
+          profileData={profileData}
+          setProfileData={setProfileData}
+        ></NameComp>
+      ),
+      hiddenCompVisible: false,
+    },
+    // {
+    //     id: 2,
+    //     label: 'Phone',
+    //     value: 'Only Premium Members',
+    //     hiddenComp: <PhoneComp profileData={profileData} setProfileData={setProfileData}></PhoneComp>
+    // },
+    // {
+    //     id: 3,
+    //     label: 'Email',
+    //     value: 'Visible to all Premium Members',
+    //     hiddenComp: <EmailComp profileData={profileData} setProfileData={setProfileData}></EmailComp>
+    // },
+    {
+      id: 4,
+      label: "Photo",
+      value: "Visible to all Members",
+      hiddenComp: (
+        <PhotoComp
+          profileData={profileData}
+          setProfileData={setProfileData}
+        ></PhotoComp>
+      ),
+    },
+    {
+      id: 5,
+      label: "Date of Birth",
+      value: "Show my full Date of Birth (mm/dd/yyyy)",
+      hiddenComp: (
+        <DobComp
+          profileData={profileData}
+          setProfileData={setProfileData}
+        ></DobComp>
+      ),
+    },
+    {
+      id: 6,
+      label: "Annual Income",
+      value: "Visible to all Members",
+      hiddenComp: (
+        <IncomeComp
+          profileData={profileData}
+          setProfileData={setProfileData}
+        ></IncomeComp>
+      ),
+    },
+    {
+      id: 7,
+      label: "Visitors Setting",
+      value: "Let other Members know that I have visited their Profile",
+      hiddenComp: "Comming soon",
+    },
+    {
+      id: 8,
+      label: "Do not disturb",
+      value: "Can call me for Premium Membership related offers.",
+      hiddenComp: "Comming soon",
+    },
+    {
+      id: 9,
+      label: "Profile Privacy",
+      value: "Visible to all, including unregistered visitors",
+      hiddenComp: "Comming soon",
+    },
+    {
+      id: 10,
+      label: "Web Notifications",
+      value: "Unsubscribed",
+      hiddenComp: "Comming soon",
+    },
+  ];
 
-    const listItems = [
-        {
-            id: 1,
-            label: 'Display Name as',
-            value: firstName + " " + lastName,
-            hiddenComp: <NameComp profileData={profileData} setProfileData={setProfileData}></NameComp>,
-            hiddenCompVisible: false
-        },
-        // {
-        //     id: 2,
-        //     label: 'Phone',
-        //     value: 'Only Premium Members',
-        //     hiddenComp: <PhoneComp profileData={profileData} setProfileData={setProfileData}></PhoneComp>
-        // },
-        // {
-        //     id: 3,
-        //     label: 'Email',
-        //     value: 'Visible to all Premium Members',
-        //     hiddenComp: <EmailComp profileData={profileData} setProfileData={setProfileData}></EmailComp>
-        // },
-        {
-            id: 4,
-            label: 'Photo',
-            value: 'Visible to all Members',
-            hiddenComp: <PhotoComp profileData={profileData} setProfileData={setProfileData}></PhotoComp>
-        },
-        {
-            id: 5,
-            label: 'Date of Birth',
-            value: 'Show my full Date of Birth (mm/dd/yyyy)',
-            hiddenComp: <DobComp profileData={profileData} setProfileData={setProfileData}></DobComp>
-        },
-        {
-            id: 6,
-            label: 'Annual Income',
-            value: 'Visible to all Members',
-            hiddenComp: <IncomeComp profileData={profileData} setProfileData={setProfileData}></IncomeComp>
-        },
-        {
-            id: 7,
-            label: 'Visitors Setting',
-            value: 'Let other Members know that I have visited their Profile',
-            hiddenComp: "Comming soon"
-        },
-        {
-            id: 8,
-            label: 'Do not disturb',
-            value: 'Can call me for Premium Membership related offers.',
-            hiddenComp: "Comming soon"
-        },
-        {
-            id: 9,
-            label: 'Profile Privacy',
-            value: 'Visible to all, including unregistered visitors',
-            hiddenComp: "Comming soon"
-        },
-        {
-            id: 10,
-            label: 'Web Notifications',
-            value: 'Unsubscribed',
-            hiddenComp: "Comming soon"
-        },
-    ]
+  const items = data.map((item, index) => (
+    <NavLink
+      key={item.label}
+      active={index === active}
+      label={item.label}
+      description={item.description}
+      rightSection={item.rightSection}
+      icon={<item.icon size="1rem" stroke={1.5} />}
+      onClick={() => {
+        setActive(index);
+      }}
+      color="pink"
+      variant="filled"
+      className="rounded-10"
+    />
+  ));
 
-    const items = data.map((item, index) => (
-        <NavLink
-            key={item.label}
-            active={index === active}
-            label={item.label}
-            description={item.description}
-            rightSection={item.rightSection}
-            icon={<item.icon size="1rem" stroke={1.5} />}
-            onClick={() => {
-                setActive(index)
-            }}
-            color="pink"
-            variant="filled"
-            className="rounded-10"
-        />
-    ));
+  const handleEdit = (id) => {
+    setOpenHidden((prevItem) => ({
+      ...prevItem,
+      [id]: !prevItem[id],
+    }));
+  };
 
-    const handleEdit = (id) => {
-        setOpenHidden((prevItem) => ({
-            ...prevItem,
-            [id]: !prevItem[id]
-        }))
-
+  useEffect(() => {
+    if (queryParam) {
+      setActive(parseInt(queryParam));
     }
+  }, [queryParam]);
 
-    useEffect(() => {
-        if (queryParam) {
-            setActive(parseInt(queryParam))
-        }
-    }, [queryParam])
-
-    return (
-        <div className="settings container">
-            <>
-                {/* <div className="">
+  return (
+    <div className="settings container">
+      <>
+        {/* <div className="">
                     <h2 className="text-center mb-15">
                         Privacy Settings
                     </h2>
                 </div> */}
 
-                <div className="settings__wrapper">
-                    <div className="settings__wrapper--requestBox">
-                        <div className="menuBox-container">
-                            <div className="menus">
-                                {items}
-                            </div>
+        <div className="settings__wrapper">
+          <div className="settings__wrapper--requestBox">
+            <div className="menuBox-container">
+              <div className="menus">{items}</div>
+            </div>
+          </div>
+          <div className="settings__wrapper--contentBox">
+            {active === 3 ? (
+              <>
+                {listItems?.map((item) => (
+                  <>
+                    <div className="privacy-items">
+                      <div className="privacy-items-single">
+                        <p className="left opacity-4">{item?.label}</p>
+                        <div>
+                          <p className="right">{item?.value}</p>
                         </div>
+                      </div>
+                      <div className="flex justify-start">
+                        {/* <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button> */}
+                        {openHidden[item?.id] ? (
+                          <div className="flex flex-gap-5">
+                            <Button
+                              onClick={() => handleEdit(item?.id)}
+                              variant="outline"
+                              color="pink"
+                              size="xs"
+                              radius="xl"
+                            >
+                              Cancel
+                            </Button>
+
+                            <Button
+                              onClick={() => handleEdit(item?.id)}
+                              variant="filled"
+                              size="xs"
+                              radius="xl"
+                            >
+                              Save
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button
+                            onClick={() => handleEdit(item?.id)}
+                            variant="light"
+                            color="pink"
+                            size="xs"
+                            radius="xl"
+                          >
+                            Edit
+                          </Button>
+                        )}
+                      </div>
                     </div>
-                    <div className="settings__wrapper--contentBox">
-                        {active === 3 ? <>
-                            {
-                                listItems?.map(item => <>
-                                    <div className="privacy-items">
-                                        <div className="privacy-items-single">
-                                            <p className="left opacity-4">{item?.label}</p>
-                                            <div>
-                                                <p className="right">{item?.value}</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-start">
-
-                                            {/* <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button> */}
-                                            {
-                                                openHidden[item?.id] ?
-                                                    <div className="flex flex-gap-5">
-                                                        <Button onClick={() => handleEdit(item?.id)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
-
-                                                        <Button onClick={() => handleEdit(item?.id)} variant="filled" size="xs" radius="xl">Save</Button>
-                                                    </div>
-                                                    :
-                                                    <Button onClick={() => handleEdit(item?.id)} variant="light" color="pink" size="xs" radius="xl">Edit</Button>
-
-                                            }
-                                        </div>
-                                    </div>
-                                    {openHidden[item?.id] && (
-                                        <div className={`hidden-component ${openHidden[item.id] ? "open" : ""}`}>
-                                            {item.hiddenComp}
-                                        </div>
-                                    )}
-                                    <Divider my="sm" variant="dotted" />
-                                </>)
-                            }
-                        </> :
-                            active === 0 ?
-                                <AccountSettings profileData={profileData} setProfileData={setProfileData}></AccountSettings>
-                                :
-                                active === 1 ?
-                                    <>
-                                        <PartnerPreference header=""></PartnerPreference>
-                                    </> :
-
-                                    active === 2 ?
-                                        <>
-                                            Comming soon!
-                                        </> :
-                                        active === 4 ?
-                                            <>
-                                                <HideDelete></HideDelete>
-                                            </> :
-                                            active === 5 ?
-                                                <>
-                                                    Comming soon!
-                                                </> :
-                                                <></>
-                        }
-                    </div>
-                </div>
-            </>
+                    {openHidden[item?.id] && (
+                      <div
+                        className={`hidden-component ${
+                          openHidden[item.id] ? "open" : ""
+                        }`}
+                      >
+                        {item.hiddenComp}
+                      </div>
+                    )}
+                    <Divider my="sm" variant="dotted" />
+                  </>
+                ))}
+              </>
+            ) : active === 0 ? (
+              <AccountSettings
+                profileData={profileData}
+                setProfileData={setProfileData}
+              ></AccountSettings>
+            ) : active === 1 ? (
+              <>
+                <PartnerPreference header=""></PartnerPreference>
+              </>
+            ) : active === 2 ? (
+              <>Comming soon!</>
+            ) : active === 4 ? (
+              <>
+                <HideDelete></HideDelete>
+              </>
+            ) : active === 5 ? (
+              <>Comming soon!</>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
-    )
-}
+      </>
+    </div>
+  );
+};
 
-export default Settings
+export default Settings;

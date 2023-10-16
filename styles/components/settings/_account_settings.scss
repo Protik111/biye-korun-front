@@ -7,3 +7,17 @@
         }
     }
 }
+
+.delete__top--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+
+    .delete__top {
+        max-width: 280px;
+
+        .coundown {
+            margin-top: 10px;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import {
 import { labelStyles, useStyles } from "@/styles/library/mantine";
 import {
   Accordion,
+  Button,
   MultiSelect,
   RangeSlider,
   Select,
@@ -35,7 +36,7 @@ function Education({
   setMaxIncomeValue,
 }) {
   const { classes } = useStyles();
-
+  const [value, setValue] = useState("");
   const handleFormChange = (name, value) => {
     setFormData((prevFormValues) => ({
       ...prevFormValues,
@@ -60,6 +61,8 @@ function Education({
           defaultValue="customization"
           classNames={classes}
           className={classes.root}
+          value={value}
+          onChange={setValue}
         >
           <Accordion.Item value="item-1">
             <Accordion.Control
@@ -173,6 +176,19 @@ function Education({
               </div>
             </Accordion.Panel>
           </Accordion.Item>
+          {value && (
+            <div className="flex justify-center ">
+              <Button
+                variant="outline"
+                size="sm"
+                color="pink"
+                className="mb-10 mt-15"
+                onClick={() => setValue("")}
+              >
+                Save & Close
+              </Button>
+            </div>
+          )}
         </Accordion>
       </div>
     </div>

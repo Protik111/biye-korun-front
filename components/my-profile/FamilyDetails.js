@@ -217,7 +217,7 @@ const FamilyDetails = ({ closeModal4 }) => {
             "Nuclear Family",
             "Extended Family",
             "Step Family",
-            "Same sex Family",
+            "Same Sex Family",
             "Grandparent Family",
             "Single Parent Family",
           ]}

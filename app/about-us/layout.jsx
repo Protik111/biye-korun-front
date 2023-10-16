@@ -1,5 +1,3 @@
-// "use client"
-
 export const metadata = {
     title: 'About Us - Biye Korun',
     description: 'Welcome to biyekorun.us, the premier online matrimonial platform dedicated to bringing individuals together for the sacred bond of marriage.',

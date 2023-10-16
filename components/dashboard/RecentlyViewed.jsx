@@ -7,7 +7,7 @@ import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import CardSkeleton from "../global/CardSkeleton";
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
 import NoDataFound from "../global/NoDataFound";
-import { imageUrl } from "@/staticData/image";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import Link from "next/link";
 
 const skeletons = new Array(5).fill();
@@ -31,7 +31,7 @@ const RecentlyViewed = () => {
   };
 
 
-  // console.log('data', data);
+  // console.log('data', data?.data);
 
   return (
     <>
@@ -45,7 +45,7 @@ const RecentlyViewed = () => {
                   <Card.Section className="pointer">
                     <Link href={`/view-profile/${item?.visit?._id}`}>
                       <img
-                        src={item?.visit?.profilePicture?.url?.large || imageUrl}
+                        src={item?.visit?.profilePicture?.url?.large || (item?.visit?.gender === "male" ? imageUrl : imageUrlFemale)}
                         height={250}
                         alt="Profile"
                         fit="contain"

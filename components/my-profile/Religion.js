@@ -117,14 +117,14 @@ const Religion = ({ closeModal3 }) => {
 
   return (
     <div className="myProfile container">
-      <div className="mt-25 mb-25">
+      <div className="mt-15 mb-25">
         <br />
 
         <Select
           size="md"
           placeholder="Select"
           label="Religion"
-          withAsterisk
+          // withAsterisk
           data={[
             "Islam",
             "Hinduism",
@@ -142,7 +142,7 @@ const Religion = ({ closeModal3 }) => {
           size="md"
           placeholder="Select"
           label="Native Language"
-          withAsterisk
+          // withAsterisk
           defaultValue="20"
           data={motherTongues}
           name="motherTongue"
@@ -155,7 +155,7 @@ const Religion = ({ closeModal3 }) => {
           size="md"
           placeholder="Select"
           label="Language"
-          withAsterisk
+          // withAsterisk
           defaultValue="20"
           data={motherTongues}
           name="community"
