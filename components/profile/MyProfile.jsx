@@ -103,7 +103,7 @@ const MyProfile = () => {
     educationCareer,
     location,
     community: communityData,
-  } = (userInfo?.partnerpreference || {}).basicDetails || {};
+  } = userInfo?.partnerpreference || {};
 
   const url = profilePicture ? profilePicture.url : null;
   const [loading, setLoading] = useState(false);
@@ -179,7 +179,7 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Age & Height</p>
                   <p className="right">
-                    : {calculateAge(dateOfBirth)}/{heightCalculator(height)}
+                    : {calculateAge(dateOfBirth)} & {heightCalculator(height)}
                   </p>
                 </div>
                 <div className="single-item">
@@ -212,70 +212,64 @@ const MyProfile = () => {
             <div className="manage-profile mt-25 border-1 p-15 mr-5 rounded-10">
               <h3 className="secondary-text">Manage your profile</h3>
               <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/edit-profile">
-                    <Anchor>Edit Personal Profile</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal1}>Edit About</Anchor>
                 </div>
 
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/">
-                    <Anchor>View Profile Stats</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal2}>Edit Basic & Lifestyle</Anchor>
                 </div>
 
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/">
-                    <Anchor>Set Contact Filters</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal3}>Edit Religion</Anchor>
                 </div>
               </div>
 
               <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/partner-preferences">
-                    <Anchor>Edit Partner Profile</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal4}>Edit Family Details</Anchor>
                 </div>
 
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/my-photos">
-                    <Anchor>Add Photos</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal5}>Edit Education & Career</Anchor>
                 </div>
 
-                <div className="flex align-center flex-gap-5">
+                <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
                     size="10"
                   ></ThemeIconComp>
-                  <Link href="/settings?state=4">
-                    <Anchor>Delete Profile</Anchor>
-                  </Link>
+
+                  <Anchor onClick={openModal6}>Edit Locations</Anchor>
                 </div>
               </div>
 
-              <div className="mt-10 flex align-center flex-gap-15">
+              {/* <div className="mt-10 flex align-center flex-gap-15">
                 <div className="flex align-center flex-gap-5">
                   <ThemeIconComp
                     iconComp={<IconPlayerRecordFilled size="10" />}
@@ -285,7 +279,7 @@ const MyProfile = () => {
                     <Anchor>Edit Contact Details</Anchor>
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

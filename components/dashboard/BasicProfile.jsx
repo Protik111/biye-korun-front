@@ -13,19 +13,24 @@ import {
 import React from "react";
 
 const message = {
-  success: 'Invitation sent successfully!',
-  error: 'Error occurred!'
-}
+  success: "Invitation sent successfully!",
+  error: "Error occurred!",
+};
 
 const BasicProfile = ({ profile }) => {
-  const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/single-invite', null, message);
+  const {
+    data,
+    loading,
+    error,
+    postData: sendPostRequest,
+  } = useAxiosPost("user/single-invite", null, message);
 
   // console.log('data, loading, error,', data, loading, error);
 
   const handleSendRequest = () => {
     // console.log('data');
     sendPostRequest({
-      recipient: profile?._id
+      recipient: profile?._id,
     });
 
     // if (data?.success) {
@@ -44,9 +49,15 @@ const BasicProfile = ({ profile }) => {
     education: { college, education } = {},
     family: { children, livingWith } = {},
     lifestyle: { diet, maritalStatus } = {},
-    profession: { employer, income: { min, max } = {}, occupation, workingWith } = {},
+    profession: {
+      employer,
+      income: { min, max } = {},
+      occupation,
+      workingWith,
+    } = {},
     trait: { aboutMe } = {},
-    phone, profilePicture: { url } = {},
+    phone,
+    profilePicture: { url } = {},
     firstName,
     lastName,
     friendships,
@@ -55,18 +66,19 @@ const BasicProfile = ({ profile }) => {
     postedBy,
     religion,
     community,
-    country
+    country,
   } = profile || {};
 
   // console.log('country', country);
 
   // Check if 'friendships' exists in profile and has a 'status' property
-  const friendshipsStatus = profile && profile.friendships && profile.friendships.status;
+  const friendshipsStatus =
+    profile && profile.friendships && profile.friendships.status;
 
   // Use the value of 'friendshipsStatus' for the 'status' property
   const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
 
-  const friendships2 = true
+  const friendships2 = true;
 
   // console.log('status', status, friendships);
 
@@ -78,25 +90,28 @@ const BasicProfile = ({ profile }) => {
             <h3>{firstName + " " + lastName}</h3>
             <IconLock color="#E64980"></IconLock>
           </div>
-          {!friendships ? <Button
-            rightIcon={<IconRocket />}
-            sx={{ backgroundColor: "#e64980", color: "white" }}
-            color="pink"
-            variant="white"
-            onClick={handleSendRequest}
-          >
-            Connect with her
-          </Button> :
+          {!friendships ? (
+            <Button
+              rightIcon={<IconRocket />}
+              sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="white"
+              onClick={handleSendRequest}
+            >
+              Connect with her
+            </Button>
+          ) : (
             <Button
               disabled
               rightIcon={<IconRocket />}
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-            // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
             >
               Request Pending
-            </Button>}
+            </Button>
+          )}
         </div>
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
@@ -122,10 +137,15 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            <List.Item>{calculateAge(dateOfBirth)} yrs {height ? `, ${heightCalculator(height)}` : ''}</List.Item>
+            <List.Item>
+              {calculateAge(dateOfBirth)} yrs{" "}
+              {height ? `, ${heightCalculator(height)}` : ""}
+            </List.Item>
 
             <List.Item>{community}</List.Item>
-            <List.Item>{religion} {caste ? `, ${caste}` : ''}</List.Item>
+            <List.Item>
+              {religion} {caste ? `, ${caste}` : ""}
+            </List.Item>
             {city && <List.Item>{city}</List.Item>}
           </List>
         </div>
@@ -144,11 +164,15 @@ const BasicProfile = ({ profile }) => {
             {maritalStatus && <List.Item>{maritalStatus}</List.Item>}
             {country && <List.Item>Lives in {country}</List.Item>}
             {/* <List.Item>Works at </List.Item> */}
-            {(!min && max) ? <List.Item> {max}K monthly</List.Item>
-              :
-              min ? <List.Item>Earns Upto BDT {min}K - {max}K monthly</List.Item>
-                :
-                <></>}
+            {!min && max ? (
+              <List.Item> {max}K monthly</List.Item>
+            ) : min ? (
+              <List.Item>
+                Earns Upto BDT {min}K - {max}K monthly
+              </List.Item>
+            ) : (
+              <></>
+            )}
           </List>
         </div>
       </div>

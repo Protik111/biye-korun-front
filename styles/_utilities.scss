@@ -24,7 +24,6 @@
   flex-direction: column;
 }
 
-
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -80,7 +79,9 @@
 .flex-gap-25 {
   gap: 25px;
 }
-
+.flex-basis-200 {
+  flex-basis: 210px;
+}
 /* CSS Grid */
 .grid {
   display: grid;
@@ -93,7 +94,6 @@
 .grid-cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
-
 
 .grid-cols-2-responsive {
   @include lgMaxBreakPoint {
@@ -449,7 +449,6 @@
   padding: 50px;
 }
 
-
 /* Text Align Center */
 .text-center {
   text-align: center;
@@ -559,7 +558,6 @@
   min-height: 75vh;
 }
 
-
 // border
 .border-1 {
   border: 1px solid $secondaryColor;
@@ -594,7 +592,6 @@
 }
 
 .underline {
-
   &:hover {
     text-decoration: underline;
     margin-top: 5px;
