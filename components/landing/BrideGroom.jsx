@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, Button, Tooltip } from "@mantine/core";
 import CenteredModal from "../global/CenteredModal";
 import { FormProvider } from "@/context/FormContext";
@@ -107,10 +109,10 @@ const BrideGroom = () => {
                 </div>
                 <div className="flex justify-center">
                   <Tooltip
-                      label={"Click to View Profile"}
-                      color="pink"
-                      withArrow
-                      position="top"
+                    label={"Click to View Profile"}
+                    color="pink"
+                    withArrow
+                    position="top"
                   >
                     <Link href="/login">
                       <Button
@@ -124,7 +126,7 @@ const BrideGroom = () => {
                       </Button>
                     </Link>
                   </Tooltip>
-                  
+
                 </div>
               </div>
             ))}

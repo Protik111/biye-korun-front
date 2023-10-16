@@ -64,17 +64,16 @@ const TodaysMatch = () => {
   return (
     <div className="todaysMatch container">
       <>
-        <div>
-          {!loading && data?.data?.length === 0 ? (
-            <div className="flex justify-center">
-              <h2 className="text-center mb-15">You do not have any matches today!</h2>
-            </div>
-          ) : (
-            <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
-          )}
-        </div>
-
         <div className="flex justify-between align-center">
+          <div>
+            {!loading && data?.data?.length === 0 ? (
+              <div className="flex justify-center">
+                <h2 className="text-center mb-15">You do not have any matches today!</h2>
+              </div>
+            ) : (
+              <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
+            )}
+          </div>
 
           {!loading && data?.data?.length !== 0 && <button disabled={isDisable} onClick={() => handleNext()} className={`${isDisable ? 'disable' : ''} border-1 container-box-bg btn-clicked`}>
             <Tooltip
