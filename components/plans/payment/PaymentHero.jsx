@@ -1,10 +1,8 @@
 import useAxios from "@/hooks/axios/useAxios";
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
-import { notifyError } from "@/utils/showNotification";
 import { Button, Divider, Loader, Radio } from "@mantine/core"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
-import { PayPalButtons } from "@paypal/react-paypal-js";
 import PaypalPayment from "./PaypalPayment";
 import { useSelector } from "react-redux";
 
@@ -22,7 +20,7 @@ const PaymentHero = () => {
 
     const { userInfo } = useSelector((state) => state.user) || {};
     const { country = {} } = userInfo || {}
-    const isFromBD = country.toLowerCase() === 'bangladesh' ? false : true;
+    const isFromBD = country.toLowerCase() === 'bangladesh' ? true : false;
 
     const filterData = !loading && data?.data?.filter(item => item?._id == packageId);
 
@@ -64,13 +62,15 @@ const PaymentHero = () => {
                                 </div>
                             } name="check" value="check" defaultChecked={isFromBD} disabled={!isFromBD} />
                         }
-
-                        <Radio className="mb-30" color="pink" label={
-                            <div className="flex justify-center flex-gap-15">
-                                <img style={{ width: '120px' }} src="/payment/paypal-color.svg" alt="paypal" />
-                                {/* <p>PAYPAL</p> */}
-                            </div>
-                        } name="check" value="check" defaultChecked={!isFromBD} disabled={isFromBD} />
+                        {
+                            !isFromBD &&
+                            <Radio className="mb-30" color="pink" label={
+                                <div className="flex justify-center flex-gap-15">
+                                    <img style={{ width: '120px' }} src="/payment/paypal-color.svg" alt="paypal" />
+                                    {/* <p>PAYPAL</p> */}
+                                </div>
+                            } name="check" value="check" defaultChecked={!isFromBD} disabled={isFromBD} />
+                        }
                     </div>
 
 
