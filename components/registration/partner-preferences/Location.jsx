@@ -12,6 +12,7 @@ import {
 } from "@/utils/getCountryLabelCode";
 import {
   Accordion,
+  Button,
   MultiSelect,
   RangeSlider,
   Select,
@@ -48,6 +49,7 @@ function Location({ formData, setFormData }) {
 
   const [countryCode, setCountryCode] = useState("");
   const [stateCode, setStateCode] = useState("");
+  const [value, setValue] = useState("");
 
   // console.log("countryCode", countryCode);
   // console.log("stateCode", stateCode);
@@ -108,6 +110,8 @@ function Location({ formData, setFormData }) {
           defaultValue="customization"
           classNames={classes}
           className={classes.root}
+          value={value}
+          onChange={setValue}
         >
           <Accordion.Item value="item-1">
             <Accordion.Control
@@ -128,8 +132,8 @@ function Location({ formData, setFormData }) {
                 name="livingIn"
                 value={formData.livingIn}
                 onChange={(event) => handleFormChange("livingIn", event)}
-              // style={{ width: '180px' }}
-              // sx={selectMobileStyles}
+                // style={{ width: '180px' }}
+                // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -183,11 +187,24 @@ function Location({ formData, setFormData }) {
                 name="residency"
                 defaultValue={formData.residency}
                 onChange={(event) => handleFormChange("residency", event)}
-              // style={{ width: '180px' }}
-              // sx={selectMobileStyles}
+                // style={{ width: '180px' }}
+                // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
+          {value && (
+            <div className="flex justify-center ">
+              <Button
+                variant="outline"
+                size="sm"
+                color="pink"
+                className="mb-10 mt-15"
+                onClick={() => setValue("")}
+              >
+                Save & Close
+              </Button>
+            </div>
+          )}
         </Accordion>
       </div>
     </div>

@@ -7,8 +7,10 @@ import {
   RangeSlider,
   Select,
   ThemeIcon,
+  Button,
 } from "@mantine/core";
 import { IconCalendarTime, IconFall, IconHearts } from "@tabler/icons-react";
+import { useState } from "react";
 
 function BasicInformation({
   formData,
@@ -20,7 +22,7 @@ function BasicInformation({
 }) {
   const { ages, height, maritalStatus } = formData;
   const { classes } = useStyles();
-
+  const [value, setValue] = useState("");
   const handleFormChange = (name, value) => {
     setFormData((prevFormValues) => ({
       ...prevFormValues,
@@ -41,7 +43,6 @@ function BasicInformation({
     setMaxHeight(newValues[1]);
   };
 
-
   return (
     <>
       <div className="partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive">
@@ -53,6 +54,8 @@ function BasicInformation({
           defaultValue="customization"
           classNames={classes}
           className={classes.root}
+          value={value}
+          onChange={setValue}
         >
           <Accordion.Item value="item-1">
             <Accordion.Control
@@ -97,7 +100,7 @@ function BasicInformation({
                 labelAlwaysOn
                 value={[minHeight, maxHeight]}
                 onChange={handleRangeChange}
-              // valueLabel={(value) => formatHeight(value)}
+                // valueLabel={(value) => formatHeight(value)}
               />
               <div>
                 <div>Min Height: {formatHeight(minHeight)}</div>
@@ -132,10 +135,23 @@ function BasicInformation({
                 withAsterisk
                 name="maritalStatus"
                 onChange={(event) => handleFormChange("maritalStatus", event)}
-              // error={formErrors.maritalStatus}
+                // error={formErrors.maritalStatus}
               />
             </Accordion.Panel>
           </Accordion.Item>
+          {value && (
+            <div className="flex justify-center ">
+              <Button
+                variant="outline"
+                size="sm"
+                color="pink"
+                className="mb-10 mt-15"
+                onClick={() => setValue("")}
+              >
+                Save & Close
+              </Button>
+            </div>
+          )}
         </Accordion>
       </div>
     </>

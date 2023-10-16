@@ -7,6 +7,7 @@ import {
   RangeSlider,
   Select,
   ThemeIcon,
+  Button,
 } from "@mantine/core";
 import {
   IconCalendarTime,
@@ -15,6 +16,7 @@ import {
   IconPray,
   IconWorld,
 } from "@tabler/icons-react";
+import { useState } from "react";
 
 function valueLabelFormat(value) {
   const units = ["KB", "MB", "GB", "TB"];
@@ -32,6 +34,7 @@ function valueLabelFormat(value) {
 
 function Communities({ formData, setFormData }) {
   const { classes } = useStyles();
+  const [value, setValue] = useState("");
 
   const handleFormChange = (name, value) => {
     setFormData((prevFormValues) => ({
@@ -51,6 +54,8 @@ function Communities({ formData, setFormData }) {
           defaultValue="customization"
           classNames={classes}
           className={classes.root}
+          value={value}
+          onChange={setValue}
         >
           <Accordion.Item value="item-1">
             <Accordion.Control
@@ -108,6 +113,19 @@ function Communities({ formData, setFormData }) {
               />
             </Accordion.Panel>
           </Accordion.Item>
+          {value && (
+            <div className="flex justify-center ">
+              <Button
+                variant="outline"
+                size="sm"
+                color="pink"
+                className="mb-10 mt-15"
+                onClick={() => setValue("")}
+              >
+                Save & Close
+              </Button>
+            </div>
+          )}
         </Accordion>
       </div>
     </div>

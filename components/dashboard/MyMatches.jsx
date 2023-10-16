@@ -1,33 +1,43 @@
-import { Checkbox, Divider, Group, MultiSelect, Pagination, Radio } from "@mantine/core";
+import {
+  Checkbox,
+  Divider,
+  Group,
+  MultiSelect,
+  Pagination,
+  Radio,
+} from "@mantine/core";
 import React, { useEffect, useMemo, useState } from "react";
 import SingleProfile from "./SingleProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import CardSkeleton from "../global/CardSkeleton";
 import NoDataFound from "../global/NoDataFound";
-import { communities, qualifications } from "@/staticData/InputFields/inputFields";
+import {
+  communities,
+  qualifications,
+} from "@/staticData/InputFields/inputFields";
 import useCountry from "@/hooks/common/useCountry";
-
 
 const MyMatches = () => {
   const [filterData, setFilterData] = useState({
-    maritalStatus: ['all'],
-    religion: '',
+    maritalStatus: ["all"],
+    religion: "",
     motherTongue: [],
     country: [],
     education: [],
-  })
+  });
   const [activePage, setActivePage] = useState(1);
   const [countryList, setCountryList] = useState([]);
   const pageSize = 5;
 
-  const { maritalStatus, religion, motherTongue, country, education } = filterData;
+  const { maritalStatus, religion, motherTongue, country, education } =
+    filterData;
   const skeletons = new Array(5).fill();
 
   const payload = {
     page: activePage,
     limit: pageSize,
-    sort_by: "newest"
-  }
+    sort_by: "newest",
+  };
 
   if (maritalStatus.length > 0) {
     payload.marital = maritalStatus;
@@ -52,24 +62,29 @@ const MyMatches = () => {
     payload.religion = religion;
   }
 
-  const { data, error, loading, refetch } = useAxios("user/getMatches", "POST", null, {}, payload);
+  const { data, error, loading, refetch } = useAxios(
+    "user/getMatches",
+    "POST",
+    null,
+    {},
+    payload
+  );
 
   //for page count in the pagination component
-  const totalCount = Math.ceil(data?.total / pageSize)
-
+  const totalCount = Math.ceil(data?.total / pageSize);
 
   useEffect(() => {
     refetch();
-  }, [filterData, activePage])
+  }, [filterData, activePage]);
 
   // console.log('data', data);
 
   const handleChange = (name, value) => {
     setFilterData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handlePageChange = (page) => {
     // console.log('page', page);
@@ -90,14 +105,14 @@ const MyMatches = () => {
     }
   }, [data2]);
 
-  console.log('filterData', filterData);
+  console.log("filterData", filterData);
 
   return (
     <div>
       <div className="myMatches container">
         <div className="myMatches__wrapper">
           <div className="myMatches__wrapper--requestBox">
-            <h3 className="text-center pb-5 secondary-text">Refine Searches</h3>
+            <h3 className="text-center pb-5 secondary-text">Advance Search</h3>
             <div className="requestBox-container">
               <>
                 {/* <Radio.Group name="matches" label="Matches">
@@ -192,7 +207,12 @@ const MyMatches = () => {
 
               {/* <Divider my={10}></Divider> */}
 
-              <Checkbox.Group onChange={(e) => handleChange('maritalStatus', e)} name="maritalStatus" defaultValue={["All"]} label="Marital status">
+              <Checkbox.Group
+                onChange={(e) => handleChange("maritalStatus", e)}
+                name="maritalStatus"
+                defaultValue={["All"]}
+                label="Marital Status"
+              >
                 <Group mt="xs" className="flex-column align-start">
                   <Checkbox color="pink" value="all" label="All" />
                   <Checkbox
@@ -208,17 +228,29 @@ const MyMatches = () => {
                   />
 
                   <Checkbox color="pink" value="Widowed" label="Widowed" />
+
+                  <Checkbox color="pink" value="Married" label="Married" />
                 </Group>
               </Checkbox.Group>
 
               <Divider my={10}></Divider>
 
-              <Radio.Group onChange={(e) => handleChange('religion', e)} name="religion" label="Religion">
+              <Radio.Group
+                onChange={(e) => handleChange("religion", e)}
+                name="religion"
+                label="Religion"
+              >
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="Muslim" label="Muslim" />
-                  <Radio color="pink" value="Hindu" label="Hindu" />
-                  <Radio color="pink" value="Christain" label="Christain" />
+                  <Radio color="pink" value="Hinduism" label="Hinduism" />
+                  <Radio
+                    color="pink"
+                    value="Christianity"
+                    label="Christianity"
+                  />
+                  <Radio color="pink" value="Buddhism" label="Buddhism" />
+                  <Radio color="pink" value="Judaism" label="Judaism" />
+                  <Radio color="pink" value="Others" label="Others" />
                 </Group>
               </Radio.Group>
 
@@ -256,7 +288,6 @@ const MyMatches = () => {
                   <Radio color="pink" value="India" label="India" />
                 </Group>
               </Radio.Group> */}
-
 
               <MultiSelect
                 variant="unstyled"
@@ -314,25 +345,41 @@ const MyMatches = () => {
           </div>
 
           <div className="myMatches__wrapper--contentBox mt-10">
-            {(!loading && data?.data?.length > 0) ? data?.data?.map((profile, i) => (
-              <>
-                <div key={i} className="mt-15">
-                  <SingleProfile profile={profile} loading={loading} refetch={refetch}></SingleProfile>
-                </div>
-              </>
-            )) :
-              !loading && data?.data?.length === 0 ?
-                <div className="flex justify-center flex-column align-center">
-                  <h2>No Matches Found!</h2>
-                  <NoDataFound></NoDataFound>
-                </div> :
-                loading ? <div className="container-box-bg p-30 mt-20 min-vh-75">
-                  <CardSkeleton></CardSkeleton>
-                </div> : <></>}
+            {!loading && data?.data?.length > 0 ? (
+              data?.data?.map((profile, i) => (
+                <>
+                  <div key={i} className="mt-15">
+                    <SingleProfile
+                      profile={profile}
+                      loading={loading}
+                      refetch={refetch}
+                    ></SingleProfile>
+                  </div>
+                </>
+              ))
+            ) : !loading && data?.data?.length === 0 ? (
+              <div className="flex justify-center flex-column align-center">
+                <h2>No Matches Found!</h2>
+                <NoDataFound></NoDataFound>
+              </div>
+            ) : loading ? (
+              <div className="container-box-bg p-30 mt-20 min-vh-75">
+                <CardSkeleton></CardSkeleton>
+              </div>
+            ) : (
+              <></>
+            )}
 
-            {data?.data?.length > 0 && <div className="flex justify-center mt-15 px-10">
-              <Pagination color="pink" value={activePage} onChange={handlePageChange} total={totalCount} />
-            </div>}
+            {data?.data?.length > 0 && (
+              <div className="flex justify-center mt-15 px-10">
+                <Pagination
+                  color="pink"
+                  value={activePage}
+                  onChange={handlePageChange}
+                  total={totalCount}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

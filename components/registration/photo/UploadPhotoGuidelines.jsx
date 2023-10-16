@@ -1,53 +1,68 @@
-import { Alert, Avatar, List, ThemeIcon } from '@mantine/core'
-import { IconCheck, IconX, IconCircleCheck, IconCircleDashed } from '@tabler/icons-react'
-import React from 'react'
+import { Alert, Avatar, List, ThemeIcon } from "@mantine/core";
+import {
+  IconCheck,
+  IconX,
+  IconCircleCheck,
+  IconCircleDashed,
+} from "@tabler/icons-react";
+import React from "react";
 
 const UploadPhotoGuidelines = () => {
-    return (
-        <div className='photoGuidelines mt-30'>
-            <h3 className='pt-25'>
-                Photo guidelines
-            </h3>
+  return (
+    <div className="photoGuidelines mt-30 mb-30">
+      <h3 className="pt-25">Photo guidelines</h3>
 
-            <div className='flex flex-wrap flex-gap-25 mt-10'>
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Close up</p>
-                    <Avatar size="xl" src="/potrait/closeup.jpg" />
-                </div>
+      <div className="flex flex-wrap flex-gap-25 mt-10">
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconCheck color="green" size={16} /> Close up
+          </p>
+          <Avatar size="xl" src="/potrait/closeup.jpg" />
+        </div>
 
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Half View</p>
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconCheck color="green" size={16} /> Half View
+          </p>
 
-                    <Avatar size="xl" src="/potrait/mid-shoot.jpg" />
-                </div>
+          <Avatar size="xl" src="/potrait/mid-shoot.jpg" />
+        </div>
 
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconCheck color='green' size={16} /> Full view</p>
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconCheck color="green" size={16} /> Full view
+          </p>
 
-                    <Avatar size="xl" src="/potrait/full-size.jpg" />
-                </div>
-            </div>
+          <Avatar size="xl" src="/potrait/full-size.jpg" />
+        </div>
+      </div>
 
-            <div className='flex flex-wrap flex-gap-25 mt-25'>
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Side face</p>
-                    <Avatar size="xl" src="/potrait/side-view.jpg" />
-                </div>
+      <div className="flex flex-wrap flex-gap-25 mt-25">
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconX color="red" size={16} /> Side face
+          </p>
+          <Avatar size="xl" src="/potrait/side-view.jpg" />
+        </div>
 
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Group</p>
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconX color="red" size={16} /> Group
+          </p>
 
-                    <Avatar size="xl" src="/potrait/group.jpg" />
-                </div>
+          <Avatar size="xl" src="/potrait/group.jpg" />
+        </div>
 
-                <div>
-                    <p className='pb-5 flex align-center small-text'><IconX color='red' size={16} /> Unclear</p>
+        <div>
+          <p className="pb-5 flex align-center small-text">
+            <IconX color="red" size={16} /> Unclear
+          </p>
 
-                    <Avatar size="xl" src="/potrait/unclear.jpg" />
-                </div>
-            </div>
+          <Avatar size="xl" src="/potrait/unclear.jpg" />
+        </div>
+      </div>
 
-            <h3 className='pt-25'>
+      {/* <h3 className='pt-25'>
                 Know more
             </h3>
 
@@ -97,9 +112,9 @@ const UploadPhotoGuidelines = () => {
                 <Alert color="red">
                     Photos will be screened, optimized and added to your Profile within few hours.
                 </Alert>
-            </div>
-        </div>
-    )
-}
+            </div> */}
+    </div>
+  );
+};
 
-export default UploadPhotoGuidelines
+export default UploadPhotoGuidelines;
