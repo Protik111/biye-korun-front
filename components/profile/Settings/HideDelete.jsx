@@ -1,12 +1,22 @@
 import ConfirmModal from '@/components/global/ConfirmModal';
+import useAxiosPost from '@/hooks/axios/useAxiosPost';
 import { logout } from '@/redux/features/auth/authSlice';
 import { loadUserData } from '@/redux/features/user/userSlice';
 import { notifyError, notifySuccess } from '@/utils/showNotification';
-import { Button } from '@mantine/core'
+import { Badge, Button, PinInput } from '@mantine/core'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import Countdown from 'react-countdown'
+import { btnBackground } from '@/styles/library/mantine';
+import LoaderWithText from '@/components/global/LoaderWithText';
+
+
+const messageUpdate = {
+    success: 'OTP is sent to your email.',
+    error: 'Email is not valid!'
+}
 
 const HideDelete = () => {
     const { userInfo } = useSelector(state => state.user);
@@ -14,6 +24,11 @@ const HideDelete = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false)
     const router = useRouter();
+    const [newCodeTimer, setNewCodeTimer] = useState(Date.now() + 10 * 60 * 1000);
+    const [switchSection, setSwithSection] = useState(false);
+    const [otp, setOtp] = useState('')
+    const { email = {} } = userInfo || {};
+
 
     const { isHide = {} } = userInfo || {}
 
@@ -23,6 +38,49 @@ const HideDelete = () => {
         payload.status = false
     } else {
         payload.status = true
+    }
+
+
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return (
+                <div className='flex flex-gap-5 flex-wrap align-center'>
+                    <Button className='mt-5' size='xs' onClick={() => resendOTP()} variant="light" color="pink" radius="xl">Resend OTP</Button>
+                </div>
+            );
+        } else {
+            // Render a countdown
+            return (
+                <div className='flex flex-gap-5 flex-wrap align-center'>
+                    <Badge disabled className='mt-5' variant="light" color="grape" size="lg">Resend OTP in ({hours}:{minutes}:{seconds})</Badge>
+                </div>
+            );
+        }
+    };
+
+    const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/resendotp', null, messageUpdate);
+
+    const { data: data2, loading: loading2, error: error2, postData: sendPostRequest2 } = useAxiosPost('user/verifyotp', null);
+
+    useEffect(() => {
+        if (data?.success) {
+            setSwithSection(true)
+        }
+    }, [data])
+
+    const payload2 = {
+        email,
+        otpType: "email"
+    }
+
+    //send OTP
+    const handleUpdate = () => {
+        sendPostRequest(payload2)
+    }
+
+    const resendOTP = () => {
+        handleUpdate()
     }
 
     const handleHideUnhide = () => {
@@ -45,18 +103,27 @@ const HideDelete = () => {
     }
 
     const handleDelete = () => {
-        axios.delete(`user/delete`)
-            .then(res => {
-                dispatch(logout());
-                notifySuccess('Your profile is deleted permanently!')
-                router.push('/')
-                setShowModalDelete(false)
+        const payloadForOTPVerification = {
+            email,
+            otpType: "email",
+            otp
+        }
+        sendPostRequest2(payloadForOTPVerification)
 
-            })
-            .catch(err => {
-                console.log(err.response.data);
-                notifyError(err.response.data.message)
-            })
+        console.log('data2', data2);
+
+        // axios.delete(`user/delete`)
+        //     .then(res => {
+        //         dispatch(logout());
+        //         notifySuccess('Your profile is deleted permanently!')
+        //         router.push('/')
+        //         setShowModalDelete(false)
+
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response.data);
+        //         notifyError(err.response.data.message)
+        //     })
     }
 
     return (
@@ -101,11 +168,37 @@ const HideDelete = () => {
             {
                 showModalDelete && <ConfirmModal modalOpen={showModalDelete} handleModalClose={() => setShowModalDelete(false)}>
                     <div className=''>
-                        <h3>Are you sure to delete your profile?</h3>
-                        <div className='flex justify-end flex-gap-10 mt-10'>
-                            <Button onClick={() => setShowModalDelete(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
+                        <h3>{switchSection ? "Enter the OTP and delete the account!" : "Are you sure to delete your profile?"}</h3>
+                        <div className='mt-10'>
+                            {
+                                switchSection ?
+                                    <div className='delete__top--container'>
+                                        <div className='delete__top'>
+                                            <div>
+                                                <label className="label label-required">Enter The OTP
+                                                    <span className="required-field">*</span>
+                                                </label>
+                                                <PinInput type={/^[0-9]+/} inputMode="numeric" inputType="tel" className="mt-5" value={otp} onChange={(e) => setOtp(e)} size="md" length={6} placeholder="" />
+                                            </div>
 
-                            <Button onClick={() => handleDelete()} variant="filled" color="pink" size="xs" radius="xl">Delete Permanently</Button>
+                                            <div className='flex justify-end countdown'>
+                                                <Countdown date={newCodeTimer} renderer={renderer} />
+                                            </div>
+                                        </div>
+
+                                        <div className=''>
+                                            <Button className='mt-5' onClick={() => handleDelete()} disabled={otp?.length !== 6} variant="filled" style={btnBackground} radius="xl">Verify & Delete</Button>
+                                        </div>
+                                    </div> :
+                                    <div className='flex flex-gap-5 justify-end'>
+                                        <Button onClick={() => setShowModalDelete(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
+
+                                        <Button onClick={() => handleUpdate()} variant="filled" color="pink" size="xs" radius="xl">{
+                                            loading ? <LoaderWithText text="Sending OTP..."></LoaderWithText> : "Delete Permanently"}</Button>
+
+                                    </div>
+                            }
+
                         </div>
                     </div>
                 </ConfirmModal>

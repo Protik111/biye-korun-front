@@ -41,9 +41,6 @@ function BasicInformation({
     setMaxHeight(newValues[1]);
   };
 
-  console.log('min', minHeight, maxHeight);
-  console.log('[parseInt(minHeight), parseInt(maxHeight)]', [minHeight, maxHeight]);
-
 
   return (
     <>
