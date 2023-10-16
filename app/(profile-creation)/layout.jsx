@@ -1,9 +1,7 @@
 "use client"
 
+import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import { Loader } from "@mantine/core";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 // export const metadata = {
 //   title: 'Profile Creation',
@@ -11,20 +9,7 @@ import { useSelector } from "react-redux";
 // }
 
 export default function RootLayout({ children }) {
-  const { isAuthenticated } = useSelector(state => state.auth);
-
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter();
-
-  useEffect(() => {
-
-    if (!isAuthenticated) {
-      router.push('/login')
-      return;
-    }
-    setIsLoading(true)
-
-  }, [])
+  const { isLoading } = useProtectedRoute();
 
   if (!isLoading) {
     return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>

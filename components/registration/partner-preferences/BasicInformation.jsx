@@ -43,12 +43,6 @@ function BasicInformation({
     setMaxHeight(newValues[1]);
   };
 
-  console.log("min", minHeight, maxHeight);
-  console.log("[parseInt(minHeight), parseInt(maxHeight)]", [
-    minHeight,
-    maxHeight,
-  ]);
-
   return (
     <>
       <div className="partenerPref__basic-details box-shadow rounded-10 p-30 mt-15 w-75 m-auto w-md-100-responsive">

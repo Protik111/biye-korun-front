@@ -1,8 +1,8 @@
 
 
 export const metadata = {
-    title: 'Profile Creation',
-    description: 'A matrimony service to find people hapiness',
+    title: 'Payment',
+    description: 'A matrimony service to find people happiness',
 }
 
 export default function RootLayout({ children }) {
