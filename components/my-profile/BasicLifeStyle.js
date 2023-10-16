@@ -159,7 +159,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
           label="Blood Group"
           data={bloodGroups}
           value={formValues.bloodGroup}
-          withAsterisk
+          // withAsterisk
           name="bloodGroup"
           onChange={(event) => handleFormChange("bloodGroup", event)}
           // error={formErrors.bloodGroup}
@@ -172,7 +172,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
           // styles={{ label: labelStyles }}
           data={maritalStatuses}
           value={formValues.maritalStatus}
-          withAsterisk
+          // withAsterisk
           name="maritalStatus"
           onChange={(event) => handleFormChange("maritalStatus", event)}
           // error={formErrors.maritalStatus}
@@ -184,7 +184,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
           label="Height"
           data={heights}
           value={formValues.height}
-          withAsterisk
+          // withAsterisk
           name="height"
           onChange={(event) => handleFormChange("height", event)}
           // error={formErrors.height}
@@ -211,7 +211,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
           mx="auto"
           size="sm"
           // maw={400}
-          withAsterisk
+          // withAsterisk
           value={formValues.dateOfBirth}
           onChange={(event) => handleFormChange("dateOfBirth", event)}
           maxDate={generate18YearBefore()}
