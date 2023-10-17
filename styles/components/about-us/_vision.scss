@@ -31,6 +31,10 @@
 
                 @include smMaxBreakPoint {
                     margin-top: 15px;
+                    img{
+                        height: auto;
+                        width: auto;
+                    }
                 }
             }
         }
@@ -46,6 +50,12 @@
     .list-item {
         p {
             font-weight: 500;
+        }
+    }
+    @include smMaxBreakPoint{
+        img{
+            height: auto;
+            width: auto;
         }
     }
 }

@@ -120,7 +120,7 @@ function BasicInformation({
               <MultiSelect
                 size="md"
                 placeholder="Select"
-                label="Marital status"
+                label="Marital Status"
                 // styles={{ label: labelStyles }}
                 // data={maritalStatuses}
                 data={[

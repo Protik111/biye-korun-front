@@ -16,7 +16,7 @@ const CEO = () => {
             <div className='vision container rounded-10 border-1 py-15 mb-25'>
                 <div className='vision__wrapper grid grid-cols-2 grid-cols-2-responsive grid-gap-20'>
 
-                    <div className='vision__wrapper--right '>
+                    <div className='vision__wrapper--right text-center' >
                         <img className="rounded-15" src="/about-us/shiblu-boss-image-1.png" alt="Vision" />
                     </div>
 

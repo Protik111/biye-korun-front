@@ -481,6 +481,16 @@
   border-radius: 15px;
 }
 
+.rounded-15-responsive{
+  @extend .rounded-15;
+  @include smMaxBreakPoint {
+    img{
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
 .rounded-20 {
   border-radius: 20px;
 }
@@ -495,6 +505,13 @@
 
 .w-50 {
   width: 50%;
+}
+
+.w-50-responsive{
+  @extend .w-50;
+  @include mdMaxBreakPoint {
+    width: 100% !important;
+  }
 }
 
 .w-75 {

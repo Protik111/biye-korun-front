@@ -113,9 +113,9 @@ const AccountSettings = ({ profileData, setProfileData }) => {
                 :
                 <>
                     <TextInput
-                        className='w-50'
+                        className='w-50-responsive'
                         label="Update Your Email"
-                        placeholder="Enter your email"
+                        placeholder="Enter email"
                         size="md"
                         withAsterisk
                         name="email"

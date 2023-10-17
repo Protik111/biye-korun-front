@@ -151,7 +151,9 @@ const ProfileDetails = ({ profile }) => {
                         </div>
 
                         <div className="responsive-badge">
+                            {/* <Badge size='sm' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge> */}
                             <Badge size='sm' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>
+
                         </div>
 
                         <div className='flex flex-column align-center'>
