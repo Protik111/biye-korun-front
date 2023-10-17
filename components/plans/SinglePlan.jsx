@@ -19,7 +19,7 @@ const SinglePlan = ({ plan }) => {
         _id
     } = plan;
 
-    const isFromBD = country.toLowerCase() === 'bangladesh' ? true : false;
+    const isFromBD = country?.toLowerCase() === 'bangladesh' ? true : false;
     const currency = isFromBD ? "BDT" : "USD";
 
     // console.log('plan', plan);
@@ -33,14 +33,15 @@ const SinglePlan = ({ plan }) => {
             {/* <>{header}</> */}
             {
                 isFromBD ?
-                    <p className="text-small text-center mt-20" style={{ color: 'red' }}>{discountPrice ? currency + " " + discountPrice + " Discount!" : ''}</p> :
-                    <p className="text-small text-center mt-20" style={{ color: 'red' }}>{usdDiscountPrice ? currency + " " + usdDiscountPrice + " Discount!" : ''}</p>
+                    <p className="text-center text-small mt-20 line-through">{price ? currency + " " + price : ''}</p> :
+                    <p className="text-center text-small mt-20 line-through">{usdPrice ? currency + " " + usdPrice : ''}</p>
             }
             {
                 isFromBD ?
-                    <h2 className="text-center">{price ? currency + " " + price : ''}</h2> :
-                    <h2 className="text-center">{usdPrice ? currency + " " + usdPrice : ''}</h2>
+                    <h4 className="text-center">{discountPrice ? currency + " " + discountPrice : ''}</h4> :
+                    <h4 className="text-center">{usdDiscountPrice ? currency + " " + usdDiscountPrice : ''}</h4>
             }
+
             <div className="text-center">
                 {/* <Badge color="violet" variant="filled" size="lg">{name ? name : ''}</Badge> */}
                 <p className="text-small text-center">{description ? description : ''}</p>

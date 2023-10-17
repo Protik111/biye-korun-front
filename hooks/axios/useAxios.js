@@ -10,6 +10,7 @@ const useAxios = (url, method = "GET", initialData = null, config = {}, requestD
     // console.log('url', url);
 
     const fetchData = async () => {
+        configureAxiosHeader()
         setLoading(true);
         try {
             const response = await axios.request({
