@@ -106,3 +106,10 @@
   font-size: 2rem !important;
   font-weight: bold;
 }
+
+.disabled-anchor {
+  pointer-events: none;
+  color: #999; /* Change the text color to make it look disabled */
+  text-decoration: none; /* Remove the underline on hover */
+  cursor: not-allowed; /* Change the cursor to "not-allowed" */
+}
