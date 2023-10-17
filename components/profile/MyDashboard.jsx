@@ -281,7 +281,7 @@ const MyDashboard = () => {
       <ReuseModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="ID Verification"
+        title="Identity Verification"
       >
         <VerifyModalBody closeModal={closeModal} />
       </ReuseModal>

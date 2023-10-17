@@ -72,8 +72,7 @@ const VerifyModalBody = ({ closeModal }) => {
       <br />
       <FileInput
         accept="image/png,image/jpeg"
-        label="Upload (NID/Birth Certificate/Driving License)"
-        placeholder="Upload Image"
+        label="Upload (NID/Birth Certificate/Driving License/Passport)"
         value={formValues.image}
         name="image"
         onChange={(event) => handlerChange("image", event)}
@@ -84,7 +83,7 @@ const VerifyModalBody = ({ closeModal }) => {
 
       <Select
         value={formValues.idType}
-        label="My ID "
+        label="ID Type "
         name="idType"
         data={["NID", "Passport", "Driving License", "Birth Certificate"]}
         placeholder="Select ID Type"
