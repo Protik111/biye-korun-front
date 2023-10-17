@@ -26,7 +26,7 @@ const NewMatches = () => {
     //   userId: data?.data[index]?._id
     // });
 
-    console.log('userInfo', userInfo);
+    // console.log('userInfo', userInfo);
 
     useEffect(() => {
         axios.post('user/create-view-profile', {
@@ -44,7 +44,7 @@ const NewMatches = () => {
             });
     }, [data?.data[index]])
 
-    console.log('data today', data);
+    // console.log('data today', data);
 
     const handleNext = () => {
         setLimit(limit + 1);
@@ -71,7 +71,7 @@ const NewMatches = () => {
                 <div className="flex justify-between align-center">
                     <div>
                         {!loading && data?.data?.length === 0 ? (
-                            <h2 className="text-center mb-15">You do not have any new matches!</h2>
+                            <></>
                         ) : (
                             <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
                         )}

@@ -107,7 +107,7 @@ const BasicProfile = ({ profile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-              // onClick={handleSendRequest}
+            // onClick={handleSendRequest}
             >
               Request Pending
             </Button>
@@ -137,15 +137,15 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            <List.Item>
+            {dateOfBirth && <List.Item>
               {calculateAge(dateOfBirth)} yrs{" "}
               {height ? `, ${heightCalculator(height)}` : ""}
-            </List.Item>
+            </List.Item>}
 
-            <List.Item>{community}</List.Item>
-            <List.Item>
-              {religion} {caste ? `, ${caste}` : ""}
-            </List.Item>
+            {community && <List.Item>{community}</List.Item>}
+            {religion && <List.Item>
+              {religion}
+            </List.Item>}
             {city && <List.Item>{city}</List.Item>}
           </List>
         </div>

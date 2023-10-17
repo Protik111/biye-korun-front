@@ -38,7 +38,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     postData: sendPostRequest,
   } = useAxiosPost("user/single-invite", null, message);
 
-  console.log("profile", profile);
+  // console.log("profile", profile);
 
   const {
     location: { city, residencyStatus } = {},
@@ -157,7 +157,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 sx={{ backgroundColor: "#e64980", color: "white" }}
                 color="pink"
                 variant="white"
-                // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
               >
                 Request Pending
               </Button>

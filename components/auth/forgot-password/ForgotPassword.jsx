@@ -281,7 +281,7 @@ const ForgotPassword = () => {
                     }
                 </div>
                 <div className="loginComp__wrapper--right">
-                    <img className="forgot-img" src="/auth/forgot-password.svg" alt="forgot" />
+                    {/* <img className="forgot-img" src="/auth/forgot-password.svg" alt="forgot" /> */}
                 </div>
             </div>
         </div>

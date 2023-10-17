@@ -161,7 +161,7 @@ const ProfileDetails = ({ profile }) => {
                                 src={profile?.profilePicture?.url?.small || imageUrl}
                                 alt="User profile"
                             />
-                            <p>Her Preferences</p>
+                            <p>{profile?.gender === "male" ? "His" : "Her"} Preferences</p>
                         </div>
                     </div>
 
@@ -171,7 +171,7 @@ const ProfileDetails = ({ profile }) => {
                                 <div className="flex justify-between mt-25">
                                     <div>
                                         <p className='secondary-text'>{item?.name}</p>
-                                        <p className='small-text'>{item?.value}</p>
+                                        {item.value && <p className='small-text'>{item?.value}</p>}
                                     </div>
                                     {
                                         item?.isMatch ?

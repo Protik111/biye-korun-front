@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   Divider,
   Group,
@@ -105,6 +106,17 @@ const MyMatches = () => {
     }
   }, [data2]);
 
+  const handleClearFilter = () => {
+    setFilterData({
+      // ...filterData,
+      maritalStatus: ["all"],
+      religion: "",
+      motherTongue: [],
+      country: [],
+      education: [],
+    })
+  }
+
   console.log("filterData", filterData);
 
   return (
@@ -112,7 +124,12 @@ const MyMatches = () => {
       <div className="myMatches container">
         <div className="myMatches__wrapper">
           <div className="myMatches__wrapper--requestBox">
-            <h3 className="text-center pb-5 secondary-text">Advance Search</h3>
+            <div className="flex justify-between align-center py-10">
+              <div>
+                <h3 className="text-center pb-5 secondary-text">Advance Search</h3>
+              </div>
+              <Button onClick={() => handleClearFilter()} variant="outline" color="pink" size="xs" radius="xl">Clear Filters</Button>
+            </div>
             <div className="requestBox-container">
               <>
                 {/* <Radio.Group name="matches" label="Matches">
@@ -212,6 +229,7 @@ const MyMatches = () => {
                 name="maritalStatus"
                 defaultValue={["All"]}
                 label="Marital Status"
+                value={filterData.maritalStatus}
               >
                 <Group mt="xs" className="flex-column align-start">
                   <Checkbox color="pink" value="all" label="All" />
@@ -239,6 +257,7 @@ const MyMatches = () => {
                 onChange={(e) => handleChange("religion", e)}
                 name="religion"
                 label="Religion"
+                value={filterData.religion}
               >
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
@@ -324,7 +343,7 @@ const MyMatches = () => {
                 data={qualifications}
                 dataKey="value"
                 groupKey="label"
-                // value={formValues.qualification}
+                value={filterData.education}
                 name="education"
                 onChange={(event) => handleChange("education", event)}
                 searchable
@@ -344,7 +363,7 @@ const MyMatches = () => {
             </div>
           </div>
 
-          <div className="myMatches__wrapper--contentBox mt-10">
+          <div className="myMatches__wrapper--contentBox mt-30">
             {!loading && data?.data?.length > 0 ? (
               data?.data?.map((profile, i) => (
                 <>
@@ -359,7 +378,7 @@ const MyMatches = () => {
               ))
             ) : !loading && data?.data?.length === 0 ? (
               <div className="flex justify-center flex-column align-center">
-                <h2>No Matches Found!</h2>
+                {/* <h2>No Matches Found!</h2> */}
                 <NoDataFound></NoDataFound>
               </div>
             ) : loading ? (

@@ -27,6 +27,7 @@ const HideDelete = () => {
     const [newCodeTimer, setNewCodeTimer] = useState(Date.now() + 10 * 60 * 1000);
     const [switchSection, setSwithSection] = useState(false);
     const [otp, setOtp] = useState('')
+    const [deleteLoading, setDeleteLoading] = useState(false);
     const { email = {} } = userInfo || {};
 
 
@@ -59,7 +60,7 @@ const HideDelete = () => {
         }
     };
 
-    const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/resendotp', null, messageUpdate);
+    const { data, loading, error, postData: sendPostRequest } = useAxiosPost('user/delete-otp', null, messageUpdate);
 
     const { data: data2, loading: loading2, error: error2, postData: sendPostRequest2 } = useAxiosPost('user/verifyotp', null);
 
@@ -70,17 +71,17 @@ const HideDelete = () => {
     }, [data])
 
     const payload2 = {
-        email,
+        // email,
         otpType: "email"
     }
 
     //send OTP
-    const handleUpdate = () => {
+    const handleSendOTP = () => {
         sendPostRequest(payload2)
     }
 
     const resendOTP = () => {
-        handleUpdate()
+        handleSendOTP()
     }
 
     const handleHideUnhide = () => {
@@ -103,27 +104,22 @@ const HideDelete = () => {
     }
 
     const handleDelete = () => {
-        const payloadForOTPVerification = {
-            email,
-            otpType: "email",
-            otp
-        }
-        sendPostRequest2(payloadForOTPVerification)
+        // console.log('data2', data2);
+        setDeleteLoading(true)
+        axios.delete(`user/delete/${otp}`)
+            .then(res => {
+                setDeleteLoading(false)
+                dispatch(logout());
+                notifySuccess('Your profile is deleted permanently!')
+                router.push('/')
+                setShowModalDelete(false)
 
-        console.log('data2', data2);
-
-        // axios.delete(`user/delete`)
-        //     .then(res => {
-        //         dispatch(logout());
-        //         notifySuccess('Your profile is deleted permanently!')
-        //         router.push('/')
-        //         setShowModalDelete(false)
-
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data);
-        //         notifyError(err.response.data.message)
-        //     })
+            })
+            .catch(err => {
+                setDeleteLoading(false)
+                console.log(err.response.data);
+                notifyError(err.response.data.message)
+            })
     }
 
     return (
@@ -187,14 +183,14 @@ const HideDelete = () => {
                                         </div>
 
                                         <div className=''>
-                                            <Button className='mt-5' onClick={() => handleDelete()} disabled={otp?.length !== 6} variant="filled" style={btnBackground} radius="xl">Verify & Delete</Button>
+                                            <Button className='mt-5' onClick={() => handleDelete()} disabled={otp?.length !== 6 || deleteLoading} variant="filled" style={btnBackground} radius="xl">{deleteLoading ? <LoaderWithText text='Deleting...'></LoaderWithText> : "Verify & Delete"}</Button>
                                         </div>
                                     </div> :
                                     <div className='flex flex-gap-5 justify-end'>
                                         <Button onClick={() => setShowModalDelete(false)} variant="outline" color="pink" size="xs" radius="xl">Cancel</Button>
 
-                                        <Button onClick={() => handleUpdate()} variant="filled" color="pink" size="xs" radius="xl">{
-                                            loading ? <LoaderWithText text="Sending OTP..."></LoaderWithText> : "Delete Permanently"}</Button>
+                                        <Button onClick={() => handleSendOTP()} variant="filled" color="pink" size="xs" radius="xl">{
+                                            loading ? <LoaderWithText text="Sending OTP..." fontSize='12px'></LoaderWithText> : "Delete Permanently"}</Button>
 
                                     </div>
                             }

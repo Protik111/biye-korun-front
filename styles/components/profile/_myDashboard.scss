@@ -105,4 +105,14 @@
 .mantine-1k9itrp {
   font-size: 2rem !important;
   font-weight: bold;
+  @include smMaxBreakPoint {
+    font-size: 20px !important;
+  }
+}
+
+.disabled-anchor {
+  pointer-events: none;
+  color: #999; /* Change the text color to make it look disabled */
+  text-decoration: none; /* Remove the underline on hover */
+  cursor: not-allowed; /* Change the cursor to "not-allowed" */
 }

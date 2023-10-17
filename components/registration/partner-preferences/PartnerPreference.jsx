@@ -10,7 +10,8 @@ import { useState } from "react";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUserData } from "@/redux/features/user/userSlice";
 
 // Define the minimum and maximum income values
 const minIncome = 10000; // 10000 BDT
@@ -21,6 +22,7 @@ const PartnerPreference = ({
   header = "Recommended Partner Preferences",
 }) => {
   const { userInfo } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const {
     basicDetails: {
@@ -71,6 +73,7 @@ const PartnerPreference = ({
   const router = useRouter();
 
   // console.log('formDatas', formData);
+  // console.log('userInfo?.partnerpreference', userInfo);
   // console.log('height', minHeight, maxHeight);
   // console.log('maxIncomeValue', maxIncomeValue, minIncomeValue);
 
@@ -90,8 +93,8 @@ const PartnerPreference = ({
     } = formData;
 
     const data = {
-      minAge: ages[0].toString(),
-      maxAge: ages[1].toString(),
+      minAge: ages[0]?.toString(),
+      maxAge: ages[1]?.toString(),
       minHeight: minHeight.toString(),
       maxHeight: maxHeight.toString(),
       maritalStatus: maritalStatus,
@@ -140,8 +143,8 @@ const PartnerPreference = ({
     } = formData;
 
     const data = {
-      minAge: ages[0].toString(),
-      maxAge: ages[1].toString(),
+      minAge: ages[0]?.toString(),
+      maxAge: ages[1]?.toString(),
       minHeight: minHeight.toString(),
       maxHeight: maxHeight.toString(),
       maritalStatus: maritalStatus,
@@ -162,6 +165,7 @@ const PartnerPreference = ({
       .patch("user/partner-preferences", data)
       .then((res) => {
         notifySuccess("Preferences are added successfully!");
+        dispatch(loadUserData())
         setLoading(false);
       })
       .catch((err) => {

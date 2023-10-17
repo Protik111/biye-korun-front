@@ -1,5 +1,5 @@
 import { Anchor, Badge, Button, Divider } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import ThemeIconComp from "../global/ThemeIconComp";
 import { IconCheck, IconLock, IconX } from "@tabler/icons-react";
 import { btnBackground } from "@/styles/library/mantine";
@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import useAxios from "@/hooks/axios/useAxios";
 import Link from "next/link";
 import { DisableRightClick } from "@/utils/DisableRightClick";
+import ReuseModal from "../global/ReuseModal";
+import VerifyModalBody from "../dashboard/VerifyModalBody";
 
 const MyDashboard = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -23,7 +25,9 @@ const MyDashboard = () => {
     loading: loading2,
     refetch: refetch2,
   } = useAxios("user/recent-visitors"); //todo '/user/recent-visitors'
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   // console.log('data', data);
 
   // const statusSum = data?.data?.reduce((sum, item) => {
@@ -72,9 +76,12 @@ const MyDashboard = () => {
     community,
     country,
     isPremium,
+    isIdVerify,
+    isPhoneVerified,
+    isEmailVerified,
   } = userInfo || {};
 
-  // console.log('userInfo', userInfo);
+  console.log("isPhoneVerified", isPhoneVerified);
 
   return (
     <div className="myDashboard container">
@@ -89,7 +96,7 @@ const MyDashboard = () => {
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
               <div>
                 <h3>{firstName + " " + lastName}</h3>
-                <p className="small-text">{userId}</p>
+                <p className="small-text">User ID : {userId}</p>
               </div>
               {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
@@ -123,14 +130,43 @@ const MyDashboard = () => {
             </div>
             <Divider my={10}></Divider>
 
-            <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
-              <div>
+            <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5 w-100">
+              <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
                 <p className="small-text">Mobile no. is verified</p>
-                <Anchor href="/" target="_blank">
-                  Verify your ID
-                </Anchor>
+                <ThemeIconComp
+                  size="sm"
+                  color={isEmailVerified?.status ? "green" : "red"}
+                  iconComp={
+                    isEmailVerified?.status ? (
+                      <IconCheck size={16} color="green" />
+                    ) : (
+                      <IconX color="white" size={16} />
+                    )
+                  }
+                />
               </div>
-              <ThemeIconComp iconComp={<IconCheck size={16} />} />
+              <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
+                <p className="small-text">Email is verified</p>
+                <ThemeIconComp
+                  color={isPhoneVerified?.status ? "green" : "red"}
+                  size="sm"
+                  iconComp={
+                    isPhoneVerified?.status ? (
+                      <IconCheck size={16} color="white" />
+                    ) : (
+                      <IconX color="white" size={16} />
+                    )
+                  }
+                />
+              </div>
+
+              <Anchor
+                href="#"
+                onClick={openModal}
+                className={`${isIdVerify ? "disabled-anchor" : ""}`}
+              >
+                Verify your ID
+              </Anchor>
             </div>
           </div>
         </div>
@@ -172,7 +208,7 @@ const MyDashboard = () => {
             </div>
           </div>
 
-          <div className="container-box-bg flex justify-between p-15 mt-15 flex-wrap">
+          {/* <div className="container-box-bg flex justify-between p-15 mt-15 flex-wrap">
             <div className="flex align-center flex-gap-5">
               <p>
                 Only Premium{" "}
@@ -203,7 +239,7 @@ const MyDashboard = () => {
               </div>
               <p className="opacity-4">Chats initiated</p>
             </div>
-          </div>
+          </div> */}
 
           <h3 className="mt-25">Profile Updated</h3>
           <div className="container-box-bg p-15 mt-10 flex-wrap profile-updated">
@@ -241,6 +277,14 @@ const MyDashboard = () => {
         </div>
       </div>
       <MyDashboardBottom></MyDashboardBottom>
+
+      <ReuseModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Identity Verification"
+      >
+        <VerifyModalBody closeModal={closeModal} />
+      </ReuseModal>
     </div>
   );
 };

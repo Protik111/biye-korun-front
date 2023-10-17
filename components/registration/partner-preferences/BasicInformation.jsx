@@ -1,5 +1,6 @@
 import ThemeIconComp from "@/components/global/ThemeIconComp";
 import { maritalStatuses } from "@/staticData/InputFields/inputFields";
+import { notSpecfied } from "@/staticData/image";
 import { useStyles } from "@/styles/library/mantine";
 import {
   Accordion,
@@ -100,11 +101,11 @@ function BasicInformation({
                 labelAlwaysOn
                 value={[minHeight, maxHeight]}
                 onChange={handleRangeChange}
-                // valueLabel={(value) => formatHeight(value)}
+              // valueLabel={(value) => formatHeight(value)}
               />
               <div>
-                <div>Min Height: {formatHeight(minHeight)}</div>
-                <div>Max Height: {formatHeight(maxHeight)}</div>
+                <div>Min Height: {minHeight ? formatHeight(minHeight) : notSpecfied}</div>
+                <div>Max Height: {maxHeight ? formatHeight(maxHeight) : notSpecfied}</div>
               </div>
             </Accordion.Panel>
           </Accordion.Item>
@@ -135,7 +136,7 @@ function BasicInformation({
                 withAsterisk
                 name="maritalStatus"
                 onChange={(event) => handleFormChange("maritalStatus", event)}
-                // error={formErrors.maritalStatus}
+              // error={formErrors.maritalStatus}
               />
             </Accordion.Panel>
           </Accordion.Item>

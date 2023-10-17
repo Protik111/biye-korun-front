@@ -79,9 +79,11 @@
 .flex-gap-25 {
   gap: 25px;
 }
+
 .flex-basis-200 {
   flex-basis: 210px;
 }
+
 /* CSS Grid */
 .grid {
   display: grid;
@@ -589,6 +591,10 @@
 
 .opacity-4 {
   opacity: 0.4;
+}
+
+.line-through {
+  text-decoration: line-through;
 }
 
 .underline {
