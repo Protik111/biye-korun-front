@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import useAxios from "@/hooks/axios/useAxios";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
-import { imageUrl } from "@/staticData/image";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import { DisableRightClick } from "@/utils/DisableRightClick";
 import { btnBackground } from "@/styles/library/mantine";
 import Link from "next/link";
@@ -92,7 +92,7 @@ const BrideGroom = () => {
                     }}
                     mx="auto"
                     size="xl"
-                    src={item?.profilePicture[0]?.url?.medium || imageUrl}
+                    src={item?.profilePicture[0]?.url?.medium || (item?.gender === "male" ? imageUrl : imageUrlFemale)}
                     alt={item?.name}
                   />
                   <h3 className="mt-5">

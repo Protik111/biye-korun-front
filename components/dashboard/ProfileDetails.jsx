@@ -2,7 +2,7 @@ import { Timeline, Text, Badge, List, ThemeIcon, Avatar, Divider, Button } from 
 import { IconGitBranch, IconGitPullRequest, IconGitCommit, IconMessageDots, IconUserCircle, IconAddressBook, IconCircleCheck, IconSchool, IconBrandCashapp, IconArchive, IconDeviceIpadSearch, IconPhone, IconCircleLetterX, IconEye } from '@tabler/icons-react';
 import ThemeIconComp from '../global/ThemeIconComp';
 import { useSelector } from 'react-redux';
-import { imageUrl } from '@/staticData/image';
+import { imageUrl, imageUrlFemale } from '@/staticData/image';
 import useAxios from '@/hooks/axios/useAxios';
 import axios from 'axios';
 import { useState } from 'react';
@@ -144,7 +144,7 @@ const ProfileDetails = ({ profile }) => {
                             <Avatar
                                 size="xl"
                                 radius="xl"
-                                src={userInfo?.profilePicture?.url?.small || imageUrl}
+                                src={userInfo?.profilePicture?.url?.small || (userInfo?.gender === "male" ? imageUrl : imageUrlFemale)}
                                 alt="My Profile"
                             />
                             <p>Your Preferences</p>
@@ -158,7 +158,7 @@ const ProfileDetails = ({ profile }) => {
                             <Avatar
                                 size="xl"
                                 radius="xl"
-                                src={profile?.profilePicture?.url?.small || imageUrl}
+                                src={profile?.profilePicture?.url?.small || (profile?.gender === "male" ? imageUrl : imageUrlFemale)}
                                 alt="User profile"
                             />
                             <p>{profile?.gender === "male" ? "His" : "Her"} Preferences</p>

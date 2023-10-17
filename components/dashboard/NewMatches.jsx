@@ -71,7 +71,7 @@ const NewMatches = () => {
                 <div className="flex justify-between align-center">
                     <div>
                         {!loading && data?.data?.length === 0 ? (
-                            <></>
+                            <h2 className="text-center mb-15">You do not have any New Matches!</h2>
                         ) : (
                             <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
                         )}
