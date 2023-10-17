@@ -806,7 +806,7 @@ const MyProfile = () => {
                     </p>
                   </div>
                   <div className="single-item">
-                    <p className="left">Yearly Icome</p>
+                    <p className="left">Yearly Income</p>
                     <p className="right">
                       ${educationCareer?.annualIncome.min} to $
                       {educationCareer?.annualIncome.max}.

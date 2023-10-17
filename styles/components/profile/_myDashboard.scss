@@ -105,6 +105,9 @@
 .mantine-1k9itrp {
   font-size: 2rem !important;
   font-weight: bold;
+  @include smMaxBreakPoint {
+    font-size: 20px !important;
+  }
 }
 
 .disabled-anchor {
