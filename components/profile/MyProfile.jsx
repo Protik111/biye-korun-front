@@ -179,31 +179,31 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Age & Height</p>
                   <p className="right">
-                    : {calculateAge(dateOfBirth)} & {heightCalculator(height)}
+                    {calculateAge(dateOfBirth)} & {heightCalculator(height)}
                   </p>
                 </div>
                 <div className="single-item">
                   <p className="left">Marital Status</p>
-                  <p className="right">: {maritalStatus || notSpecfied}</p>
+                  <p className="right"> {maritalStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Posted by</p>
-                  <p className="right">: {postedBy || notSpecfied}</p>
+                  <p className="right"> {postedBy || notSpecfied}</p>
                 </div>
               </div>
 
               <div>
                 <div className="single-item">
                   <p className="left">Religion</p>
-                  <p className="right">: {religion || notSpecfied}</p>
+                  <p className="right"> {religion || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Country</p>
-                  <p className="right">: {country || notSpecfied} </p>
+                  <p className="right"> {country || notSpecfied} </p>
                 </div>
                 {/* <div className="single-item">
                                     <p className="left">Mother Tonue</p>
-                                    <p className="right">: Bengali</p>
+                                    <p className="right"> Bengali</p>
                                 </div> */}
               </div>
             </div>
@@ -356,8 +356,8 @@ const MyProfile = () => {
               <div>
                 <div className="single-item">
                   <p className="left">Age</p>
-                  <p className="right">: {calculateAge(dateOfBirth)}</p>
-                  {/* :{" "}<Input
+                  <p className="right"> {calculateAge(dateOfBirth)} Years</p>
+                  {/* {" "}<Input
                                         variant="unstyled"
                                         disabled
                                         placeholder="Your email"
@@ -366,37 +366,30 @@ const MyProfile = () => {
                 </div>
                 <div className="single-item">
                   <p className="left">Marital Status</p>
-                  <p className="right">: {maritalStatus || notSpecfied}</p>
+                  <p className="right"> {maritalStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Date of Birth</p>
                   <p className="right">
-                    : {format(new Date(dateOfBirth), "MM/dd/yyyy")}
+                    {format(new Date(dateOfBirth), "MM/dd/yyyy")}
                   </p>
                 </div>
                 <div className="single-item">
                   <p className="left">Height</p>
-                  <p className="right">: {heightCalculator(height)}</p>
+                  <p className="right"> {heightCalculator(height)}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Born And Raised</p>
-                  <p className="right">: {country}</p>
+                  <p className="right"> {country}</p>
                 </div>
-              </div>
-
-              <div>
                 <div className="single-item">
                   <p className="left">Diet</p>
-                  <p className="right">: {diet || notSpecfied}</p>
+                  <p className="right"> {diet || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Blood Groop</p>
-                  <p className="right">: {bloodGroup || notSpecfied}</p>
+                  <p className="right"> {bloodGroup || notSpecfied}</p>
                 </div>
-                {/* <div className="single-item">
-                                    <p className="left">Disbalility</p>
-                                    <p className="right">: Not Specified</p>
-                                </div> */}
               </div>
             </div>
           </div>
@@ -424,23 +417,20 @@ const MyProfile = () => {
               <div>
                 <div className="single-item">
                   <p className="left">Religion</p>
-                  <p className="right">: {religion}</p>
+                  <p className="right"> {religion}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Language</p>
-                  <p className="right">: {community?.join(", ")} </p>
+                  <p className="right"> {community?.join(", ")} </p>
+                </div>
+                <div className="single-item">
+                  <p className="left">Native Language</p>
+                  <p className="right"> {motherTongue}</p>
                 </div>
                 {/* <div className="single-item">
                   <p className="left">Sub community</p>
-                  <p className="right">: Not Specified</p>
+                  <p className="right"> Not Specified</p>
                 </div> */}
-              </div>
-
-              <div>
-                <div className="single-item">
-                  <p className="left">Native Language</p>
-                  <p className="right">: {motherTongue}</p>
-                </div>
               </div>
             </div>
           </div>
@@ -468,25 +458,22 @@ const MyProfile = () => {
               <div>
                 <div className="single-item">
                   <p className="left">Father's Profession</p>
-                  <p className="right">: {fatherProfession || notSpecfied}</p>
+                  <p className="right"> {fatherProfession || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Mother's Profession</p>
-                  <p className="right">: {motherProfession || notSpecfied}</p>
+                  <p className="right"> {motherProfession || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Family Location</p>
                   <p className="right">
-                    : {familyCountry || notSpecfied},{" "}
-                    {familyCity || notSpecfied}, {familyState || notSpecfied}
+                    {familyCountry || notSpecfied}, {familyCity || notSpecfied},{" "}
+                    {familyState || notSpecfied}
                   </p>
                 </div>
-              </div>
-
-              <div>
                 <div className="single-item">
                   <p className="left">Family Type</p>
-                  <p className="right">: {type || notSpecfied}</p>
+                  <p className="right"> {type || notSpecfied}</p>
                 </div>
               </div>
             </div>
@@ -515,33 +502,31 @@ const MyProfile = () => {
               <div>
                 <div className="single-item">
                   <p className="left">Highest Qualification</p>
-                  <p className="right">: {education || notSpecfied}</p>
+                  <p className="right"> {education || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">College(s) Attended</p>
-                  <p className="right">: {college || notSpecfied}</p>
+                  <p className="right"> {college || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Yearly Income - Min/Max</p>
                   <p className="right">
-                    : {"$" + min + "" || notSpecfied} /{" "}
+                    {"$" + min + "" || notSpecfied} /{" "}
                     {"$" + max + "" || notSpecfied}
                   </p>
                 </div>
-              </div>
 
-              <div>
                 <div className="single-item">
-                  <p className="left">Job Setor</p>
-                  <p className="right">: {workingWith || notSpecfied}</p>
+                  <p className="left">Job Sector</p>
+                  <p className="right"> {workingWith || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Job Title</p>
-                  <p className="right">: {occupation || notSpecfied}</p>
+                  <p className="right"> {occupation || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Employer Name</p>
-                  <p className="right">: {employer || notSpecfied}</p>
+                  <p className="right"> {employer || notSpecfied}</p>
                 </div>
               </div>
             </div>
@@ -571,23 +556,20 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Current Residence</p>
                   <p className="right">
-                    : {city}, {country}
+                    {city}, {country}
                   </p>
                 </div>
                 <div className="single-item">
                   <p className="left">State Of Residence</p>
-                  <p className="right">: {city}</p>
+                  <p className="right"> {city}</p>
                 </div>
-              </div>
-
-              <div>
                 <div className="single-item">
                   <p className="left">Residency Status</p>
-                  <p className="right">: {residencyStatus || notSpecfied}</p>
+                  <p className="right"> {residencyStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Zip Code</p>
-                  <p className="right">: {zipCode || notSpecfied}</p>
+                  <p className="right"> {zipCode || notSpecfied}</p>
                 </div>
               </div>
             </div>
@@ -624,36 +606,30 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Age</p>
                     <p className="right">
-                      : {basicDetails?.ageRange.min} to{" "}
+                      {basicDetails?.ageRange.min} to{" "}
                       {basicDetails?.ageRange.max}
                     </p>
                   </div>
                   <div className="single-item">
                     <p className="left">Height</p>
                     <p className="right">
-                      : {heightCalculator(basicDetails?.heightRange.min)} to{" "}
+                      {heightCalculator(basicDetails?.heightRange.min)} to{" "}
                       {heightCalculator(basicDetails?.heightRange.max)}
+                    </p>
+                  </div>
+                  <div className="single-item">
+                    <p className="left">Marital Status</p>
+                    <p className="right">
+                      <span></span> {basicDetails?.maritalStatus?.join(", ")}
                     </p>
                   </div>
                   {/* <div className="single-item">
                     <p className="left">Religion</p>
                     <p className="right">
-                      : Muslim:Sunni, Muslim:Bengali, Muslim:Sunni Hanafi,
-                      Muslim:Arain, Muslim:Jat, Muslim:Siddiqui,
+                       MuslimSunni, MuslimBengali, MuslimSunni Hanafi,
+                      MuslimArain, MuslimJat, MuslimSiddiqui,
                     </p>
                   </div> */}
-                </div>
-
-                <div>
-                  {/* <div className="single-item">
-                    <p className="left">Native Language</p>
-                    <p className="right">: Any</p>
-                  </div> */}
-
-                  <div className="single-item">
-                    <p className="left">Marital Status</p>
-                    <p className="right">: {basicDetails?.maritalStatus}</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -681,27 +657,25 @@ const MyProfile = () => {
                 <div>
                   <div className="single-item">
                     <p className="left">Religion</p>
-                    <p className="right">: Islam </p>
+                    <p className="right"> Islam </p>
                   </div>
 
                   <div className="single-item">
                     <p className="left">Native Language</p>
                     <p className="right">
-                      :{" "}
+                      {" "}
                       {communityData?.motherTongue.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
-                            {index !==
-                              communityData?.motherTongue.length - 1 && <br />}
+                            {index !== communityData?.motherTongue.length - 1 &&
+                              ", "}
                           </React.Fragment>
                         );
                       })}
                     </p>
                   </div>
                 </div>
-
-                <div></div>
               </div>
             </div>
             {/* Location Details */}
@@ -728,12 +702,12 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Country</p>
                     <p className="right">
-                      :{" "}
+                      {" "}
                       {location?.country.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
-                            {index !== location?.country.length - 1 && <br />}
+                            {index !== location?.country.length - 1 && ", "}
                           </React.Fragment>
                         );
                       })}
@@ -741,12 +715,12 @@ const MyProfile = () => {
                   </div>
                   {/* <div className="single-item">
                     <p className="left">State living in</p>
-                    <p className="right">: Any</p>
+                    <p className="right"> Any</p>
                   </div> */}
                   <div className="single-item">
                     <p className="left">Residency Status </p>
                     <p className="right">
-                      :{" "}
+                      {" "}
                       {location?.residencyStatus.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
@@ -759,8 +733,6 @@ const MyProfile = () => {
                     </p>
                   </div>
                 </div>
-
-                <div></div>
               </div>
             </div>
 
@@ -788,15 +760,12 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Qualification</p>
                     <p className="right">
-                      :{" "}
                       {educationCareer?.qualification.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
                             {index !==
-                              educationCareer?.qualification.length - 1 && (
-                              <br />
-                            )}
+                              educationCareer?.qualification.length - 1 && ", "}
                           </React.Fragment>
                         );
                       })}
@@ -804,36 +773,33 @@ const MyProfile = () => {
                   </div>
                   {/* <div className="single-item">
                     <p className="left">Job Sector</p>
-                    <p className="right">: Any</p>
+                    <p className="right"> Any</p>
                   </div> */}
                   <div className="single-item">
                     <p className="left">Job Sector</p>
                     <p className="right">
-                      :{" "}
+                      {" "}
                       {educationCareer?.profession.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
-                            {index !==
-                              educationCareer?.profession.length - 1 && <br />}
+                            {index !== educationCareer?.profession.length - 1 &&
+                              ", "}
                           </React.Fragment>
                         );
                       })}
                     </p>
                   </div>
-                </div>
-
-                <div>
                   <div className="single-item">
                     <p className="left">Job Title</p>
                     <p className="right">
-                      :{" "}
+                      {" "}
                       {educationCareer?.workingWith.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
                             {index !==
-                              educationCareer?.workingWith.length - 1 && <br />}
+                              educationCareer?.workingWith.length - 1 && ", "}
                           </React.Fragment>
                         );
                       })}
@@ -842,7 +808,7 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Yearly Icome</p>
                     <p className="right">
-                      : ${educationCareer?.annualIncome.min} to $
+                      ${educationCareer?.annualIncome.min} to $
                       {educationCareer?.annualIncome.max}.
                     </p>
                   </div>
