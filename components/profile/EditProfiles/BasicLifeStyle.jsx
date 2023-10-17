@@ -17,7 +17,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
                 className='w-50 w-md-100-responsive'
                 size="md"
                 placeholder="Select"
-                label="Marital status"
+                label="Marital Status"
                 // styles={{ label: labelStyles }}
                 data={maritalStatuses}
                 value={profileDatas.maritalStatus}

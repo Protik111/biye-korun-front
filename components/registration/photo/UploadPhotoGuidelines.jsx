@@ -10,12 +10,12 @@ import React from "react";
 const UploadPhotoGuidelines = () => {
   return (
     <div className="photoGuidelines mt-30 mb-30">
-      <h3 className="pt-25">Photo guidelines</h3>
+      <h3 className="pt-25">Photo Guidelines</h3>
 
       <div className="flex flex-wrap flex-gap-25 mt-10">
         <div>
           <p className="pb-5 flex align-center small-text">
-            <IconCheck color="green" size={16} /> Close up
+            <IconCheck color="green" size={16} /> Close Up
           </p>
           <Avatar size="xl" src="/potrait/closeup.jpg" />
         </div>
@@ -30,7 +30,7 @@ const UploadPhotoGuidelines = () => {
 
         <div>
           <p className="pb-5 flex align-center small-text">
-            <IconCheck color="green" size={16} /> Full view
+            <IconCheck color="green" size={16} /> Full View
           </p>
 
           <Avatar size="xl" src="/potrait/full-size.jpg" />
@@ -40,7 +40,7 @@ const UploadPhotoGuidelines = () => {
       <div className="flex flex-wrap flex-gap-25 mt-25">
         <div>
           <p className="pb-5 flex align-center small-text">
-            <IconX color="red" size={16} /> Side face
+            <IconX color="red" size={16} /> Side Face
           </p>
           <Avatar size="xl" src="/potrait/side-view.jpg" />
         </div>

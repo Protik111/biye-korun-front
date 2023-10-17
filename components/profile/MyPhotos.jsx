@@ -80,7 +80,7 @@ const MyPhotos = () => {
 
       <div className="text-center w-75 m-auto mt-15 w-md-100-responsive">
         <Alert icon={<IconAlertCircle size="1rem" />} color="pink">
-          Note: You can upload 20 photos to your profile. Each photos must be
+          Note: You can upload 20 photos to your profile. Each photo must be
           less than 15 MB and in jpg, jpeg, png or webp format.
         </Alert>
       </div>
