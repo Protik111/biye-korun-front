@@ -3,7 +3,10 @@ import { IconHome2 } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
   IconGauge,
+  IconSettingsFilled,
   IconFingerprint,
+  IconTrashFilled,
+  IconMailOpenedFilled,
   IconActivity,
   IconChevronRight,
 } from "@tabler/icons-react";
@@ -18,10 +21,11 @@ import AccountSettings from "./AccountSettings";
 import HideDelete from "./HideDelete";
 import PartnerPreference from "@/components/registration/partner-preferences/PartnerPreference";
 import { useSearchParams } from "next/navigation";
+import EmailVerification from "./EmailVerification";
 
 const data = [
   {
-    icon: IconFingerprint,
+    icon: IconSettingsFilled,
     label: "Account Settings",
   },
   {
@@ -38,10 +42,10 @@ const data = [
   //     description: "All about your basic info",
   //   },
   {
-    icon: IconFingerprint,
+    icon: IconTrashFilled,
     label: "Hide / Delete Profile",
   },
-  //   { icon: IconActivity, label: "Messages" },
+  { icon: IconMailOpenedFilled, label: "Email Verification" },
 ];
 
 const Settings = () => {
@@ -205,7 +209,7 @@ const Settings = () => {
             </div>
           </div>
           <div className="settings__wrapper--contentBox">
-            {active === 3 ? (
+            {active === 4 ? (
               <>
                 {listItems?.map((item) => (
                   <>
@@ -254,9 +258,8 @@ const Settings = () => {
                     </div>
                     {openHidden[item?.id] && (
                       <div
-                        className={`hidden-component ${
-                          openHidden[item.id] ? "open" : ""
-                        }`}
+                        className={`hidden-component ${openHidden[item.id] ? "open" : ""
+                          }`}
                       >
                         {item.hiddenComp}
                       </div>
@@ -274,9 +277,11 @@ const Settings = () => {
               <>
                 <PartnerPreference header=""></PartnerPreference>
               </>
+            ) : active === 3 ? (
+              <>
+                <EmailVerification></EmailVerification>
+              </>
             ) : active === 2 ? (
-              <>Comming soon!</>
-            ) : active === 4 ? (
               <>
                 <HideDelete></HideDelete>
               </>

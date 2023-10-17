@@ -116,7 +116,7 @@ const MyDashboardBottom = () => {
   // Use the value of 'friendshipsStatus' for the 'status' property
   //   const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <div className="myDashboard__bottom mt-20">
