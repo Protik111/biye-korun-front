@@ -163,7 +163,7 @@ const MyProfile = () => {
           title={
             <h2>
               {firstName + " " + lastName}
-              <p>User Id : {userId}</p>
+              <p>User ID : {userId}</p>
             </h2>
           }
           color="red"

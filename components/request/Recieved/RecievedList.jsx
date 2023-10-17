@@ -3,7 +3,7 @@ import useAxios from "@/hooks/axios/useAxios";
 import NoDataFound from "../../global/NoDataFound";
 import CardSkeleton from "../../global/CardSkeleton";
 import { Badge, Button, Card, Group, Text } from "@mantine/core";
-import { imageUrl } from "@/staticData/image";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
@@ -61,7 +61,7 @@ const RecievedList = () => {
                                     <Card.Section className="pointer">
                                         <Link href={`/view-profile/${item?.requester?._id}`}>
                                             <img
-                                                src={item?.requester?.profilePicture?.url?.large || imageUrl}
+                                                src={item?.requester?.profilePicture?.url?.large || (item?.gender === "male" ? imageUrl : imageUrlFemale)}
                                                 height={250}
                                                 alt="Profile"
                                                 fit="contain"

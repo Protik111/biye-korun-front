@@ -1,5 +1,5 @@
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
-import { imageUrl } from "@/staticData/image";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import {
@@ -101,7 +101,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
           {photoVisible ? (
             <img
               onContextMenu={(e) => DisableRightClick(e)}
-              src={url?.medium || imageUrl}
+              src={url?.medium || (profile?.gender === "male" ? imageUrl : imageUrlFemale)}
               alt="profile"
             />
           ) : (

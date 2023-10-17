@@ -3,7 +3,7 @@ import BasicProfile from "./BasicProfile";
 import DetailedProfile from "./DetailedProfile";
 import useAxios from "@/hooks/axios/useAxios";
 import { useEffect, useState } from "react";
-import { imageUrl } from "@/staticData/image";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import CardSkeleton from "../global/CardSkeleton";
 import NoDataFound from "../global/NoDataFound";
 import axios from "axios";
@@ -53,7 +53,7 @@ const ViewProfile = () => {
                     {data?.data ? <div className="todaysMatch__wrapper--requestBox">
                         <div className="requestBox-container">
                             <div className="requestPhoto">
-                                <img src={data?.data?.profilePicture?.url?.medium || imageUrl} alt="Request Photo" />
+                                <img src={data?.data?.profilePicture?.url?.medium ||  (data?.gender === "male" ? imageUrl : imageUrlFemale)} alt="Request Photo" />
                             </div>
                             {/* <div className="text-center">
               <Anchor href="/" target="_blank">
