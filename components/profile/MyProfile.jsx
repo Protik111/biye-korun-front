@@ -580,7 +580,7 @@ const MyProfile = () => {
             id="partner-preferences"
             ref={partnerPreferencesRef}
           >
-            <Alert title={<h3>Partner Prefrences</h3>} color="red"></Alert>
+            <Alert title={<h3>Partner Preferences</h3>} color="red"></Alert>
 
             {/* Basic Info */}
             <div className="family-details info-section mt-20">

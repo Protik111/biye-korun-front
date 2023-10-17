@@ -10,7 +10,7 @@ const Vision = () => {
                 <div className='vision__wrapper--left'>
 
                     <div>
-                        <h2>Our Mission & Vission</h2>
+                        <h2>Our Mission & Vision</h2>
                         <p>BiyeKorun's mission is to bridge the gap for Bangladeshis around the world seeking marital ties. Currently, no platform caters specifically to this community's matrimonial needs. BiyeKorun envisions a world where Bangladeshis globally can confidently rely on a platform that ensures accurate, validated, and verified information to help them find their life partner. Family members can also engage in the search for potential brides or grooms for their loved ones.</p>
                     </div>
 
