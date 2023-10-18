@@ -27,6 +27,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "env-cmd": "^10.1.0",
+    "libphonenumber-js": "^1.10.48",
     "next": "13.4.16",
     "node-sass": "^9.0.0",
     "nprogress": "^0.2.0",

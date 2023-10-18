@@ -45,7 +45,7 @@ const MyProfile = () => {
   const {
     location: { city, residencyStatus, zipCode } = {},
     doctrine: { caste, motherTongue } = {},
-    appearance: { height } = {},
+    appearance: { height, weight } = {},
     education: { college, education } = {},
     family: {
       familyCountry,
@@ -77,7 +77,7 @@ const MyProfile = () => {
     country,
     bloodGroup,
   } = userInfo || {};
-
+  console.log("Weight", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
@@ -194,6 +194,10 @@ const MyProfile = () => {
 
               <div>
                 <div className="single-item">
+                  <p className="left">Weight</p>
+                  <p className="right"> {weight} KG</p>
+                </div>
+                <div className="single-item">
                   <p className="left">Religion</p>
                   <p className="right"> {religion || notSpecfied}</p>
                 </div>
@@ -201,16 +205,12 @@ const MyProfile = () => {
                   <p className="left">Country</p>
                   <p className="right"> {country || notSpecfied} </p>
                 </div>
-                {/* <div className="single-item">
-                                    <p className="left">Mother Tonue</p>
-                                    <p className="right"> Bengali</p>
-                                </div> */}
               </div>
             </div>
             <Divider my={10}></Divider>
 
             <div className="manage-profile mt-25 border-1 p-15 mr-5 rounded-10">
-              <h3 className="secondary-text">Manage your profile</h3>
+              <h3 className="secondary-text">Manage Profile</h3>
               <div className="mt-10 flex align-center flex-gap-15 flex-wrap">
                 <div className="flex align-center flex-gap-5 flex-basis-200">
                   <ThemeIconComp

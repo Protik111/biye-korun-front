@@ -71,12 +71,13 @@ function Navbar() {
               />
             </Link>
           </div>
-          <div className={`links ${clicked ? "active" : ""}`}>
+          {/* //TOO in the next div className={`links ${clicked ? "active" : ""}`} */}
+          <div className="links">
             <Link href="/">{/* <p>Home</p> */}</Link>
             {/* <a href="">Profiles</a> */}
-            <Link href={isAuthenticated ? "/dashboard" : "/login"}>
+            {/* <Link href={isAuthenticated ? "/dashboard" : "/login"}>
               <p>{isAuthenticated ? "Dashboard" : ""}</p>
-            </Link>
+            </Link> */}
 
             {/* <Link href="/plans">
               <p>Plans</p>
@@ -111,8 +112,14 @@ function Navbar() {
                   <Menu.Dropdown>
                     {/* <Menu.Label>User Profile</Menu.Label> */}
 
-                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                    {isAuthenticated && <Menu.Item icon={<IconUserCircle size={14} />}>
                       <Link style={{ color: "black" }} href="/dashboard">
+                        Dashboard
+                      </Link>
+                    </Menu.Item>}
+
+                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                      <Link style={{ color: "black" }} href="/my-profile">
                         View Profile
                       </Link>
                     </Menu.Item>
@@ -134,7 +141,7 @@ function Navbar() {
               </div>
             )}
           </div>
-          <div className="burguer" onClick={handleClick}>
+          {/* <div className="burguer" onClick={handleClick}>
             {!clicked ? (
               <IconMenu2
                 className={`icon-menu ${clicked ? "hidden" : ""}`}
@@ -154,7 +161,7 @@ function Navbar() {
                 size={28}
               />
             </div>
-          </div>
+          </div> */}
         </nav>
       </div>
     </>

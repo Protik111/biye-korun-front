@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProfile } from "@/redux/features/user/userSlice";
 import { notifyError } from "@/utils/showNotification";
 import { useRouter } from "next/navigation";
+import parsePhoneNumber from "libphonenumber-js";
+
 
 const ProfileCreation = () => {
   const { userInfo, message } = useSelector((state) => state.user);
@@ -28,6 +30,7 @@ const ProfileCreation = () => {
     profession: { employer, income, occupation, workingWith } = {},
     trait: { aboutMe } = {},
     phone,
+    countryCode,
     bloodGroup,
     country,
   } = userInfo;
@@ -49,7 +52,7 @@ const ProfileCreation = () => {
     company: employer ? employer : "",
     income: income ? income : "",
     about: aboutMe ? aboutMe : "",
-    phone: phone ? phone : "",
+    phone: countryCode ? (countryCode + phone) : (phone && !countryCode) ? phone : "",
     motherTongue: motherTongue ? motherTongue : "",
     bloodGroup: bloodGroup ? bloodGroup : "",
   });
@@ -166,20 +169,23 @@ const ProfileCreation = () => {
 
     if (active === 2) {
       const { about, phone } = formValues;
+
+      const phoneInfo = parsePhoneNumber(formValues?.phone);
+
       dispatch(
         createProfile({
           aboutMe: about,
-          phone: phone.replace(/[+\s]/g, ""),
+          // phone: phone.replace(/[+\s]/g, ""),
+          phone: phoneInfo.nationalNumber,
+          countryCode: phoneInfo.countryCallingCode,
           step: "third",
         })
       )
         .unwrap()
         .then(() => {
           nextStep();
+          router.push("/registration/photo");
 
-          setTimeout(() => {
-            router.push("/registration/photo");
-          }, 500);
         })
         .catch(() => {
           notifyError(message);

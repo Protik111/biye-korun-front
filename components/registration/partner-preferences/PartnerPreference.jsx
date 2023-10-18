@@ -32,7 +32,7 @@ const PartnerPreference = ({
     } = {},
     community: { community, motherTongue, religion } = {},
     educationCareer: {
-      annualIncome,
+      annualIncome: { min: minIncome, max: maxIncome } = {},
       profession,
       qualification,
       workingWith,
@@ -63,6 +63,9 @@ const PartnerPreference = ({
     profession: profession ? profession : "",
     income: "",
   });
+
+  console.log('formData', formData);
+
   const [minHeight, setMinHeight] = useState(heightRange?.min);
   const [maxHeight, setMaxHeight] = useState(heightRange?.max);
 
@@ -95,8 +98,8 @@ const PartnerPreference = ({
     const data = {
       minAge: ages[0]?.toString(),
       maxAge: ages[1]?.toString(),
-      minHeight: minHeight.toString(),
-      maxHeight: maxHeight.toString(),
+      minHeight: minHeight?.toString(),
+      maxHeight: maxHeight?.toString(),
       maritalStatus: maritalStatus,
       religion,
       //   community: "Muslim",
@@ -107,8 +110,8 @@ const PartnerPreference = ({
       qualification,
       workingWith,
       profession,
-      minIncome: minIncomeValue.toString(),
-      maxIncome: maxIncomeValue.toString(),
+      minIncome: minIncomeValue?.toString(),
+      maxIncome: maxIncomeValue?.toString(),
     };
     setLoading(true);
     axios
@@ -116,9 +119,10 @@ const PartnerPreference = ({
       .then((res) => {
         notifySuccess("Preferences are added successfully!");
         setLoading(false);
-        setTimeout(() => {
-          router.push("/matches");
-        }, 500);
+        router.push("/matches");
+
+        // setTimeout(() => {
+        // }, 500);
       })
       .catch((err) => {
         setLoading(false);
@@ -145,8 +149,8 @@ const PartnerPreference = ({
     const data = {
       minAge: ages[0]?.toString(),
       maxAge: ages[1]?.toString(),
-      minHeight: minHeight.toString(),
-      maxHeight: maxHeight.toString(),
+      minHeight: minHeight?.toString(),
+      maxHeight: maxHeight?.toString(),
       maritalStatus: maritalStatus,
       religion,
       // community: "Muslim",
@@ -157,8 +161,8 @@ const PartnerPreference = ({
       qualification,
       workingWith,
       profession,
-      minIncome: minIncomeValue.toString(),
-      maxIncome: maxIncomeValue.toString(),
+      minIncome: minIncomeValue?.toString(),
+      maxIncome: maxIncomeValue?.toString(),
     };
     setLoading(true);
     axios
@@ -167,6 +171,7 @@ const PartnerPreference = ({
         notifySuccess("Preferences are added successfully!");
         dispatch(loadUserData())
         setLoading(false);
+        router.push("/my-profile");
       })
       .catch((err) => {
         setLoading(false);

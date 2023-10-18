@@ -14,8 +14,9 @@ import ReuseModal from "../global/ReuseModal";
 import VerifyModalBody from "../dashboard/VerifyModalBody";
 
 const MyDashboard = () => {
-  const { userInfo } = useSelector((state) => state.user) || {};
   const router = useRouter();
+  const { userInfo } = useSelector((state) => state.user) || {};
+
   const { data, error, loading, refetch } = useAxios(
     "user/invitefriendship/all"
   );
@@ -48,7 +49,7 @@ const MyDashboard = () => {
     }
   });
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const {
     location: { city, residencyStatus } = {},
@@ -81,7 +82,9 @@ const MyDashboard = () => {
     isEmailVerified,
   } = userInfo || {};
 
-  console.log("isPhoneVerified", isPhoneVerified);
+  const handleClick = (num) => {
+    router.push(`/settings/?state=${num}`);
+  };
 
   return (
     <div className="myDashboard container">
@@ -132,13 +135,19 @@ const MyDashboard = () => {
 
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5 w-100">
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                <p className="small-text">Mobile no. is verified</p>
+                <Anchor
+                  href="#"
+                  className="small-text"
+                  onClick={() => handleClick("3")}
+                >
+                  Email Verified
+                </Anchor>
                 <ThemeIconComp
                   size="sm"
                   color={isEmailVerified?.status ? "green" : "red"}
                   iconComp={
                     isEmailVerified?.status ? (
-                      <IconCheck size={16} color="green" />
+                      <IconCheck size={16} color="white" />
                     ) : (
                       <IconX color="white" size={16} />
                     )
@@ -146,7 +155,9 @@ const MyDashboard = () => {
                 />
               </div>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                <p className="small-text">Email is verified</p>
+                <Anchor href="#" className="small-text">
+                  Mobile Number Verified
+                </Anchor>
                 <ThemeIconComp
                   color={isPhoneVerified?.status ? "green" : "red"}
                   size="sm"
@@ -160,13 +171,27 @@ const MyDashboard = () => {
                 />
               </div>
 
-              <Anchor
-                href="#"
-                onClick={openModal}
-                className={`${isIdVerify ? "disabled-anchor" : ""}`}
-              >
-                Verify your ID
-              </Anchor>
+              <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
+                {/* <p className="small-text">Email verified</p> */}
+                <Anchor
+                  href="#"
+                  onClick={openModal}
+                  className={`${isIdVerify ? "disabled-anchor" : ""}`}
+                >
+                  Verify ID
+                </Anchor>
+                <ThemeIconComp
+                  color={isPhoneVerified?.status ? "green" : "red"}
+                  size="sm"
+                  iconComp={
+                    isIdVerify ? (
+                      <IconCheck size={16} color="white" />
+                    ) : (
+                      <IconX color="white" size={16} />
+                    )
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
