@@ -99,7 +99,7 @@ const Step1 = ({
       errors.height = "Height is required";
     }
     if (!weight) {
-      errors.height = "Weight is required";
+      errors.weight = "Weight is required";
     }
 
     if (!bloodGroup) {
@@ -115,9 +115,9 @@ const Step1 = ({
   };
 
   const handleNextStep = () => {
-    console.log("122", weight);
+    // console.log("122", weight);
     if (validateForm()) {
-      console.log("success validation");
+      // console.log("success validation");
       // Call the parent component's callback with the formValues
       onNextStep(formValues);
     } else {
@@ -130,6 +130,8 @@ const Step1 = ({
       [name]: value,
     }));
   };
+
+  // console.log('e', formErrors);
 
   return (
     <div className="step1">

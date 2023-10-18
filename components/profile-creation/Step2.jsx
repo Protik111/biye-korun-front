@@ -70,7 +70,6 @@ const Step2 = ({
   };
 
   const handleFormChange = (name, value) => {
-    console.log("name", name, value);
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
