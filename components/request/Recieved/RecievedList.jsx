@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useAxios from "@/hooks/axios/useAxios";
 import NoDataFound from "../../global/NoDataFound";
 import CardSkeleton from "../../global/CardSkeleton";
@@ -10,110 +10,137 @@ import Link from "next/link";
 import { notifyError } from "@/utils/showNotification";
 import axios from "axios";
 
-
 const RecievedList = () => {
-    const { data, error, loading, refetch } = useAxios("user/friendship/pending");
+  const { data, error, loading, refetch } = useAxios("user/friendship/pending");
 
-    const skeletons = new Array(5).fill();
+  const skeletons = new Array(5).fill();
 
-    const handleDeclineAccept = (requisterId, status) => {
-        let statusGlobal = '';
+  const handleDeclineAccept = (requisterId, status) => {
+    let statusGlobal = "";
 
-        if (status == "accepted") {
-            statusGlobal = "accepted"
-        }
-        if (status == "declined") {
-            statusGlobal = "declined"
-        }
-
-        const payload = {
-            status: statusGlobal,
-            friendshipId: requisterId
-        }
-
-        // console.log('payload', payload);
-        axios.patch(`user/updatefriends`, payload)
-            .then(res => {
-                if (statusGlobal === "accepted") {
-                    notifySuccess('Request accepted successfully!')
-                    refetch()
-                }
-
-                if (statusGlobal === "declined") {
-                    notifySuccess('Request declined successfully!')
-                    refetch()
-                }
-            })
-            .catch(err => {
-                console.log(err.response.data);
-                notifyError(err.response.data.message)
-            })
+    if (status == "accepted") {
+      statusGlobal = "accepted";
+    }
+    if (status == "declined") {
+      statusGlobal = "declined";
     }
 
-    return (
-        <>
-            <div className="container recentlyViewed">
-                {!loading ?
-                    <>
-                        {data?.data?.map((item, i) => (
-                            <div key={i} className="recentlyViewed__singleContainer">
-                                <Card shadow="sm" padding="lg" radius="md" withBorder>
-                                    <Card.Section className="pointer">
-                                        <Link href={`/view-profile/${item?.requester?._id}`}>
-                                            <img
-                                                src={item?.requester?.profilePicture?.url?.large || (item?.gender === "male" ? imageUrl : imageUrlFemale)}
-                                                height={250}
-                                                alt="Profile"
-                                                fit="contain"
-                                                className="recently_img"
-                                            />
-                                        </Link>
-                                    </Card.Section>
+    const payload = {
+      status: statusGlobal,
+      friendshipId: requisterId,
+    };
 
-                                    <Group position="apart" mt="md" mb="xs">
-                                        <Text weight={500}>{item?.requester?.firstName + " " + item?.requester?.lastName}</Text>
-                                        <Badge color="pink" variant="light" size="md">
-                                            Online 2h ago
-                                        </Badge>
-                                    </Group>
+    // console.log('payload', payload);
+    axios
+      .patch(`user/updatefriends`, payload)
+      .then((res) => {
+        if (statusGlobal === "accepted") {
+          notifySuccess("Request accepted successfully!");
+          refetch();
+        }
 
-                                    <Text size="sm" color="dimmed">
-                                        {calculateAge(item?.requester?.dateOfBirth)} yrs, {heightCalculator(item?.requester?.appearance?.height)}, {item?.requester?.religion},
-                                        <br />
-                                        {item?.requester?.community}, {item?.requester?.doctrine?.caste}, Lives in {item?.requester?.country}
-                                    </Text>
+        if (statusGlobal === "declined") {
+          notifySuccess("Request declined successfully!");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        // console.log(err.response.data);
+        notifyError(err.response.data.message);
+      });
+  };
 
-                                    {/* <h3 className="text-center pt-15">Connect with {item?.requester?.gender === "Male" ? 'him' : 'her'}?</h3> */}
-                                    {/* <h3 className="text-center pt-15">Send Biye Korun Request?</h3> */}
-
-                                    <div className="flex justify-center align-center flex-gap-15">
-                                        <Button onClick={() => handleDeclineAccept(item?.requester?._id, "declined")} variant="outline" color="pink" mt="sm" radius="sm" fullWidth>
-                                            Decline request
-                                        </Button>
-                                        <Button onClick={() => handleDeclineAccept(item?.requester?._id, "accepted")} variant="filled" mt="md" radius="sm" fullWidth>
-                                            Accept request
-                                        </Button>
-                                    </div>
-                                </Card>
-                            </div>
-                        ))}
-                    </> :
-                    <>
-                        {
-                            skeletons?.map((item, i) => <div className="mt-15" key={i}>
-                                <CardSkeleton></CardSkeleton>
-                            </div>)
+  return (
+    <>
+      <div className="container recentlyViewed">
+        {!loading ? (
+          <>
+            {data?.data?.map((item, i) => (
+              <div key={i} className="recentlyViewed__singleContainer">
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                  <Card.Section className="pointer">
+                    <Link href={`/view-profile/${item?.requester?._id}`}>
+                      <img
+                        src={
+                          item?.requester?.profilePicture?.url?.large ||
+                          (item?.gender === "male" ? imageUrl : imageUrlFemale)
                         }
-                    </>}
+                        height={250}
+                        alt="Profile"
+                        fit="contain"
+                        className="recently_img"
+                      />
+                    </Link>
+                  </Card.Section>
 
-            </div>
-            {data?.data?.length === 0 && <div className="text-center">
-                <h2 className="text-center">There is no recieved request!</h2>
-            </div>}
+                  <Group position="apart" mt="md" mb="xs">
+                    <Text weight={500}>
+                      {item?.requester?.firstName +
+                        " " +
+                        item?.requester?.lastName}
+                    </Text>
+                    <Badge color="pink" variant="light" size="md">
+                      Online 2h ago
+                    </Badge>
+                  </Group>
 
-            {data?.data?.length === 0 && <NoDataFound></NoDataFound>}
-        </>
-    )
-}
+                  <Text size="sm" color="dimmed">
+                    {calculateAge(item?.requester?.dateOfBirth)} yrs,{" "}
+                    {heightCalculator(item?.requester?.appearance?.height)},{" "}
+                    {item?.requester?.religion},
+                    <br />
+                    {item?.requester?.community},{" "}
+                    {item?.requester?.doctrine?.caste}, Lives in{" "}
+                    {item?.requester?.country}
+                  </Text>
 
-export default RecievedList
+                  {/* <h3 className="text-center pt-15">Connect with {item?.requester?.gender === "Male" ? 'him' : 'her'}?</h3> */}
+                  {/* <h3 className="text-center pt-15">Send Biye Korun Request?</h3> */}
+
+                  <div className="flex justify-center align-center flex-gap-15">
+                    <Button
+                      onClick={() => handleDeclineAccept(item?._id, "declined")}
+                      variant="outline"
+                      color="pink"
+                      mt="sm"
+                      radius="sm"
+                      fullWidth
+                    >
+                      Decline request
+                    </Button>
+                    <Button
+                      onClick={() => handleDeclineAccept(item?._id, "accepted")}
+                      variant="filled"
+                      mt="md"
+                      radius="sm"
+                      fullWidth
+                    >
+                      Accept request
+                    </Button>
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            {skeletons?.map((item, i) => (
+              <div className="mt-15" key={i}>
+                <CardSkeleton></CardSkeleton>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+      {data?.data?.length === 0 && (
+        <div className="text-center">
+          <h2 className="text-center">There is no recieved request!</h2>
+        </div>
+      )}
+
+      {data?.data?.length === 0 && <NoDataFound></NoDataFound>}
+    </>
+  );
+};
+
+export default RecievedList;
