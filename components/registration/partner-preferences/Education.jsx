@@ -84,8 +84,8 @@ function Education({
                 value={formData.qualification}
                 onChange={(event) => handleFormChange("qualification", event)}
                 searchable
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -109,8 +109,8 @@ function Education({
                 name="workingWith"
                 value={formData.workingWith}
                 onChange={(event) => handleFormChange("workingWith", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -132,8 +132,8 @@ function Education({
                 name="profession"
                 value={formData.profession}
                 onChange={(event) => handleFormChange("profession", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -166,7 +166,7 @@ function Education({
                 min={10000}
                 max={200000}
                 labelAlwaysOn
-                values={[minIncomeValue, maxIncomeValue]}
+                value={[minIncomeValue, maxIncomeValue]}
                 onChange={handleIncomeChange}
                 valueLabel={(value) => `${value} BDT`}
               />

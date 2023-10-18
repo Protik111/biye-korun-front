@@ -44,7 +44,7 @@ const EmailVerification = ({ profileData, setProfileData }) => {
             // Render a countdown
             return (
                 <div className='flex flex-gap-5 flex-wrap align-center'>
-                    <Badge disabled className='mt-5' variant="light" color="grape" size="lg">Resend OTP in ({hours}:{minutes}:{seconds})</Badge>
+                    <Badge disabled className='mt-5' variant="light" color="grape" size="lg">Resend OTP in ({"0" + minutes}:{seconds})</Badge>
                 </div>
             );
         }
@@ -140,7 +140,7 @@ const EmailVerification = ({ profileData, setProfileData }) => {
 
                         <div className='flex flex-gap-15'>
                             {/* <Button variant="outline" color="pink" radius="xl">Cancel</Button> */}
-                            <Button onClick={() => handleUpdate()} disabled={loading} variant="filled" radius="xl">{loading ? <LoaderWithText text="Sending OTP..."></LoaderWithText> : "Get OTP"}</Button>
+                            {!userInfo?.isEmailVerified?.status && <Button onClick={() => handleUpdate()} disabled={loading} variant="filled" radius="xl">{loading ? <LoaderWithText text="Sending OTP..."></LoaderWithText> : "Get OTP"}</Button>}
                         </div>
                     </>
                 }

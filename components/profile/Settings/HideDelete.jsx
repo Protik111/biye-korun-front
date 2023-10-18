@@ -54,7 +54,7 @@ const HideDelete = () => {
             // Render a countdown
             return (
                 <div className='flex flex-gap-5 flex-wrap align-center'>
-                    <Badge disabled className='mt-5' variant="light" color="grape" size="lg">Resend OTP in ({hours}:{minutes}:{seconds})</Badge>
+                    <Badge disabled className='mt-5' variant="light" color="grape" size="lg">Resend OTP in ({"0" + minutes}:{seconds})</Badge>
                 </div>
             );
         }
@@ -164,7 +164,7 @@ const HideDelete = () => {
             {
                 showModalDelete && <ConfirmModal modalOpen={showModalDelete} handleModalClose={() => setShowModalDelete(false)}>
                     <div className=''>
-                        <h3>{switchSection ? "Enter the OTP and delete the account!" : "Are you sure to delete your profile?"}</h3>
+                        <h3>{switchSection ? "Enter the OTP to delete the account!" : "Are you sure to delete your profile?"}</h3>
                         <div className='mt-10'>
                             {
                                 switchSection ?
