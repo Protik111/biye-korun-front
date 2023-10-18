@@ -114,8 +114,8 @@ const MyMatches = () => {
       motherTongue: [],
       country: [],
       education: [],
-    })
-  }
+    });
+  };
 
   console.log("filterData", filterData);
 
@@ -126,9 +126,19 @@ const MyMatches = () => {
           <div className="myMatches__wrapper--requestBox">
             <div className="flex justify-between align-center py-10">
               <div>
-                <h3 className="text-center pb-5 secondary-text">Advance Search</h3>
+                <h3 className="text-center pb-5 secondary-text">
+                  Advanced Search
+                </h3>
               </div>
-              <Button onClick={() => handleClearFilter()} variant="outline" color="pink" size="xs" radius="xl">Clear Filters</Button>
+              <Button
+                onClick={() => handleClearFilter()}
+                variant="outline"
+                color="pink"
+                size="xs"
+                radius="xl"
+              >
+                Clear Filters
+              </Button>
             </div>
             <div className="requestBox-container">
               <>

@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { FileInput, Button, Select } from "@mantine/core";
+import {
+  Text,
+  Image,
+  SimpleGrid,
+  Button,
+  Select,
+  Tooltip,
+} from "@mantine/core";
 import LoaderWithText from "../global/LoaderWithText";
 import axios from "axios";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { loadUserData } from "@/redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
+import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 
 const VerifyModalBody = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const [files, setFiles] = useState("");
+  const [preview, setPreview] = useState("");
   const [formValues, setFormValues] = useState({
     image: "",
     idType: "",
@@ -21,8 +31,8 @@ const VerifyModalBody = ({ closeModal }) => {
   const validateForm = () => {
     const errors = {};
 
-    if (!formValues.image) {
-      errors.image = "Image is required";
+    if (!files) {
+      errors.image = "Photo ID is required";
     }
 
     if (!formValues.idType) {
@@ -32,19 +42,29 @@ const VerifyModalBody = ({ closeModal }) => {
     setFormDataError(errors);
     return Object.keys(errors).length === 0; // Return true if no errors
   };
+
+  const handleDrop = (files) => {
+    if (files.length > 0) {
+      const uploadedFile = files[0];
+      // console.log("Uploaded file:", uploadedFile);
+      setFiles(uploadedFile);
+      const previews = URL.createObjectURL(uploadedFile);
+      setPreview(previews);
+    }
+  };
   const handlerChange = (name, value) => {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
     }));
   };
-  console.log("image ", formValues.image);
+
   const handleSubmit = () => {
     if (validateForm()) {
-      const { image, idType } = formValues;
+      const { idType } = formValues;
       const data = {
         idType,
-        image,
+        image: files,
       };
       setLoading(true);
       axios
@@ -70,14 +90,40 @@ const VerifyModalBody = ({ closeModal }) => {
   return (
     <div className="mt-20 mb-20">
       <br />
-      <FileInput
+      {/* <FileInput
         accept="image/png,image/jpeg"
         label="Upload (NID/Birth Certificate/Driving License/Passport)"
         value={formValues.image}
         name="image"
         onChange={(event) => handlerChange("image", event)}
         error={formDataError.image}
-      />
+      /> */}
+
+      <div>
+        <Tooltip
+          color="pink"
+          label="NID/Birth Certificate/Passport/Driver's License/Green Card"
+        >
+          <label className="label label-required"> Photo ID</label>
+        </Tooltip>
+        {console.log(" error", formDataError.image)}
+        <Dropzone
+          accept={IMAGE_MIME_TYPE}
+          onDrop={handleDrop}
+          className="py-40"
+        >
+          <Text ta="center">Attach and drag & drop here</Text>
+        </Dropzone>
+        {formDataError.image && (
+          <p style={{ color: "red" }}>{formDataError.image}</p>
+        )}
+        <SimpleGrid
+          cols={{ base: 1, sm: 4 }}
+          mt={preview.length > 0 ? "sm" : 0}
+        >
+          <Image src={preview} onLoad={() => URL.revokeObjectURL(preview)} />
+        </SimpleGrid>
+      </div>
 
       <br />
 
@@ -85,7 +131,13 @@ const VerifyModalBody = ({ closeModal }) => {
         value={formValues.idType}
         label="ID Type "
         name="idType"
-        data={["NID", "Passport", "Driving License", "Birth Certificate"]}
+        data={[
+          "NID",
+          "Passport",
+          "Driver's License",
+          "Birth Certificate",
+          "Green Card",
+        ]}
         placeholder="Select ID Type"
         onChange={(event) => handlerChange("idType", event)}
         error={formDataError.idType}
@@ -93,7 +145,7 @@ const VerifyModalBody = ({ closeModal }) => {
 
       <br />
       <div className="flex justify-end">
-        <Button onClick={handleSubmit}>
+        <Button onClick={handleSubmit} size="md">
           {" "}
           {loading ? <LoaderWithText text="Saving.."></LoaderWithText> : "Save"}
         </Button>
