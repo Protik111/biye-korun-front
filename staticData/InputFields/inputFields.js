@@ -423,7 +423,7 @@ export const recidencies = [
 
 export const maritalStatuses = [
   "Never Married",
-  "Married",
+  // "Married",
   "Divorced",
   "Widowed",
   "Awaiting Divorce",
@@ -615,20 +615,20 @@ export const professions = [
 
 export const incomes = [
   {
-    label: "$1000 to $30000",
-    value: { min: "1000", max: "30000" },
+    label: "$1000 to $10000",
+    value: { min: "1000", max: "10000" },
   },
   {
-    label: "$31000 to $50000",
-    value: { min: "31000", max: "50000" },
+    label: "$11000 to $20000",
+    value: { min: "11000", max: "20000" },
   },
   {
-    label: "$51000 to $100000",
-    value: { min: "51000", max: "100000" },
+    label: "$21000 to $30000",
+    value: { min: "21000", max: "30000" },
   },
   {
-    label: "$100000  to above",
-    value: { min: "100000 ", max: "above" },
+    label: "$31000  to $100000",
+    value: { min: "31000 ", max: "100000" },
   },
 ];
 

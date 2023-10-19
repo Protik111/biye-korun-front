@@ -68,13 +68,26 @@ const NewMatches = () => {
     return (
         <div className="todaysMatch container">
             <>
+                {!loading && data?.data?.length === 0 &&
+                    <div className="flex justify-center">
+                        <h2 className="text-center mb-15">You Do Not Have New Matches Today!</h2>
+                    </div>
+                }
                 <div className="flex justify-between align-center">
-                    <div>
+                    {/* <div>
                         {!loading && data?.data?.length === 0 ? (
                             <h2 className="text-center mb-15">You do not have any New Matches!</h2>
                         ) : (
                             <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
                         )}
+                    </div> */}
+
+                    <div>
+                        {!loading && data?.data?.length !== 0 &&
+                            <div className="flex justify-center">
+                                <h2 className="text-center mb-15">Here Are New Matches. Connect with Them Now.</h2>
+                            </div>
+                        }
                     </div>
                     {/* <h2 className="text-center mb-15">
                         Here are new matches for you. Connect with them now!

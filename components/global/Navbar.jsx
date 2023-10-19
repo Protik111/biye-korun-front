@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import {
+  IconLayoutDashboard,
   IconLogout2,
   IconMenu2,
   IconUserCircle,
+  IconUserSearch,
   IconX,
 } from "@tabler/icons-react";
 import { Avatar, Button } from "@mantine/core";
@@ -112,19 +114,19 @@ function Navbar() {
                   <Menu.Dropdown>
                     {/* <Menu.Label>User Profile</Menu.Label> */}
 
-                    {isAuthenticated && <Menu.Item icon={<IconUserCircle size={14} />}>
+                    {isAuthenticated && <Menu.Item icon={<IconLayoutDashboard color="red" size={16} />}>
                       <Link style={{ color: "black" }} href="/dashboard">
                         Dashboard
                       </Link>
                     </Menu.Item>}
 
-                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                    <Menu.Item icon={<IconUserCircle size={16} color="red" />}>
                       <Link style={{ color: "black" }} href="/my-profile">
                         View Profile
                       </Link>
                     </Menu.Item>
 
-                    <Menu.Item icon={<IconUserCircle size={14} />}>
+                    <Menu.Item icon={<IconUserSearch size={16} color="red" />}>
                       <Link style={{ color: "black" }} href="/my-matches">
                         My Matches
                       </Link>
@@ -132,7 +134,7 @@ function Navbar() {
 
                     <Menu.Item
                       onClick={() => handleLogout()}
-                      icon={<IconLogout2 size={14} />}
+                      icon={<IconLogout2 size={16} color="red" />}
                     >
                       Log out
                     </Menu.Item>

@@ -169,7 +169,13 @@ const MyProfile = () => {
 
         <div className="myProfile__top--wrapper">
           <div className="profile-img">
-            <img src={url?.large || (userInfo?.gender === "Male" ? imageUrl : imageUrlFemale)} alt="Profile" />
+            <img
+              src={
+                url?.large ||
+                (userInfo?.gender === "Male" ? imageUrl : imageUrlFemale)
+              }
+              alt="Profile"
+            />
           </div>
           <div>
             <div className="profile-info">
@@ -817,7 +823,11 @@ const MyProfile = () => {
         </div>
       </div>
 
-      <ReuseModal isOpen={isModal1Open} onClose={closeModal1} title="About">
+      <ReuseModal
+        isOpen={isModal1Open}
+        onClose={closeModal1}
+        title="Add Personal Details"
+      >
         {" "}
         <br />
         <Textarea

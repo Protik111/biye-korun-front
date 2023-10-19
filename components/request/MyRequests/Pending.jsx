@@ -49,14 +49,35 @@ const Pending = () => {
                                         </Badge> */}
                   </Group>
 
-                  <Text size="sm" color="dimmed">
-                    {calculateAge(item?.recipient?.dateOfBirth)} yrs,{" "}
-                    {heightCalculator(item?.recipient?.appearance?.height)},{" "}
-                    {item?.recipient?.religion},
-                    <br />
-                    {item?.recipient?.community},{" "}
-                    {item?.recipient?.doctrine?.caste}, Lives in{" "}
-                    {item?.recipient?.country}
+                  <Text size="sm">
+                    <div>
+                      {" "}
+                      <b> Age</b>: {calculateAge(item?.recipient?.dateOfBirth)}{" "}
+                      yrs
+                    </div>
+                    {item?.recipient?.appearance?.height && (
+                      <div>
+                        {" "}
+                        <b>Height</b>:{" "}
+                        {heightCalculator(item?.recipient?.appearance?.height)}
+                      </div>
+                    )}
+                    <div>
+                      {" "}
+                      <b>Religion</b>: {item?.recipient?.religion}
+                    </div>
+                    {item?.recipient?.doctrine?.motherTongue && (
+                      <div>
+                        {" "}
+                        <b> Native Language</b>:{" "}
+                        {console.log(item?.recipient, "Native")}
+                        {item?.recipient?.doctrine?.motherTongue}
+                      </div>
+                    )}
+                    <div>
+                      {" "}
+                      <b>Country</b>: {item?.recipient?.country}
+                    </div>
                   </Text>
 
                   {/* <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3> */}
@@ -90,7 +111,7 @@ const Pending = () => {
       </div>
       {data?.data?.length === 0 && (
         <div className="text-center">
-          <h2 className="text-center">There is no pending request!</h2>
+          <h2 className="text-center">There is no pending request.</h2>
         </div>
       )}
 

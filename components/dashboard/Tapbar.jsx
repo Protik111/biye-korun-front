@@ -25,13 +25,13 @@ const Tapbar = () => {
       <div className="container">
         <Tabs defaultValue={pathname.replace(/^\/+/, '')} color="pink" variant="pills">
           <Tabs.List grow position="apart">
-            <Tabs.Tab
+            {/* <Tabs.Tab
               sx={fontSizeMnd}
               value="new-matches"
               onClick={() => handleChangeTab("new-matches")}
             >
               New Matches <b>{newMatchTotal ? `(${newMatchTotal})` : ''}</b>
-            </Tabs.Tab>
+            </Tabs.Tab> */}
             <Tabs.Tab
               sx={fontSizeMnd}
               value="todays-matches"
