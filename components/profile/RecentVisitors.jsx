@@ -44,7 +44,7 @@ const RecentVisitors = ({ profile, refetch }) => {
   // console.log('friendshipsStatus, status', status);
 
   return (
-    <div className="single container-box-bg py-15 min_height">
+    <div className="single container-box-bg py-25">
       <Link
         href={`/view-profile/${profile?.owner?._id}`}
         className="flex justify-center align-center"
@@ -67,7 +67,7 @@ const RecentVisitors = ({ profile, refetch }) => {
           <p>Height: {heightCalculator(profile?.owner?.appearance?.height)} </p>
           <p>
             {/* Native Language: */}
-            {profile?.owner?.community}
+            {/* {profile?.owner?.community} */}
           </p>
         </Link>
       </div>
@@ -89,7 +89,7 @@ const RecentVisitors = ({ profile, refetch }) => {
           // leftIcon={<IconArrowNarrowLeft />}
           style={btnBackground}
           type="button"
-          className={`button mt-10`}
+          className={`button`}
           disabled={loading}
           onClick={() => handleSendRequest(profile?.owner?._id)}
         >
@@ -111,8 +111,8 @@ const RecentVisitors = ({ profile, refetch }) => {
           radius="xl"
           // leftIcon={<IconArrowNarrowLeft />}
           // style={btnBackground} type="button"
-          className={`button mt-10`}
-          // onClick={handleSendRequest}
+          className={`button`}
+        // onClick={handleSendRequest}
         >
           Request Pending
         </Button>

@@ -50,7 +50,7 @@ const PartnerPreference = ({
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
-    ages: [min, max] || [18, 25],
+    ages: (min && max) ? [min, max] : [18, 25],
     height: "",
     maritalStatus: maritalStatus ? maritalStatus : "",
     religion: religion ? religion : "",
@@ -66,12 +66,12 @@ const PartnerPreference = ({
 
   console.log('formData', formData);
 
-  const [minHeight, setMinHeight] = useState(heightRange?.min);
-  const [maxHeight, setMaxHeight] = useState(heightRange?.max);
+  const [minHeight, setMinHeight] = useState(heightRange?.min || "56");
+  const [maxHeight, setMaxHeight] = useState(heightRange?.max || "36");
 
   // Initial income range values
-  const [minIncomeValue, setMinIncomeValue] = useState(minIncome);
-  const [maxIncomeValue, setMaxIncomeValue] = useState(maxIncome);
+  const [minIncomeValue, setMinIncomeValue] = useState(minIncome || "1000");
+  const [maxIncomeValue, setMaxIncomeValue] = useState(maxIncome || "5000");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 

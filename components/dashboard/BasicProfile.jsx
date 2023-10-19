@@ -44,7 +44,7 @@ const BasicProfile = ({ profile }) => {
 
   const {
     location: { city, residencyStatus } = {},
-    doctrine: { caste } = {},
+    doctrine: { caste, motherTongue } = {},
     appearance: { height } = {},
     education: { college, education } = {},
     family: { children, livingWith } = {},
@@ -81,6 +81,7 @@ const BasicProfile = ({ profile }) => {
   const friendships2 = true;
 
   // console.log('status', status, friendships);
+  // console.log('profile', profile);
 
   return (
     <div className="basicProfile container-box-bg p-15">
@@ -88,7 +89,7 @@ const BasicProfile = ({ profile }) => {
         <div className="flex align-center justify-between">
           <div className="flex align-center justify-between flex-gap-5">
             <h3>{firstName + " " + lastName}</h3>
-            <IconLock color="#E64980"></IconLock>
+            {/* <IconLock color="#E64980"></IconLock> */}
           </div>
           {!friendships ? (
             <Button
@@ -98,7 +99,7 @@ const BasicProfile = ({ profile }) => {
               variant="white"
               onClick={handleSendRequest}
             >
-              Connect with her
+              Send Request
             </Button>
           ) : (
             <Button
@@ -115,9 +116,10 @@ const BasicProfile = ({ profile }) => {
         </div>
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
-            {/* <IconMessages color="#E64980"></IconMessages>
-            <p>Online 2d ago</p> */}
+            {/* <IconMessages color="#E64980"></IconMessages> */}
+            {/* <p>Online 2d ago</p> */}
           </div>
+          <div className="flex-item">{/* <p>You & her</p> */}</div>
           <div className="flex-item">{/* <p>You & her</p> */}</div>
         </div>
       </div>
@@ -135,16 +137,53 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
+            {/* {dateOfBirth && <List.Item>
+              {calculateAge(dateOfBirth)} yrs{" "}
+              {height ? `, ${heightCalculator(height)}` : ""}
+            </List.Item>}
+
+            {community && <List.Item>{community}</List.Item>}
+            {religion && <List.Item>
+              {religion}
+            </List.Item>}
+            {city && <List.Item>{city}</List.Item>} */}
+
             {dateOfBirth && (
               <List.Item>
-                {calculateAge(dateOfBirth)} yrs{" "}
-                {height ? `, ${heightCalculator(height)}` : ""}
+                <b>Age:</b> {calculateAge(dateOfBirth)}
               </List.Item>
             )}
 
-            {community && <List.Item>{community}</List.Item>}
-            {religion && <List.Item>{religion}</List.Item>}
-            {city && <List.Item>{city}</List.Item>}
+            {height && (
+              <List.Item>
+                <b>Height:</b> {heightCalculator(height)}
+              </List.Item>
+            )}
+
+            {motherTongue && (
+              <List.Item>
+                {/* <b>Native Language:</b>{" "}
+                {community?.map((item, i) => (
+                  <>
+                    {item} {community.length - 1 !== i ? "," : ""}{" "}
+                  </>
+                ))} */}
+                <b>Native Language:</b> {motherTongue || ""}
+              </List.Item>
+            )}
+
+            {religion && (
+              <List.Item>
+                <b>Religion: </b>
+                {religion}
+              </List.Item>
+            )}
+            {city && (
+              <List.Item>
+                <b>City: </b>
+                {city}
+              </List.Item>
+            )}
           </List>
         </div>
 
@@ -159,17 +198,29 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            {maritalStatus && <List.Item>{maritalStatus}</List.Item>}
-            {country && <List.Item>Lives in {country}</List.Item>}
-            {/* <List.Item>Works at </List.Item> */}
-            {!min && max ? (
-              <List.Item> {max}K monthly</List.Item>
-            ) : min ? (
+            {maritalStatus && (
               <List.Item>
-                Earns Upto BDT {min}K - {max}K monthly
+                <b>Marital Status: </b>
+                {maritalStatus}
+              </List.Item>
+            )}
+
+            {country && (
+              <List.Item>
+                {" "}
+                <b>Country: </b> {country}
+              </List.Item>
+            )}
+
+            {/* <List.Item>Works at </List.Item> */}
+            {min && max ? (
+              <List.Item>
+                <b>Yearly Income: </b> ${min} - ${max}
               </List.Item>
             ) : (
-              <></>
+              <List.Item>
+                <b>Yearly Income: </b> ${"1000"} - ${"30000"}
+              </List.Item>
             )}
           </List>
         </div>

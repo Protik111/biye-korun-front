@@ -99,7 +99,7 @@ const EmailVerification = ({ profileData, setProfileData }) => {
                     Your Email is not Verified yet! You can Verify your Email by sending OTP to your email.
                 </Alert> :
                     <Alert variant="light" color="red" title={<h4>Your Email is Verified!</h4>}>
-                        You've Successfully Verified your Email.
+                        You've successfully verified your email.
                     </Alert>
                 }
             </div>

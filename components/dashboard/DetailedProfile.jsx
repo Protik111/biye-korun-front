@@ -13,7 +13,7 @@ const DetailedProfile = ({ profile }) => {
             Detailed Profile
           </Tabs.Tab>
           <Tabs.Tab sx={fontSizeMnd} value="partner-preferences">
-            Partner Preferenecs
+            Partner Preferences
           </Tabs.Tab>
         </Tabs.List>
 
@@ -22,7 +22,7 @@ const DetailedProfile = ({ profile }) => {
         </Tabs.Panel>
 
         <Tabs.Panel value="partner-preferences" pt="xs">
-          <h2 className="text-center">Coming Soon!</h2>
+          <h2 className="text-center">Coming soon!</h2>
         </Tabs.Panel>
       </Tabs>
     </div>
