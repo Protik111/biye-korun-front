@@ -7,6 +7,7 @@ import LandingV2 from "@/components/landing/LandingV2";
 import PremiumPlan from "@/components/landing/PremiumPlan";
 import WhyChoose from "@/components/landing/WhyChoose";
 import Landing from "@/components/landing/landing";
+import HeroVideo from "@/components/landing/HeroVideo";
 import { Loader } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,6 +37,7 @@ export default function Home() {
     <>
       {/* <Landing></Landing> */}
       <LandingV2></LandingV2>
+      <HeroVideo></HeroVideo>
       <BrideGroom></BrideGroom>
       <HowWorks></HowWorks>
       <PremiumPlan />

@@ -32,9 +32,7 @@ import EducationCareer from "../my-profile/EducationAndCareer";
 import LocationsModal from "../my-profile/Locations";
 import { loadUserData } from "@/redux/features/user/userSlice";
 import LoaderWithText from "../global/LoaderWithText";
-
-const imageUrl =
-  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80";
+import { imageUrl, imageUrlFemale } from "@/staticData/image";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -155,7 +153,7 @@ const MyProfile = () => {
         notifyError(err.response.data.message);
       });
   };
-
+  console.log(userInfo.gender);
   return (
     <div className="myProfile container">
       <div className="myProfile__top container-box-bg p-15">
@@ -171,7 +169,7 @@ const MyProfile = () => {
 
         <div className="myProfile__top--wrapper">
           <div className="profile-img">
-            <img src={url?.large || imageUrl} alt="Profile" />
+            <img src={url?.large || (userInfo?.gender === "Male" ? imageUrl : imageUrlFemale)} alt="Profile" />
           </div>
           <div>
             <div className="profile-info">
@@ -187,7 +185,7 @@ const MyProfile = () => {
                   <p className="right"> {maritalStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Posted by</p>
+                  <p className="left">Posted By</p>
                   <p className="right"> {postedBy || notSpecfied}</p>
                 </div>
               </div>

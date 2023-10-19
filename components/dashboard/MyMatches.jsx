@@ -297,7 +297,7 @@ const MyMatches = () => {
               <MultiSelect
                 variant="unstyled"
                 size="md"
-                placeholder="Select community"
+                placeholder="Select language"
                 label="Language"
                 data={communities}
                 value={filterData.motherTongue}
