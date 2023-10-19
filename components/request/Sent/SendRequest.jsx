@@ -28,7 +28,9 @@ const SendRequest = () => {
                       <img
                         src={
                           item?.recipient?.profilePicture?.url?.large ||
-                          (item?.gender === "male" ? imageUrl : imageUrlFemale)
+                          (item?.recipient?.gender === "Male"
+                            ? imageUrl
+                            : imageUrlFemale)
                         }
                         height={250}
                         alt="Profile"
@@ -42,21 +44,35 @@ const SendRequest = () => {
                     <Text weight={500}>
                       {item?.recipient?.firstName +
                         " " +
-                        item?.recipient?.lastName}
+                        item?.recipient?.lastName}{" "}
                     </Text>
                     {/* <Badge color="pink" variant="light" size="md">
                                             Online 2h ago
                                         </Badge> */}
                   </Group>
 
-                  <Text size="sm" color="dimmed">
-                    {calculateAge(item?.recipient?.dateOfBirth)} yrs,{" "}
-                    {heightCalculator(item?.recipient?.appearance?.height)},{" "}
-                    {item?.recipient?.religion},
-                    <br />
-                    {item?.recipient?.community},{" "}
-                    {item?.recipient?.doctrine?.caste}, Lives in{" "}
-                    {item?.recipient?.country}
+                  <Text size="sm">
+                    <div>
+                      <b> Age</b>: {calculateAge(item?.recipient?.dateOfBirth)}{" "}
+                      yrs{" "}
+                    </div>
+                    <div>
+                      <b> Height</b>:{" "}
+                      {heightCalculator(item?.recipient?.appearance?.height)}{" "}
+                    </div>
+                    <div>
+                      {" "}
+                      <b>Religion</b>: {item?.recipient?.religion}
+                    </div>
+                    <div>
+                      {" "}
+                      <b>Native Language</b>:{" "}
+                      {item?.recipient?.doctrine?.motherTongue}
+                    </div>
+                    <div>
+                      {" "}
+                      <b> Country</b>: {item?.recipient?.country}
+                    </div>
                   </Text>
 
                   {/* <h3 className="text-center pt-15">Connect with {item?.recipient?.gender === "Male" ? 'him' : 'her'}?</h3> */}
@@ -90,7 +106,7 @@ const SendRequest = () => {
       </div>
       {data?.data?.length === 0 && (
         <div className="text-center">
-          <h2 className="text-center">You didn't view any profile yet!</h2>
+          <h2 className="text-center">You didn't send any request yet.</h2>
         </div>
       )}
 

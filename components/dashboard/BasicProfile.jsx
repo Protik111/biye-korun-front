@@ -107,7 +107,7 @@ const BasicProfile = ({ profile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-            // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
             >
               Request Pending
             </Button>
@@ -115,12 +115,10 @@ const BasicProfile = ({ profile }) => {
         </div>
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
-            <IconMessages color="#E64980"></IconMessages>
-            <p>Online 2d ago</p>
+            {/* <IconMessages color="#E64980"></IconMessages>
+            <p>Online 2d ago</p> */}
           </div>
-          <div className="flex-item">
-            <p>You & her</p>
-          </div>
+          <div className="flex-item">{/* <p>You & her</p> */}</div>
         </div>
       </div>
       <Divider mt={10} size="sm" />
@@ -137,15 +135,15 @@ const BasicProfile = ({ profile }) => {
               </ThemeIcon>
             }
           >
-            {dateOfBirth && <List.Item>
-              {calculateAge(dateOfBirth)} yrs{" "}
-              {height ? `, ${heightCalculator(height)}` : ""}
-            </List.Item>}
+            {dateOfBirth && (
+              <List.Item>
+                {calculateAge(dateOfBirth)} yrs{" "}
+                {height ? `, ${heightCalculator(height)}` : ""}
+              </List.Item>
+            )}
 
             {community && <List.Item>{community}</List.Item>}
-            {religion && <List.Item>
-              {religion}
-            </List.Item>}
+            {religion && <List.Item>{religion}</List.Item>}
             {city && <List.Item>{city}</List.Item>}
           </List>
         </div>

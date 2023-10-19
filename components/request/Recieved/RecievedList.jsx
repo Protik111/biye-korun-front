@@ -7,7 +7,7 @@ import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
-import { notifyError } from "@/utils/showNotification";
+import { notifyError, notifySuccess } from "@/utils/showNotification";
 import axios from "axios";
 
 const RecievedList = () => {
@@ -45,7 +45,6 @@ const RecievedList = () => {
         }
       })
       .catch((err) => {
-        // console.log(err.response.data);
         notifyError(err.response.data.message);
       });
   };
@@ -79,21 +78,34 @@ const RecievedList = () => {
                         " " +
                         item?.requester?.lastName}
                     </Text>
-                    <Badge color="pink" variant="light" size="md">
+                    {/* <Badge color="pink" variant="light" size="md">
                       Online 2h ago
-                    </Badge>
+                    </Badge> */}
                   </Group>
 
-                  <Text size="sm" color="dimmed">
-                    {calculateAge(item?.requester?.dateOfBirth)} yrs,{" "}
-                    {heightCalculator(item?.requester?.appearance?.height)},{" "}
-                    {item?.requester?.religion},
-                    <br />
-                    {item?.requester?.community},{" "}
-                    {item?.requester?.doctrine?.caste}, Lives in{" "}
-                    {item?.requester?.country}
+                  <Text size="sm">
+                    <div>
+                      <b> Age </b> :{" "}
+                      {calculateAge(item?.requester?.dateOfBirth)} yrs
+                    </div>
+                    <div>
+                      <b>Height</b> :{" "}
+                      {heightCalculator(item?.requester?.appearance?.height)}
+                    </div>
+                    <div>
+                      <b>Religion</b>: {item?.requester?.religion}
+                    </div>
+                    {item?.requester?.doctrine?.motherTongue && (
+                      <div>
+                        <b>Native Language</b>:{" "}
+                        {item?.requester?.doctrine?.motherTongue}
+                      </div>
+                    )}
+                    <div>
+                      <b>Country</b>: {item?.requester?.country}
+                    </div>
                   </Text>
-
+                  {console.log("item", item)}
                   {/* <h3 className="text-center pt-15">Connect with {item?.requester?.gender === "Male" ? 'him' : 'her'}?</h3> */}
                   {/* <h3 className="text-center pt-15">Send Biye Korun Request?</h3> */}
 
@@ -134,7 +146,7 @@ const RecievedList = () => {
       </div>
       {data?.data?.length === 0 && (
         <div className="text-center">
-          <h2 className="text-center">There is no recieved request!</h2>
+          <h2 className="text-center">There is no recieved request! </h2>
         </div>
       )}
 

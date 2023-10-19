@@ -258,8 +258,9 @@ const Settings = () => {
                     </div>
                     {openHidden[item?.id] && (
                       <div
-                        className={`hidden-component ${openHidden[item.id] ? "open" : ""
-                          }`}
+                        className={`hidden-component ${
+                          openHidden[item.id] ? "open" : ""
+                        }`}
                       >
                         {item.hiddenComp}
                       </div>
@@ -286,7 +287,7 @@ const Settings = () => {
                 <HideDelete></HideDelete>
               </>
             ) : active === 5 ? (
-              <>Comming soon!</>
+              <>Coming Soon!</>
             ) : (
               <></>
             )}

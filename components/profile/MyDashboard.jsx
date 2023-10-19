@@ -134,13 +134,19 @@ const MyDashboard = () => {
             <Divider my={10}></Divider>
 
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5 w-100">
+              <label
+                className="label label-required"
+                style={{ fontSize: "20px" }}
+              >
+                Verification{" "}
+              </label>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
                 <Anchor
                   href="#"
                   className="small-text"
                   onClick={() => handleClick("3")}
                 >
-                  Email Verified
+                  Email
                 </Anchor>
                 <ThemeIconComp
                   size="sm"
@@ -156,7 +162,7 @@ const MyDashboard = () => {
               </div>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
                 <Anchor href="#" className="small-text">
-                  Mobile Number Verified
+                  Mobile Number
                 </Anchor>
                 <ThemeIconComp
                   color={isPhoneVerified?.status ? "green" : "red"}
@@ -181,7 +187,7 @@ const MyDashboard = () => {
                   Verify ID
                 </Anchor>
                 <ThemeIconComp
-                  color={isPhoneVerified?.status ? "green" : "red"}
+                  color={isIdVerify ? "green" : "red"}
                   size="sm"
                   iconComp={
                     isIdVerify ? (
@@ -229,7 +235,7 @@ const MyDashboard = () => {
                                     5 New
                                 </Badge> */}
               </div>
-              <p>Recent Visitors</p>
+              <p>Recent Visitors </p>
             </div>
           </div>
 
@@ -278,7 +284,7 @@ const MyDashboard = () => {
               </h3>
 
               <div className="flex flex-column align-center">
-                <p className="mb-5">Go ahead, check out your Matches</p>
+                {/* <p className="mb-5">Go ahead, check out your Matches</p> */}
                 <Button
                   size="md"
                   radius="xl"
