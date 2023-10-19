@@ -108,7 +108,7 @@ const BasicProfile = ({ profile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-            // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
             >
               Request Pending
             </Button>
@@ -119,9 +119,8 @@ const BasicProfile = ({ profile }) => {
             {/* <IconMessages color="#E64980"></IconMessages> */}
             {/* <p>Online 2d ago</p> */}
           </div>
-          <div className="flex-item">
-            {/* <p>You & her</p> */}
-          </div>
+          <div className="flex-item">{/* <p>You & her</p> */}</div>
+          <div className="flex-item">{/* <p>You & her</p> */}</div>
         </div>
       </div>
       <Divider mt={10} size="sm" />
@@ -149,7 +148,6 @@ const BasicProfile = ({ profile }) => {
             </List.Item>}
             {city && <List.Item>{city}</List.Item>} */}
 
-
             {dateOfBirth && (
               <List.Item>
                 <b>Age:</b> {calculateAge(dateOfBirth)}
@@ -170,7 +168,7 @@ const BasicProfile = ({ profile }) => {
                     {item} {community.length - 1 !== i ? "," : ""}{" "}
                   </>
                 ))} */}
-                <b>Native Language:</b>{" "} {motherTongue || ""}
+                <b>Native Language:</b> {motherTongue || ""}
               </List.Item>
             )}
 
@@ -227,7 +225,7 @@ const BasicProfile = ({ profile }) => {
           </List>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

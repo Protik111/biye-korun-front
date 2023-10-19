@@ -98,7 +98,10 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
           {photoVisible ? (
             <img
               onContextMenu={(e) => DisableRightClick(e)}
-              src={url?.medium || (profile?.gender === "male" ? imageUrl : imageUrlFemale)}
+              src={
+                url?.medium ||
+                (profile?.gender === "male" ? imageUrl : imageUrlFemale)
+              }
               alt="profile"
             />
           ) : (
@@ -154,7 +157,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 sx={{ backgroundColor: "#e64980", color: "white" }}
                 color="pink"
                 variant="white"
-              // onClick={handleSendRequest}
+                // onClick={handleSendRequest}
               >
                 Request Pending
               </Button>
@@ -165,9 +168,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
               {/* <IconMessages color="#E64980"></IconMessages>
               <p>Online 2d ago</p> */}
             </div>
-            <div className="flex-item">
-              {/* <p>You & her</p> */}
-            </div>
+            <div className="flex-item">{/* <p>You & her</p> */}</div>
           </div>
           <Divider mt={10} size="sm" />
         </div>
@@ -215,7 +216,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                     {item} {community.length - 1 !== i ? "," : ""}{" "}
                   </>
                 ))} */}
-                  <b>Native Language:</b>{" "} {motherTongue || ""}
+                  <b>Native Language:</b> {motherTongue || ""}
                 </List.Item>
               )}
 

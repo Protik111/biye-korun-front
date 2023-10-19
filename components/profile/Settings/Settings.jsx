@@ -32,9 +32,11 @@ const data = [
     icon: IconFingerprint,
     label: "Preferences",
     // tooltip: `Based on the settings other "\n" people can view my information.`
-    tooltip: "Based on the \n" + "settings other\n" +
+    tooltip:
+      "Based on the \n" +
+      "settings other\n" +
       "\n" +
-      "people can view my information."
+      "people can view my information.",
   },
   //   {
   //     icon: IconFingerprint,
@@ -195,7 +197,8 @@ const Settings = () => {
           w={220}
           withArrow
           transitionProps={{ duration: 200 }}
-          label={item.tooltip}>
+          label={item.tooltip}
+        >
           {generateNavLink(item, index)}
         </Tooltip>
       ) : (
@@ -203,7 +206,6 @@ const Settings = () => {
       )}
     </div>
   ));
-
 
   function generateNavLink(item, index) {
     return (
@@ -223,7 +225,6 @@ const Settings = () => {
       />
     );
   }
-
 
   const handleEdit = (id) => {
     setOpenHidden((prevItem) => ({
@@ -303,8 +304,9 @@ const Settings = () => {
                     </div>
                     {openHidden[item?.id] && (
                       <div
-                        className={`hidden-component ${openHidden[item.id] ? "open" : ""
-                          }`}
+                        className={`hidden-component ${
+                          openHidden[item.id] ? "open" : ""
+                        }`}
                       >
                         {item.hiddenComp}
                       </div>

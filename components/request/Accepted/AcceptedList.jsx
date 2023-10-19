@@ -7,13 +7,49 @@ import { imageUrl } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
+import { notifyError, notifySuccess } from "@/utils/showNotification";
+import axios from "axios";
 
 const AcceptedList = () => {
   const { data, error, loading, refetch } = useAxios(
     "user/friendship/accepted"
   );
-  console.log("data", data?.data);
+
   const skeletons = new Array(5).fill();
+
+  const handleDeclineAccept = (requisterId, status) => {
+    let statusGlobal = "";
+
+    if (status == "unfriend") {
+      statusGlobal = "unfriend";
+    }
+    if (status == "declined") {
+      statusGlobal = "declined";
+    }
+
+    const payload = {
+      status: statusGlobal,
+      friendshipId: requisterId,
+    };
+
+    // console.log('payload', payload);
+    axios
+      .patch(`user/updatefriends`, payload)
+      .then((res) => {
+        if (statusGlobal === "unfriend") {
+          notifySuccess("Unfriend successfully!");
+          refetch();
+        }
+
+        if (statusGlobal === "declined") {
+          notifySuccess("Request declined successfully!");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        notifyError(err.response.data.message);
+      });
+  };
 
   return (
     <>
@@ -49,14 +85,30 @@ const AcceptedList = () => {
                     </Badge> */}
                   </Group>
 
-                  <Text size="sm" color="dimmed">
-                    {calculateAge(item?.requester?.dateOfBirth)} yrs,{" "}
-                    {heightCalculator(item?.requester?.appearance?.height)},{" "}
-                    {item?.requester?.religion},
+                  <Text size="sm" className="flex flex-column">
+                    <div>
+                      <b> Age </b> :{" "}
+                      {calculateAge(item?.requester?.dateOfBirth)} yrs
+                    </div>
+                    <div>
+                      <b>Height</b> :{" "}
+                      {heightCalculator(item?.requester?.appearance?.height)}
+                    </div>
+                    <div>
+                      <b>Religion</b>: {item?.requester?.religion}
+                    </div>
+                    {item?.requester?.doctrine?.motherTongue && (
+                      <div>
+                        <b>Native Language</b>:{" "}
+                        {item?.requester?.doctrine?.motherTongue}
+                      </div>
+                    )}
+
+                    {/* <div>{item?.requester?.doctrine?.caste} </div> */}
+                    <div>
+                      <b>Country</b>: {item?.requester?.country}
+                    </div>
                     <br />
-                    {item?.requester?.community},{" "}
-                    {item?.requester?.doctrine?.caste}, Lives in{" "}
-                    {item?.requester?.country}
                   </Text>
 
                   {/* <h3 className="text-center pt-15">
@@ -71,6 +123,7 @@ const AcceptedList = () => {
                       fullWidth
                       mt="md"
                       radius="md"
+                      onClick={() => handleDeclineAccept(item?._id, "unfriend")}
                     >
                       Unfriend
                     </Button>
@@ -81,6 +134,7 @@ const AcceptedList = () => {
                         fullWidth
                         mt="md"
                         radius="md"
+                        onClick={() => handleDeclineAccept(item?._id, "")}
                       >
                         Message
                       </Button>
