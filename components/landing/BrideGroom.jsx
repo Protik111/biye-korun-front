@@ -69,7 +69,6 @@ const BrideGroom = () => {
       router.push("/my-matches");
     }
   };
-
   return (
     <>
       {data?.data?.length > 0 ? (
@@ -92,7 +91,7 @@ const BrideGroom = () => {
                     }}
                     mx="auto"
                     size="xl"
-                    src={item?.profilePicture[0]?.url?.medium || (item?.gender === "male" ? imageUrl : imageUrlFemale)}
+                    src={item?.profilePicture[0]?.url?.medium || imageUrl}
                     alt={item?.name}
                   />
                   <h3 className="mt-5">
