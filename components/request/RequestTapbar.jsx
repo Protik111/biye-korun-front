@@ -33,7 +33,7 @@ const RequestTapbar = () => {
               value="accepted"
               onClick={() => handleChangeTab("accepted")}
             >
-              My Connection
+              My Connections
             </Tabs.Tab>
             <Tabs.Tab
               sx={fontSizeMnd}
