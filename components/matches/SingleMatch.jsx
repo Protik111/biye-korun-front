@@ -1,4 +1,4 @@
-import { imageUrl } from '@/staticData/image';
+import { imageUrl, imageUrlFemale } from '@/staticData/image';
 import { calculateAge } from '@/utils/calculateAge';
 import { heightCalculator } from '@/utils/heightCalculator';
 import { Checkbox } from '@mantine/core'
@@ -19,7 +19,7 @@ const SingleMatch = ({ item, handleUserIds }) => {
     return (
         <div className="matchesContainer__profile border-1 rounded-10">
             <div className="matchesContainer__profile--image">
-                <img src={url?.medium || imageUrl}></img>
+                <img src={url?.medium || (item?.gender === 'male' ? imageUrl : imageUrlFemale)}></img>
             </div>
             <div className="matchesContainer__profile--info">
                 <h3>{firstName + " " + lastName}</h3>
