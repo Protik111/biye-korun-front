@@ -42,7 +42,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
 
   const {
     location: { city, residencyStatus } = {},
-    doctrine: { caste } = {},
+    doctrine: { caste, motherTongue } = {},
     appearance: { height } = {},
     education: { college, education } = {},
     family: { children, livingWith } = {},
@@ -69,9 +69,6 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
   } = profile || {};
 
   const { isPremium = {} } = userInfo || {};
-
-  // console.log('profile', profile);
-  // console.log('userInfo', userInfo);
 
   const photoVisible = isPremium || (!isPremium && isVisible);
   const photoVisibleWithBlur = isPremium || (!isPremium && isBlur);
@@ -125,7 +122,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
               <Link style={{ color: "black" }} href={`/view-profile/${_id}`}>
                 <h3>{firstName + " " + lastName}</h3>
               </Link>
-              <IconLock color="#E64980"></IconLock>
+              {/* <IconLock color="#E64980"></IconLock> */}
               {/* <Badge variant="outline" color="pink">
                 2-Way
               </Badge> */}
@@ -169,7 +166,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
               <p>Online 2d ago</p> */}
             </div>
             <div className="flex-item">
-              <p>You & her</p>
+              {/* <p>You & her</p> */}
             </div>
           </div>
           <Divider mt={10} size="sm" />
@@ -199,7 +196,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 </List.Item>
               )}
 
-              {community?.length > 0 && (
+              {/* {community?.length > 0 && (
                 <List.Item>
                   <b>Native Language:</b>{" "}
                   {community?.map((item, i) => (
@@ -207,6 +204,18 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                       {item} {community.length - 1 !== i ? "," : ""}{" "}
                     </>
                   ))}
+                </List.Item>
+              )} */}
+
+              {motherTongue && (
+                <List.Item>
+                  {/* <b>Native Language:</b>{" "}
+                {community?.map((item, i) => (
+                  <>
+                    {item} {community.length - 1 !== i ? "," : ""}{" "}
+                  </>
+                ))} */}
+                  <b>Native Language:</b>{" "} {motherTongue || ""}
                 </List.Item>
               )}
 

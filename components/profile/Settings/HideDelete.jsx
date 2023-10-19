@@ -88,10 +88,10 @@ const HideDelete = () => {
         axios.patch(`user/hide-unhide`, payload)
             .then(res => {
                 if (isHide) {
-                    notifySuccess('Your profile is visible on Biyekorun.us!')
+                    notifySuccess('Your profile is visible to everyone!')
                     setShowModal(false)
                 } else {
-                    notifySuccess('Your profile is hidden on Biyekorun.us!')
+                    notifySuccess('Your profile is hidden to everyone!')
                     setShowModal(false)
                 }
                 dispatch(loadUserData());
@@ -128,14 +128,14 @@ const HideDelete = () => {
                 {isHide ? <>
                     <div className='w-75'>
                         <h3>Unhide Profile</h3>
-                        <p className='mt-5'>When you unhide your Profile, you will be visible on Biyekorun.us.</p>
+                        <p className='mt-5'>When you unhide your Profile, you will be visible to everyone.</p>
                     </div>
                     <Button onClick={() => setShowModal(true)} variant="light" color="pink" size="xs" radius="xl">Unhide</Button>
                 </> :
                     <>
                         <div className='w-75'>
                             <h3>Hide Profile</h3>
-                            <p className='mt-5'>When you hide your Profile, you will not be visible on Biyekorun.us.</p>
+                            <p className='mt-5'>When you hide your Profile, you will not be visible to everyone.</p>
                         </div>
                         <Button onClick={() => setShowModal(true)} variant="light" color="pink" size="xs" radius="xl">Hide</Button>
                     </>}

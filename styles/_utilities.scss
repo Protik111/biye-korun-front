@@ -481,10 +481,11 @@
   border-radius: 15px;
 }
 
-.rounded-15-responsive{
+.rounded-15-responsive {
   @extend .rounded-15;
+
   @include smMaxBreakPoint {
-    img{
+    img {
       width: 20px;
       height: 20px;
     }
@@ -507,8 +508,9 @@
   width: 50%;
 }
 
-.w-50-responsive{
+.w-50-responsive {
   @extend .w-50;
+
   @include mdMaxBreakPoint {
     width: 100% !important;
   }
@@ -619,4 +621,8 @@
     text-decoration: underline;
     margin-top: 5px;
   }
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

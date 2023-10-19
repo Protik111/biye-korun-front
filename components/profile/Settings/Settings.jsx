@@ -1,4 +1,4 @@
-import { Button, Divider, NavLink } from "@mantine/core";
+import { Button, Divider, NavLink, Tooltip } from "@mantine/core";
 import { IconHome2 } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
@@ -30,7 +30,11 @@ const data = [
   },
   {
     icon: IconFingerprint,
-    label: "Contact Filters",
+    label: "Preferences",
+    // tooltip: `Based on the settings other "\n" people can view my information.`
+    tooltip: "Based on the \n" + "settings other\n" +
+      "\n" +
+      "people can view my information."
   },
   //   {
   //     icon: IconFingerprint,
@@ -141,44 +145,85 @@ const Settings = () => {
       id: 7,
       label: "Visitors Setting",
       value: "Let other Members know that I have visited their Profile",
-      hiddenComp: "Comming soon",
+      hiddenComp: "Coming soon",
     },
     {
       id: 8,
       label: "Do not disturb",
       value: "Can call me for Premium Membership related offers.",
-      hiddenComp: "Comming soon",
+      hiddenComp: "Coming soon",
     },
     {
       id: 9,
       label: "Profile Privacy",
       value: "Visible to all, including unregistered visitors",
-      hiddenComp: "Comming soon",
+      hiddenComp: "Coming soon",
     },
     {
       id: 10,
       label: "Web Notifications",
       value: "Unsubscribed",
-      hiddenComp: "Comming soon",
+      hiddenComp: "Coming soon",
     },
   ];
 
+  // const items = data.map((item, index) => (
+  //   <Tooltip label="Test">
+
+  //     <NavLink
+  //       key={item.label}
+  //       active={index === active}
+  //       label={item.label}
+  //       description={item.description}
+  //       rightSection={item.rightSection}
+  //       icon={<item.icon size="1rem" stroke={1.5} />}
+  //       onClick={() => {
+  //         setActive(index);
+  //       }}
+  //       color="pink"
+  //       variant="filled"
+  //       className="rounded-10"
+  //     />
+  //   </Tooltip>
+  // ));
+
   const items = data.map((item, index) => (
-    <NavLink
-      key={item.label}
-      active={index === active}
-      label={item.label}
-      description={item.description}
-      rightSection={item.rightSection}
-      icon={<item.icon size="1rem" stroke={1.5} />}
-      onClick={() => {
-        setActive(index);
-      }}
-      color="pink"
-      variant="filled"
-      className="rounded-10"
-    />
+    <div key={item.label}>
+      {item.tooltip ? (
+        <Tooltip
+          multiline
+          w={220}
+          withArrow
+          transitionProps={{ duration: 200 }}
+          label={item.tooltip}>
+          {generateNavLink(item, index)}
+        </Tooltip>
+      ) : (
+        generateNavLink(item, index)
+      )}
+    </div>
   ));
+
+
+  function generateNavLink(item, index) {
+    return (
+      <NavLink
+        key={item.label}
+        active={index === active}
+        label={item.label}
+        description={item.description}
+        rightSection={item.rightSection}
+        icon={<item.icon size="1rem" stroke={1.5} />}
+        onClick={() => {
+          setActive(index);
+        }}
+        color="pink"
+        variant="filled"
+        className="rounded-10"
+      />
+    );
+  }
+
 
   const handleEdit = (id) => {
     setOpenHidden((prevItem) => ({
@@ -275,7 +320,10 @@ const Settings = () => {
               ></AccountSettings>
             ) : active === 1 ? (
               <>
-                <PartnerPreference header=""></PartnerPreference>
+                <div>
+                  <h2 className="text-center">Update Preferences</h2>
+                  <PartnerPreference header=""></PartnerPreference>
+                </div>
               </>
             ) : active === 3 ? (
               <>
@@ -286,7 +334,7 @@ const Settings = () => {
                 <HideDelete></HideDelete>
               </>
             ) : active === 5 ? (
-              <>Comming soon!</>
+              <>Coming soon!</>
             ) : (
               <></>
             )}

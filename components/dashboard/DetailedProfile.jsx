@@ -11,7 +11,7 @@ const DetailedProfile = ({ profile }) => {
             <Tabs defaultValue="detailed-profile" color='pink'>
                 <Tabs.List grow position="apart">
                     <Tabs.Tab sx={fontSizeMnd} value="detailed-profile">Detailed Profile</Tabs.Tab>
-                    <Tabs.Tab sx={fontSizeMnd} value="partner-preferences">Partner Preferenecs</Tabs.Tab>
+                    <Tabs.Tab sx={fontSizeMnd} value="partner-preferences">Partner Preferences</Tabs.Tab>
                 </Tabs.List>
 
                 <Tabs.Panel value="detailed-profile" pt="xs">
@@ -19,7 +19,7 @@ const DetailedProfile = ({ profile }) => {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="partner-preferences" pt="xs">
-                    <h2 className='text-center'>Comming soon!</h2>
+                    <h2 className='text-center'>Coming soon!</h2>
                 </Tabs.Panel>
             </Tabs>
         </div>

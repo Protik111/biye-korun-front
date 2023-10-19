@@ -14,7 +14,7 @@ const ProfileDetails = ({ profile }) => {
 
     const { expire } = userInfo?.validPackage;
 
-    console.log('userInfo', userInfo);
+    // console.log('userInfo', userInfo);
 
     const handleContactView = (id) => {
         axios.get(`user/get-contact/${id}`)
@@ -41,8 +41,8 @@ const ProfileDetails = ({ profile }) => {
             <Timeline color='pink' active={4} bulletSize={40} lineWidth={3}>
                 <Timeline.Item bullet={<IconUserCircle size={24} />} title={`About ${profile?.firstName + " " + profile?.lastName}`}>
                     <div className='flex align-center flex-gap-15 mt-5'>
-                        <Badge color="pink">ID: {profile?.userId}</Badge>
-                        <Badge color="pink">Profile created by {profile?.postedBy}</Badge>
+                        <Badge size='lg' color="pink">ID: {profile?.userId}</Badge>
+                        {/* <Badge size='lg' color="pink" className='capitalize'>Profile created by {profile?.postedBy}</Badge> */}
                     </div>
 
                     <Text size="md" mt={4}>{profile?.trait?.aboutMe}</Text>
@@ -123,23 +123,23 @@ const ProfileDetails = ({ profile }) => {
                     //     <IconCircleCheck size="12" />
                     // }
                     >
-                        {profile?.education?.education && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>{profile?.education?.education}</List.Item>}
+                        {profile?.education?.education && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>Education: {" "}</b>{profile?.education?.education}</List.Item>}
 
-                        {profile?.education?.college && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}>{profile?.education?.college}</List.Item>}
+                        {profile?.education?.college && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>College: {" "}</b>{profile?.education?.college}</List.Item>}
 
-                        {profile?.profession?.employer && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}>Company, {profile?.profession?.employer}</List.Item>}
+                        {profile?.profession?.employer && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}><b>Company: {" "}</b> {profile?.profession?.employer}</List.Item>}
 
                         {/* <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item> */}
-                        {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.max}K monthly</List.Item>
+                        {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income: </b>{" "} ${profile?.profession?.income?.max}</List.Item>
                             :
-                            profile?.profession?.income?.min ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT {profile?.profession?.income?.min}K - {profile?.profession?.income?.max}K monthly</List.Item>
+                            profile?.profession?.income?.min ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income:</b>{" "}${profile?.profession?.income?.min} - ${profile?.profession?.income?.max}</List.Item>
                                 :
                                 <>No Data Available</>}
                     </List>
                 </Timeline.Item>
 
                 <Timeline.Item title="What she is looking for" bullet={<IconDeviceIpadSearch size={24} />}>
-                    <div className='flex justify-between mt-10 align-center'>
+                    <div className='flex justify-between mt-10 align-center flex-wrap flex-gap-15'>
                         <div className='flex flex-column align-center'>
                             <Avatar
                                 size="xl"
@@ -152,7 +152,7 @@ const ProfileDetails = ({ profile }) => {
 
                         <div className="responsive-badge">
                             {/* <Badge size='sm' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge> */}
-                            <Badge size='sm' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>
+                            <Badge className='capitalize' size='lg' color="pink">You match {totalMatchesCount || 0}/{data?.data?.length || 7} of her preferences</Badge>
 
                         </div>
 

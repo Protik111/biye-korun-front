@@ -74,7 +74,7 @@ const AcceptedList = () => {
                     >
                       Unfriend
                     </Button>
-                    <Tooltip label="Comming Soon..." color="pink">
+                    <Tooltip label="Coming Soon..." color="pink">
                       <Button
                         variant="filled"
                         color="gray"
