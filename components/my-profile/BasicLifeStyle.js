@@ -196,7 +196,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
           searchable
           size="md"
           placeholder="Select country"
-          label="Born And Raised"
+          label="Born and Raised"
           data={contries}
           onChange={handleCountryChange}
           value={selectedCountry}

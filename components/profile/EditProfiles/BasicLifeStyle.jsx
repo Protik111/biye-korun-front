@@ -33,7 +33,7 @@ const BasicLifeStyle = ({ profileDatas, setProfileDatas }) => {
                 clearable
                 // defaultValue={today}
                 // description="Years must be at least 18"
-                label="Your date of birth"
+                label="Date of Birth"
                 placeholder="Pick date"
                 size="md"
                 // maw={400}
