@@ -14,7 +14,7 @@ const HowWorks = () => {
           <Avatar size="lg" color="#713ABE" radius="xl">
             01
           </Avatar>
-          <h3>Create Account</h3>
+          <h3>Create an Account</h3>
           <p className="mt-5">
             Create a detailed profile, upload images, and specify your perfect
             partner
@@ -27,8 +27,7 @@ const HowWorks = () => {
           </Avatar>
           <h3>Find Partner</h3>
           <p className="mt-5">
-            Search find out perfect match for you. Select and connect with
-            matches you like
+            Search, find and connect with your perfect matches
           </p>
         </div>
 
@@ -38,7 +37,7 @@ const HowWorks = () => {
           </Avatar>
           <h3>Start Communication</h3>
           <p className="mt-5">
-            Become a premium member & Start communicating with potential partner
+            Become a premium member & start communicating with potential partners
           </p>
         </div>
       </div>

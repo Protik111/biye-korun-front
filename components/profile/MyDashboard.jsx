@@ -99,7 +99,7 @@ const MyDashboard = () => {
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
               <div>
                 <h3>{firstName + " " + lastName}</h3>
-                <p className="small-text">User ID : {userId}</p>
+                <p className="small-text">User ID: {userId}</p>
               </div>
               {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
@@ -294,7 +294,7 @@ const MyDashboard = () => {
                   className={`button`}
                   onClick={() => router.push("/todays-matches")}
                 >
-                  View Today's Match
+                  View Today's Matches
                 </Button>
               </div>
             </div>

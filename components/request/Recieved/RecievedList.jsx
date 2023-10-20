@@ -146,7 +146,7 @@ const RecievedList = () => {
       </div>
       {data?.data?.length === 0 && (
         <div className="text-center">
-          <h2 className="text-center">There is no recieved request! </h2>
+          <h2 className="text-center">There are no recieved requests! </h2>
         </div>
       )}
 

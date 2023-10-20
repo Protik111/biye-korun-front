@@ -16,7 +16,7 @@ const Faqs = () => {
             <div className='faqs__container container'>
                 <Accordion defaultValue="customization" variant='contained'>
                     <Accordion.Item value="customization" className='mantive-custom_accordion'>
-                        <Accordion.Control className='mantive-custom_control'>What makes Biye Korun the gem in the matrimony crown?</Accordion.Control>
+                        <Accordion.Control className='mantive-custom_control'>What makes Biye Korun the Gem in the matrimony crown?</Accordion.Control>
                         <Accordion.Panel>Our essence lies in trust, innovation, and dedication. We're not just another platform; we're your ally, ensuring you find the one amidst verified profiles and with optimal privacy.</Accordion.Panel>
                     </Accordion.Item>
 

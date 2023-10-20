@@ -53,13 +53,13 @@ const WhyChoose = () => {
               Most trusted matrimonial site service based on Bangladesh & USA
             </p>
             <p>
-              Your privacy is one of our major concern. Your photo, location, contact can remain private
+              Your privacy is one of our major concerns. Your photo, location, and contact information can remain private.
             </p>
             <p>
-              All the profiles go thru our phone verification process
+              All profiles go through our phone verification process
             </p>
             <p>
-              We have a large database of potential groom and bride all over the world
+              We have a vast database of potential grooms and brides from around the world
             </p>
           </div>
           <div className="circle_main2">

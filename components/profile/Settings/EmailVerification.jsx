@@ -96,7 +96,7 @@ const EmailVerification = ({ profileData, setProfileData }) => {
         <div>
             <div className='mb-15'>
                 {!userInfo?.isEmailVerified?.status ? <Alert variant="light" color="red" title={<h4>Your email is not verified!</h4>}>
-                    Your Email is not Verified yet! You can Verify your Email by sending OTP to your email.
+                    Your email is not verified yet! You can verify your email by sending OTP to your email.
                 </Alert> :
                     <Alert variant="light" color="red" title={<h4>Your Email is Verified!</h4>}>
                         You've successfully verified your email.
