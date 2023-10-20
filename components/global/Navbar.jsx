@@ -49,7 +49,7 @@ function Navbar() {
     dispatch(logout())
       .unwrap()
       .then(() => {
-        notifySuccess("Logout successfully!");
+        notifySuccess("Logged Out Successfully!");
         router.push("/");
         // setTimeout(() => {
         // }, 500)
