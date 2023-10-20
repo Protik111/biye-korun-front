@@ -565,7 +565,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="single-item">
-                  <p className="left">State Of Residence</p>
+                  <p className="left">State of Residence</p>
                   <p className="right"> {city}</p>
                 </div>
                 <div className="single-item">

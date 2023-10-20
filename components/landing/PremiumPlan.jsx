@@ -12,12 +12,12 @@ let _mocDataFree_card = [
   },
   {
     id: 2,
-    title: "Shortlist & Send Interest",
+    title: "Shortlist & Send Request",
     status: true,
   },
   {
     id: 3,
-    title: "Photo Album",
+    title: "View Photo Album",
     status: true,
   },
   {
@@ -27,7 +27,7 @@ let _mocDataFree_card = [
   },
   {
     id: 5,
-    title: "View Contact",
+    title: "View Contact Information",
     status: false,
   },
   {
