@@ -37,7 +37,7 @@ export default function Home() {
     <>
       {/* <Landing></Landing> */}
       <LandingV2></LandingV2>
-      <HeroVideo></HeroVideo>
+      <HeroVideo videoLink='https://player.vimeo.com/video/875673562?h=434dff2df9'></HeroVideo>
       <BrideGroom></BrideGroom>
       <HowWorks></HowWorks>
       <PremiumPlan />

@@ -641,7 +641,7 @@ export const creativeHobbies = [
   "Acting",
   "Poetry",
   "Gardening",
-  "Bloging",
+  "Blogging",
   "Content creation",
   "Designing",
   "Doodling",
@@ -679,7 +679,7 @@ export const otherInterests = [
   "Vegan",
   "News & Politics",
   "Social service",
-  "Enterpreneurship",
+  "Entrepreneurship",
   "Home decor",
   "Investments",
 ];
