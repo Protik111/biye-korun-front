@@ -117,7 +117,7 @@ const PartnerPreference = ({
     axios
       .patch("user/partner-preferences", data)
       .then((res) => {
-        notifySuccess("Preferences are added successfully!");
+        notifySuccess("Preferences Updated Successfully!");
         setLoading(false);
         router.push("/matches");
 
@@ -168,7 +168,7 @@ const PartnerPreference = ({
     axios
       .patch("user/partner-preferences", data)
       .then((res) => {
-        notifySuccess("Preferences are added successfully!");
+        notifySuccess("Preferences Updated Successfully!");
         dispatch(loadUserData())
         setLoading(false);
         router.push("/my-profile");

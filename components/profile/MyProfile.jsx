@@ -164,7 +164,7 @@ const MyProfile = () => {
           title={
             <h2>
               {firstName + " " + lastName}
-              <p>User ID : {userId}</p>
+              <p>User ID: {userId}</p>
             </h2>
           }
           color="red"
@@ -323,8 +323,9 @@ const MyProfile = () => {
 
           <div className="personality mt-20" id="myself">
             <div className="flex justify-between align-center">
+            <Tooltip label="About" color="red">
               <h3 className="secondary-text">About</h3>
-
+            </Tooltip>
               <Button
                 variant="light"
                 size="xs"
@@ -389,7 +390,7 @@ const MyProfile = () => {
                   <p className="right"> {heightCalculator(height)}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Born And Raised</p>
+                  <p className="left">Born and Raised</p>
                   <p className="right"> {country}</p>
                 </div>
                 <div className="single-item">
@@ -397,7 +398,7 @@ const MyProfile = () => {
                   <p className="right"> {diet || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Blood Groop</p>
+                  <p className="left">Blood Group</p>
                   <p className="right"> {bloodGroup || notSpecfied}</p>
                 </div>
               </div>
@@ -570,7 +571,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="single-item">
-                  <p className="left">State Of Residence</p>
+                  <p className="left">State of Residence</p>
                   <p className="right"> {city}</p>
                 </div>
                 <div className="single-item">
@@ -578,7 +579,7 @@ const MyProfile = () => {
                   <p className="right"> {residencyStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Zip Code</p>
+                  <p className="left">ZIP Code</p>
                   <p className="right"> {zipCode || notSpecfied}</p>
                 </div>
               </div>

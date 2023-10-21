@@ -60,7 +60,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
             profilePicture: id
         })
             .then(res => {
-                notifySuccess('Profile picture successfully!')
+                notifySuccess('Picture saved successfully!')
                 refetch()
                 dispatch(loadUserData())
                 setProfilePictureBlank()
@@ -74,7 +74,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
     return (
         <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-20">
             <div>
-                <h3>Photo settings</h3>
+                <h3>Profile Picture Settings</h3>
                 <Divider my={5}></Divider>
                 {/* <Radio.Group name="photoSettings" label="1) Visible to all">
                     <Group mt="xs" className="flex-column align-start">
@@ -107,7 +107,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
                 </Radio.Group> */}
 
                 <Radio.Group
-                    label="Make photo blur"
+                    label="Blur Photo"
                     name="isBlur"
                     onChange={(event) => handleRadioChange('isBlur', event)}
                     value={fieldData.isBlur}
@@ -121,7 +121,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
 
 
                 <Radio.Group
-                    label="Hide your photo"
+                    label="Hide Photo"
                     name="isVisible"
                     onChange={(event) => handleRadioChange('isVisible', event)}
                     value={fieldData.isVisible}
@@ -134,13 +134,13 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
                 </Radio.Group>
 
                 <div className="flex flex-gap-10">
-                    <Button onClick={() => handleUpdateImage(profilePicture?._id)} className="mt-5" size="xs" variant="filled" radius="xl">Update settings</Button>
+                    <Button onClick={() => handleUpdateImage(profilePicture?._id)} className="mt-5" size="xs" variant="filled" radius="xl">Update Settings</Button>
                 </div>
 
                 <Divider my={10}></Divider>
 
                 <div className="flex flex-gap-10">
-                    <Button onClick={() => handleMakeProfile(profilePicture?._id)} className="mt-5" size="xs" variant="outline" radius="xl">Make profile photo</Button>
+                    <Button onClick={() => handleMakeProfile(profilePicture?._id)} className="mt-5" size="xs" variant="outline" radius="xl">Save Photo</Button>
 
                     <Button onClick={() => deletePhoto(profilePicture?._id)} className="mt-5" size="xs" color="red" variant="outline" radius="xl">
                         {loading2 ? (
@@ -149,7 +149,7 @@ const ProfileSettings = ({ profilePicture, setProfilePictureBlank, refetch }) =>
                             </>
                         ) : (
                             <>
-                                Delete photo
+                                Delete Photo
                             </>
                         )}
                     </Button>

@@ -9,7 +9,7 @@ const WhyChoose = () => {
         <h2 className="text-center">Why Choose Us</h2>
         <h3 className="text-center">
           There is lot of matrimony website worldwide and also lot of services
-          in Bangladesh or USA. Now the topic of discussion is why you should
+          in Bangladesh & USA. Now the topic of discussion is why you should
           take our service in the crowd of so many services.
         </h3>
 
@@ -18,22 +18,22 @@ const WhyChoose = () => {
             <p>
               We provide you the choice of making the image private. If you set
               it to private, only those with your permission will be able to
-              view that picture.
+              view that picture
             </p>
             <p>
               We have the option to make your profile private. If you are
-              looking for more secure profile you can make it private.
+              looking for more secure profile you can make it private
             </p>
             <p>
-              Any candidate's Private and Public Profiles are accessible by a
-              matchmaker, who is free to share them with anybody for matchmaking
-              reasons.
+              Any candidate's Private and Public Profiles are accessible by
+              matchmakers, who are free to share them with anybody for matchmaking
+              purposes
             </p>
             <p>
               Both parties can view each other's private profiles after
               receiving permission to do so. The ability to send emails to one
-              another via MailBox is currently available to both sides. The
-              system never distributes contact details.
+              another via MailBox is available to both sides. The
+              system never discloses contact details
             </p>
           </div>
           <div className="circle_main">
@@ -50,16 +50,16 @@ const WhyChoose = () => {
         <div className="choose_content2">
           <div className="choose_list_item">
             <p>
-              Most trusted matrimonial site service based on Bangladesh & USA
+              Most trusted matrimonial site service based in Bangladesh & USA
             </p>
             <p>
-              Your privacy is one of our major concern. Your photo, location, contact can remain private
+              Your privacy is one of our major concerns. Your photos, location, and contact information can remain private
             </p>
             <p>
-              All the profiles go thru our phone verification process
+              All profiles go through our phone & email verification process
             </p>
             <p>
-              We have a large database of potential groom and bride all over the world
+              We have a vast database of potential grooms and brides from all over the world
             </p>
           </div>
           <div className="circle_main2">

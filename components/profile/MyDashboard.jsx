@@ -51,6 +51,7 @@ const MyDashboard = () => {
   });
 
   // console.log(userInfo);
+  const url = userInfo?.profilePicture?.url ?? "default-url";
 
   const {
     location: { city, residencyStatus } = {},
@@ -67,7 +68,7 @@ const MyDashboard = () => {
     } = {},
     trait: { aboutMe } = {},
     phone,
-    profilePicture: { url } = {},
+    // profilePicture: { url } = {},
     fullName,
     firstName,
     lastName,
@@ -81,7 +82,7 @@ const MyDashboard = () => {
     isIdVerify,
     isPhoneVerified,
     isEmailVerified,
-  } = userInfo || {};
+  } = userInfo ?? {};
 
   const handleClick = (num) => {
     router.push(`/settings/?state=${num}`);
@@ -101,6 +102,8 @@ const MyDashboard = () => {
               <div>
                 <h3>{abbreviateName(firstName + " " + lastName)}</h3>
                 <p className="small-text">User ID : {userId}</p>
+                {/* <h3>{firstName + " " + lastName}</h3>
+                <p className="small-text">User ID: {userId}</p> */}
               </div>
               {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
@@ -296,7 +299,7 @@ const MyDashboard = () => {
                   className={`button`}
                   onClick={() => router.push("/todays-matches")}
                 >
-                  View Today's Match
+                  View Today's Matches
                 </Button>
               </div>
             </div>

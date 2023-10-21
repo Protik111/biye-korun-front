@@ -118,7 +118,7 @@ const Basic1 = () => {
 
       <MultiSelect
         size="md"
-        placeholder="Select community "
+        placeholder="Select language"
         label="Language"
         data={communities}
         value={data.basic1community}
