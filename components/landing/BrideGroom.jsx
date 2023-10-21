@@ -69,6 +69,11 @@ const BrideGroom = () => {
       router.push("/my-matches");
     }
   };
+
+  const handleRedirect = () => {
+    router.push("/login");
+  };
+
   return (
     <>
       {data?.data?.length > 0 ? (
@@ -113,19 +118,19 @@ const BrideGroom = () => {
                     withArrow
                     position="top"
                   >
-                    <Link href="/login">
-                      <Button
-                        sx={{ backgroundColor: "#770DD5", color: "white" }}
-                        color="pink"
-                        variant="white"
-                        className="mt-10 view-btn"
-                        radius="lg"
-                      >
-                        View Profile
-                      </Button>
-                    </Link>
+                    {/* <Link href="/login"> */}
+                    <Button
+                      sx={{ backgroundColor: "#770DD5", color: "white" }}
+                      color="pink"
+                      variant="white"
+                      className="mt-10 view-btn"
+                      radius="lg"
+                      onClick={handleRedirect}
+                    >
+                      View Profile
+                    </Button>
+                    {/* </Link> */}
                   </Tooltip>
-
                 </div>
               </div>
             ))}

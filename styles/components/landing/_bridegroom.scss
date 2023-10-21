@@ -1,45 +1,46 @@
 .bridegroom {
-    background-image: url("/landing/faq-bg2.svg");
-    background-repeat: no-repeat;
-    background-position: left top;
+  background-image: url("/landing/faq-bg2.svg");
+  background-repeat: no-repeat;
+  background-position: left top;
 
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 15px;
+    justify-content: center;
+    align-content: center;
 
-    &__wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 250px);
-        gap: 15px;
-        justify-content: center;
-        align-content: center;
+    &--container {
+      transition: all 0.3s ease;
+      height: 100%;
 
-        &--container {
-            transition: all 0.3s ease;
+      &:hover {
+        background-color: $secondaryColor;
+        cursor: pointer;
 
-            &:hover {
-                background-color: $secondaryColor;
-                cursor: pointer;
-
-                .view-btn {
-                    background-color: white !important;
-                    color: black;
-                }
-
-                h3,
-                p {
-                    color: white !important;
-                }
-            }
-
+        .view-btn {
+          background-color: white !important;
+          color: black;
         }
 
-        .info {
-            display: flex;
-            flex-direction: column;
-            flex-basis: 1;
-            justify-content: flex-start;
+        h3,
+        p {
+          color: white !important;
         }
-
-        @include smMaxBreakPoint {
-            grid-template-columns: repeat(auto-fill, 250px);
-        }
+      }
     }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: flex-start;
+      height: 85%;
+    }
+
+    @include smMaxBreakPoint {
+      gap: 10px;
+      grid-template-columns: repeat(2, 170px);
+    }
+  }
 }

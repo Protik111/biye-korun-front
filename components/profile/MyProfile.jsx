@@ -8,7 +8,8 @@ import {
   Tooltip,
   Textarea,
 } from "@mantine/core";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { IconPlayerRecordFilled } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import ThemeIconComp from "../global/ThemeIconComp";
@@ -33,6 +34,7 @@ import LocationsModal from "../my-profile/Locations";
 import { loadUserData } from "@/redux/features/user/userSlice";
 import LoaderWithText from "../global/LoaderWithText";
 import { imageUrl, imageUrlFemale } from "@/staticData/image";
+import DisplayFormattedContent from "../global/DisplayFormatedContent";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -75,7 +77,7 @@ const MyProfile = () => {
     country,
     bloodGroup,
   } = userInfo || {};
-  console.log("Weight", userInfo);
+  // console.log("Weight", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
@@ -96,6 +98,7 @@ const MyProfile = () => {
   const openModal6 = () => setIsModal6Open(true);
   const closeModal6 = () => setIsModal6Open(false);
 
+  const [value, setValue] = useState("");
   const {
     basicDetails,
     educationCareer,
@@ -335,7 +338,10 @@ const MyProfile = () => {
               </Button>
             </div>
             <Divider mt={5}></Divider>
-            <p className="mt-5">{aboutMe}</p>
+            <p className="mt-5"></p>
+            <div className="p-10">
+              <DisplayFormattedContent formattedContent={aboutMe} />
+            </div>
           </div>
 
           {/* Basic lifestyle */}
@@ -831,7 +837,7 @@ const MyProfile = () => {
       >
         {" "}
         <br />
-        <Textarea
+        {/* <Textarea
           autosize
           minRows={5}
           maxRows={10}
@@ -840,6 +846,19 @@ const MyProfile = () => {
           onChange={(event) =>
             handleFormChange("aboutContent", event.currentTarget.value)
           }
+        /> */}
+        {/* <RichTextEditor
+          value={value}
+          onChange={onChange}
+          placeholder="Start typing here..."
+          className="p-30"
+        /> */}
+        <ReactQuill
+          theme="snow"
+          value={formValues.aboutContent}
+          name="aboutContent"
+          onChange={(event) => handleFormChange("aboutContent", event)}
+          placeholder="Tell your story..."
         />
         <div className="flex justify-end mt-10">
           <Button
