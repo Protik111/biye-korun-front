@@ -50,6 +50,7 @@ const MyDashboard = () => {
   });
 
   // console.log(userInfo);
+  const url = userInfo?.profilePicture?.url ?? 'default-url';
 
   const {
     location: { city, residencyStatus } = {},
@@ -66,7 +67,7 @@ const MyDashboard = () => {
     } = {},
     trait: { aboutMe } = {},
     phone,
-    profilePicture: { url } = {},
+    // profilePicture: { url } = {},
     fullName,
     firstName,
     lastName,
@@ -80,7 +81,7 @@ const MyDashboard = () => {
     isIdVerify,
     isPhoneVerified,
     isEmailVerified,
-  } = userInfo || {};
+  } = userInfo ?? {};
 
   const handleClick = (num) => {
     router.push(`/settings/?state=${num}`);
