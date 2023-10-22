@@ -12,7 +12,6 @@ import Link from "next/link";
 import { DisableRightClick } from "@/utils/DisableRightClick";
 import ReuseModal from "../global/ReuseModal";
 import VerifyModalBody from "../dashboard/VerifyModalBody";
-import { abbreviateName } from "@/utils/abbreviation";
 
 const MyDashboard = () => {
   const router = useRouter();
@@ -51,7 +50,7 @@ const MyDashboard = () => {
   });
 
   // console.log(userInfo);
-  const url = userInfo?.profilePicture?.url ?? "default-url";
+  const url = userInfo?.profilePicture?.url ?? imageUrl;
 
   const {
     location: { city, residencyStatus } = {},
@@ -100,17 +99,13 @@ const MyDashboard = () => {
             />
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
               <div>
-                <h3>{abbreviateName(firstName + " " + lastName)}</h3>
-                <p className="small-text">User ID : {userId}</p>
-                {/* <h3>{firstName + " " + lastName}</h3>
-                <p className="small-text">User ID: {userId}</p> */}
+                <h3>{firstName + " " + lastName}</h3>
+                <p className="small-text">User ID: {userId}</p>
               </div>
               {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
                             </Button> */}
-
             </div>
-            
             <Divider my={10}></Divider>
 
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
@@ -187,7 +182,6 @@ const MyDashboard = () => {
                 {/* <p className="small-text">Email verified</p> */}
                 <Anchor
                   href="#"
-                  size="sm"
                   onClick={openModal}
                   className={`${isIdVerify ? "disabled-anchor" : ""}`}
                 >

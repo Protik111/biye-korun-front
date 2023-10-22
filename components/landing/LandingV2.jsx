@@ -116,15 +116,16 @@ const LandingV2 = () => {
                       // scale={(v) => 2 ** v}
                       step={1}
                       min={18}
-                      max={39}
+                      max={65}
                       name="ages"
                       labelAlwaysOn
                       values={formData.ages}
                       defaultValue={formData.ages}
-                      range={2}
-                      // onChange={handleAge}
-                      //   style={{ width: "200px" }}
-                      onChange={(event) => handleFormChange("ages", event)}
+                      range={1}
+                      minRange={1}
+                    // onChange={handleAge}
+                    //   style={{ width: "200px" }}
+                    // onChange={(event) => handleFormChange("ages", event)}
                     />
                   </Popover.Dropdown>
                 </Popover>
