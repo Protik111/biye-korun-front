@@ -23,7 +23,7 @@ const Specialty = () => {
                         <h2>Our Specialty</h2>
                         <div className='list-item'>
                             {
-                                lists?.map(item => <div className="mt-15 flex align-center flex-gap-5">
+                                lists?.map(item => <div className="mt-15 flex align-center flex-gap-5 list-item-text">
                                     <img src="/about-us/tick.svg" alt="Tick" />
                                     <p>{item}</p>
                                 </div>)

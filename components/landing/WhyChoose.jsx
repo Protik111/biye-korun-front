@@ -7,11 +7,11 @@ const WhyChoose = () => {
     <div className="whychoose_main">
       <div className="container py-25">
         <h2 className="text-center">Why Choose Us</h2>
-        <h3 className="text-center">
+        {/* <h3 className="text-center">
           There is lot of matrimony website worldwide and also lot of services
           in Bangladesh & USA. Now the topic of discussion is why you should
           take our service in the crowd of so many services.
-        </h3>
+        </h3> */}
 
         <div className="choose_content">
           <div className="choose_list_item">

@@ -106,7 +106,7 @@ const RecentlyViewed = () => {
 
       </div>
       {data?.data?.length === 0 && <div className="text-center">
-        <h2 className="text-center">You didn't view any profile yet!</h2>
+        <h2 className="text-center">You didn't view any profiles yet!</h2>
       </div>}
 
       {data?.data?.length === 0 && <NoDataFound></NoDataFound>}
