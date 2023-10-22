@@ -19,6 +19,9 @@ export const loadUser = createAsyncThunk('auth/loadUser', async (thunkAPI) => {
     try {
         return await authService.loadUser()
     } catch (error) {
+        //remove token and logout user if user is not found
+        await authService.logout();
+
         const message =
             (error.response &&
                 error.response.data &&

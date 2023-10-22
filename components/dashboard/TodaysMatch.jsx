@@ -66,14 +66,14 @@ const TodaysMatch = () => {
       <>
         {!loading && data?.data?.length === 0 &&
           <div className="flex justify-center">
-            <h2 className="text-center mb-15">You Do Not Have Any Matches Today!</h2>
+            <h2 className="text-center mb-15">You don't have any Matches today!</h2>
           </div>
         }
         <div className="flex justify-between align-center">
           <div>
             {!loading && data?.data?.length !== 0 &&
               <div className="flex justify-center">
-                <h2 className="text-center mb-15">Here Are Today's Top Matches. Connect With Them Now!</h2>
+                <h2 className="text-center mb-15">Here are today's Top Matches. Connect with them now!</h2>
               </div>
             }
           </div>

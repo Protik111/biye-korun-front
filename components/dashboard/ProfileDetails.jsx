@@ -68,7 +68,7 @@ const ProfileDetails = ({ profile }) => {
                                             <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
                                         </div>
                                         <div>
-                                            <p>Email Id</p>
+                                            <p>Email ID</p>
                                             <p>{contactInfo?.email}</p>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@ const ProfileDetails = ({ profile }) => {
                                             <img style={{ height: '25px' }} src="/profile/email.svg" alt="phone" />
                                         </div>
                                         <div>
-                                            <p>Email Id</p>
+                                            <p>Email ID</p>
                                             <p>XXXXXXXXXX@gmail.com</p>
                                         </div>
                                     </div>

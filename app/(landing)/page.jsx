@@ -37,7 +37,7 @@ export default function Home() {
     <>
       {/* <Landing></Landing> */}
       <LandingV2></LandingV2>
-      <HeroVideo videoLink='https://player.vimeo.com/video/875673562?h=434dff2df9'></HeroVideo>
+      <HeroVideo title='What is Biye Korun?' videoLink='https://www.youtube.com/embed/UfeKeTWztp8?si=r0SkQYM_Rm2ZrgS6'></HeroVideo>
       <BrideGroom></BrideGroom>
       <HowWorks></HowWorks>
       <PremiumPlan />

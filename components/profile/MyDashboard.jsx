@@ -50,7 +50,7 @@ const MyDashboard = () => {
   });
 
   // console.log(userInfo);
-  const url = userInfo?.profilePicture?.url ?? 'default-url';
+  const url = userInfo?.profilePicture?.url ?? imageUrl;
 
   const {
     location: { city, residencyStatus } = {},

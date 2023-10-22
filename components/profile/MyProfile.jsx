@@ -8,7 +8,6 @@ import {
   Tooltip,
   Textarea,
 } from "@mantine/core";
-
 import { IconPlayerRecordFilled } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import ThemeIconComp from "../global/ThemeIconComp";
@@ -33,6 +32,8 @@ import LocationsModal from "../my-profile/Locations";
 import { loadUserData } from "@/redux/features/user/userSlice";
 import LoaderWithText from "../global/LoaderWithText";
 import { imageUrl, imageUrlFemale } from "@/staticData/image";
+import DisplayFormattedContent from "../global/DisplayFormatedContent";
+import { Tiptap } from "../global/TipTap";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -40,6 +41,7 @@ const MyProfile = () => {
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
   const dispatch = useDispatch();
+
   const {
     location: { city, residencyStatus, zipCode } = {},
     doctrine: { caste, motherTongue } = {},
@@ -75,14 +77,14 @@ const MyProfile = () => {
     country,
     bloodGroup,
   } = userInfo || {};
-  console.log("Weight", userInfo);
+  // console.log("Weight", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
   const [isModal4Open, setIsModal4Open] = useState(false);
   const [isModal5Open, setIsModal5Open] = useState(false);
   const [isModal6Open, setIsModal6Open] = useState(false);
-
+  const [description, setDescription] = useState(aboutMe);
   const openModal1 = () => setIsModal1Open(true);
   const closeModal1 = () => setIsModal1Open(false);
   const openModal2 = () => setIsModal2Open(true);
@@ -132,10 +134,10 @@ const MyProfile = () => {
   };
 
   const handleSubmit = () => {
-    const { aboutContent } = formValues;
+    // const { aboutContent } = formValues;
 
     const data = {
-      trait: { aboutMe: aboutContent },
+      trait: { aboutMe: description },
     };
     setLoading(true);
     axios
@@ -272,18 +274,6 @@ const MyProfile = () => {
                   <Anchor onClick={openModal6}>Edit Locations</Anchor>
                 </div>
               </div>
-
-              {/* <div className="mt-10 flex align-center flex-gap-15">
-                <div className="flex align-center flex-gap-5">
-                  <ThemeIconComp
-                    iconComp={<IconPlayerRecordFilled size="10" />}
-                    size="10"
-                  ></ThemeIconComp>
-                  <Link href="/edit-profile">
-                    <Anchor>Edit Contact Details</Anchor>
-                  </Link>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -320,9 +310,9 @@ const MyProfile = () => {
 
           <div className="personality mt-20" id="myself">
             <div className="flex justify-between align-center">
-            <Tooltip label="About" color="red">
-              <h3 className="secondary-text">About</h3>
-            </Tooltip>
+              <Tooltip label="About" color="red">
+                <h3 className="secondary-text">About</h3>
+              </Tooltip>
               <Button
                 variant="light"
                 size="xs"
@@ -335,7 +325,10 @@ const MyProfile = () => {
               </Button>
             </div>
             <Divider mt={5}></Divider>
-            <p className="mt-5">{aboutMe}</p>
+            <p className="mt-5"></p>
+            <div className="p-5">
+              <DisplayFormattedContent markdown={aboutMe} />
+            </div>
           </div>
 
           {/* Basic lifestyle */}
@@ -362,12 +355,6 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Age</p>
                   <p className="right"> {calculateAge(dateOfBirth)} Years</p>
-                  {/* {" "}<Input
-                                        variant="unstyled"
-                                        disabled
-                                        placeholder="Your email"
-                                        size="xs"
-                                    /> */}
                 </div>
                 <div className="single-item">
                   <p className="left">Marital Status</p>
@@ -432,10 +419,6 @@ const MyProfile = () => {
                   <p className="left">Native Language</p>
                   <p className="right"> {motherTongue}</p>
                 </div>
-                {/* <div className="single-item">
-                  <p className="left">Sub community</p>
-                  <p className="right"> Not Specified</p>
-                </div> */}
               </div>
             </div>
           </div>
@@ -628,13 +611,6 @@ const MyProfile = () => {
                       <span></span> {basicDetails?.maritalStatus?.join(", ")}
                     </p>
                   </div>
-                  {/* <div className="single-item">
-                    <p className="left">Religion</p>
-                    <p className="right">
-                       MuslimSunni, MuslimBengali, MuslimSunni Hanafi,
-                      MuslimArain, MuslimJat, MuslimSiddiqui,
-                    </p>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -718,10 +694,7 @@ const MyProfile = () => {
                       })}
                     </p>
                   </div>
-                  {/* <div className="single-item">
-                    <p className="left">State living in</p>
-                    <p className="right"> Any</p>
-                  </div> */}
+
                   <div className="single-item">
                     <p className="left">Residency Status </p>
                     <p className="right">
@@ -776,10 +749,7 @@ const MyProfile = () => {
                       })}
                     </p>
                   </div>
-                  {/* <div className="single-item">
-                    <p className="left">Job Sector</p>
-                    <p className="right"> Any</p>
-                  </div> */}
+
                   <div className="single-item">
                     <p className="left">Job Sector</p>
                     <p className="right">
@@ -831,7 +801,7 @@ const MyProfile = () => {
       >
         {" "}
         <br />
-        <Textarea
+        {/* <Textarea
           autosize
           minRows={5}
           maxRows={10}
@@ -840,7 +810,8 @@ const MyProfile = () => {
           onChange={(event) =>
             handleFormChange("aboutContent", event.currentTarget.value)
           }
-        />
+        /> */}
+        <Tiptap setDescription={setDescription} description={description} />
         <div className="flex justify-end mt-10">
           <Button
             variant="filled"

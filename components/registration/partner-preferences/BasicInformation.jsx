@@ -77,6 +77,7 @@ function BasicInformation({
                 labelAlwaysOn
                 values={formData.ages}
                 defaultValue={formData.ages}
+                minRange={1}
                 // range={2}
                 // onChange={handleAge}
                 onChange={(event) => handleFormChange("ages", event)}
@@ -101,6 +102,7 @@ function BasicInformation({
                 labelAlwaysOn
                 value={[minHeight, maxHeight]}
                 onChange={handleRangeChange}
+                minRange={1}
               // valueLabel={(value) => formatHeight(value)}
               />
               <div>
