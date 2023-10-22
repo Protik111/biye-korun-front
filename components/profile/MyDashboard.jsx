@@ -108,7 +108,9 @@ const MyDashboard = () => {
               {/* <Button variant="light" color="red" radius="xl" size="xs">
                                 Edit
                             </Button> */}
+
             </div>
+            
             <Divider my={10}></Divider>
 
             <div className="flex justify-between align-center px-15 py-10 flex-wrap flex-gap-5">
