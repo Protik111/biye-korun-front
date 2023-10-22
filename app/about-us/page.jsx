@@ -14,7 +14,7 @@ const page = () => {
         <div className='privacy-policy'>
             <CEO></CEO>
             {/* <AboutUsHeader></AboutUsHeader> */}
-            <HeroVideo title='Origins of Biye Korun' videoLink='https://player.vimeo.com/video/876371901?h=50ef105a2c'></HeroVideo>
+            <HeroVideo title='Origins of Biye Korun' videoLink='https://www.youtube.com/embed/Q5cgUg7UeZc?si=0y3tzzFkAo89TrzG'></HeroVideo>
             <Vision></Vision>
             <DownloadApp></DownloadApp>
             {/* <Specialty></Specialty> */}
