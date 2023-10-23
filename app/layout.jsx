@@ -9,7 +9,7 @@ import NProgress from 'nprogress';
 export const metadata = {
   title: "Biye Korun",
   description: "A matrimony service to find people hapiness",
-  googleSiteVerification: 'ke0QFqtMewsKYCOP__ZvfazkhAJzVjHdUCaXv_raxEo',
+  googleSiteVerification: 'google74daa90af3bfbbd2.html',
   icons: {
     url: 'biyekorun-logo.ico',
   },
