@@ -16,6 +16,8 @@ const register = async (userData) => {
         localStorage.setItem('biyeKorun_token', JSON.stringify(response.data?.token))
     }
 
+    console.log('response.data', response.data);
+
     return response.data
 }
 

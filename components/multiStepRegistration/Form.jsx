@@ -61,7 +61,7 @@ const Form = ({ handleModalClose }) => {
             dateOfBirth: format(data?.basic2dob, 'MM/dd/yyyy'),
             gender: data?.basic1gender,
             postedBy: data?.basic1postedBy,
-            community: data?.basic1community,
+            language: data?.basic1community,
             country: data?.basic2country,
             religion: data?.basic1religion,
             password: data?.basic2password
@@ -70,35 +70,66 @@ const Form = ({ handleModalClose }) => {
 
         if (isSubmittable) {
             // console.log('test');
+            // setLoading(true)
+            // dispatch(register(datas))
+            //     .unwrap()
+            //     .then(() => {
+            //         notifySuccess("Registered successfully!")
+            //         setLoading(false)
+            //         // console.log('yes');
+            //         handleModalClose()
+
+            //         const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+
+            //         // console.log('token', parsedToken);
+
+            //         if (parsedToken?.accessToken) {
+            //             setAuthToken(parsedToken.accessToken);
+            //             configureAxiosHeader();
+            //             dispatch(loadUser())
+            //             dispatch(loadUserData())
+            //         }
+            //         // console.log('registerred');
+            //         router.push('/profile-creation')
+            //         // setTimeout(() => {
+            //         // }, 500)
+            //     })
+            //     .catch(() => {
+            //         notifyError(message)
+            //         setLoading(false)
+            //         // console.log('no');
+            //     })
+
+            //Another approach
             setLoading(true)
             dispatch(register(datas))
-                .unwrap()
-                .then(() => {
-                    notifySuccess("Registered successfully!")
-                    setLoading(false)
-                    // console.log('yes');
-                    handleModalClose()
+                .then((result) => {
+                    if (register.fulfilled.match(result)) {
+                        // Request was successful, handle it here
+                        notifySuccess("Registered successfully!");
+                        setLoading(false);
+                        handleModalClose();
 
-                    const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+                        const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null;
 
-                    // console.log('token', parsedToken);
-
-                    if (parsedToken?.accessToken) {
-                        setAuthToken(parsedToken.accessToken);
-                        configureAxiosHeader();
-                        dispatch(loadUser())
-                        dispatch(loadUserData())
+                        if (parsedToken?.accessToken) {
+                            setAuthToken(parsedToken.accessToken);
+                            configureAxiosHeader();
+                            dispatch(loadUser());
+                            dispatch(loadUserData());
+                        }
+                        router.push('/profile-creation');
+                    } else if (register.rejected.match(result)) {
+                        // Request was rejected, handle the error here
+                        const errorMessage = result.payload;
+                        notifyError(errorMessage);
+                        setLoading(false);
                     }
-                    // console.log('registerred');
-                    setTimeout(() => {
-                        router.push('/profile-creation')
-                    }, 500)
                 })
-                .catch(() => {
-                    notifyError(message)
-                    setLoading(false)
-                    // console.log('no');
-                })
+                .catch((error) => {
+                    // Handle any unexpected errors here
+                    console.error('Unexpected error:', error);
+                });
         }
 
     }
