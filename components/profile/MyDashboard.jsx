@@ -144,7 +144,6 @@ const MyDashboard = () => {
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
                 <Anchor
                   href="#"
-                  className="small-text"
                   onClick={() => handleClick("3")}
                 >
                   Email
@@ -162,7 +161,7 @@ const MyDashboard = () => {
                 />
               </div>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                <Anchor href="#" className="small-text">
+                <Anchor href="#">
                   Mobile Number
                 </Anchor>
                 <ThemeIconComp
