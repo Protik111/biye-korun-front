@@ -14,7 +14,7 @@ const HeroVideo = ({title, videoLink}) => {
                                         height="360" frameborder="0" allowfullscreen="allowfullscreen"
                                         mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen"
                                         oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe> */}
-                                <iframe width="560" height="315" src={videoLink} title={title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src={videoLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>

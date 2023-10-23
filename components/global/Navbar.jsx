@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   IconLayoutDashboard,
   IconLogout2,
+  IconShoppingCart,
   IconMenu2,
   IconUserCircle,
   IconUserSearch,
@@ -123,6 +124,12 @@ function Navbar() {
                     <Menu.Item icon={<IconUserCircle size={16} color="red" />}>
                       <Link style={{ color: "black" }} href="/my-profile">
                         View Profile
+                      </Link>
+                    </Menu.Item>
+
+                    <Menu.Item icon={<IconShoppingCart size={16} color="red" />}>
+                      <Link style={{ color: "black" }} href="/orders">
+                        My Orders
                       </Link>
                     </Menu.Item>
 
