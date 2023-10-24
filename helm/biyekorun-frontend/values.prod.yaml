@@ -23,6 +23,10 @@ requests:
   memory: "512Mi"
 
 host: biyekorun.us
+wwwHost: www.biyekorun.us
+
+hostSecret: biyekorun-tls-secret
+hostWwwSecret: biyekorun-tls-secret
 
 image:
   name: biyekorun-frontend

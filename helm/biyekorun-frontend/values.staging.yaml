@@ -15,6 +15,10 @@ requests:
   memory: "256Mi"
 
 host: staging.biyekorun.us
+wwwHost: www.staging.biyekorun.us
+
+hostSecret: biyekorun-tls-secret
+hostWwwSecret: biyekorun-tls-secret
 
 image:
   name: biyekorun-frontend
