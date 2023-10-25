@@ -96,7 +96,7 @@ const BrideGroom = () => {
                     }}
                     mx="auto"
                     size="xl"
-                    src={item?.profilePicture[0]?.url?.medium || imageUrl}
+                    src={item?.profilePicture?.url?.medium || imageUrl}
                     alt={item?.name}
                   />
                   <h3 className="mt-5">

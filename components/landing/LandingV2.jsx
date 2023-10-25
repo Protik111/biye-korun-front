@@ -123,9 +123,9 @@ const LandingV2 = () => {
                       defaultValue={formData.ages}
                       range={1}
                       minRange={1}
-                    // onChange={handleAge}
-                    //   style={{ width: "200px" }}
-                    // onChange={(event) => handleFormChange("ages", event)}
+                      // onChange={handleAge}
+                      //   style={{ width: "200px" }}
+                      // onChange={(event) => handleFormChange("ages", event)}
                     />
                   </Popover.Dropdown>
                 </Popover>
@@ -211,7 +211,9 @@ const LandingV2 = () => {
           modalOpen={modalOpen}
           size="md"
           handleModalClose={handleModalClose}
-          modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}
+          modalTitle={
+            <h3 className="text-center">Let's Create an Account! </h3>
+          }
         >
           {/* <MultistepRegistration></MultistepRegistration> */}
           <FormProvider>

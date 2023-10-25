@@ -13,26 +13,78 @@ import { notifyError } from "@/utils/showNotification";
 import { useRouter } from "next/navigation";
 import parsePhoneNumber from "libphonenumber-js";
 
-
 const ProfileCreation = () => {
   const { userInfo, message } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [active, setActive] = useState(0);
   const router = useRouter();
 
+  // const {
+  //   location: { city, residencyStatus } = {},
+  //   doctrine: { caste, motherTongue } = {},
+  //   appearance: { height, weight } = {},
+  //   education: { college, education } = {},
+  //   family: { children, livingWith } = {},
+  //   lifestyle: { diet, maritalStatus } = {},
+  //   profession: { employer, income, occupation, workingWith } = {},
+  //   trait: { aboutMe } = {},
+  //   phone,
+  //   countryCode,
+  //   bloodGroup,
+  //   country,
+  // } = userInfo;
   const {
-    location: { city, residencyStatus } = {},
-    doctrine: { caste, motherTongue } = {},
-    appearance: { height, weight } = {},
-    education: { college, education } = {},
-    family: { children, livingWith } = {},
-    lifestyle: { diet, maritalStatus } = {},
-    profession: { employer, income, occupation, workingWith } = {},
-    trait: { aboutMe } = {},
-    phone,
-    countryCode,
-    bloodGroup,
-    country,
+    location: {
+      state,
+      city,
+      // country,
+      livingSince,
+      residencyStatus,
+      zipCode,
+    } = {},
+    community: { religion, language, nativeLanguage } = {},
+    interestAndMore: { interests },
+    educationCareer: {
+      college,
+      education,
+      income,
+      employer,
+      occupation,
+      workingWith,
+      industry,
+    } = {},
+    family: {
+      noOfBrothers,
+      brothersMarried,
+      noOfSisters,
+      sistersMarried,
+      children,
+      familyState,
+      familyCity,
+      familyCountry,
+      familyIncome,
+      familyValues,
+      fatherProfession,
+      livingWith,
+      motherProfession,
+      noOfKids,
+      type,
+    } = {},
+    phone: { number, countryCode } = {},
+    basicInfo: {
+      diet,
+      maritalStatus,
+      bloodGroup,
+      height,
+      weight,
+      country,
+      dateOfBirth,
+      gender,
+    } = {},
+    firstName,
+    middleName,
+    lastName,
+    about: { aboutMe } = {},
   } = userInfo;
 
   const [formValues, setFormValues] = useState({
@@ -44,7 +96,6 @@ const ProfileCreation = () => {
     diet: diet ? diet : "",
     height: height ? height : "",
     weight: weight ? weight : "",
-    // subCommunity: caste ? caste : "",
     qualification: education ? education : "",
     college: college ? college : "",
     worksWith: workingWith ? workingWith : "",
@@ -52,8 +103,12 @@ const ProfileCreation = () => {
     company: employer ? employer : "",
     income: income ? income : "",
     about: aboutMe ? aboutMe : "",
-    phone: countryCode ? (countryCode + phone) : (phone && !countryCode) ? phone : "",
-    motherTongue: motherTongue ? motherTongue : "",
+    phone: countryCode
+      ? countryCode + number
+      : number && !countryCode
+      ? number
+      : "",
+    motherTongue: nativeLanguage ? nativeLanguage : "",
     bloodGroup: bloodGroup ? bloodGroup : "",
   });
 
@@ -121,18 +176,12 @@ const ProfileCreation = () => {
 
       dispatch(
         createProfile({
-          city,
-          livingWith: livesWithFamily,
-          residencyStatus: residency,
-          maritalStatus,
-          children: hasChildren,
-          diet,
-          height,
-          weight,
-          //   caste: subCommunity,
-          motherTongue,
+          location: { city, residencyStatus: residency },
+          family: { livingWith: livesWithFamily, children: hasChildren },
+          basicInfo: { maritalStatus, diet, height, weight },
+
+          community: { nativeLanguage: motherTongue },
           bloodGroup,
-          step: "first",
         })
       )
         .unwrap()
@@ -149,13 +198,14 @@ const ProfileCreation = () => {
         formValues;
       dispatch(
         createProfile({
-          education: qualification,
-          college,
-          workingWith: worksWith,
-          occupation: profession,
-          employer: company,
-          income,
-          step: "second",
+          educationCareer: {
+            education: qualification,
+            college,
+            income,
+            workingWith: worksWith,
+            occupation: profession,
+            employer: company,
+          },
         })
       )
         .unwrap()
@@ -174,18 +224,18 @@ const ProfileCreation = () => {
 
       dispatch(
         createProfile({
-          aboutMe: about,
+          about: { aboutMe: about },
           // phone: phone.replace(/[+\s]/g, ""),
-          phone: phoneInfo.nationalNumber,
-          countryCode: phoneInfo.countryCallingCode,
-          step: "third",
+          phone: {
+            number: phoneInfo.nationalNumber,
+            countryCode: phoneInfo.countryCallingCode,
+          },
         })
       )
         .unwrap()
         .then(() => {
           nextStep();
           router.push("/registration/photo");
-
         })
         .catch(() => {
           notifyError(message);

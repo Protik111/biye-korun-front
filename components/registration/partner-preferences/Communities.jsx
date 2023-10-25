@@ -100,13 +100,12 @@ function Communities({ formData, setFormData }) {
                 size="md"
                 placeholder="Select"
                 label="Native Language"
-                withAsterisk
                 defaultValue="20"
                 // styles={{ label: labelStyles }}
                 data={motherTongues}
-                name="motherTongue"
-                value={formData.motherTongue}
-                onChange={(event) => handleFormChange("motherTongue", event)}
+                name="nativeLanguage"
+                value={formData.nativeLanguage}
+                onChange={(event) => handleFormChange("nativeLanguage", event)}
                 searchable
                 // style={{ width: '180px' }}
                 // sx={selectMobileStyles}

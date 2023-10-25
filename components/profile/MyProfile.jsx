@@ -645,12 +645,12 @@ const MyProfile = () => {
                     <p className="left">Native Language</p>
                     <p className="right">
                       {" "}
-                      {communityData?.motherTongue.map((item, index) => {
+                      {communityData?.nativeLanguage.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
-                            {index !== communityData?.motherTongue.length - 1 &&
-                              ", "}
+                            {index !==
+                              communityData?.nativeLanguage.length - 1 && ", "}
                           </React.Fragment>
                         );
                       })}
