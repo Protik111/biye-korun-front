@@ -47,7 +47,7 @@ const Step1 = ({
     bloodGroup,
   } = formValues;
 
-  const { country } = userInfo;
+  const { basicInfo: { country } = {} } = userInfo;
   const { state } = data2;
 
   useEffect(() => {
