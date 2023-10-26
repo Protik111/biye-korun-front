@@ -62,17 +62,14 @@ const Religion = ({ closeModal3 }) => {
   const partnerPreferencesRef = useRef(null);
   const router = useRouter();
   const dispatch = useDispatch();
-  const {
-    doctrine: { motherTongue } = {},
-    religion,
-    community,
-  } = userInfo || {};
+  const { community: { nativeLanguage, religion, language } = {} } =
+    userInfo || {};
 
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     religion: religion ? religion : "",
-    motherTongue: motherTongue ? motherTongue : "",
-    community: community ? community : "",
+    motherTongue: nativeLanguage ? nativeLanguage : "",
+    community: language ? language : "",
   });
 
   const scrollToPartnerPreferences = () => {
