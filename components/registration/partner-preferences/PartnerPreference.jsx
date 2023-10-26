@@ -53,16 +53,16 @@ const PartnerPreference = ({
   const [formData, setFormData] = useState({
     ages: min && max ? [min, max] : [18, 25],
     height: "",
-    maritalStatus: maritalStatus ? maritalStatus : "",
-    religion: religion ? religion : "",
-    nativeLanguage: nativeLanguage ? nativeLanguage : "",
-    livingIn: country ? country : "",
-    stateLiving: stateLiving ? stateLiving : "",
-    residency: residencyStatus ? residencyStatus : "",
-    qualification: qualification ? qualification : "",
-    workingWith: workingWith ? workingWith : "",
-    profession: profession ? profession : "",
-    income: "",
+    maritalStatus: maritalStatus ? maritalStatus : [],
+    religion: religion ? religion : [],
+    nativeLanguage: nativeLanguage ? nativeLanguage : [],
+    livingIn: country ? country : [],
+    stateLiving: stateLiving ? stateLiving : [],
+    residency: residencyStatus ? residencyStatus : [],
+    qualification: qualification ? qualification : [],
+    workingWith: workingWith ? workingWith : [],
+    profession: profession ? profession : [],
+    income: [],
   });
 
   const [errors, setErrors] = useState({});
