@@ -65,7 +65,6 @@ const PartnerPreference = ({
     income: "",
   });
 
-  // console.log("formData", formData);
   const [errors, setErrors] = useState({});
 
   const [minHeight, setMinHeight] = useState(heightRange?.min || "56");
@@ -75,9 +74,9 @@ const PartnerPreference = ({
   const [minIncomeValue, setMinIncomeValue] = useState(minIncome || "1000");
   const [maxIncomeValue, setMaxIncomeValue] = useState(maxIncome || "5000");
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  // console.log('formDatas', formData);
   // console.log('userInfo?.partnerpreference', userInfo);
   // console.log('height', minHeight, maxHeight);
   // console.log('maxIncomeValue', maxIncomeValue, minIncomeValue);
@@ -128,11 +127,7 @@ const PartnerPreference = ({
       })
       .catch((error) => {
         setLoading(false);
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.errors
-        ) {
+        if (error.response.data.errors && !error.response.data.errors.message) {
           const fieldErrors = error.response.data.errors;
           setErrors(fieldErrors);
         } else {
