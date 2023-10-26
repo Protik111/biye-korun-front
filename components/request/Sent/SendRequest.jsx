@@ -7,6 +7,7 @@ import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import Link from "next/link";
+import { DisableRightClick } from "@/utils/DisableRightClick";
 
 const SendRequest = () => {
   const { data, error, loading, refetch } = useAxios(
@@ -36,6 +37,7 @@ const SendRequest = () => {
                         alt="Profile"
                         fit="contain"
                         className="recently_img"
+                        onContextMenu={(e) => DisableRightClick(e)}
                       />
                     </Link>
                   </Card.Section>

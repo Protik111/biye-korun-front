@@ -63,28 +63,29 @@ const LoginComp = () => {
       // console.log('formData', formData);
       setLoading(true);
       dispatch(login(formData))
-        .unwrap()
-        .then(() => {
-          notifySuccess("Logged in successfully!");
-          setLoading(false);
+        .then((result) => {
+          if (login.fulfilled.match(result)) {
+            notifySuccess("Logged in successfully!");
+            setLoading(false);
 
-          const parsedToken =
-            typeof window !== "undefined"
-              ? JSON.parse(localStorage.getItem("biyeKorun_token"))
-              : null;
+            const parsedToken =
+              typeof window !== "undefined"
+                ? JSON.parse(localStorage.getItem("biyeKorun_token"))
+                : null;
 
-          if (parsedToken?.accessToken) {
-            setAuthToken(parsedToken.accessToken);
-            configureAxiosHeader();
-            dispatch(loadUser());
-            dispatch(loadUserData());
+            if (parsedToken?.accessToken) {
+              setAuthToken(parsedToken.accessToken);
+              configureAxiosHeader();
+              dispatch(loadUser());
+              dispatch(loadUserData());
+            }
+            window.location.href = "/dashboard";
+          } else if (login.rejected.match(result)) {
+            // Request was rejected, handle the error here
+            const errorMessage = result.payload;
+            notifyError(errorMessage);
+            setLoading(false);
           }
-
-          // if (Object.keys(userInfo).length !== 0) {
-          // router.push("/dashboard")
-          window.location.href = "/dashboard";
-          // router.reload()
-          // }
 
           // setTimeout(() => {
           //     // router.push('/my-profile', '/my-profile', { shallow: true })
