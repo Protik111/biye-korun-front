@@ -43,10 +43,10 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   const {
-    location: { city, residencyStatus, zipCode } = {},
+    location: { city, residencyStatus, zipCode, country } = {},
     doctrine: { caste, motherTongue } = {},
-    appearance: { height, weight } = {},
     education: { college, education } = {},
+    about: { aboutMe } = {},
     family: {
       familyCountry,
       familyCity,
@@ -55,14 +55,21 @@ const MyProfile = () => {
       fatherProfession,
       type,
     } = {},
-    lifestyle: { diet, maritalStatus } = {},
+    basicInfo: {
+      diet,
+      maritalStatus,
+      height,
+      weight,
+      dateOfBirth,
+      bloodGroup,
+      gender,
+    } = {},
     profession: {
       employer,
       income: { min, max } = {},
       occupation,
       workingWith,
     } = {},
-    trait: { aboutMe } = {},
     phone,
     profilePicture,
     // profilePicture: { url } = { url: null },
@@ -70,14 +77,12 @@ const MyProfile = () => {
     firstName,
     lastName,
     userId,
-    dateOfBirth,
     postedBy,
     religion,
     community,
-    country,
-    bloodGroup,
+    // country,
   } = userInfo || {};
-  // console.log("Weight", userInfo);
+  console.log("Weight", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
@@ -137,25 +142,24 @@ const MyProfile = () => {
     // const { aboutContent } = formValues;
 
     const data = {
-      trait: { aboutMe: description },
+      about: { aboutMe: description },
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal1();
-        }, 4000);
+
+        closeModal1();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        notifyError(error.response.data.errors.message);
       });
   };
-  console.log(userInfo.gender);
+
   return (
     <div className="myProfile container">
       <div className="myProfile__top container-box-bg p-15">
@@ -413,7 +417,7 @@ const MyProfile = () => {
                 </div>
                 <div className="single-item">
                   <p className="left">Language</p>
-                  <p className="right"> {community?.join(", ")} </p>
+                  {/* <p className="right"> {community?.join(", ")} </p> */}
                 </div>
                 <div className="single-item">
                   <p className="left">Native Language</p>
