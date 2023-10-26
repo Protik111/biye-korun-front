@@ -185,7 +185,7 @@ function Education({
                 className="mb-10 mt-15"
                 onClick={() => setValue("")}
               >
-                Save & Close
+                Close
               </Button>
             </div>
           )}
