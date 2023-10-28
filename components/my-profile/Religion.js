@@ -66,6 +66,7 @@ const Religion = ({ closeModal3 }) => {
     userInfo || {};
 
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [formValues, setFormValues] = useState({
     religion: religion ? religion : "",
     motherTongue: nativeLanguage ? nativeLanguage : "",
@@ -91,24 +92,25 @@ const Religion = ({ closeModal3 }) => {
     const { religion, motherTongue, community } = formValues;
 
     const data = {
-      religion,
-      doctrine: { motherTongue },
-      community,
+      community: { religion, motherTongue, language: community },
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         setLoading(false);
         notifySuccess("Profile updated successfully!");
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal3();
-        }, 4000);
+        closeModal3();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
 
@@ -133,6 +135,7 @@ const Religion = ({ closeModal3 }) => {
           name="religion"
           defaultValue={formValues.religion}
           onChange={(event) => handleFormChange("religion", event)}
+          error={errors.religion}
         />
         <br />
         <Select
