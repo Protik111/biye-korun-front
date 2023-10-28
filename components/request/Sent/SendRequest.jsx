@@ -16,6 +16,7 @@ const SendRequest = () => {
 
   const skeletons = new Array(5).fill();
 
+
   return (
     <>
       <div className="container recentlyViewed">
@@ -55,25 +56,25 @@ const SendRequest = () => {
 
                   <Text size="sm">
                     <div>
-                      <b> Age</b>: {calculateAge(item?.recipient?.dateOfBirth)}{" "}
+                      <b> Age</b>: {calculateAge(item?.recipient?.basicInfo?.dateOfBirth)}{" "}
                       yrs{" "}
                     </div>
                     <div>
                       <b> Height</b>:{" "}
-                      {heightCalculator(item?.recipient?.appearance?.height)}{" "}
+                      {heightCalculator(item?.recipient?.basicInfo?.height)}{" "}
                     </div>
                     <div>
                       {" "}
-                      <b>Religion</b>: {item?.recipient?.religion}
+                      <b>Religion</b>: {item?.recipient?.community?.religion}
                     </div>
                     <div>
                       {" "}
                       <b>Native Language</b>:{" "}
-                      {item?.recipient?.doctrine?.motherTongue}
+                      {item?.recipient?.community?.nativeLanguage}
                     </div>
                     <div>
                       {" "}
-                      <b> Country</b>: {item?.recipient?.country}
+                      <b> Country</b>: {item?.recipient?.location?.country}
                     </div>
                   </Text>
 

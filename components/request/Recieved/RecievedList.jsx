@@ -86,26 +86,25 @@ const RecievedList = () => {
                   <Text size="sm">
                     <div>
                       <b> Age </b> :{" "}
-                      {calculateAge(item?.requester?.dateOfBirth)} yrs
+                      {calculateAge(item?.requester?.basicInfo?.dateOfBirth)} yrs
                     </div>
                     <div>
                       <b>Height</b> :{" "}
-                      {heightCalculator(item?.requester?.appearance?.height)}
+                      {heightCalculator(item?.requester?.basicInfo?.height)}
                     </div>
                     <div>
-                      <b>Religion</b>: {item?.requester?.religion}
+                      <b>Religion</b>: {item?.requester?.community?.religion}
                     </div>
-                    {item?.requester?.doctrine?.motherTongue && (
+                    {item?.requester?.community?.nativeLanguage && (
                       <div>
                         <b>Native Language</b>:{" "}
-                        {item?.requester?.doctrine?.motherTongue}
+                        {item?.requester?.community?.nativeLanguage}
                       </div>
                     )}
                     <div>
-                      <b>Country</b>: {item?.requester?.country}
+                      <b>Country</b>: {item?.requester?.location?.country}
                     </div>
                   </Text>
-                  {console.log("item", item)}
                   {/* <h3 className="text-center pt-15">Connect with {item?.requester?.gender === "Male" ? 'him' : 'her'}?</h3> */}
                   {/* <h3 className="text-center pt-15">Send Biye Korun Request?</h3> */}
 

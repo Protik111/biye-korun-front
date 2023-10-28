@@ -5,7 +5,9 @@ import { Checkbox } from '@mantine/core'
 import React from 'react'
 
 const SingleMatch = ({ item, handleUserIds }) => {
-    const { dateOfBirth, firstName, lastName, appearance: { height } = {}, community, country, location: { city } = {}, lifestyle: { maritalStatus } = {}, profilePicture: { url } = {} } = item;
+    const { basicInfo: { dateOfBirth, height, maritalStatus } = {}, firstName, lastName, location: { city, country } = {}, profilePicture: { url } = {} } = item;
+
+    // console.log('item', item);
 
     const handleUserIdsCheckBox = (e, user) => {
         // console.log('e', e.currentTarget.checked, user);
@@ -28,7 +30,7 @@ const SingleMatch = ({ item, handleUserIds }) => {
                     <p className='small-text'>{heightCalculator(height)}</p>
                 </div>
                 <p className='small-text'>{maritalStatus}</p>
-                <p className='small-text'>{community}</p>
+                {/* <p className='small-text'>{community}</p> */}
                 <p className='small-text'>{country}, {city}</p>
             </div>
             <div className="matchesContainer__profile--check mt-10">
