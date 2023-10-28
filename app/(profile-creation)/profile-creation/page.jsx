@@ -178,7 +178,7 @@ const ProfileCreation = () => {
         createProfile({
           location: { city, residencyStatus: residency },
           family: { livingWith: livesWithFamily, children: hasChildren },
-          basicInfo: { maritalStatus, diet, height, weight },
+          basicInfo: { maritalStatus, diet, height, weight, bloodGroup },
 
           community: { nativeLanguage: motherTongue },
           bloodGroup,

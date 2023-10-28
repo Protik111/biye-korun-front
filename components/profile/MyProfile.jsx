@@ -44,7 +44,7 @@ const MyProfile = () => {
 
   const {
     location: { city, residencyStatus, zipCode, country } = {},
-    doctrine: { caste, motherTongue } = {},
+    community: { religion, language, nativeLanguage } = {},
     education: { college, education } = {},
     about: { aboutMe } = {},
     family: {
@@ -78,7 +78,7 @@ const MyProfile = () => {
     lastName,
     userId,
     postedBy,
-    religion,
+
     community,
     // country,
   } = userInfo || {};
@@ -398,7 +398,7 @@ const MyProfile = () => {
           <div className="religious-background info-section mt-20">
             <div className="flex justify-between align-center">
               <Tooltip label="Religion" color="red">
-                <h3 className="secondary-text">Religion</h3>
+                <h3 className="secondary-text">Community</h3>
               </Tooltip>
 
               <Button
@@ -421,11 +421,14 @@ const MyProfile = () => {
                 </div>
                 <div className="single-item">
                   <p className="left">Language</p>
-                  {/* <p className="right"> {community?.join(", ")} </p> */}
+                  <p className="right">
+                    {" "}
+                    {language?.join(", ") || notSpecfied}{" "}
+                  </p>
                 </div>
                 <div className="single-item">
                   <p className="left">Native Language</p>
-                  <p className="right"> {motherTongue}</p>
+                  <p className="right"> {nativeLanguage || notSpecfied}</p>
                 </div>
               </div>
             </div>
@@ -616,7 +619,8 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Marital Status</p>
                     <p className="right">
-                      <span></span> {basicDetails?.maritalStatus?.join(", ")}
+                      <span></span>{" "}
+                      {basicDetails?.maritalStatus?.join(", ") || notSpecfied}
                     </p>
                   </div>
                 </div>
@@ -646,7 +650,18 @@ const MyProfile = () => {
                 <div>
                   <div className="single-item">
                     <p className="left">Religion</p>
-                    <p className="right"> Islam </p>
+                    <p className="right">
+                      {" "}
+                      {communityData?.religion.map((item, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            {item}
+                            {index !== communityData?.religion.length - 1 &&
+                              ", "}
+                          </React.Fragment>
+                        );
+                      })}{" "}
+                    </p>
                   </div>
 
                   <div className="single-item">

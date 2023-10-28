@@ -153,7 +153,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
             name="diet"
           >
             <div className="flex flex-gap-10 flex-wrap mt-5">
-              <Chip variant="filled" color="pink" value="Veg">
+              <Chip variant="filled" color="pink" value="Vegetarian">
                 Vegetarian
               </Chip>
               <Chip variant="filled" color="pink" value="Non-Veg">
