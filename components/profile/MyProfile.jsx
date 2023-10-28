@@ -367,7 +367,11 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Date of Birth</p>
                   <p className="right">
-                    {format(new Date(dateOfBirth), "MM/dd/yyyy")}
+                    {console.log("dateOfBirth", dateOfBirth)}
+                    {format(
+                      new Date(dateOfBirth === undefined ? null : dateOfBirth),
+                      "MM/dd/yyyy"
+                    )}
                   </p>
                 </div>
                 <div className="single-item">

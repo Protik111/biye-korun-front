@@ -47,7 +47,7 @@ const Step1 = ({
     bloodGroup,
   } = formValues;
 
-  const { basicInfo: { country } = {} } = userInfo;
+  const { location: { country } = {} } = userInfo;
   const { state } = data2;
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const Step1 = ({
     }
 
     if (!motherTongue) {
-      errors.motherTongue = "Mother Tongue is required";
+      errors.motherTongue = "Native Language is required";
     }
 
     setFormErrors(errors);
