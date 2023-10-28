@@ -45,7 +45,14 @@ const MyProfile = () => {
   const {
     location: { city, residencyStatus, zipCode, country } = {},
     community: { religion, language, nativeLanguage } = {},
-    education: { college, education } = {},
+    educationCareer: {
+      education,
+      college,
+      income: { min, max } = {},
+      occupation,
+      employer,
+      workingWith,
+    } = {},
     about: { aboutMe } = {},
     family: {
       familyCountry,
@@ -64,12 +71,7 @@ const MyProfile = () => {
       bloodGroup,
       gender,
     } = {},
-    profession: {
-      employer,
-      income: { min, max } = {},
-      occupation,
-      workingWith,
-    } = {},
+
     phone,
     profilePicture,
     // profilePicture: { url } = { url: null },

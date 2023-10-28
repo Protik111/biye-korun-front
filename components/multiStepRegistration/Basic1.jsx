@@ -29,7 +29,7 @@ const Basic1 = () => {
       <Select
         size="md"
         placeholder="Select"
-        label="Profile For "
+        label="Profile For"
         // styles={{ label: labelStyles }}
         data={profileFor}
         value={data.basic1postedBy}

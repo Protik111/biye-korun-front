@@ -57,18 +57,18 @@ const EducationCareer = ({ closeModal5 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const {
-    education: { education, college },
-    profession: {
-      employer,
-      //   income: { min, max } = {},
+    educationCareer: {
+      education,
+      college,
       income,
       occupation,
+      employer,
       workingWith,
     } = {},
   } = userInfo || {};
 
   const [loading, setLoading] = useState(false);
-
+  const [errors, setErrors] = useState({});
   const [formValues, setFormValues] = useState({
     employer: employer ? employer : "",
     education: education ? education : "",
@@ -87,7 +87,6 @@ const EducationCareer = ({ closeModal5 }) => {
   };
 
   const handleFormChange = (name, value) => {
-    console.log("154", name, value);
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
@@ -105,28 +104,32 @@ const EducationCareer = ({ closeModal5 }) => {
     } = formValues;
 
     const data = {
-      education: { education, college },
-      profession: {
-        employer,
+      educationCareer: {
+        education,
+        college,
         income,
         occupation,
+        employer,
         workingWith,
       },
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal5();
-        }, 4000);
+        closeModal5();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
   useEffect(() => {

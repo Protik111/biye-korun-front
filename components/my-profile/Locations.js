@@ -73,7 +73,7 @@ const LocationsModal = ({ closeModal6 }) => {
   const [selectedCity, setSelectedCity] = useState(city);
 
   const [loading, setLoading] = useState(false);
-
+  const [errors, setErrors] = useState({});
   const [formValues, setFormValues] = useState({
     zipCode: zipCode ? zipCode : "",
     residencyStatus: residencyStatus ? residencyStatus : "",
@@ -119,18 +119,21 @@ const LocationsModal = ({ closeModal6 }) => {
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal6();
-        }, 4000);
+        closeModal6();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
 
