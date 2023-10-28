@@ -88,25 +88,25 @@ const AcceptedList = () => {
                   <Text size="sm" className="flex flex-column">
                     <div>
                       <b> Age </b> :{" "}
-                      {calculateAge(item?.requester?.dateOfBirth)} yrs
+                      {calculateAge(item?.requester?.basicInfo?.dateOfBirth)} yrs
                     </div>
                     <div>
                       <b>Height</b> :{" "}
-                      {heightCalculator(item?.requester?.appearance?.height)}
+                      {heightCalculator(item?.requester?.basicInfo?.height)}
                     </div>
                     <div>
-                      <b>Religion</b>: {item?.requester?.religion}
+                      <b>Religion</b>: {item?.recipient?.community?.religion}
                     </div>
-                    {item?.requester?.doctrine?.motherTongue && (
+                    {item?.recipient?.community?.nativeLanguage && (
                       <div>
                         <b>Native Language</b>:{" "}
-                        {item?.requester?.doctrine?.motherTongue}
+                        {item?.recipient?.community?.nativeLanguage}
                       </div>
                     )}
 
                     {/* <div>{item?.requester?.doctrine?.caste} </div> */}
                     <div>
-                      <b>Country</b>: {item?.requester?.country}
+                      <b>Country</b>: {item?.recipient?.location?.country}
                     </div>
                     <br />
                   </Text>
