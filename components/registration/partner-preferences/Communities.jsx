@@ -84,7 +84,7 @@ function Communities({ formData, setFormData }) {
                 name="religion"
                 defaultValue={formData.religion}
                 onChange={(event) => handleFormChange("religion", event)}
-                // sx={selectMobileStyles}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -107,8 +107,8 @@ function Communities({ formData, setFormData }) {
                 value={formData.nativeLanguage}
                 onChange={(event) => handleFormChange("nativeLanguage", event)}
                 searchable
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -121,7 +121,7 @@ function Communities({ formData, setFormData }) {
                 className="mb-10 mt-15"
                 onClick={() => setValue("")}
               >
-                Save & Close
+                Close
               </Button>
             </div>
           )}

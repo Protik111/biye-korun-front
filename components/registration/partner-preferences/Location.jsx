@@ -132,8 +132,8 @@ function Location({ formData, setFormData }) {
                 name="livingIn"
                 value={formData.livingIn}
                 onChange={(event) => handleFormChange("livingIn", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -187,8 +187,8 @@ function Location({ formData, setFormData }) {
                 name="residency"
                 defaultValue={formData.residency}
                 onChange={(event) => handleFormChange("residency", event)}
-                // style={{ width: '180px' }}
-                // sx={selectMobileStyles}
+              // style={{ width: '180px' }}
+              // sx={selectMobileStyles}
               />
             </Accordion.Panel>
           </Accordion.Item>
@@ -201,7 +201,7 @@ function Location({ formData, setFormData }) {
                 className="mb-10 mt-15"
                 onClick={() => setValue("")}
               >
-                Save & Close
+                Close
               </Button>
             </div>
           )}

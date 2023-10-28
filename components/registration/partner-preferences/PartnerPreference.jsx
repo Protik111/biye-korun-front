@@ -47,7 +47,7 @@ const PartnerPreference = ({
   } =
     // = (userInfo?.partnerpreference || {}).basicDetails || {}
     userInfo?.partnerpreference || {};
-  console.log("90", userInfo?.partnerpreference);
+  // console.log("90", userInfo?.partnerpreference);
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
