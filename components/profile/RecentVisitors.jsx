@@ -31,7 +31,7 @@ const RecentVisitors = ({ profile, refetch }) => {
     );
   };
 
-  // console.log('profile', profile);
+  console.log('profile', profile);
 
   const { friendships, userId } = profile?.owner || {};
 
@@ -63,8 +63,8 @@ const RecentVisitors = ({ profile, refetch }) => {
           href={`/view-profile/${profile?.owner?._id}`}
         >
           <h3>{profile?.owner?.firstName + " " + profile?.owner?.lastName}</h3>
-          <p>Age: {calculateAge(profile?.owner?.dateOfBirth)} </p>
-          <p>Height: {heightCalculator(profile?.owner?.appearance?.height)} </p>
+          <p>Age: {calculateAge(profile?.owner?.basicInfo?.dateOfBirth)} </p>
+          <p>Height: {heightCalculator(profile?.owner?.basicInfo?.height)} </p>
           <p>
             {/* Native Language: */}
             {/* {profile?.owner?.community} */}

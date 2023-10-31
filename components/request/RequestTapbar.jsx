@@ -26,7 +26,7 @@ const RequestTapbar = () => {
               value="recieved"
               onClick={() => handleChangeTab("recieved")}
             >
-              Recieved
+              Received
             </Tabs.Tab>
             <Tabs.Tab
               sx={fontSizeMnd}
