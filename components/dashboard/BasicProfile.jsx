@@ -201,7 +201,7 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
               // disabled
               rightIcon={<IconMessage2 />}
               sx={{ backgroundColor: "#e64980", color: "white" }}
-              // color="pink"
+              color="pink"
               variant="white"
               onClick={() => notifyError("Coming soon!")}
             >
