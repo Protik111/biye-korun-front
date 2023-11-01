@@ -217,7 +217,7 @@ const MyDashboard = () => {
               orientation="vertical"
             />
             <div>
-              <Link href="/requests" style={{ color: "black" }}>
+              <Link href="/accepted" style={{ color: "black" }}>
                 <h2>{acceptedCount || 0}</h2>
                 <p>Accepted Invitations</p>
               </Link>

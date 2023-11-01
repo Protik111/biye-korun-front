@@ -117,7 +117,7 @@ const RecievedList = () => {
                       radius="sm"
                       fullWidth
                     >
-                      Decline request
+                      Decline Request
                     </Button>
                     <Button
                       onClick={() => handleDeclineAccept(item?._id, "accepted")}
@@ -126,7 +126,7 @@ const RecievedList = () => {
                       radius="sm"
                       fullWidth
                     >
-                      Accept request
+                      Accept Request
                     </Button>
                   </div>
                 </Card>

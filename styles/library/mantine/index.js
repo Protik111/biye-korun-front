@@ -4,6 +4,11 @@ export const labelStyles = {
   color: "white",
 };
 
+
+export const primaryColor = '#FD123F';
+export const primaryColorRGBA = "rgba(253, 18, 63, 1)"
+
+
 export const selectMobileStyles = {
   width: "150px",
   "@media (max-width: 640px)": {

@@ -6,6 +6,8 @@ import { Avatar, Button } from "@mantine/core";
 import LoaderWithText from "../global/LoaderWithText";
 import Link from "next/link";
 import { DisableRightClick } from "@/utils/DisableRightClick";
+import { IconMessage2, IconRocket, IconX } from "@tabler/icons-react";
+import { notifyError } from "@/utils/showNotification";
 
 const message = {
   success: "Invitation sent successfully!",
@@ -42,6 +44,48 @@ const RecentVisitors = ({ profile, refetch }) => {
   const status = friendshipsStatus !== undefined ? friendshipsStatus : null;
 
   // console.log('friendshipsStatus, status', status);
+
+  const handleDeclineAccept = (requisterId, status) => {
+    let statusGlobal = "";
+
+    if (status == "accepted") {
+      statusGlobal = "accepted";
+    }
+    if (status == "declined") {
+      statusGlobal = "declined";
+    }
+    if (status == "cancel") {
+      statusGlobal = "cancel";
+    }
+
+    const payload = {
+      status: statusGlobal,
+      friendshipId: requisterId,
+    };
+
+    // console.log('payload', payload);
+    axios
+      .patch(`user/updatefriends`, payload)
+      .then((res) => {
+        if (statusGlobal === "accepted") {
+          notifySuccess("Request accepted successfully!");
+          refetch();
+        }
+
+        if (statusGlobal === "declined") {
+          notifySuccess("Request declined successfully!");
+          refetch();
+        }
+
+        if (statusGlobal === "cancel") {
+          notifySuccess("Request cancelled successfully!");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        notifyError(err.response.data.message);
+      });
+  };
 
   return (
     <div className="single container-box-bg py-25">
@@ -82,7 +126,7 @@ const RecentVisitors = ({ profile, refetch }) => {
                 Connect Now
             </Button> */}
 
-      {!status ? (
+      {/* {!status ? (
         <Button
           size="xs"
           radius="xl"
@@ -116,7 +160,85 @@ const RecentVisitors = ({ profile, refetch }) => {
         >
           Request Pending
         </Button>
-      )}
+      )} */}
+
+      {!friendships ? (
+        <Button
+          rightIcon={<IconRocket />}
+          sx={{ backgroundColor: "#e64980", color: "white" }}
+          size="xs"
+          radius="xl"
+          color="pink"
+          variant="white"
+          disabled={loading}
+          onClick={() => handleSendRequest(profile?.owner?._id)}
+        >
+          {loading ? (
+            <>
+              <LoaderWithText
+                text="Connecting.."
+                color="white"
+              ></LoaderWithText>
+            </>
+          ) : (
+            <>Send Request</>
+          )}
+        </Button>
+      ) : friendships?.status === "pending" ? (
+        <Button
+          // disabled
+          size="xs"
+          radius="xl"
+          rightIcon={<IconX />}
+          // sx={{ backgroundColor: "#e64980", color: "white" }}
+          color="pink"
+          variant="outline"
+          onClick={() => handleDeclineAccept(friendships?._id, "cancel")}
+        >
+          Cancel Request
+        </Button>
+      ) : friendships?.status === "accepted" ? (
+        <Button
+          // disabled
+          size="xs"
+          radius="xl"
+          rightIcon={<IconMessage2 size={16} />}
+          // sx={{ backgroundColor: "#e64980", color: "white" }}
+          // color="pink"
+          variant="white"
+          onClick={() => notifyError("Coming soon!")}
+        >
+          Message
+        </Button>
+      ) : friendships?.status === "declined" ? (
+        <Button
+          size="xs"
+          radius="xl"
+          disabled
+          rightIcon={<IconRocket />}
+          sx={{ backgroundColor: "#e64980", color: "white" }}
+          color="pink"
+          variant="white"
+        // onClick={handleSendRequest}
+        >
+          Declined Request
+        </Button>
+      )
+        :
+        <Link href={`/view-profile/${_id}`}>
+          <Button
+            size="xs"
+            radius="xl"
+            rightIcon={<IconRocket />}
+            sx={{ backgroundColor: "#e64980", color: "white" }}
+            color="pink"
+            variant="white"
+          // onClick={handleSendRequest}
+          >
+            View Profile
+          </Button>
+        </Link>
+      }
     </div>
   );
 };
