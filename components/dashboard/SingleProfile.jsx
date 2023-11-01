@@ -1,5 +1,5 @@
 import useAxiosPost from "@/hooks/axios/useAxiosPost";
-import { imageUrl, imageUrlFemale } from "@/staticData/image";
+import { imageUrl, imageUrlFemale, notSpecfied } from "@/staticData/image";
 import { calculateAge } from "@/utils/calculateAge";
 import { heightCalculator } from "@/utils/heightCalculator";
 import {
@@ -17,12 +17,16 @@ import {
   IconLock,
   IconMessages,
   IconRocket,
+  IconX,
 } from "@tabler/icons-react";
 import React from "react";
 import LoaderWithText from "../global/LoaderWithText";
 import Link from "next/link";
 import { DisableRightClick } from "@/utils/DisableRightClick";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { notifyError, notifySuccess } from "@/utils/showNotification";
+import { IconMessage2 } from "@tabler/icons-react";
 
 const message = {
   success: "Invitation sent successfully!",
@@ -38,21 +42,21 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     postData: sendPostRequest,
   } = useAxiosPost("user/single-invite", null, message);
 
-  // console.log("profile", profile);
 
   const {
-    location: { city, residencyStatus } = {},
-    doctrine: { caste, motherTongue } = {},
-    appearance: { height } = {},
+    location: { city, residencyStatus, country } = {},
+    // doctrine: { caste } = {},
+    // appearance: { height } = {},
     education: { college, education } = {},
     family: { children, livingWith } = {},
-    lifestyle: { diet, maritalStatus } = {},
+    basicInfo: { diet, maritalStatus, height, dateOfBirth, bloodGroup } = {},
     profession: {
       employer,
-      income: { min, max } = {},
+      // income: { min, max } = {},
       occupation,
       workingWith,
     } = {},
+    educationCareer: { income: { min, max } = {} } = {},
     trait: { aboutMe } = {},
     phone,
     profilePicture: { url, isBlur, isVisible } = {},
@@ -60,11 +64,9 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     lastName,
     friendships,
     userId,
-    dateOfBirth,
     postedBy,
-    religion,
-    community,
-    country,
+    community: { language, nativeLanguage, religion },
+    // country,
     _id,
   } = profile || {};
 
@@ -89,7 +91,60 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
     );
   };
 
-  // console.log('c', community);
+
+  const handleDeclineAccept = (requisterId, status) => {
+    let statusGlobal = "";
+
+    if (status == "accepted") {
+      statusGlobal = "accepted";
+    }
+    if (status == "declined") {
+      statusGlobal = "declined";
+    }
+    if (status == "cancel") {
+      statusGlobal = "cancel";
+    }
+
+    const payload = {
+      status: statusGlobal,
+      friendshipId: requisterId,
+    };
+
+    // console.log('payload', payload);
+    axios
+      .patch(`user/updatefriends`, payload)
+      .then((res) => {
+        if (statusGlobal === "accepted") {
+          notifySuccess("Request accepted successfully!");
+          refetch();
+        }
+
+        if (statusGlobal === "declined") {
+          notifySuccess("Request declined successfully!");
+          refetch();
+        }
+
+        if (statusGlobal === "cancel") {
+          notifySuccess("Request cancelled successfully!");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        notifyError(err.response.data.message);
+      });
+  };
+
+
+  let friendShipStatus = false;
+  const statusList = ['pending', 'accepted', 'declined'];
+  if (statusList.includes(friendships?.status)) {
+    friendShipStatus = true
+  }
+
+  // console.log("profile", profile);
+  // console.log('friendships', friendships);
+  // console.log('friendShipStatus', friendShipStatus);
+
 
   return (
     <div className="singleProfile container-box-bg p-15">
@@ -150,18 +205,53 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                   <>Send Request</>
                 )}
               </Button>
-            ) : (
+            ) : friendships?.status === "pending" ? (
+              <Button
+                // disabled
+                rightIcon={<IconX />}
+                // sx={{ backgroundColor: "#e64980", color: "white" }}
+                color="pink"
+                variant="outline"
+                onClick={() => handleDeclineAccept(friendships?._id, "cancel")}
+              >
+                Cancel Request
+              </Button>
+            ) : friendships?.status === "accepted" ? (
+              <Button
+                // disabled
+                rightIcon={<IconMessage2 />}
+                sx={{ backgroundColor: "#e64980", color: "white" }}
+                color="pink"
+                variant="filled"
+                onClick={() => notifyError("Coming soon!")}
+              >
+                Message
+              </Button>
+            ) : friendships?.status === "declined" ? (
               <Button
                 disabled
                 rightIcon={<IconRocket />}
                 sx={{ backgroundColor: "#e64980", color: "white" }}
                 color="pink"
                 variant="white"
-                // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
               >
-                Request Pending
+                Declined Request
               </Button>
-            )}
+            )
+              :
+              <Link href={`/view-profile/${_id}`}>
+                <Button
+                  rightIcon={<IconRocket />}
+                  sx={{ backgroundColor: "#e64980", color: "white" }}
+                  color="pink"
+                  variant="white"
+                // onClick={handleSendRequest}
+                >
+                  View Profile
+                </Button>
+              </Link>
+            }
           </div>
           <div className="flex align-center mt-15">
             <div className="flex align-center flex-gap-5 flex-item">
@@ -208,7 +298,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 </List.Item>
               )} */}
 
-              {motherTongue && (
+              {nativeLanguage && (
                 <List.Item>
                   {/* <b>Native Language:</b>{" "}
                 {community?.map((item, i) => (
@@ -216,7 +306,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                     {item} {community.length - 1 !== i ? "," : ""}{" "}
                   </>
                 ))} */}
-                  <b>Native Language:</b> {motherTongue || ""}
+                  <b>Native Language:</b> {nativeLanguage || ""}
                 </List.Item>
               )}
 
@@ -267,7 +357,7 @@ const SingleProfile = ({ profile, loading: loadingPrev, refetch }) => {
                 </List.Item>
               ) : (
                 <List.Item>
-                  <b>Yearly Income: </b> ${"1000"} - ${"30000"}
+                  <b>Yearly Income: </b> {notSpecfied}
                 </List.Item>
               )}
             </List>

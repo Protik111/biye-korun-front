@@ -12,7 +12,7 @@ import axios from "axios";
 
 const AcceptedList = () => {
   const { data, error, loading, refetch } = useAxios(
-    "user/friendship/accepted"
+    "user/connections"
   );
 
   const skeletons = new Array(5).fill();
@@ -51,6 +51,8 @@ const AcceptedList = () => {
       });
   };
 
+  console.log('data', data);
+
   return (
     <>
       <div className="container recentlyViewed">
@@ -60,10 +62,10 @@ const AcceptedList = () => {
               <div key={i} className="recentlyViewed__singleContainer">
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                   <Card.Section className="pointer">
-                    <Link href={`/view-profile/${item?.requester?._id}`}>
+                    <Link href={`/view-profile/${item?._id}`}>
                       <img
                         src={
-                          item?.requester?.profilePicture?.url?.large ||
+                          item?.profilePicture?.url?.large ||
                           imageUrl
                         }
                         height={250}
@@ -76,9 +78,9 @@ const AcceptedList = () => {
 
                   <Group position="apart" mt="md" mb="xs">
                     <Text weight={500}>
-                      {item?.requester?.firstName +
+                      {item?.firstName +
                         " " +
-                        item?.requester?.lastName}
+                        item?.lastName}
                     </Text>
                     {/* <Badge color="pink" variant="light" size="md">
                       Online 2h ago 
@@ -88,14 +90,14 @@ const AcceptedList = () => {
                   <Text size="sm" className="flex flex-column">
                     <div>
                       <b> Age </b> :{" "}
-                      {calculateAge(item?.requester?.basicInfo?.dateOfBirth)} yrs
+                      {calculateAge(item?.basicInfo?.dateOfBirth)} yrs
                     </div>
                     <div>
                       <b>Height</b> :{" "}
-                      {heightCalculator(item?.requester?.basicInfo?.height)}
+                      {heightCalculator(item?.basicInfo?.height)}
                     </div>
                     <div>
-                      <b>Religion</b>: {item?.recipient?.community?.religion}
+                      <b>Religion</b>: {item?.community?.religion}
                     </div>
                     {item?.recipient?.community?.nativeLanguage && (
                       <div>
@@ -104,16 +106,16 @@ const AcceptedList = () => {
                       </div>
                     )}
 
-                    {/* <div>{item?.requester?.doctrine?.caste} </div> */}
+                    {/* <div>{item?.doctrine?.caste} </div> */}
                     <div>
-                      <b>Country</b>: {item?.recipient?.location?.country}
+                      <b>Country</b>: {item?.location?.country}
                     </div>
                     <br />
                   </Text>
 
                   {/* <h3 className="text-center pt-15">
                     Connect with{" "}
-                    {item?.requester?.gender === "Male" ? "him" : "her"}?
+                    {item?.gender === "Male" ? "him" : "her"}?
                   </h3> */}
 
                   <div className="flex justify-between flex-gap-5">
@@ -123,7 +125,7 @@ const AcceptedList = () => {
                       fullWidth
                       mt="md"
                       radius="md"
-                      onClick={() => handleDeclineAccept(item?._id, "unfriend")}
+                      onClick={() => handleDeclineAccept(item?.friendshipId, "unfriend")}
                     >
                       Unfriend
                     </Button>

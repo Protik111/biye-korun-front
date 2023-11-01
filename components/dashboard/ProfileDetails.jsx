@@ -6,6 +6,7 @@ import { imageUrl, imageUrlFemale } from '@/staticData/image';
 import useAxios from '@/hooks/axios/useAxios';
 import axios from 'axios';
 import { useState } from 'react';
+import DisplayFormattedContent from '../global/DisplayFormatedContent';
 
 const ProfileDetails = ({ profile }) => {
     const { userInfo } = useSelector(state => state.user);
@@ -14,7 +15,7 @@ const ProfileDetails = ({ profile }) => {
 
     const { expire } = userInfo?.validPackage;
 
-    // console.log('userInfo', userInfo);
+    // console.log('profile', );
 
     const handleContactView = (id) => {
         axios.get(`user/get-contact/${id}`)
@@ -45,7 +46,16 @@ const ProfileDetails = ({ profile }) => {
                         {/* <Badge size='lg' color="pink" className='capitalize'>Profile created by {profile?.postedBy}</Badge> */}
                     </div>
 
-                    <Text size="md" mt={4}>{profile?.trait?.aboutMe}</Text>
+                    {profile?.postedBy == "Myself" &&
+                        <div>
+                            <p className='mt-5 opacity-8'>This profile is created and maintained by F&F.</p>
+                        </div>
+                    }
+
+                    <DisplayFormattedContent markdown={profile?.about?.aboutMe} />
+
+
+                    {/* <Text size="md" mt={4}>{profile?.about?.aboutMe}</Text> */}
                 </Timeline.Item>
 
                 <Timeline.Item bullet={<IconAddressBook size={24} />} title="Contact Details">
@@ -123,18 +133,21 @@ const ProfileDetails = ({ profile }) => {
                     //     <IconCircleCheck size="12" />
                     // }
                     >
-                        {profile?.education?.education && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>Education: {" "}</b>{profile?.education?.education}</List.Item>}
+                        {profile?.educationCareer?.education && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>Education: {" "}</b>{profile?.educationCareer?.education}</List.Item>}
 
-                        {profile?.education?.college && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>College: {" "}</b>{profile?.education?.college}</List.Item>}
+                        {profile?.educationCareer?.college && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconSchool size="18" /></ThemeIcon>}><b>College: {" "}</b>{profile?.educationCareer?.college}</List.Item>}
 
-                        {profile?.profession?.employer && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}><b>Company: {" "}</b> {profile?.profession?.employer}</List.Item>}
+                        {profile?.educationCareer?.employer && <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconArchive size="18" /></ThemeIcon>}><b>Company: {" "}</b> {profile?.educationCareer?.employer}</List.Item>}
 
                         {/* <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}>Earns Upto BDT 40K monthly</List.Item> */}
-                        {(!profile?.profession?.income?.min && profile?.profession?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income: </b>{" "} ${profile?.profession?.income?.max}</List.Item>
+                        {(!profile?.educationCareer?.income?.min && profile?.educationCareer?.income?.max) ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income: </b>{" "} ${profile?.educationCareer?.income?.max}</List.Item>
                             :
-                            profile?.profession?.income?.min ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income:</b>{" "}${profile?.profession?.income?.min} - ${profile?.profession?.income?.max}</List.Item>
+                            profile?.educationCareer?.income?.min ? <List.Item icon={<ThemeIcon color="teal" size={24} radius="xl"> <IconBrandCashapp size="18" /></ThemeIcon>}><b>Income:</b>{" "}${profile?.educationCareer?.income?.min} - ${profile?.educationCareer?.income?.max}</List.Item>
                                 :
-                                <>No Data Available</>}
+                                <></>}
+
+                        {/* Show no data if no properties available */}
+                        {!profile?.educationCareer?.education && !profile?.educationCareer?.college && !profile?.educationCareer?.employer && !profile?.educationCareer?.income?.min && !profile?.educationCareer?.income?.max && <p>No Data Available</p>}
                     </List>
                 </Timeline.Item>
 

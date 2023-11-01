@@ -34,16 +34,16 @@ export const generateNotificationUrl = (type, entityId, text) => {
             url = `/recieved`;
             break;
         case "accepted-request":
-            url = `/requests`;
+            url = `/accepted`;
             break;
         case "declined-request":
-            url = `/requests`;
+            url = `/my-matches`;
             break;
         case "cancel-request":
-            url = `/requests`;
+            url = `/my-matches`;
             break;
         case "unfriend-request":
-            url = `/requests`;
+            url = `/my-matches`;
             break;
         case "profile-view":
             url = `/view-profile/${entityId}`;

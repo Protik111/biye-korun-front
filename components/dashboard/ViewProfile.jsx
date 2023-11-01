@@ -53,7 +53,7 @@ const ViewProfile = () => {
                     {data?.data ? <div className="todaysMatch__wrapper--requestBox">
                         <div className="requestBox-container">
                             <div className="requestPhoto">
-                                <img src={data?.data?.profilePicture?.url?.medium ||  (data?.gender === "male" ? imageUrl : imageUrlFemale)} alt="Request Photo" />
+                                <img src={data?.data?.profilePicture?.url?.medium || (data?.gender === "male" ? imageUrl : imageUrlFemale)} alt="Request Photo" />
                             </div>
                             {/* <div className="text-center">
               <Anchor href="/" target="_blank">
@@ -73,7 +73,7 @@ const ViewProfile = () => {
                     }
 
                     <div className="todaysMatch__wrapper--contentBox">
-                        {data?.data ? <BasicProfile profile={data?.data}></BasicProfile> :
+                        {data?.data ? <BasicProfile profile={data?.data} fetchSingleProfile={refetch}></BasicProfile> :
                             !loading && data?.data ?
                                 <></> :
                                 <div className="container-box-bg p-30">
