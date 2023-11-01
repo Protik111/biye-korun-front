@@ -88,10 +88,13 @@ const LocationsModal = ({ closeModal6 }) => {
   };
   const handleCountryChange = (event) => {
     setSelectedCountry(event);
+    setSelectedState("");
+    setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
     setSelectedState(event);
+    setSelectedCity("");
   };
 
   const handleCityChange = (event) => {
@@ -157,8 +160,8 @@ const LocationsModal = ({ closeModal6 }) => {
 
         setStates(convertedList);
       });
-      //   setSelectedState("");
-      //   setSelectedCity("");
+      // setSelectedState("");
+      // setSelectedCity("");
       setStates([]);
       setCities([]);
     }
@@ -171,7 +174,7 @@ const LocationsModal = ({ closeModal6 }) => {
         setCities(result.data.data);
       });
       setCities([]);
-      //   setSelectedCity("");
+      // setSelectedCity("");
     }
   }, [selectedState]);
   return (
@@ -191,31 +194,37 @@ const LocationsModal = ({ closeModal6 }) => {
         // onChange={(event) => handleFormChange("livingIn", event)}
       />
       <br />
-      <Select
-        searchable
-        size="md"
-        placeholder="Select country"
-        label="State"
-        // data={countries}
-        data={states}
-        name="livingIn"
-        onChange={handleStateChange}
-        value={selectedState}
-      />
+      {selectedCountry && (
+        <Select
+          searchable
+          size="md"
+          placeholder="Select country"
+          label="State"
+          // data={countries}
+          data={states}
+          name="livingIn"
+          onChange={handleStateChange}
+          value={selectedState}
+        />
+      )}
+
       <br />
-      <Select
-        searchable
-        size="md"
-        placeholder="Select country"
-        label="City"
-        // data={countries}
-        data={cities}
-        name="livingIn"
-        onChange={handleCityChange}
-        value={selectedCity}
-        // defaultValue={formData.livingIn}
-        // onChange={(event) => handleFormChange("livingIn", event)}
-      />
+      {selectedCountry && (
+        <Select
+          searchable
+          size="md"
+          placeholder="Select country"
+          label="City"
+          // data={countries}
+          data={cities}
+          name="livingIn"
+          onChange={handleCityChange}
+          value={selectedCity}
+          // defaultValue={formData.livingIn}
+          // onChange={(event) => handleFormChange("livingIn", event)}
+        />
+      )}
+
       <br />
       <TextInput
         label="Zip Code"

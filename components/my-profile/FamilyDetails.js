@@ -99,10 +99,13 @@ const FamilyDetails = ({ closeModal4 }) => {
   };
   const handleCountryChange = (event) => {
     setSelectedCountry(event);
+    setSelectedState("");
+    setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
     setSelectedState(event);
+    setSelectedCity("");
   };
 
   const handleCityChange = (event) => {

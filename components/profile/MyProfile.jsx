@@ -34,6 +34,7 @@ import LoaderWithText from "../global/LoaderWithText";
 import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import DisplayFormattedContent from "../global/DisplayFormatedContent";
 import { Tiptap } from "../global/TipTap";
+import HobbiesAndInterest from "../my-profile/Hobbies";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -43,8 +44,9 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   const {
-    location: { city, residencyStatus, zipCode, country } = {},
+    location: { city, residencyStatus, state, zipCode, country } = {},
     community: { religion, language, nativeLanguage } = {},
+    interestAndMore: { interests } = {},
     educationCareer: {
       education,
       college,
@@ -84,13 +86,14 @@ const MyProfile = () => {
     community,
     // country,
   } = userInfo || {};
-  console.log("Weight", userInfo);
+  console.log("userInfo", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
   const [isModal4Open, setIsModal4Open] = useState(false);
   const [isModal5Open, setIsModal5Open] = useState(false);
   const [isModal6Open, setIsModal6Open] = useState(false);
+  const [isModal7Open, setIsModal7Open] = useState(false);
   const [description, setDescription] = useState(aboutMe);
   const openModal1 = () => setIsModal1Open(true);
   const closeModal1 = () => setIsModal1Open(false);
@@ -104,7 +107,9 @@ const MyProfile = () => {
   const closeModal5 = () => setIsModal5Open(false);
   const openModal6 = () => setIsModal6Open(true);
   const closeModal6 = () => setIsModal6Open(false);
-
+  const openModal7 = () => setIsModal7Open(true);
+  const closeModal7 = () => setIsModal7Open(false);
+  console.log("interest 112", interests);
   const {
     basicDetails,
     educationCareer,
@@ -199,7 +204,7 @@ const MyProfile = () => {
                   <p className="right"> {maritalStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Posted By</p>
+                  <p className="left">Profile For</p>
                   <p className="right"> {postedBy || notSpecfied}</p>
                 </div>
               </div>
@@ -249,6 +254,14 @@ const MyProfile = () => {
                   ></ThemeIconComp>
 
                   <Anchor onClick={openModal3}>Edit Religion</Anchor>
+                </div>
+                <div className="flex align-center flex-gap-5 flex-basis-200">
+                  <ThemeIconComp
+                    iconComp={<IconPlayerRecordFilled size="10" />}
+                    size="10"
+                  ></ThemeIconComp>
+
+                  <Anchor onClick={openModal7}>Hobbies & Interests</Anchor>
                 </div>
               </div>
 
@@ -555,14 +568,16 @@ const MyProfile = () => {
             <div className="profile-info mt-10">
               <div>
                 <div className="single-item">
-                  <p className="left">Current Residence</p>
-                  <p className="right">
-                    {city}, {country}
-                  </p>
+                  <p className="left">Current Country</p>
+                  <p className="right">{country || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">State of Residence</p>
-                  <p className="right"> {city}</p>
+                  <p className="left">Current State</p>
+                  <p className="right">{state || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">City of Residence</p>
+                  <p className="right"> {city || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Residency Status</p>
@@ -572,6 +587,60 @@ const MyProfile = () => {
                   <p className="left">ZIP Code</p>
                   <p className="right"> {zipCode || notSpecfied}</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hobbies */}
+          <div className="family-details info-section mt-20">
+            <div className="flex justify-between align-center">
+              <Tooltip label="Hobbies & Interests" color="red">
+                <h3 className="secondary-text">Hobbies & Interests</h3>
+              </Tooltip>
+
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal7}
+              >
+                Edit
+              </Button>
+            </div>
+            <Divider mt={5}></Divider>
+            <div className="profile-info mt-10">
+              <div>
+                {interests?.map((category) => (
+                  <div className="single-item" key={category.id}>
+                    <p className="left">{category.categories}</p>
+                    <p className="right">
+                      {category?.hobbies?.map((hobby, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            {hobby}
+                            {index !== category.hobbies.length - 1 && (
+                              <span>, </span>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                    </p>
+                  </div>
+                ))}
+                {/* <div className="single-item">
+                  <p className="left">Fun</p>
+                  <p className="right"> {city || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">Fitness</p>
+                  <p className="right"> {residencyStatus || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">Others Interests</p>
+                  <p className="right"> {zipCode || notSpecfied}</p>
+                </div> */}
               </div>
             </div>
           </div>
@@ -882,6 +951,13 @@ const MyProfile = () => {
 
       <ReuseModal isOpen={isModal6Open} onClose={closeModal6} title="Locations">
         <LocationsModal closeModal6={closeModal6} />
+      </ReuseModal>
+      <ReuseModal
+        isOpen={isModal7Open}
+        onClose={closeModal7}
+        title="Hobbies & Interests"
+      >
+        <HobbiesAndInterest closeModal7={closeModal7} />
       </ReuseModal>
     </div>
   );
