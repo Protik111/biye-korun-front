@@ -203,8 +203,8 @@ const RecentVisitors = ({ profile, refetch }) => {
           size="xs"
           radius="xl"
           rightIcon={<IconMessage2 size={16} />}
-          // sx={{ backgroundColor: "#e64980", color: "white" }}
-          // color="pink"
+          sx={{ backgroundColor: "#e64980", color: "white" }}
+          color="pink"
           variant="white"
           onClick={() => notifyError("Coming soon!")}
         >
