@@ -10,17 +10,43 @@ import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { Button, Select, TextInput, Chip } from "@mantine/core";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import LoaderWithText from "../global/LoaderWithText";
+import { loadUserData } from "@/redux/features/user/userSlice";
 
-const Hobbies = () => {
+const list = [
+  {
+    title: "Creative",
+    chips: creativeHobbies,
+  },
+  {
+    title: "Fun",
+    chips: funs,
+  },
+  {
+    title: "Fitness",
+    chips: fitness,
+  },
+  {
+    title: "Others Interests",
+    chips: otherInterests,
+  },
+];
+
+const HobbiesAndInterest = ({ closeModal7 }) => {
+  const dispatch = useDispatch();
   const { userInfo, message } = useSelector((state) => state.user);
-
+  const { interestAndMore: { interests } = {} } = userInfo || {};
   const [hobbies, setHobbies] = useState([]);
+  const [internest, setInterest] = useState([]);
   const [hobbiesLoading, setHobbiesLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // console.log('userInfo', userInfo);
+  // console.log("interests 48", interests);
+  // console.log("hobbies", hobbies);
 
   const handleFormChange = (e, val) => {
     // console.log('e, val', e, val);
@@ -63,61 +89,69 @@ const Hobbies = () => {
   };
   // console.log(hobbies)
 
-  const list = [
-    {
-      title: "Creative",
-      chips: creativeHobbies,
-    },
-    {
-      title: "Fun",
-      chips: funs,
-    },
-    {
-      title: "Fitness",
-      chips: fitness,
-    },
-    {
-      title: "Others Interests",
-      chips: otherInterests,
-    },
-  ];
-
   const hanldeSubmit = () => {
-    setHobbiesLoading(true);
+    const data = {
+      interestAndMore: { interests: hobbies },
+    };
+    setLoading(true);
     axios
-      .patch("user/hobbies-interest", { interests: hobbies })
+      .patch("/user/update-profile", data)
       .then((res) => {
-        notifySuccess("Hobbies are added successfully!");
-        setHobbiesLoading(false);
-        setTimeout(() => {
-          router.push("/registration/partner-preferences");
-        }, 500);
+        setLoading(false);
+        notifySuccess("Profile updated successfully!");
+        dispatch(loadUserData());
+        closeModal7();
       })
-      .catch((err) => {
-        setHobbiesLoading(false);
-        console.log(err.response.data);
-        notifyError(err.response.data.message);
+      .catch((error) => {
+        setLoading(false);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
+
+  const getDefaultValues = (categoryTitle) => {
+    const userInterestsInCategory = interests?.filter(
+      (interest) => interest.categories === categoryTitle
+    );
+
+    if (userInterestsInCategory.length > 0) {
+      return userInterestsInCategory[0].hobbies;
+    }
+
+    return [];
+  };
+
+  // Use useEffect to set default values once the interests data is available
+  useEffect(() => {
+    if (interests) {
+      const defaultHobbies = list.map((category) => ({
+        categories: category.title,
+        hobbies: getDefaultValues(category.title),
+      }));
+      setHobbies(defaultHobbies);
+    }
+  }, [interests]);
 
   // console.log('hobbies', hobbies);
   return (
     <div className="hobbies">
-      <h2 className="text-center py-15">
-        Now let's add your hobbies & interests
-      </h2>
-
       {list?.map((list) => (
         <div className="hobbies__creative box-shadow rounded-10 p-30 mt-15">
           <h3>{list?.title}</h3>
           <Chip.Group
             multiple={true}
-            // value={formValues.hasChildren}
+            value={
+              hobbies.find((h) => h.categories === list.title)?.hobbies || []
+            }
             onChange={(e) => handleFormChange(list?.title, e)}
             name="hobbies"
             className="mt-5"
           >
-            <div className="flex flex-gap-10 flex-wrap max-w-75 mt-15">
+            <div className="flex flex-gap-10 flex-wrap max-w-100 mt-15">
               {list?.chips?.map((item, i) => (
                 <>
                   <Chip variant="filled" size="md" color="pink" value={item}>
@@ -134,18 +168,18 @@ const Hobbies = () => {
         </div>
       ))}
 
-      <div className="flex justify-center mt-30">
+      <div className="flex justify-end mt-10">
         <Button
-          disabled={hobbiesLoading}
+          variant="filled"
+          color="violet"
+          size="sm"
           onClick={() => hanldeSubmit()}
-          style={btnBackground}
-          size="md"
         >
-          Save & Continue
+          {loading ? <LoaderWithText text="Saving.."></LoaderWithText> : "Save"}
         </Button>
       </div>
     </div>
   );
 };
 
-export default Hobbies;
+export default HobbiesAndInterest;
