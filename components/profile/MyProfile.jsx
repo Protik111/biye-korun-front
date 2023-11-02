@@ -526,7 +526,7 @@ const MyProfile = () => {
                   <p className="left">Yearly Income - Min/Max</p>
                   <p className="right">
                     {"$" + min + "" || notSpecfied} /{" "}
-                    {"$" + max + "" || notSpecfied}
+                    {`${max === "Above" ? "" : "$"}` + max + "" || notSpecfied}
                   </p>
                 </div>
 

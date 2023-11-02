@@ -54,10 +54,10 @@ const ProfileTapbar = () => {
             </Tabs.Tab>
             <Tabs.Tab
               sx={fontSizeMnd}
-              value="settings"
-              onClick={() => handleChangeTab("settings")}
+              value="my-matches"
+              onClick={() => handleChangeTab("my-matches")}
             >
-              Settings
+              My Matches
             </Tabs.Tab>
           </Tabs.List>
         </Tabs>
