@@ -28,9 +28,13 @@ import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { useRouter } from "next/navigation";
 import { btnBackground } from "@/styles/library/mantine";
 import { imageUrl } from "@/staticData/image";
-import { generateNotificationText, generateNotificationUrl, notificationMarkRead } from "@/helper/notification";
+import {
+  generateNotificationText,
+  generateNotificationUrl,
+  notificationMarkRead,
+} from "@/helper/notification";
 import { DisableRightClick } from "@/utils/DisableRightClick";
-import dayjs from "dayjs";// import relativeTime plugin
+import dayjs from "dayjs"; // import relativeTime plugin
 import relativeTime from "dayjs/plugin/relativeTime";
 import { updateNotification } from "@/redux/features/notification/notificationSlice";
 import axios from "axios";
@@ -48,7 +52,6 @@ function Navbar() {
   const router = useRouter();
 
   const { profilePicture } = userInfo || {};
-
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -132,51 +135,91 @@ function Navbar() {
               </Link>
             ) : (
               <div className="">
-                <Menu position="bottom-end" offset={2} withArrow arrowPosition="center" width={380} shadow="md">
+                <Menu
+                  position="bottom-end"
+                  offset={2}
+                  withArrow
+                  arrowPosition="center"
+                  width={380}
+                  shadow="md"
+                >
                   <Menu.Target className="mr-20">
-                    <Indicator color="red" inline label={notifications?.filter(item => !item.opened).length} size={16}>
-                      <IconBell cursor="pointer" size="25" color="white"></IconBell>
+                    <Indicator
+                      color="red"
+                      inline
+                      label={
+                        notifications?.filter((item) => !item.opened).length
+                      }
+                      size={16}
+                    >
+                      <IconBell
+                        cursor="pointer"
+                        size="25"
+                        color="white"
+                      ></IconBell>
                     </Indicator>
                   </Menu.Target>
 
-                  <Menu.Dropdown >
-
-                    {
-                      notifications?.map((item, i) => <Menu.Item className={`${item.opened ? 'noti-light' : 'noti-gray'}`} onClick={() => notificationMarkRead(item)}>
-                        <div className="flex align-center flex-gap-15">
-                          <div>
-                            <Avatar
-                              onContextMenu={(e) => DisableRightClick(e)}
-                              sx={{
-                                objectFit: "containe",
-                                borderRadius: "50%",
-                                height: "35px",
-                                width: "35px",
-                              }}
-                              mx="auto"
-                              size="sm"
-                              src={item?.userFrom?.profilePicture?.url?.small || imageUrl}
-                              alt={item?.name}
-                            />
+                  <Menu.Dropdown>
+                    {notifications
+                      ?.map((item, i) => (
+                        <Menu.Item
+                          className={`${
+                            item.opened ? "noti-light" : "noti-gray"
+                          }`}
+                          onClick={() => notificationMarkRead(item)}
+                        >
+                          <div className="flex align-center flex-gap-15">
+                            <div>
+                              <Avatar
+                                onContextMenu={(e) => DisableRightClick(e)}
+                                sx={{
+                                  objectFit: "containe",
+                                  borderRadius: "50%",
+                                  height: "35px",
+                                  width: "35px",
+                                }}
+                                mx="auto"
+                                size="sm"
+                                src={
+                                  item?.userFrom?.profilePicture?.url?.small ||
+                                  imageUrl
+                                }
+                                alt={item?.name}
+                              />
+                            </div>
+                            <div>
+                              <p className="noti">
+                                {generateNotificationText(
+                                  item.notificationType,
+                                  item.userFrom,
+                                  item.entityId
+                                )}
+                              </p>
+                              <p className="small-text opacity-8 ">
+                                {dayjs(item?.createdAt).fromNow()}
+                              </p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="noti">{generateNotificationText(item.notificationType,
-                              item.userFrom,
-                              item.entityId)}</p>
-                            <p className="small-text opacity-8 ">{(dayjs(item?.createdAt)).fromNow()}</p>
-                          </div>
-                        </div>
-                      </Menu.Item>).slice(0, 7)
-                    }
+                        </Menu.Item>
+                      ))
+                      .slice(0, 7)}
 
-                    {
-                      notifications?.length > 10 && <Button m={3} variant="light" color="pink" size="xs" radius="xl">See More</Button>
-                    }
+                    {notifications?.length > 10 && (
+                      <Button
+                        m={3}
+                        variant="light"
+                        color="pink"
+                        size="xs"
+                        radius="xl"
+                      >
+                        See More
+                      </Button>
+                    )}
 
                     {/* <Menu.Item component="a" href="https://mantine.dev">
                       Mantine website
                     </Menu.Item> */}
-
                   </Menu.Dropdown>
                 </Menu>
 
@@ -195,27 +238,35 @@ function Navbar() {
                     <Menu.Dropdown>
                       {/* <Menu.Label>User Profile</Menu.Label> */}
 
-                      {isAuthenticated && <Menu.Item icon={<IconLayoutDashboard color="red" size={16} />}>
-                        <Link style={{ color: "black" }} href="/dashboard">
-                          Dashboard
-                        </Link>
-                      </Menu.Item>}
+                      {isAuthenticated && (
+                        <Menu.Item
+                          icon={<IconLayoutDashboard color="red" size={16} />}
+                        >
+                          <Link style={{ color: "black" }} href="/dashboard">
+                            Dashboard
+                          </Link>
+                        </Menu.Item>
+                      )}
 
-                      <Menu.Item icon={<IconUserCircle size={16} color="red" />}>
+                      <Menu.Item
+                        icon={<IconUserCircle size={16} color="red" />}
+                      >
                         <Link style={{ color: "black" }} href="/my-profile">
                           View Profile
                         </Link>
                       </Menu.Item>
 
-                      <Menu.Item icon={<IconShoppingCart size={16} color="red" />}>
+                      <Menu.Item
+                        icon={<IconShoppingCart size={16} color="red" />}
+                      >
                         <Link style={{ color: "black" }} href="/orders">
                           My Orders
                         </Link>
                       </Menu.Item>
 
-                      <Menu.Item icon={<IconUserSearch size={16} color="red" />}>
-                        <Link style={{ color: "black" }} href="/my-matches">
-                          My Matches
+                      <Menu.Item icon={<IconSettings size={16} color="red" />}>
+                        <Link style={{ color: "black" }} href="/settings">
+                          Settings
                         </Link>
                       </Menu.Item>
 

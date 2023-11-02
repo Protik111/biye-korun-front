@@ -35,9 +35,12 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
   const handleSendRequest = () => {
     // console.log('data');
 
-    sendPostRequest({
-      recipient: profile?._id,
-    }, fetchSingleProfile);
+    sendPostRequest(
+      {
+        recipient: profile?._id,
+      },
+      fetchSingleProfile
+    );
 
     // if (data?.success) {
     //   notifySuccess("Invitation sent successfully!")
@@ -114,19 +117,19 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
       .then((res) => {
         if (statusGlobal === "accepted") {
           notifySuccess("Request accepted successfully!");
-          fetchSingleProfile()
+          fetchSingleProfile();
           // refetch();
         }
 
         if (statusGlobal === "declined") {
           notifySuccess("Request declined successfully!");
-          fetchSingleProfile()
+          fetchSingleProfile();
           // refetch();
         }
 
         if (statusGlobal === "cancel") {
           notifySuccess("Request cancelled successfully!");
-          fetchSingleProfile()
+          fetchSingleProfile();
           // refetch();
         }
       })
@@ -141,8 +144,10 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
         <div className="flex align-center justify-between">
           <div className="flex align-center justify-between flex-gap-5">
             <h3>{firstName + " " + lastName}</h3>
+
             {/* <IconLock color="#E64980"></IconLock> */}
           </div>
+
           {/* {!friendships ? (
             <Button
               rightIcon={<IconRocket />}
@@ -214,25 +219,32 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-            // onClick={handleSendRequest}
+              // onClick={handleSendRequest}
             >
               Declined Request
             </Button>
-          )
-            :
+          ) : (
             <Link href={`/view-profile/${_id}`}>
               <Button
                 rightIcon={<IconRocket />}
                 sx={{ backgroundColor: "#e64980", color: "white" }}
                 color="pink"
                 variant="white"
-              // onClick={handleSendRequest}
+                // onClick={handleSendRequest}
               >
                 View Profile
               </Button>
             </Link>
-          }
+          )}
         </div>
+
+        {profile?.postedBy == "Myself" && (
+          <div>
+            <p className="mt-5 opacity-8  run_text">
+              This profile is created and maintained by Friends & Family.
+            </p>
+          </div>
+        )}
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
             {/* <IconMessages color="#E64980"></IconMessages> */}
@@ -334,7 +346,8 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
             {/* <List.Item>Works at </List.Item> */}
             {min && max ? (
               <List.Item>
-                <b>Yearly Income: </b> ${min} - ${max}
+                <b>Yearly Income: </b> ${min} -{" "}
+                {`${max === "Above" ? "" : "$"}` + max + ""}
               </List.Item>
             ) : (
               <List.Item>

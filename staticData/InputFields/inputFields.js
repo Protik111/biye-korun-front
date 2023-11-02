@@ -510,14 +510,14 @@ export const subCommunities = [
 // export const qualifications = ["BSc", "MSc", "BA", "DR", "PhD"]
 
 export const qualifications = [
-  "Doctorate or higher",
-  "Master's degree",
-  "Bachelor's degree",
-  "Vocational qualification",
+  "Doctorate or Higher",
+  "Master's Degree",
+  "Bachelor's Degree",
+  "Vocational Qualification",
   "General Educational Development(GED)",
-  "Secondary education or high school",
-  "Primary education",
-  "No formal education",
+  "Secondary Education Or High School",
+  "Primary Education",
+  "No Formal Education",
 ];
 // export const worksWiths = ["Private Company", "Government", "Business", "Defense"]
 export const worksWiths = [
@@ -560,7 +560,7 @@ export const worksWiths = [
   "Childcare and Education",
   "Science and Technology",
   "Government Contracting",
-  "Security and Law Enforcement"
+  "Security and Law Enforcement",
 ];
 
 export const worksWithsOwn = [
@@ -603,7 +603,7 @@ export const worksWithsOwn = [
   "Childcare and Education",
   "Science and Technology",
   "Government Contracting",
-  "Security and Law Enforcement"
+  "Security and Law Enforcement",
 ];
 
 export const professions = [
@@ -694,8 +694,20 @@ export const incomes = [
     value: { min: "21000", max: "30000" },
   },
   {
-    label: "$31000  to $100000",
-    value: { min: "31000 ", max: "100000" },
+    label: "$31000  to $50000",
+    value: { min: "31000 ", max: "50000" },
+  },
+  {
+    label: "$51000  to $70000",
+    value: { min: "51000 ", max: "70000" },
+  },
+  {
+    label: "$71000  to $100000",
+    value: { min: "51000 ", max: "100000" },
+  },
+  {
+    label: "$101000  to Above",
+    value: { min: "51000 ", max: "Above" },
   },
 ];
 
