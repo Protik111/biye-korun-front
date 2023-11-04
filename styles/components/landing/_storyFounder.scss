@@ -1,0 +1,23 @@
+.story_founder {
+  position: relative;
+  padding: 100px 0;
+  .left_img {
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+  }
+  .right_content {
+    display: flex;
+    flex-direction: column;
+
+    .right_content_card {
+      position: absolute;
+      left: 50%;
+      bottom: 5%;
+      width: 750px;
+      padding: 20px;
+      flex-shrink: 0;
+      background: #fff;
+    }
+  }
+}
