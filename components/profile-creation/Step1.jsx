@@ -11,7 +11,14 @@ import {
   recidencies,
   subCommunities,
 } from "@/staticData/InputFields/inputFields";
-import { Button, Select, TextInput, Chip, Autocomplete } from "@mantine/core";
+import {
+  Button,
+  Select,
+  TextInput,
+  NumberInput,
+  Chip,
+  Autocomplete,
+} from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -47,7 +54,7 @@ const Step1 = ({
     bloodGroup,
   } = formValues;
 
-  const { country } = userInfo;
+  const { location: { country } = {} } = userInfo;
   const { state } = data2;
 
   useEffect(() => {
@@ -107,7 +114,7 @@ const Step1 = ({
     }
 
     if (!motherTongue) {
-      errors.motherTongue = "Mother Tongue is required";
+      errors.motherTongue = "Native Language is required";
     }
 
     setFormErrors(errors);
@@ -300,16 +307,14 @@ const Step1 = ({
 
       <br />
 
-      <TextInput
+      <NumberInput
         size="md"
         placeholder="Enter weight"
         label="Weight(kg)"
         value={formValues.weight}
         withAsterisk
         name="weight"
-        onChange={(event) =>
-          handleFormChange("weight", event.currentTarget.value)
-        }
+        onChange={(event) => handleFormChange("weight", event)}
         error={formErrors.weight}
       />
 

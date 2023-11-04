@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const SinglePlan = ({ plan }) => {
     const { userInfo } = useSelector(state => state.user);
 
-    const { country = {} } = userInfo || {}
+    const { location: { country } = {} } = userInfo || {}
 
     const {
         badgeName,

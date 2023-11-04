@@ -118,7 +118,7 @@ const Step2 = ({
           /> */}
           <Autocomplete
             size="md"
-            placeholder="Enter college"
+            placeholder="Enter college/university"
             label="College"
             data={collegeOptions}
             value={formValues.college}

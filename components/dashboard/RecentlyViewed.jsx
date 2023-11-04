@@ -31,7 +31,7 @@ const RecentlyViewed = () => {
   };
 
 
-  // console.log('data', data?.data);
+  console.log('data', data?.data);
 
   return (
     <>
@@ -40,7 +40,6 @@ const RecentlyViewed = () => {
           <>
             {data?.data?.map((item, i) => (
               <div key={i} className="recentlyViewed__singleContainer">
-                {console.log('item', item)}
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                   <Card.Section className="pointer">
                     <Link href={`/view-profile/${item?.visit?._id}`}>
@@ -54,7 +53,7 @@ const RecentlyViewed = () => {
                     </Link>
                   </Card.Section>
 
-                  <Group position="apart" mt="" mb="xs">
+                  <Group position="apart" mt="">
                     <Text weight={500}>{item?.visit?.firstName + " " + item?.visit?.lastName}</Text>
                     {/* <Badge color="pink" variant="light" size="md">
                       Online 2h ago
@@ -62,28 +61,28 @@ const RecentlyViewed = () => {
                   </Group>
 
                   <Text size="sm" color="dimmed">
-                    <b>Age: </b>{calculateAge(item?.visit?.dateOfBirth)}
+                    <b>Age: </b>{calculateAge(item?.visit?.basicInfo?.dateOfBirth)}
                   </Text>
 
                   <Text size="sm" color="dimmed">
-                    <b>Height: </b>{heightCalculator(item?.visit?.appearance?.height)}
+                    <b>Height: </b>{heightCalculator(item?.visit?.basicInfo?.height)}
                   </Text>
 
                   <Text size="sm" color="dimmed">
-                    <b>Religion: </b>{item?.visit?.religion}
+                    <b>Religion: </b>{item?.visit?.community?.religion}
                   </Text>
 
                   <Text size="sm" color="dimmed">
-                    <b>Country: </b>{item?.visit?.country}
+                    <b>Country: </b>{item?.visit?.location?.country}
                   </Text>
 
 
                   <br />
                   {/* {item?.visit?.community}, {item?.visit?.doctrine?.caste}, Lives in {item?.visit?.country} */}
 
-                  <h3 className="text-center pt-5">Connect with {item?.visit?.gender === "Male" ? 'him' : 'her'}?</h3>
+                  {/* <h3 className="text-center pt-5">Connect with {item?.visit?.basicInfo?.gender === "Male" ? 'him' : 'her'}?</h3> */}
 
-                  {
+                  {/* {
                     item?.visit?.friendships ?
                       <Button disabled onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
                         Sent Request
@@ -91,7 +90,13 @@ const RecentlyViewed = () => {
                       <Button onClick={() => handleSendRequest(item?.visit?._id)} variant="filled" color="pink" fullWidth mt="md" radius="md">
                         Yes
                       </Button>
-                  }
+                  } */}
+
+                  <Link href={`/view-profile/${item?.visit?._id}`}>
+                    <Button variant="filled" color="pink" fullWidth radius="md">
+                      View Profile
+                    </Button>
+                  </Link>
                 </Card>
               </div>
             ))}

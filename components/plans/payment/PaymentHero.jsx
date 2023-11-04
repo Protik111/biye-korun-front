@@ -19,7 +19,9 @@ const PaymentHero = () => {
     const router = useRouter();
 
     const { userInfo } = useSelector((state) => state.user) || {};
-    const { country = {} } = userInfo || {}
+    // const { country = {} } = userInfo || {}
+    const { location: { country } = {} } = userInfo || {}
+
     const isFromBD = country.toLowerCase() === 'bangladesh' ? true : false;
 
     const filterData = !loading && data?.data?.filter(item => item?._id == packageId);

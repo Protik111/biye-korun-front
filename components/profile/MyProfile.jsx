@@ -34,6 +34,7 @@ import LoaderWithText from "../global/LoaderWithText";
 import { imageUrl, imageUrlFemale } from "@/staticData/image";
 import DisplayFormattedContent from "../global/DisplayFormatedContent";
 import { Tiptap } from "../global/TipTap";
+import HobbiesAndInterest from "../my-profile/Hobbies";
 
 const MyProfile = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -43,10 +44,18 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   const {
-    location: { city, residencyStatus, zipCode } = {},
-    doctrine: { caste, motherTongue } = {},
-    appearance: { height, weight } = {},
-    education: { college, education } = {},
+    location: { city, residencyStatus, state, zipCode, country } = {},
+    community: { religion, language, nativeLanguage } = {},
+    interestAndMore: { interests } = {},
+    educationCareer: {
+      education,
+      college,
+      income: { min, max } = {},
+      occupation,
+      employer,
+      workingWith,
+    } = {},
+    about: { aboutMe } = {},
     family: {
       familyCountry,
       familyCity,
@@ -55,14 +64,16 @@ const MyProfile = () => {
       fatherProfession,
       type,
     } = {},
-    lifestyle: { diet, maritalStatus } = {},
-    profession: {
-      employer,
-      income: { min, max } = {},
-      occupation,
-      workingWith,
+    basicInfo: {
+      diet,
+      maritalStatus,
+      height,
+      weight,
+      dateOfBirth,
+      bloodGroup,
+      gender,
     } = {},
-    trait: { aboutMe } = {},
+
     phone,
     profilePicture,
     // profilePicture: { url } = { url: null },
@@ -70,20 +81,19 @@ const MyProfile = () => {
     firstName,
     lastName,
     userId,
-    dateOfBirth,
     postedBy,
-    religion,
+
     community,
-    country,
-    bloodGroup,
+    // country,
   } = userInfo || {};
-  // console.log("Weight", userInfo);
+  console.log("userInfo", userInfo);
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [isModal3Open, setIsModal3Open] = useState(false);
   const [isModal4Open, setIsModal4Open] = useState(false);
   const [isModal5Open, setIsModal5Open] = useState(false);
   const [isModal6Open, setIsModal6Open] = useState(false);
+  const [isModal7Open, setIsModal7Open] = useState(false);
   const [description, setDescription] = useState(aboutMe);
   const openModal1 = () => setIsModal1Open(true);
   const closeModal1 = () => setIsModal1Open(false);
@@ -97,7 +107,9 @@ const MyProfile = () => {
   const closeModal5 = () => setIsModal5Open(false);
   const openModal6 = () => setIsModal6Open(true);
   const closeModal6 = () => setIsModal6Open(false);
-
+  const openModal7 = () => setIsModal7Open(true);
+  const closeModal7 = () => setIsModal7Open(false);
+  console.log("interest 112", interests);
   const {
     basicDetails,
     educationCareer,
@@ -137,25 +149,24 @@ const MyProfile = () => {
     // const { aboutContent } = formValues;
 
     const data = {
-      trait: { aboutMe: description },
+      about: { aboutMe: description },
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal1();
-        }, 4000);
+
+        closeModal1();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        notifyError(error.response.data.errors.message);
       });
   };
-  console.log(userInfo.gender);
+
   return (
     <div className="myProfile container">
       <div className="myProfile__top container-box-bg p-15">
@@ -193,7 +204,7 @@ const MyProfile = () => {
                   <p className="right"> {maritalStatus || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">Posted By</p>
+                  <p className="left">Profile For</p>
                   <p className="right"> {postedBy || notSpecfied}</p>
                 </div>
               </div>
@@ -243,6 +254,14 @@ const MyProfile = () => {
                   ></ThemeIconComp>
 
                   <Anchor onClick={openModal3}>Edit Religion</Anchor>
+                </div>
+                <div className="flex align-center flex-gap-5 flex-basis-200">
+                  <ThemeIconComp
+                    iconComp={<IconPlayerRecordFilled size="10" />}
+                    size="10"
+                  ></ThemeIconComp>
+
+                  <Anchor onClick={openModal7}>Hobbies & Interests</Anchor>
                 </div>
               </div>
 
@@ -363,7 +382,11 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Date of Birth</p>
                   <p className="right">
-                    {format(new Date(dateOfBirth), "MM/dd/yyyy")}
+                    {console.log("dateOfBirth", dateOfBirth)}
+                    {format(
+                      new Date(dateOfBirth === undefined ? null : dateOfBirth),
+                      "MM/dd/yyyy"
+                    )}
                   </p>
                 </div>
                 <div className="single-item">
@@ -390,7 +413,7 @@ const MyProfile = () => {
           <div className="religious-background info-section mt-20">
             <div className="flex justify-between align-center">
               <Tooltip label="Religion" color="red">
-                <h3 className="secondary-text">Religion</h3>
+                <h3 className="secondary-text">Community</h3>
               </Tooltip>
 
               <Button
@@ -413,11 +436,14 @@ const MyProfile = () => {
                 </div>
                 <div className="single-item">
                   <p className="left">Language</p>
-                  <p className="right"> {community?.join(", ")} </p>
+                  <p className="right">
+                    {" "}
+                    {language?.join(", ") || notSpecfied}{" "}
+                  </p>
                 </div>
                 <div className="single-item">
                   <p className="left">Native Language</p>
-                  <p className="right"> {motherTongue}</p>
+                  <p className="right"> {nativeLanguage || notSpecfied}</p>
                 </div>
               </div>
             </div>
@@ -500,7 +526,7 @@ const MyProfile = () => {
                   <p className="left">Yearly Income - Min/Max</p>
                   <p className="right">
                     {"$" + min + "" || notSpecfied} /{" "}
-                    {"$" + max + "" || notSpecfied}
+                    {`${max === "Above" ? "" : "$"}` + max + "" || notSpecfied}
                   </p>
                 </div>
 
@@ -542,14 +568,16 @@ const MyProfile = () => {
             <div className="profile-info mt-10">
               <div>
                 <div className="single-item">
-                  <p className="left">Current Residence</p>
-                  <p className="right">
-                    {city}, {country}
-                  </p>
+                  <p className="left">Current Country</p>
+                  <p className="right">{country || notSpecfied}</p>
                 </div>
                 <div className="single-item">
-                  <p className="left">State of Residence</p>
-                  <p className="right"> {city}</p>
+                  <p className="left">Current State</p>
+                  <p className="right">{state || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">City of Residence</p>
+                  <p className="right"> {city || notSpecfied}</p>
                 </div>
                 <div className="single-item">
                   <p className="left">Residency Status</p>
@@ -559,6 +587,60 @@ const MyProfile = () => {
                   <p className="left">ZIP Code</p>
                   <p className="right"> {zipCode || notSpecfied}</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hobbies */}
+          <div className="family-details info-section mt-20">
+            <div className="flex justify-between align-center">
+              <Tooltip label="Hobbies & Interests" color="red">
+                <h3 className="secondary-text">Hobbies & Interests</h3>
+              </Tooltip>
+
+              <Button
+                variant="light"
+                size="xs"
+                radius="xl"
+                color="pink"
+                className={`button mt-10`}
+                onClick={openModal7}
+              >
+                Edit
+              </Button>
+            </div>
+            <Divider mt={5}></Divider>
+            <div className="profile-info mt-10">
+              <div>
+                {interests?.map((category) => (
+                  <div className="single-item" key={category.id}>
+                    <p className="left">{category.categories}</p>
+                    <p className="right">
+                      {category?.hobbies?.map((hobby, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            {hobby}
+                            {index !== category.hobbies.length - 1 && (
+                              <span>, </span>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                    </p>
+                  </div>
+                ))}
+                {/* <div className="single-item">
+                  <p className="left">Fun</p>
+                  <p className="right"> {city || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">Fitness</p>
+                  <p className="right"> {residencyStatus || notSpecfied}</p>
+                </div>
+                <div className="single-item">
+                  <p className="left">Others Interests</p>
+                  <p className="right"> {zipCode || notSpecfied}</p>
+                </div> */}
               </div>
             </div>
           </div>
@@ -608,7 +690,8 @@ const MyProfile = () => {
                   <div className="single-item">
                     <p className="left">Marital Status</p>
                     <p className="right">
-                      <span></span> {basicDetails?.maritalStatus?.join(", ")}
+                      <span></span>{" "}
+                      {basicDetails?.maritalStatus?.join(", ") || notSpecfied}
                     </p>
                   </div>
                 </div>
@@ -638,19 +721,30 @@ const MyProfile = () => {
                 <div>
                   <div className="single-item">
                     <p className="left">Religion</p>
-                    <p className="right"> Islam </p>
+                    <p className="right">
+                      {" "}
+                      {communityData?.religion.map((item, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            {item}
+                            {index !== communityData?.religion.length - 1 &&
+                              ", "}
+                          </React.Fragment>
+                        );
+                      })}{" "}
+                    </p>
                   </div>
 
                   <div className="single-item">
                     <p className="left">Native Language</p>
                     <p className="right">
                       {" "}
-                      {communityData?.motherTongue.map((item, index) => {
+                      {communityData?.nativeLanguage.map((item, index) => {
                         return (
                           <React.Fragment key={index}>
                             {item}
-                            {index !== communityData?.motherTongue.length - 1 &&
-                              ", "}
+                            {index !==
+                              communityData?.nativeLanguage.length - 1 && ", "}
                           </React.Fragment>
                         );
                       })}
@@ -857,6 +951,13 @@ const MyProfile = () => {
 
       <ReuseModal isOpen={isModal6Open} onClose={closeModal6} title="Locations">
         <LocationsModal closeModal6={closeModal6} />
+      </ReuseModal>
+      <ReuseModal
+        isOpen={isModal7Open}
+        onClose={closeModal7}
+        title="Hobbies & Interests"
+      >
+        <HobbiesAndInterest closeModal7={closeModal7} />
       </ReuseModal>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 // import Markdown from "react-markdown";
 // import MDEditor from "@uiw/react-md-editor";
 import parse from "html-react-parser";
-function DisplayFormattedContent({ markdown }) {
+function DisplayFormattedContent({ markdown = "" }) {
   // console.log("markdown", markdown);
   return (
     <div className="ProseMirror">{parse(markdown)}</div>

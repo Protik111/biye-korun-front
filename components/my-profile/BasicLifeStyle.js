@@ -51,17 +51,22 @@ const BasicLifeStyle = ({ closeModal2 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const {
-    appearance: { height } = {},
-    lifestyle: { diet, maritalStatus } = {},
-    dateOfBirth,
-    country,
-    bloodGroup,
+    basicInfo: {
+      diet,
+      maritalStatus,
+      height,
+      weight,
+      dateOfBirth,
+      bloodGroup,
+      gender,
+    } = {},
+    location: { country } = {},
   } = userInfo || {};
 
   // list of country
   const [contries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(country);
-
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     diet: diet ? diet : "",
@@ -78,6 +83,8 @@ const BasicLifeStyle = ({ closeModal2 }) => {
       });
     }
   };
+
+  console.log("errors", errors);
   const handleCountryChange = (event) => {
     setSelectedCountry(event);
   };
@@ -93,26 +100,32 @@ const BasicLifeStyle = ({ closeModal2 }) => {
     const { bloodGroup, maritalStatus, diet, dateOfBirth, height } = formValues;
 
     const data = {
-      lifestyle: { diet, maritalStatus },
-      appearance: { height },
-      dateOfBirth,
-      bloodGroup,
-      country: selectedCountry,
+      basicInfo: {
+        bloodGroup,
+        maritalStatus,
+        diet,
+        dateOfBirth,
+        height,
+      },
+      location: { country: selectedCountry },
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal2();
-        }, 4000);
+        closeModal2();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
 
@@ -140,7 +153,7 @@ const BasicLifeStyle = ({ closeModal2 }) => {
             name="diet"
           >
             <div className="flex flex-gap-10 flex-wrap mt-5">
-              <Chip variant="filled" color="pink" value="Veg">
+              <Chip variant="filled" color="pink" value="Vegetarian">
                 Vegetarian
               </Chip>
               <Chip variant="filled" color="pink" value="Non-Veg">

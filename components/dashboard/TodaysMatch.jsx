@@ -114,7 +114,7 @@ const TodaysMatch = () => {
           }
 
           <div className="todaysMatch__wrapper--contentBox">
-            {data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]}></BasicProfile> :
+            {data?.data?.length > 0 ? <BasicProfile profile={data?.data[index]} fetchSingleProfile={refetch}></BasicProfile> :
               !loading && data?.data?.length === 0 ?
                 <></> :
                 <div className="container-box-bg p-30">
