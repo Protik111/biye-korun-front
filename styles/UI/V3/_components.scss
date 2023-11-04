@@ -20,6 +20,7 @@
         padding: 23px 30px;
         font-weight: 500;
         line-height: 24.2px;
+        cursor: pointer;
     }
 }
 
@@ -31,7 +32,7 @@
     border-radius: 42px;
     font-family: Inter;
     letter-spacing: 0em;
-    cursor: pointer;
+    cursor: pointer !important;
     outline: none;
     font-size: 14px;
     padding: 14px 20px;
@@ -45,5 +46,6 @@
         padding: 23px 30px;
         font-weight: 500;
         line-height: 24.2px;
+        cursor: pointer !important;
     }
 }

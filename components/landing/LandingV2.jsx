@@ -186,17 +186,17 @@ const LandingV2 = () => {
                 searchable
               />
               <div>
-                {/* <Button
+                <Button
                   className="mt-25"
                   style={btnBackground}
                   size="md"
                   onClick={handleLetsBegin}
                 >
                   Let's Start...
-                </Button> */}
-                <button className="secondary-btn-v3">
+                </Button>
+                {/* <button className="secondary-btn-v3">
                   Let's Get Started
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

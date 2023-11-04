@@ -43,7 +43,7 @@ export default function Home() {
       <HowWorks></HowWorks>
       <PremiumPlan />
       <WhyChoose />
-      <Faqs></Faqs>
+      {/* <Faqs></Faqs> */}
       <Footer></Footer>
       <HomeComp></HomeComp>
     </>

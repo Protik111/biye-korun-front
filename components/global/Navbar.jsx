@@ -123,7 +123,7 @@ function Navbar() {
             {/* <a href="">Help</a> */}
             {!isAuthenticated ? (
               <Link href="/login">
-                {/* <Button
+                <Button
                   mt={5}
                   mr={5}
                   style={btnBackground}
@@ -131,10 +131,10 @@ function Navbar() {
                   size="md"
                 >
                   Login
-                </Button> */}
-                <button className="primary-btn-v3">
+                </Button>
+                {/* <button className="primary-btn-v3">
                   Let's Get Started
-                </button>
+                </button> */}
               </Link>
             ) : (
               <div className="">
