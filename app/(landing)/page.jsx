@@ -55,6 +55,7 @@ export default function Home() {
       {/* <Faqs></Faqs> */}
       {/* <Footer></Footer> */}
       <HomeComp></HomeComp>
+
     </>
   );
 }
