@@ -1,0 +1,49 @@
+// Version 3
+.primary-btn-v3 {
+    background-color: $primaryColorV3;
+    color: white;
+    border: none;
+    border-radius: 42px;
+    font-family: Inter;
+    letter-spacing: 0em;
+    cursor: pointer;
+    outline: none;
+    font-size: 14px;
+    padding: 14px 20px;
+    font-weight: 300;
+    line-height: 20px;
+    font-family: 'Inter', sans-serif;
+
+
+    @include smMinBreakPoint {
+        font-size: 20px;
+        padding: 23px 30px;
+        font-weight: 500;
+        line-height: 24.2px;
+    }
+}
+
+
+.secondary-btn-v3 {
+    background-color: $secondaryColorV3;
+    color: white;
+    border: none;
+    border-radius: 42px;
+    font-family: Inter;
+    letter-spacing: 0em;
+    cursor: pointer;
+    outline: none;
+    font-size: 14px;
+    padding: 14px 20px;
+    font-weight: 300;
+    line-height: 20px;
+    font-family: 'Inter', sans-serif;
+
+
+    @include smMinBreakPoint {
+        font-size: 20px;
+        padding: 23px 30px;
+        font-weight: 500;
+        line-height: 24.2px;
+    }
+}

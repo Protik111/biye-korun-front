@@ -16,6 +16,9 @@ const page = () => {
     return (
         <div className='matches'>
             <Matches></Matches>
+            <div className="style_v2">
+
+            </div>
         </div>
     )
 }

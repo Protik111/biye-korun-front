@@ -1,6 +1,11 @@
 //external
 @import "react-toastify/dist/ReactToastify.css";
 @import 'nprogress/nprogress.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Philosopher:wght@400;700&display=swap');
+
+//UI
+@import "../styles/UI/V3/components";
+
 
 //components
 @import "../styles/components/landing/landing";

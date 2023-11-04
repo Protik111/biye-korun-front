@@ -123,7 +123,7 @@ function Navbar() {
             {/* <a href="">Help</a> */}
             {!isAuthenticated ? (
               <Link href="/login">
-                <Button
+                {/* <Button
                   mt={5}
                   mr={5}
                   style={btnBackground}
@@ -131,7 +131,10 @@ function Navbar() {
                   size="md"
                 >
                   Login
-                </Button>
+                </Button> */}
+                <button className="primary-btn-v3">
+                  Let's Get Started
+                </button>
               </Link>
             ) : (
               <div className="">
@@ -164,9 +167,8 @@ function Navbar() {
                     {notifications
                       ?.map((item, i) => (
                         <Menu.Item
-                          className={`${
-                            item.opened ? "noti-light" : "noti-gray"
-                          }`}
+                          className={`${item.opened ? "noti-light" : "noti-gray"
+                            }`}
                           onClick={() => notificationMarkRead(item)}
                         >
                           <div className="flex align-center flex-gap-15">

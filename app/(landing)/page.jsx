@@ -12,6 +12,7 @@ import { Loader } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import HomeComp from "@/components/landing/V3/Home";
 
 export default function Home() {
   const { isAuthenticated } = useSelector(state => state.auth);
@@ -44,6 +45,7 @@ export default function Home() {
       <WhyChoose />
       <Faqs></Faqs>
       <Footer></Footer>
+      <HomeComp></HomeComp>
     </>
   )
 }

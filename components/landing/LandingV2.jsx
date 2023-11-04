@@ -123,9 +123,9 @@ const LandingV2 = () => {
                       defaultValue={formData.ages}
                       range={1}
                       minRange={1}
-                      // onChange={handleAge}
-                      //   style={{ width: "200px" }}
-                      // onChange={(event) => handleFormChange("ages", event)}
+                    // onChange={handleAge}
+                    //   style={{ width: "200px" }}
+                    // onChange={(event) => handleFormChange("ages", event)}
                     />
                   </Popover.Dropdown>
                 </Popover>
@@ -186,14 +186,17 @@ const LandingV2 = () => {
                 searchable
               />
               <div>
-                <Button
+                {/* <Button
                   className="mt-25"
                   style={btnBackground}
                   size="md"
                   onClick={handleLetsBegin}
                 >
                   Let's Start...
-                </Button>
+                </Button> */}
+                <button className="secondary-btn-v3">
+                  Let's Get Started
+                </button>
               </div>
             </div>
           </div>
