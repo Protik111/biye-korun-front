@@ -1,51 +1,70 @@
 // Version 3
 .primary-btn-v3 {
-    background-color: $primaryColorV3;
-    color: white;
-    border: none;
-    border-radius: 42px;
-    font-family: Inter;
-    letter-spacing: 0em;
+  background-color: $primaryColorV3;
+  color: white;
+  border: none;
+  border-radius: 42px;
+  font-family: Inter;
+  letter-spacing: 0em;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+  padding: 14px 20px;
+  font-weight: 300;
+  line-height: 20px;
+  font-family: "Inter", sans-serif;
+
+  @include smMinBreakPoint {
+    font-size: 20px;
+    padding: 23px 30px;
+    font-weight: 500;
+    line-height: 24.2px;
     cursor: pointer;
-    outline: none;
-    font-size: 14px;
-    padding: 14px 20px;
-    font-weight: 300;
-    line-height: 20px;
-    font-family: 'Inter', sans-serif;
-
-
-    @include smMinBreakPoint {
-        font-size: 20px;
-        padding: 23px 30px;
-        font-weight: 500;
-        line-height: 24.2px;
-        cursor: pointer;
-    }
+  }
 }
 
-
 .secondary-btn-v3 {
-    background-color: $secondaryColorV3;
-    color: white;
-    border: none;
-    border-radius: 42px;
-    font-family: Inter;
-    letter-spacing: 0em;
+  background-color: $secondaryColorV3;
+  color: white;
+  border: none;
+  border-radius: 42px;
+  font-family: Inter;
+  letter-spacing: 0em;
+  cursor: pointer !important;
+  outline: none;
+  font-size: 14px;
+  padding: 14px 20px;
+  font-weight: 300;
+  line-height: 20px;
+  font-family: "Inter", sans-serif;
+
+  @include smMinBreakPoint {
+    font-size: 20px;
+    padding: 23px 30px;
+    font-weight: 500;
+    line-height: 24.2px;
     cursor: pointer !important;
-    outline: none;
-    font-size: 14px;
-    padding: 14px 20px;
-    font-weight: 300;
-    line-height: 20px;
-    font-family: 'Inter', sans-serif;
+  }
+}
 
+.custom-button {
+  width: 153px;
+  height: 40px;
+  border-radius: 30px;
+  background: #f42a41;
+  color: #fff; /* Text color */
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  outline: none;
+  border: none;
+  &:hover {
+    background: darken(#f42a41, 10%); /* Darken the background color on hover */
+  }
 
-    @include smMinBreakPoint {
-        font-size: 20px;
-        padding: 23px 30px;
-        font-weight: 500;
-        line-height: 24.2px;
-        cursor: pointer !important;
-    }
+  @media (max-width: 768px) {
+    width: 100%; /* Make the button width 100% on small screens */
+    max-width: 153px; /* Limit the width on larger screens */
+  }
 }

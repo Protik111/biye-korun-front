@@ -3,9 +3,9 @@
   //   background-position: right, cover;
   background-position-y: top;
   background-position-x: right;
-  background-size: 545px, 100% 100%;
+  background-size: 710px, 100% 100%;
   background-repeat: no-repeat, no-repeat;
-  padding-bottom: 200px;
+  padding-bottom: 70px;
 
   //   .padding_0 {
   //     padding: 0;
@@ -17,7 +17,7 @@
     padding-top: 20px;
     .border_down {
       background: rgba(0, 0, 0, 0.15);
-      width: 810px;
+      width: 800px;
       height: 1px;
       margin-top: 20px;
       @include mdMaxBreakPoint {
