@@ -1,0 +1,42 @@
+.clients_bg {
+  background-color: #fff;
+  padding: 20px 0;
+}
+.clients_bg {
+  background: #fff;
+
+  .statistics-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // Four columns in a single row
+    gap: 0; // No gap between columns
+    .statistic {
+      text-align: center;
+      padding: 20px;
+      // background-color: #fff;
+      border-right: 1px solid #ccc; // Right border
+
+      .value {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .label {
+        font-size: 16px;
+        color: #555;
+      }
+      &:nth-child(4) {
+        border-right: none; // Remove the border for the last item
+      }
+      @include mdMaxBreakPoint {
+        &:nth-child(2) {
+          border-right: none;
+        }
+      }
+    }
+    @include mdMaxBreakPoint {
+      // Adjust the layout for smaller screens
+      grid-template-columns: repeat(2, 1fr); // 2 columns
+      gap: 30px;
+    }
+  }
+}

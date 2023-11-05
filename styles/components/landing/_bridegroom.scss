@@ -13,6 +13,8 @@
     &--container {
       transition: all 0.3s ease;
       height: 100%;
+      -webkit-animation: fade-in-bottom 3s cubic-bezier(0.390, 0.575, 0.565, 2.000) both;
+      animation: fade-in-bottom 3s cubic-bezier(0.390, 0.575, 0.565, 2.000) both;
 
       &:hover {
         background-color: $secondaryColor;

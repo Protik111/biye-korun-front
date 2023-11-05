@@ -9,7 +9,7 @@ import { Loader } from "@mantine/core";
 const Plans = () => {
     const { data, error, loading, refetch } = useAxios('/package');
 
-    console.log('data, error, loading, refetch', data, error, loading);
+    // console.log('data, error, loading, refetch', data, error, loading);
 
     return (
         <div className="plans__box container">

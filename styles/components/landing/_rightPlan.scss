@@ -1,0 +1,164 @@
+.rightPlan {
+
+    hr {
+        border: 1px solid black;
+    }
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        place-content: center;
+        gap: 15px;
+        margin-top: 25px;
+
+
+        &-item {
+            border: 1.5px solid #E6E6E6;
+            border-radius: 10px;
+            padding: 20px 15px;
+
+            .list-container {
+                background: linear-gradient(0deg, #F5F5F5, #F5F5F5),
+                    linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15));
+                // padding: 20px;
+                height: 75%;
+                border-radius: 10px;
+                margin-top: 15px;
+                // height: 80%;
+
+
+                .free {
+                    // border-bottom: 1px solid gra;
+                    border-bottom: 1px solid #0000001A;
+                    padding: 15px 20px;
+
+
+                    h4 {
+                        font-family: Inter;
+                        font-size: 24px;
+                        font-weight: 600;
+                        line-height: 29px;
+                        letter-spacing: 0em;
+                        color: #00000099;
+                    }
+                }
+
+
+                h3 {
+                    font-family: Inter;
+                    font-size: 30px;
+                    font-weight: 600;
+                    line-height: 36px;
+                }
+
+                .lists {
+                    padding: 20px;
+
+                    img {
+                        max-width: 100%;
+                        object-fit: cover;
+                        width: 19px;
+                        height: 19px;
+                    }
+
+                    p {
+                        font-size: 17px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        letter-spacing: 0em;
+                        // color: #000000CC;
+                        color: rgba(0, 0, 0, 0.8);
+                    }
+                }
+            }
+
+            button {
+                margin-top: 15px;
+                background-color: white;
+                color: $primaryColorV3;
+                border: none;
+                border-radius: 10px;
+                font-family: Inter;
+                letter-spacing: 0em;
+                cursor: pointer !important;
+                // outline: none;
+                font-size: 14px;
+                padding: 25px 20px;
+                font-weight: 300;
+                line-height: 20px;
+                font-family: 'Inter', sans-serif;
+                width: 100%;
+
+
+                @include smMinBreakPoint {
+                    border: 1px solid #9908F5;
+                    font-size: 16px;
+                    padding: 12px 30px;
+                    font-weight: 600;
+                    line-height: 19.36px;
+                    cursor: pointer !important;
+                }
+            }
+        }
+
+        &-item-middle {
+            border: 1.5px solid $secondaryColorV3;
+            border-radius: 10px;
+            background-color: $primaryColorV3;
+
+            h3 {
+                color: white;
+                font-family: Inter;
+                font-size: 30px;
+                font-weight: 600;
+                line-height: 36px;
+            }
+
+            p {
+                color: white;
+            }
+
+            .list-container {
+                background: linear-gradient(0deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10)),
+                    linear-gradient(0deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10));
+
+                h3 {
+                    font-family: Inter;
+                    font-size: 30px;
+                    font-weight: 600;
+                    line-height: 36px;
+                    color: white;
+                }
+
+                .free {
+                    // border-bottom: 1px solid gra;
+                    border-bottom: 1px solid #0000001A;
+                    padding: 15px 20px;
+
+
+                    h4 {
+                        font-family: Inter;
+                        font-size: 24px;
+                        font-weight: 500;
+                        line-height: 29px;
+                        letter-spacing: 0em;
+                        color: #FFFFFF;
+                        ;
+                    }
+                }
+
+                .lists {
+                    p {
+                        //styleName: Body;
+                        font-family: 'Inter', sans-serif;
+                        font-size: 17px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        color: #FFFFFF95;
+
+                    }
+                }
+            }
+        }
+    }
+}

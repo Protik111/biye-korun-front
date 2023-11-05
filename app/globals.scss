@@ -1,4 +1,4 @@
-@import '../styles/global-imports';
+@import "../styles/global-imports";
 
 * {
   box-sizing: border-box;
@@ -7,20 +7,19 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  background-color: $secondaryLight1Color;
+  // background-color: $secondaryLight1Color;
   box-sizing: border-box;
   height: 100vh;
   min-height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
-
 }
 
 #root {
@@ -48,7 +47,8 @@ body {
 }
 
 .customized-input {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   height: 2.625rem;
   -webkit-tap-highlight-color: transparent;
   line-height: calc(2.625rem - 0.125rem);
@@ -103,12 +103,12 @@ body {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-
 //custom styles for component
 
 //overriding react-international-phone-input start
 .react-international-phone-input {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   height: 2.625rem;
   -webkit-tap-highlight-color: transparent;
   line-height: calc(2.625rem - 0.125rem);
@@ -133,11 +133,11 @@ body {
   border-radius: 0.25rem;
 
   &:focus {
-    border: 1px solid #1C7ED6 !important;
+    border: 1px solid #1c7ed6 !important;
 
     .react-international-phone-country-selector-button {
       height: 3.625rem !important;
-      border: 1px solid #1C7ED6 !important;
+      border: 1px solid #1c7ed6 !important;
     }
   }
 }
@@ -151,7 +151,6 @@ body {
 }
 
 //overriding react-international-phone-input end
-
 
 //overriding mantine autocomplete scrollbar
 // .mantine-Autocomplete-dropdown {
@@ -180,7 +179,6 @@ body {
 //overriding mantine disabled radio label
 
 .custom-disable {
-
   // .mantine-ges9mf {
   //   cursor: no-drop !important;
   // }
@@ -206,4 +204,9 @@ body {
 //custom aspect ration
 .mantine-AspectRatio-root {
   border-radius: 15px !important;
+}
+
+//notification
+.noti {
+  font-weight: 500;
 }

@@ -12,6 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserData } from "@/redux/features/user/userSlice";
+import ErrorMessages from "@/components/global/ErrorMessages";
 
 // Define the minimum and maximum income values
 const minIncome = 10000; // 10000 BDT
@@ -30,7 +31,7 @@ const PartnerPreference = ({
       heightRange,
       maritalStatus,
     } = {},
-    community: { community, motherTongue, religion } = {},
+    community: { community, nativeLanguage, religion } = {},
     educationCareer: {
       annualIncome: { min: minIncome, max: maxIncome } = {},
       profession,
@@ -43,28 +44,28 @@ const PartnerPreference = ({
     trait: { aboutMe } = {},
     phone,
     profilePicture: { url } = {},
-  }
+  } =
     // = (userInfo?.partnerpreference || {}).basicDetails || {}
-    = (userInfo?.partnerpreference || {})
-
+    userInfo?.partnerpreference || {};
+  // console.log("90", userInfo?.partnerpreference);
 
   const [seeMore, setSeemore] = useState(false);
   const [formData, setFormData] = useState({
-    ages: (min && max) ? [min, max] : [18, 25],
+    ages: min && max ? [min, max] : [18, 25],
     height: "",
-    maritalStatus: maritalStatus ? maritalStatus : "",
-    religion: religion ? religion : "",
-    motherTongue: motherTongue ? motherTongue : "",
-    livingIn: country ? country : "",
-    stateLiving: stateLiving ? stateLiving : "",
-    residency: residencyStatus ? residencyStatus : "",
-    qualification: qualification ? qualification : "",
-    workingWith: workingWith ? workingWith : "",
-    profession: profession ? profession : "",
-    income: "",
+    maritalStatus: maritalStatus ? maritalStatus : [],
+    religion: religion ? religion : [],
+    nativeLanguage: nativeLanguage ? nativeLanguage : [],
+    livingIn: country ? country : [],
+    stateLiving: stateLiving ? stateLiving : [],
+    residency: residencyStatus ? residencyStatus : [],
+    qualification: qualification ? qualification : [],
+    workingWith: workingWith ? workingWith : [],
+    profession: profession ? profession : [],
+    income: [],
   });
 
-  console.log('formData', formData);
+  const [errors, setErrors] = useState({});
 
   const [minHeight, setMinHeight] = useState(heightRange?.min || "56");
   const [maxHeight, setMaxHeight] = useState(heightRange?.max || "36");
@@ -73,9 +74,9 @@ const PartnerPreference = ({
   const [minIncomeValue, setMinIncomeValue] = useState(minIncome || "1000");
   const [maxIncomeValue, setMaxIncomeValue] = useState(maxIncome || "5000");
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  // console.log('formDatas', formData);
   // console.log('userInfo?.partnerpreference', userInfo);
   // console.log('height', minHeight, maxHeight);
   // console.log('maxIncomeValue', maxIncomeValue, minIncomeValue);
@@ -85,7 +86,7 @@ const PartnerPreference = ({
       ages,
       maritalStatus,
       religion,
-      motherTongue,
+      nativeLanguage,
       livingIn,
       stateLiving,
       residency,
@@ -103,7 +104,7 @@ const PartnerPreference = ({
       maritalStatus: maritalStatus,
       religion,
       //   community: "Muslim",
-      motherTongue,
+      nativeLanguage,
       country: livingIn,
       //   stateLiving,
       residencyStatus: residency,
@@ -124,10 +125,14 @@ const PartnerPreference = ({
         // setTimeout(() => {
         // }, 500);
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        // console.log(err.response.data);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
 
@@ -136,7 +141,7 @@ const PartnerPreference = ({
       ages,
       maritalStatus,
       religion,
-      motherTongue,
+      nativeLanguage,
       livingIn,
       stateLiving,
       residency,
@@ -154,9 +159,10 @@ const PartnerPreference = ({
       maritalStatus: maritalStatus,
       religion,
       // community: "Muslim",
-      motherTongue,
+      nativeLanguage,
       country: livingIn,
       // stateLiving,
+
       residencyStatus: residency,
       qualification,
       workingWith,
@@ -165,25 +171,37 @@ const PartnerPreference = ({
       maxIncome: maxIncomeValue?.toString(),
     };
     setLoading(true);
+    setErrors({});
     axios
       .patch("user/partner-preferences", data)
       .then((res) => {
         notifySuccess("Preferences Updated Successfully!");
-        dispatch(loadUserData())
+        dispatch(loadUserData());
         setLoading(false);
         router.push("/my-profile");
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        // console.log(err.response.data);
-        notifyError(err.response.data.message);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.errors
+        ) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
-
 
   return (
     <div className="partenerPref">
       <h2 className="text-center py-15">{header ? header : ""} </h2>
+
+      <div>
+        <ErrorMessages errors={errors} />
+      </div>
 
       <BasicInformation
         formData={formData}

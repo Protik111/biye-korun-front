@@ -7,17 +7,22 @@ import {
   IconCircleCheck,
   IconCircleDashed,
   IconLock,
+  IconMessage2,
   IconMessages,
   IconRocket,
+  IconX,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import React from "react";
+import LoaderWithText from "../global/LoaderWithText";
+import axios from "axios";
 
 const message = {
   success: "Invitation sent successfully!",
   error: "Error occurred!",
 };
 
-const BasicProfile = ({ profile }) => {
+const BasicProfile = ({ profile, fetchSingleProfile }) => {
   const {
     data,
     loading,
@@ -29,9 +34,13 @@ const BasicProfile = ({ profile }) => {
 
   const handleSendRequest = () => {
     // console.log('data');
-    sendPostRequest({
-      recipient: profile?._id,
-    });
+
+    sendPostRequest(
+      {
+        recipient: profile?._id,
+      },
+      fetchSingleProfile
+    );
 
     // if (data?.success) {
     //   notifySuccess("Invitation sent successfully!")
@@ -51,10 +60,11 @@ const BasicProfile = ({ profile }) => {
     lifestyle: { diet, maritalStatus } = {},
     profession: {
       employer,
-      income: { min, max } = {},
+      // income: { min, max } = {},
       occupation,
       workingWith,
     } = {},
+    educationCareer: { income: { min, max } = {} } = {},
     trait: { aboutMe } = {},
     phone,
     profilePicture: { url } = {},
@@ -83,15 +93,62 @@ const BasicProfile = ({ profile }) => {
   // console.log('status', status, friendships);
   // console.log('profile', profile);
 
+  const handleDeclineAccept = (requisterId, status) => {
+    let statusGlobal = "";
+
+    if (status == "accepted") {
+      statusGlobal = "accepted";
+    }
+    if (status == "declined") {
+      statusGlobal = "declined";
+    }
+    if (status == "cancel") {
+      statusGlobal = "cancel";
+    }
+
+    const payload = {
+      status: statusGlobal,
+      friendshipId: requisterId,
+    };
+
+    // console.log('payload', payload);
+    axios
+      .patch(`user/updatefriends`, payload)
+      .then((res) => {
+        if (statusGlobal === "accepted") {
+          notifySuccess("Request accepted successfully!");
+          fetchSingleProfile();
+          // refetch();
+        }
+
+        if (statusGlobal === "declined") {
+          notifySuccess("Request declined successfully!");
+          fetchSingleProfile();
+          // refetch();
+        }
+
+        if (statusGlobal === "cancel") {
+          notifySuccess("Request cancelled successfully!");
+          fetchSingleProfile();
+          // refetch();
+        }
+      })
+      .catch((err) => {
+        notifyError(err.response.data.message);
+      });
+  };
+
   return (
     <div className="basicProfile container-box-bg p-15">
       <div className="basiscProfile__top">
         <div className="flex align-center justify-between">
           <div className="flex align-center justify-between flex-gap-5">
             <h3>{firstName + " " + lastName}</h3>
+
             {/* <IconLock color="#E64980"></IconLock> */}
           </div>
-          {!friendships ? (
+
+          {/* {!friendships ? (
             <Button
               rightIcon={<IconRocket />}
               sx={{ backgroundColor: "#e64980", color: "white" }}
@@ -108,12 +165,86 @@ const BasicProfile = ({ profile }) => {
               sx={{ backgroundColor: "#e64980", color: "white" }}
               color="pink"
               variant="white"
-              // onClick={handleSendRequest}
+            // onClick={handleSendRequest}
             >
               Request Pending
             </Button>
+          )} */}
+          {!friendships ? (
+            <Button
+              rightIcon={<IconRocket />}
+              sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="white"
+              disabled={loading}
+              onClick={() => handleSendRequest()}
+            >
+              {loading ? (
+                <>
+                  <LoaderWithText
+                    text="Connecting.."
+                    color="white"
+                  ></LoaderWithText>
+                </>
+              ) : (
+                <>Send Request</>
+              )}
+            </Button>
+          ) : friendships?.status === "pending" ? (
+            <Button
+              // disabled
+              rightIcon={<IconX />}
+              // sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="outline"
+              onClick={() => handleDeclineAccept(friendships?._id, "cancel")}
+            >
+              Cancel Request
+            </Button>
+          ) : friendships?.status === "accepted" ? (
+            <Button
+              // disabled
+              rightIcon={<IconMessage2 />}
+              sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="white"
+              onClick={() => notifyError("Coming soon!")}
+            >
+              Message
+            </Button>
+          ) : friendships?.status === "declined" ? (
+            <Button
+              disabled
+              rightIcon={<IconRocket />}
+              sx={{ backgroundColor: "#e64980", color: "white" }}
+              color="pink"
+              variant="white"
+              // onClick={handleSendRequest}
+            >
+              Declined Request
+            </Button>
+          ) : (
+            <Link href={`/view-profile/${_id}`}>
+              <Button
+                rightIcon={<IconRocket />}
+                sx={{ backgroundColor: "#e64980", color: "white" }}
+                color="pink"
+                variant="white"
+                // onClick={handleSendRequest}
+              >
+                View Profile
+              </Button>
+            </Link>
           )}
         </div>
+
+        {profile?.postedBy == "Myself" && (
+          <div>
+            <p className="mt-5 opacity-8  run_text">
+              This profile is created and maintained by Friends & Family.
+            </p>
+          </div>
+        )}
         <div className="flex align-center mt-15">
           <div className="flex align-center flex-gap-5 flex-item">
             {/* <IconMessages color="#E64980"></IconMessages> */}
@@ -215,7 +346,8 @@ const BasicProfile = ({ profile }) => {
             {/* <List.Item>Works at </List.Item> */}
             {min && max ? (
               <List.Item>
-                <b>Yearly Income: </b> ${min} - ${max}
+                <b>Yearly Income: </b> ${min} -{" "}
+                {`${max === "Above" ? "" : "$"}` + max + ""}
               </List.Item>
             ) : (
               <List.Item>

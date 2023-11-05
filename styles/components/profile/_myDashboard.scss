@@ -14,7 +14,8 @@
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          max-height: 300px;
+          object-fit: contain;
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
 
@@ -97,6 +98,7 @@
       }
     }
   }
+
   .min_height {
     min-height: 270px;
   }
@@ -105,6 +107,7 @@
 .mantine-1k9itrp {
   font-size: 2rem !important;
   font-weight: bold;
+
   @include smMaxBreakPoint {
     font-size: 20px !important;
   }
@@ -112,7 +115,10 @@
 
 .disabled-anchor {
   pointer-events: none;
-  color: #999; /* Change the text color to make it look disabled */
-  text-decoration: none; /* Remove the underline on hover */
-  cursor: not-allowed; /* Change the cursor to "not-allowed" */
+  color: #999;
+  /* Change the text color to make it look disabled */
+  text-decoration: none;
+  /* Remove the underline on hover */
+  cursor: not-allowed;
+  /* Change the cursor to "not-allowed" */
 }

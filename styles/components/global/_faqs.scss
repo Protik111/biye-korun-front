@@ -4,8 +4,12 @@
     background-repeat: no-repeat;
     background-position: left top, right bottom;
 
+    hr {
+        border: 1px solid black;
+    }
+
     .mantive-custom_accordion {
-        background-color: $secondaryColor !important;
+        background-color: $secondaryColorV3 !important;
         // background: linear-gradient(90deg, #A035FF 0%, #770DD5 20%, #770DD5 100%) !important;
         color: white;
         margin-top: 15px;
@@ -13,12 +17,18 @@
         padding: 10px 0;
     }
 
+    .mantive-custom_accordion [data-active="true"] {
+        /* Attribute has this exact value */
+        // background-color: $primaryColorV3 !important;
+
+    }
+
     .mantine-Accordion-content {
         opacity: 0.8;
     }
 
     .mantive-custom_accordion:hover {
-        background-color: $secondaryColor;
+        background-color: $secondaryColorV3 !important;
         border-radius: 10px;
 
     }
@@ -34,7 +44,7 @@
     }
 
     .mantive-custom_control:hover {
-        background-color: $secondaryColor;
+        background-color: $secondaryColorV3;
         border-radius: 10px;
 
     }

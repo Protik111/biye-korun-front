@@ -55,7 +55,7 @@ const PremiumPlan = () => {
         <br />
         <div className="plan_card">
           <div className="free_card">
-            <h1>FREE</h1>
+            <h1>Free</h1>
             {_mocDataFree_card.map((item) => {
               return (
                 <div className="div_list" key={item.id}>

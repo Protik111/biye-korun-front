@@ -1,15 +1,25 @@
 //external
 @import "react-toastify/dist/ReactToastify.css";
-@import 'nprogress/nprogress.css';
+@import "nprogress/nprogress.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Philosopher:wght@400;700&display=swap");
+
+//UI
+@import "../styles/UI/V3/components";
 
 //components
 @import "../styles/components/landing/landing";
-@import "../styles/components/landing/landingv2"; 
+@import "../styles/components/landing/landingv2";
 @import "../styles/components/landing/herovideo";
 @import "../styles/components/landing/howWorks";
 @import "../styles/components/landing/premiumPlan";
 @import "../styles/components/landing/whychoose";
 @import "../styles/components/landing/bridegroom";
+@import "../styles/components/landing/heroSectionv3";
+@import "../styles/components/landing/statistics";
+@import "../styles/components/landing/storyFounder";
+@import "../styles/components/landing/matchBiyeKorun";
+@import "../styles/components/landing/knowsFounder";
+@import "../styles/components/landing/informationSecure";
 @import "../styles/components/profile-creation/step1";
 @import "../styles/components/registration/photo/uploadPhoto";
 @import "../styles/components/registration/photo/photoGuidelines";
@@ -41,6 +51,12 @@
 @import "../styles/components/about-us/vision";
 @import "../styles/components/about-us/downloadApp";
 @import "../styles/components/about-us/solutions";
+@import "../styles/components/global/notifications";
+@import "../styles/components/landing/giftCollection";
+@import "../styles/components/landing/honeymoon";
+@import "../styles/components/landing/biyeKorunApps";
+@import "../styles/components/landing/rightPlan";
+@import "../styles/components/landing/eventsInquiry";
 
 //pages
 @import "../styles/pages/profile-creation/profileCreation";

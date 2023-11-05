@@ -52,31 +52,30 @@ const Pending = () => {
                   <Text size="sm">
                     <div>
                       {" "}
-                      <b> Age</b>: {calculateAge(item?.recipient?.dateOfBirth)}{" "}
+                      <b> Age</b>: {calculateAge(item?.recipient?.basicInfo?.dateOfBirth)}{" "}
                       yrs
                     </div>
-                    {item?.recipient?.appearance?.height && (
+                    {item?.recipient?.basicInfo?.height && (
                       <div>
                         {" "}
                         <b>Height</b>:{" "}
-                        {heightCalculator(item?.recipient?.appearance?.height)}
+                        {heightCalculator(item?.recipient?.basicInfo?.height)}
                       </div>
                     )}
                     <div>
                       {" "}
-                      <b>Religion</b>: {item?.recipient?.religion}
+                      <b>Religion</b>: {item?.recipient?.community?.religion}
                     </div>
-                    {item?.recipient?.doctrine?.motherTongue && (
+                    {item?.recipient?.community?.nativeLanguage && (
                       <div>
                         {" "}
                         <b> Native Language</b>:{" "}
-                        {console.log(item?.recipient, "Native")}
-                        {item?.recipient?.doctrine?.motherTongue}
+                        {item?.recipient?.community?.nativeLanguage}
                       </div>
                     )}
                     <div>
                       {" "}
-                      <b>Country</b>: {item?.recipient?.country}
+                      <b>Country</b>: {item?.recipient?.location?.country}
                     </div>
                   </Text>
 

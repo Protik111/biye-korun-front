@@ -194,6 +194,9 @@ const LandingV2 = () => {
                 >
                   Let's Start...
                 </Button>
+                {/* <button className="secondary-btn-v3">
+                  Let's Get Started
+                </button> */}
               </div>
             </div>
           </div>
@@ -211,7 +214,9 @@ const LandingV2 = () => {
           modalOpen={modalOpen}
           size="md"
           handleModalClose={handleModalClose}
-          modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}
+          modalTitle={
+            <h3 className="text-center">Let's Create an Account! </h3>
+          }
         >
           {/* <MultistepRegistration></MultistepRegistration> */}
           <FormProvider>

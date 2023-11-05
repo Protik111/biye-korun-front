@@ -4,6 +4,9 @@
   background-repeat: no-repeat;
   background-position: left top, right bottom;
 
+  -webkit-animation: fade-up 4s cubic-bezier(0.165, 0.840, 0.440, 1.000) 0.25s both;
+  animation: fade-up 4s cubic-bezier(0.165, 0.840, 0.440, 1.000) 0.25s both;
+
   // background-color: #fff4e4;
   @mixin heading_content {
     // color: #360036;

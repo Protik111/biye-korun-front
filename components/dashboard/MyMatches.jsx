@@ -117,7 +117,7 @@ const MyMatches = () => {
     });
   };
 
-  console.log("filterData", filterData);
+  console.log("data", data);
 
   return (
     <div>

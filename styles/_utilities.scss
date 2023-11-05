@@ -1,6 +1,7 @@
 /* Container Styles */
 .container {
   max-width: 1200px;
+  // max-width: 1556px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -81,8 +82,9 @@
 }
 
 .flex-basis-200 {
-  flex-basis: 210px;
+  flex-basis: 205px;
 }
+
 .flex-basis-50 {
   flex-basis: 50px;
 }
@@ -120,6 +122,9 @@
   }
 }
 
+.grid-gap-25 {
+  gap: 25px;
+}
 .grid-gap-20 {
   gap: 20px;
 }
@@ -628,4 +633,17 @@
 
 .capitalize {
   text-transform: capitalize;
+}
+
+// v3
+.section-padding-v3 {
+  padding: 100px 0;
+
+  @include mdMaxBreakPoint {
+    padding: 40px 0;
+  }
+
+  @include smMaxBreakPoint {
+    padding: 20px 0;
+  }
 }

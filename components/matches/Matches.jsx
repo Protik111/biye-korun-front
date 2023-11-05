@@ -93,7 +93,7 @@ const Matches = () => {
     return (
         <>
             <div className="text-center container">
-                {data?.data?.length > 0 ? <h2>Let's get started by connecting with few of your Matches</h2> : <h2>Currently, there is no matching profile for you!</h2>}
+                {data?.data?.length > 0 ? <h2>Let's get started by connecting with few of your Matches</h2> : <h2>Currently, There is No Matching Profile For You!</h2>}
             </div>
             <div className="matchesContainer container grid grid-cols-3 grid-cols-3-responsive grid-gap-20">
                 {

@@ -87,6 +87,7 @@ const FamilyDetails = ({ closeModal4 }) => {
   const [selectedCity, setSelectedCity] = useState(familyCity);
 
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [formValues, setFormValues] = useState({
     fatherProfession: fatherProfession ? fatherProfession : "",
@@ -103,10 +104,13 @@ const FamilyDetails = ({ closeModal4 }) => {
   };
   const handleCountryChange = (event) => {
     setSelectedCountry(event);
+    setSelectedState("");
+    setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
     setSelectedState(event);
+    setSelectedCity("");
   };
 
   const handleCityChange = (event) => {
@@ -135,19 +139,22 @@ const FamilyDetails = ({ closeModal4 }) => {
     };
     setLoading(true);
     axios
-      .patch("/user/update-user-profile", data)
+      .patch("/user/update-profile", data)
       .then((res) => {
         notifySuccess("Profile updated successfully!");
         setLoading(false);
 
         dispatch(loadUserData());
-        setTimeout(() => {
-          closeModal4();
-        }, 4000);
+        closeModal4();
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        notifyError(err.response.data.message);
+        if (error.response.data.errors && !error.response.data.errors.message) {
+          const fieldErrors = error.response.data.errors;
+          setErrors(fieldErrors);
+        } else {
+          notifyError(error.response.data.errors.message);
+        }
       });
   };
 
