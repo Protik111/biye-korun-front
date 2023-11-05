@@ -8,6 +8,8 @@ import RightPlan from './RightPlan';
 import SuccessStories from './SuccessStories';
 import Faqs from '@/components/global/Faqs';
 import HoneyMoon from './HoneyMoon';
+import EventsInquiry from './EventsInquiry';
+import Footer from '@/components/global/Footer';
 
 const HomeComp = () => {
     return (
@@ -28,8 +30,15 @@ const HomeComp = () => {
             <div>
                 <SuccessStories></SuccessStories>
             </div>
-            <Faqs></Faqs>
-
+            <div className=''>
+                <Faqs></Faqs>
+            </div>
+            <div className='section-padding-v3'>
+                <EventsInquiry></EventsInquiry>
+            </div>
+            <div className=''>
+                <Footer></Footer>
+            </div>
         </>
     )
 }
