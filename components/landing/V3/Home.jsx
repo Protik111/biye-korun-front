@@ -12,6 +12,8 @@ import KnowsTheFounder from "./KnowsTheFounder";
 import { MatchBrideGroom } from "./MatchBrideGroom";
 import InformationSecure from "./InformationSecure";
 import AuthenticBlue from "./AuthenticBlue";
+import Footer from "@/components/global/Footer";
+import EventsInquiry from "./EventsInquiry";
 
 const HomeComp = () => {
   return (
@@ -36,7 +38,15 @@ const HomeComp = () => {
       <div>
         <SuccessStories></SuccessStories>
       </div>
-      <Faqs></Faqs>
+      <div className="">
+        <Faqs></Faqs>
+      </div>
+      <div className="section-padding-v3">
+        <EventsInquiry></EventsInquiry>
+      </div>
+      <div className="">
+        <Footer></Footer>
+      </div>
     </>
   );
 };
