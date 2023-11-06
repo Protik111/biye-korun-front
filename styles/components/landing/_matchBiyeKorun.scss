@@ -15,10 +15,30 @@
       position: absolute;
       bottom: -10px;
       left: 0;
-      //   right: 0;
+      @include getDown(768px) {
+        content: "";
+        display: block;
+        width: 200px;
+        height: 2px;
+        background-color: #000; // Change the color as needed
+        margin: 0 auto;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+      }
+    }
+    @include getDown(768px) {
+      text-align: center;
     }
   }
-
+  .match_title_for_mobile {
+    @include getDown(768px) {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -36,6 +56,21 @@
       position: relative;
       transition: box-shadow 0.3s;
       margin: 40px auto;
+      @include getDown(1024px) {
+        flex: 0 1 calc(25% - 10px);
+        width: calc(25% - 20px);
+        margin: 20px auto;
+      }
+      @include getDown(768px) {
+        flex: 0 1 calc(50% - 10px);
+        width: calc(100% - 20px);
+        margin: 30px auto;
+      }
+      @include getDown(500px) {
+        flex: 0 1 calc(100% - 10px);
+        width: calc(100% - 20px);
+        margin: 30px auto;
+      }
       &:hover {
         transform: scale(1.05); /* Enlarge the card on hover */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a stronger shadow on hover */
@@ -43,7 +78,7 @@
 
       .header {
         padding: 10px 20px;
-        padding-top: 90px;
+        padding-top: 68px;
         .name {
           font-size: 30px;
           margin: 0;
@@ -93,10 +128,6 @@
           background: rgba(244, 42, 65, 0.1);
           color: #f42a41;
         }
-      }
-
-      @media (max-width: 768px) {
-        max-width: 100%;
       }
     }
   }

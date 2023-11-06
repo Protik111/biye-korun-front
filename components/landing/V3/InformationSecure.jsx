@@ -1,11 +1,11 @@
 import React from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
-
+import { IconArrowRight } from "@tabler/icons-react";
 const InformationSecure = () => {
   return (
     <div className="information_main">
-      <div className="container grid grid-cols-2 grid-gap-25 ">
+      <div className="container grid grid-cols-2 grid-gap-25 grid-cols-2-responsive">
         <div className="left">
           <div>
             <img src="/landing/infomation.png" alt="information" />
@@ -16,11 +16,14 @@ const InformationSecure = () => {
             </div>
             <div className="inner_circle flex flex-column flex-gap-10 justify-center align-center">
               <h1>AR</h1>
-              <p>We only display your initial.</p>
+              <p>
+                We only display <br />
+                your initial.
+              </p>
             </div>
           </div>
         </div>
-        <div className="right flex flex-column flex-gap-20">
+        <div className="right flex flex-column flex-gap-20 pl-25">
           <h1>Your Information is Protected and Secure</h1>
           <p>
             Most Trusted Matrimony Service for Bangladeshis. Register Now to
@@ -69,7 +72,7 @@ const InformationSecure = () => {
           </ul>
 
           <button className="custom-button reg_btn_clr flex justify-center align-center flex-gap-5">
-            See More <BsArrowRight></BsArrowRight>
+            See More <IconArrowRight></IconArrowRight>
           </button>
         </div>
       </div>

@@ -13,7 +13,7 @@ const WeddingPlan = () => {
         <button className="custom-button mt-25">Learn More &rarr;</button>
       </div>
       <div className="honeymoon--right ">
-        <div className="flex flex-gap-10 w-100 images">
+        <div className="flex flex-gap-10 w-100 images responsive_img_part">
           <div className="">
             <img
               className=""
@@ -22,7 +22,7 @@ const WeddingPlan = () => {
               loading="lazy"
             />
           </div>
-          <div className="flex flex-column justify-center">
+          <div className="flex flex-column justify-center responsive_img_part ">
             <div className="top_head ">
               <img
                 // className="large"
@@ -31,15 +31,15 @@ const WeddingPlan = () => {
                 loading="lazy"
               />
             </div>
-            <div className="top_down flex flex-gap-10 ">
+            <div className="top_down flex flex-gap-10 responsive_img_part">
               <img
-                className="small_xs"
+                className="small_xs "
                 src="/landing/w3.png"
                 alt="Honeymoon"
                 loading="lazy"
               />
               <img
-                className="small_xs"
+                className="small_xs "
                 src="/landing/w4.png"
                 alt="Honeymoon"
                 loading="lazy"

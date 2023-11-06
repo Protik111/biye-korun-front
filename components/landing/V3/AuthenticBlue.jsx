@@ -1,5 +1,6 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { IconArrowRight } from "@tabler/icons-react";
 const AuthenticBlue = () => {
   return (
     <div className="authentic_main">
@@ -16,17 +17,31 @@ const AuthenticBlue = () => {
               eligibility requirements.
             </p>
             <ol className="pl-15 mt-15 mb-30">
-              <li className="mb-10">Create an account. Go to take Blue</li>
-              <li className="mb-10">
+              <li
+                className="mb-10"
+                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+              >
+                Create an account. Go to take Blue
+              </li>
+              <li
+                className="mb-10"
+                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+              >
                 {" "}
                 Set up payment. Select your preferred payment <br />
                 method for your monthly payment.{" "}
               </li>
-              <li className="mb-10"> Verify identity.</li>
+              <li
+                className="mb-10"
+                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+              >
+                {" "}
+                Verify identity.
+              </li>
             </ol>
 
             <button className="custom-button mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
-              See More <BsArrowRight></BsArrowRight>
+              See More <IconArrowRight></IconArrowRight>
             </button>
           </div>
 

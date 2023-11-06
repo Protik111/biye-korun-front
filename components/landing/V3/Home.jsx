@@ -33,7 +33,7 @@ const HomeComp = () => {
         <OnePlatform />
         <WeddingPlan />
       </div>
-      <div className="section-padding-v3">
+      {/* <div className="section-padding-v3">
         <GiftCollection></GiftCollection>
       </div>
       <HoneyMoon></HoneyMoon>
@@ -52,7 +52,7 @@ const HomeComp = () => {
       </div>
       <div className="">
         <Footer></Footer>
-      </div>
+      </div> */}
     </>
   );
 };

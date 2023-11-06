@@ -31,15 +31,21 @@
           width: 160px;
         }
       }
+      .small1 {
+        @include getDown(1024px) {
+          width: 100%;
+        }
+      }
+
       .small_xs {
         width: 137px;
 
         @include mdMaxBreakPoint {
-          width: 250px;
+          width: 100%;
         }
 
         @include smMaxBreakPoint {
-          width: 160px;
+          width: 100%;
         }
       }
 
@@ -53,6 +59,13 @@
         @include smMaxBreakPoint {
           width: 160px;
         }
+      }
+    }
+    .responsive_img_part {
+      @include getDown(768px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
     }
   }
