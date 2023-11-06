@@ -1,53 +1,59 @@
 .honeymoon {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    @include mdMaxBreakPoint {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+  @include mdMaxBreakPoint {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 
-    &--left {
-        margin: auto;
+  &--left {
+    margin: auto;
+  }
 
-    }
+  &--right {
+    .images {
+      img {
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
 
-    &--right {
+      .small {
+        // height: auto;
+        width: 230px;
 
-        .images {
-            img {
-                max-width: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-
-            .small {
-
-                // height: auto;
-                width: 230px;
-
-                @include mdMaxBreakPoint {
-                    width: 250px;
-                }
-
-                @include smMaxBreakPoint {
-                    width: 160px;
-                }
-
-
-            }
-
-            .large {
-                width: 340px;
-
-                @include mdMaxBreakPoint {
-                    width: 250px;
-                }
-
-                @include smMaxBreakPoint {
-                    width: 160px;
-                }
-            }
+        @include mdMaxBreakPoint {
+          width: 250px;
         }
+
+        @include smMaxBreakPoint {
+          width: 160px;
+        }
+      }
+      .small_xs {
+        width: 137px;
+
+        @include mdMaxBreakPoint {
+          width: 250px;
+        }
+
+        @include smMaxBreakPoint {
+          width: 160px;
+        }
+      }
+
+      .large {
+        width: 340px;
+
+        @include mdMaxBreakPoint {
+          width: 250px;
+        }
+
+        @include smMaxBreakPoint {
+          width: 160px;
+        }
+      }
     }
+  }
 }
