@@ -17,6 +17,7 @@ import EventsInquiry from "./EventsInquiry";
 import WorldConnectivity from "./WorldConnectivity";
 import OnePlatform from "./OnePlatform";
 import WeddingPlan from "./WeddingPlan";
+import HappyCouples from "./HappyCouples";
 
 const HomeComp = () => {
   return (
@@ -41,6 +42,7 @@ const HomeComp = () => {
         <BiyeKorunApps></BiyeKorunApps>
       </div>
       <RightPlan></RightPlan>
+      <HappyCouples></HappyCouples>
       <div>
         <SuccessStories></SuccessStories>
       </div>
