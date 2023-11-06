@@ -6,8 +6,12 @@
     height: 110vh;
     position: relative;
 
+    @include mdMaxBreakPoint {
+        height: 150vh;
+    }
+
     @include smMaxBreakPoint {
-        height: 200vh;
+        height: 150vh;
     }
 
 
@@ -24,7 +28,7 @@
         right: 0;
         bottom: 0;
 
-        @include smMaxBreakPoint {
+        @include mdMaxBreakPoint {
             grid-template-columns: 1fr;
         }
 
@@ -34,6 +38,10 @@
             img {
                 max-width: 100%;
                 object-fit: cover;
+
+                @include mdMaxBreakPoint {
+                    display: none;
+                }
             }
         }
 
@@ -72,6 +80,10 @@
                 line-height: 27px;
                 letter-spacing: 0em;
                 color: rgba(255, 255, 255, 1);
+
+                @include smMaxBreakPoint {
+                    font-size: 16px;
+                }
             }
 
 
