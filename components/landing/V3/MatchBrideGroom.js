@@ -16,7 +16,7 @@ export const MatchBrideGroom = () => {
   return (
     <div className="matches_main mb-30">
       <div className="container">
-        <div className="flex justify-between align-center mt-30 mb-30">
+        <div className="flex justify-between align-center mt-30 mb-30 match_title_for_mobile">
           <div className="title">
             <h1>Match Bride & Grooms</h1>
           </div>

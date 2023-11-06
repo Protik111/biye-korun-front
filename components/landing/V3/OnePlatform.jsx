@@ -14,15 +14,25 @@ const OnePlatform = () => {
             buttonColor="#9908F5"
             buttonText="Learn More"
           />
-          <div className="inner_div">
+          <div className="inner_div inner_div_for_mobile">
             <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
           </div>
         </div>
         <div className="img_card  mt-30">
-          <div className="flex flex-column w-60">
+          <div className="flex flex-column w-60 mobile_res_card_img">
             <img src="/landing/ring.png" alt="ring" />
           </div>
-          <div className="card_absolute w-60">
+
+          <div className="card_absolute w-60 hide_mobile">
+            <CommonCard
+              title="Engagement Plan"
+              description="Congratulations on finding your soul partner on the Biyekorun app! Planning an engagement event is an exciting step towards making your relationship official and preparing for your wedding."
+              buttonText="Learn More"
+              buttonColor="green_btn_color"
+              width=""
+            />
+          </div>
+          <div className="mt-10 w-100 show_mobile">
             <CommonCard
               title="Engagement Plan"
               description="Congratulations on finding your soul partner on the Biyekorun app! Planning an engagement event is an exciting step towards making your relationship official and preparing for your wedding."

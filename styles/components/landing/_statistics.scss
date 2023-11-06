@@ -9,11 +9,28 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); // Four columns in a single row
     gap: 0; // No gap between columns
+
     .statistic {
       text-align: center;
       padding: 20px;
       // background-color: #fff;
-      border-right: 1px solid #ccc; // Right border
+      // border-right: 1px solid #ccc; // Right border
+      position: relative;
+      // &:nth-child(4) {
+      //   color: red;
+      // }
+
+      &:not(:last-child)::after {
+        content: "";
+        height: 50px;
+        width: 3px;
+        position: absolute;
+        top: -20px;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        background-color: #ccc;
+      }
 
       .value {
         font-size: 24px;
@@ -24,12 +41,17 @@
         font-size: 16px;
         color: #555;
       }
-      &:nth-child(4) {
-        border-right: none; // Remove the border for the last item
-      }
+
+      // &:nth-child(4) {
+      //   background-color: red; // Remove the border for the last item
+      // }
       @include mdMaxBreakPoint {
         &:nth-child(2) {
           border-right: none;
+        }
+
+        &:not(:nth-child(odd))::after {
+          content: none;
         }
       }
     }

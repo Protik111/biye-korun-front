@@ -4,11 +4,12 @@ const HoneyMoon = () => {
   return (
     <div className="honeymoon container">
       <div className="honeymoon--left">
-        <h2>Wedding Plan</h2>
+        <h2>Honeymoon Plan</h2>
         <p className="mt-25">
-          Congratulations on finding your life partner on the BiyeKorun app and
-          on your engagement! Planning your wedding is an exciting journey, and
-          We are here to help you get started.
+          BiyeKorun offers a comprehensive solution for planning and enjoying
+          honeymoons, providing a seamless experience from start to finish. Such
+          one-stop solutions can be incredibly convenient for couples looking to
+          have a stress-free and enjoyable honeymoon.
         </p>
         <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
       </div>

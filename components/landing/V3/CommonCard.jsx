@@ -5,7 +5,7 @@ const CommonCard = ({ width, buttonColor, title, description, buttonText }) => {
   console.log("buttonColor", buttonColor);
   return (
     <div>
-      <div className={`flex flex-column ${width}`}>
+      <div className={`flex flex-column ${width} common_card_resposive`}>
         <h2 className="mb-20">{title}</h2>
         <p>{description}</p>
         <button

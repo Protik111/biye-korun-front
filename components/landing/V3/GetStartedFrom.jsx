@@ -27,6 +27,7 @@ import Form from "../../multiStepRegistration/Form";
 import { FormProvider } from "@/context/FormContext";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const GetStartedFrom = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -108,9 +109,9 @@ const GetStartedFrom = () => {
                 range={1}
                 minRange={1}
                 sx={selectMobileStyles_res}
-              // onChange={handleAge}
-              //   style={{ width: "200px" }}
-              // onChange={(event) => handleFormChange("ages", event)}
+                // onChange={handleAge}
+                //   style={{ width: "200px" }}
+                // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
@@ -139,7 +140,9 @@ const GetStartedFrom = () => {
         />
       </div>
       <div>
-        <button className="primary-btn-v3">Let's Get Started</button>
+        <Link href="/login">
+          <button className="primary-btn-v3">Let's Get Started</button>
+        </Link>
       </div>
     </>
     // <div className="landingv2">

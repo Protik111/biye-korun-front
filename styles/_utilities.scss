@@ -106,6 +106,9 @@
   @include lgMaxBreakPoint {
     grid-template-columns: 1fr;
   }
+  @include getDown(768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .grid-cols-3 {
