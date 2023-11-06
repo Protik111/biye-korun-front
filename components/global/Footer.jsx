@@ -10,7 +10,7 @@ const Footer = () => {
                 </div>
 
                 <div class="input-box">
-                    <input type="text" class="text_input" />
+                    <input placeholder="Email..." type="text" class="text_input" />
                     <button value="Save" class="btn">Submit</button>
                 </div>
             </div>

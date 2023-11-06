@@ -17,6 +17,7 @@ import EventsInquiry from "./EventsInquiry";
 import WorldConnectivity from "./WorldConnectivity";
 import OnePlatform from "./OnePlatform";
 import WeddingPlan from "./WeddingPlan";
+import HappyCouples from "./HappyCouples";
 
 const HomeComp = () => {
   return (
@@ -33,7 +34,7 @@ const HomeComp = () => {
         <OnePlatform />
         <WeddingPlan />
       </div>
-      {/* <div className="section-padding-v3">
+      <div className="section-padding-v3">
         <GiftCollection></GiftCollection>
       </div>
       <HoneyMoon></HoneyMoon>
@@ -41,8 +42,8 @@ const HomeComp = () => {
         <BiyeKorunApps></BiyeKorunApps>
       </div>
       <RightPlan></RightPlan>
-      <div>
-        <SuccessStories></SuccessStories>
+      <div className="section-padding-v3">
+        <HappyCouples></HappyCouples>
       </div>
       <div className="">
         <Faqs></Faqs>
@@ -52,7 +53,7 @@ const HomeComp = () => {
       </div>
       <div className="">
         <Footer></Footer>
-      </div> */}
+      </div>
     </>
   );
 };

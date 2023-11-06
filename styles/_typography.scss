@@ -4,7 +4,7 @@ h1 {
   font-weight: 400;
   // font-size: 34px;
   font-size: 28px;
-  line-height: 1.2em;
+  // line-height: 4.72px;
   margin: 0;
   // color: $secondaryColorLight;
   color: black;
@@ -104,6 +104,21 @@ p {
     font-size: 18px;
     font-weight: 500;
     line-height: 34px;
+  }
+}
+
+.regular-text {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: black;
+  font-family: "Inter", sans-serif;
+
+  @include smMinBreakPoint {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 34px;
+    color: black;
   }
 }
 

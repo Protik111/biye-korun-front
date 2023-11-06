@@ -1,0 +1,99 @@
+.root-happy__couple {
+    hr {
+        border: 1px solid black;
+    }
+
+    .happy__couple {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        position: relative;
+
+        @include mdMaxBreakPoint {
+            grid-template-columns: 100%;
+        }
+
+        &--left {
+            // margin-right: -200px;
+            z-index: 1000;
+            margin: auto -250px auto auto;
+
+            .info {
+                background-color: $primaryColorV3;
+                min-height: 320px;
+                min-width: 450px;
+                padding: 20px;
+                border-radius: 10px;
+
+                img {
+                    max-width: 100%;
+                    object-fit: contain;
+                    height: 80px;
+                }
+
+                .desc {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 28px;
+                    letter-spacing: 0em;
+                    text-align: center;
+                    color: rgba(255, 255, 255, 0.9);
+
+                }
+
+                .name {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 24px;
+                    font-weight: 500;
+                    line-height: 32px;
+                    letter-spacing: 0em;
+                    text-align: center;
+                    color: white;
+                }
+
+                .title {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    letter-spacing: 0em;
+                    text-align: center;
+                    color: white;
+                }
+            }
+
+            @include mdMaxBreakPoint {
+                margin: auto;
+            }
+
+            img {
+                max-width: 100%;
+                object-fit: contain;
+            }
+        }
+
+        &--right {
+            // background-color: #F5F5F5;
+            padding: 60px 100px;
+
+            img {
+                max-width: 100%;
+                object-fit: cover;
+            }
+
+            @include mdMaxBreakPoint {
+                padding: 10px
+            }
+
+        }
+    }
+
+    .next-prev {
+        img {
+            max-width: 100%;
+            object-fit: cover;
+            height: 80px;
+            cursor: pointer;
+        }
+    }
+}

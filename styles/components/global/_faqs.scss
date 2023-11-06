@@ -9,26 +9,58 @@
     }
 
     .mantive-custom_accordion {
-        background-color: $secondaryColorV3 !important;
+        // background-color: $secondaryColorV3 !important;
         // background: linear-gradient(90deg, #A035FF 0%, #770DD5 20%, #770DD5 100%) !important;
         color: white;
         margin-top: 15px;
-        border-radius: 10px;
-        padding: 10px 0;
+        border-radius: 10px !important;
+        // padding: 10px 0;
+    }
+
+    .mantine-15l0h0l:first-of-type {
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0.25rem;
     }
 
     .mantive-custom_accordion [data-active="true"] {
         /* Attribute has this exact value */
-        // background-color: $primaryColorV3 !important;
+        background-color: $secondaryColorV3 !important;
 
+        .mantine-Accordion-panel {
+            background-color: $secondaryColorV3 !important;
+            color: white !important;
+        }
+
+        span {
+            background-color: $secondaryColorV3 !important;
+            color: white !important;
+        }
+    }
+
+    .mantine-Accordion-item {
+        background-color: white;
+
+        button {
+            color: black !important;
+        }
+
+        .mantine-Accordion-panel {
+            color: black !important;
+
+        }
+    }
+
+    .mantine-140jman {
+        background-color: $secondaryColorV3 !important;
     }
 
     .mantine-Accordion-content {
-        opacity: 0.8;
+        // opacity: 0.8;
+        color: white;
     }
 
     .mantive-custom_accordion:hover {
-        background-color: $secondaryColorV3 !important;
+        background-color: white !important;
         border-radius: 10px;
 
     }
@@ -44,7 +76,7 @@
     }
 
     .mantive-custom_control:hover {
-        background-color: $secondaryColorV3;
+        background-color: white;
         border-radius: 10px;
 
     }
