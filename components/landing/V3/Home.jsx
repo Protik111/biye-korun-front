@@ -14,6 +14,9 @@ import InformationSecure from "./InformationSecure";
 import AuthenticBlue from "./AuthenticBlue";
 import Footer from "@/components/global/Footer";
 import EventsInquiry from "./EventsInquiry";
+import WorldConnectivity from "./WorldConnectivity";
+import OnePlatform from "./OnePlatform";
+import WeddingPlan from "./WeddingPlan";
 
 const HomeComp = () => {
   return (
@@ -26,6 +29,9 @@ const HomeComp = () => {
         <MatchBrideGroom />
         <InformationSecure />
         <AuthenticBlue />
+        <WorldConnectivity />
+        <OnePlatform />
+        <WeddingPlan />
       </div>
       <div className="section-padding-v3">
         <GiftCollection></GiftCollection>
