@@ -4,18 +4,34 @@ metadata:
   name: biyekorun-frontend-ingress
   namespace: {{ .Values.namespace }}
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      if ($host = '{{ .Values.wwwHost }}' ) {
+        return 301 https://{{ .Values.host }}$request_uri;
+      }
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
     - {{ .Values.host }}
-    secretName: {{ .Values.host }}-tls
+    secretName: {{ .Values.hostSecret }}
+  - hosts:
+    - {{ .Values.wwwHost }}
+    secretName: {{ .Values.hostWwwSecret }}
   rules:
   - host: {{ .Values.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: biyekorun-frontend
+            port:
+              name: http
+  - host: {{ .Values.wwwHost }}
     http:
       paths:
       - path: /
