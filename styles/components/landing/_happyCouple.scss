@@ -1,4 +1,8 @@
 .root-happy__couple {
+    hr {
+        border: 1px solid black;
+    }
+
     .happy__couple {
         display: grid;
         grid-template-columns: 30% 70%;

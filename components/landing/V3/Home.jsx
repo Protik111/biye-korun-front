@@ -42,9 +42,8 @@ const HomeComp = () => {
         <BiyeKorunApps></BiyeKorunApps>
       </div>
       <RightPlan></RightPlan>
-      <HappyCouples></HappyCouples>
-      <div>
-        <SuccessStories></SuccessStories>
+      <div className="section-padding-v3">
+        <HappyCouples></HappyCouples>
       </div>
       <div className="">
         <Faqs></Faqs>
