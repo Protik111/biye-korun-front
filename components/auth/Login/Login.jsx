@@ -157,7 +157,7 @@ const LoginComp = () => {
           <br></br>
 
           <div>
-            <p style={{ color: "#828282" }}>
+            <p className="regular-text" style={{ color: "#828282" }}>
               Forgot Password?
               <Link href="/forgot-password">
                 <span style={{ color: "#F87A1D" }} className="underline">
@@ -166,7 +166,7 @@ const LoginComp = () => {
                 </span>
               </Link>
             </p>
-            <p style={{ color: "#828282" }}>
+            <p className="regular-text" style={{ color: "#828282" }}>
               New to Biye Korun?{" "}
               <span
                 style={{ color: "#F87A1D" }}
