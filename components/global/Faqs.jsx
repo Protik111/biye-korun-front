@@ -40,7 +40,7 @@ const Faqs = () => {
             <div className='w-25 m-auto p-15'>
                 <hr />
             </div>
-            <div className='faqs__container container'>
+            <div className='faqs__container container mt-30'>
                 <Accordion defaultValue="customization" variant='contained' chevron={<IconPlus />}>
                     <Accordion.Item value="customization" className='mantive-custom_accordion'>
                         <Accordion.Control className='mantive-custom_control'>What makes Biye Korun the Gem in the matrimony crown?</Accordion.Control>
