@@ -25,9 +25,9 @@ const HomeComp = () => {
       <div>
         <HeroSection />
         <Statistics />
-        <StoryFounder />
-        <KnowsTheFounder />
-        <MatchBrideGroom />
+        {/* <StoryFounder /> */}
+        {/* <KnowsTheFounder /> */}
+        {/* <MatchBrideGroom /> */}
         <InformationSecure />
         <AuthenticBlue />
         <WorldConnectivity />

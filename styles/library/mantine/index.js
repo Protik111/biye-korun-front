@@ -16,7 +16,7 @@ export const selectMobileStyles = {
 export const selectMobileStyles_res = {
   width: "325px",
   "@media (max-width: 640px)": {
-    width: "100%",
+    width: "350px",
   },
 };
 

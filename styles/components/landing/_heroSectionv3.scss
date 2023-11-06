@@ -11,31 +11,43 @@
   //     padding: 0;
   //   }
 
+  // .navbarRoot__logo {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-direction: column;
+  // }
+
   .column-1 {
     display: flex;
     flex-direction: column;
     padding-top: 20px;
+
     .border_down {
       background: rgba(0, 0, 0, 0.15);
       width: 800px;
       height: 1px;
       margin-top: 20px;
+
       @include mdMaxBreakPoint {
         display: none;
       }
     }
+
     .hero_title {
       width: 846px;
       margin-top: 103px;
-      @include smMaxBreakPoint {
+
+      @include mdMaxBreakPoint {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
-        margin-top: 50px;
+        margin-top: 30px;
       }
     }
+
     .responsive_from {
       @include smMaxBreakPoint {
         display: flex;
@@ -49,6 +61,7 @@
 
   .mantine-1q8x8u2 {
     width: 325px;
+
     @include smMaxBreakPoint {
       display: flex;
       flex-direction: column;

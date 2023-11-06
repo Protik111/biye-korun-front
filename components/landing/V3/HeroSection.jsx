@@ -5,7 +5,7 @@ import GetStartedFrom from "./GetStartedFrom";
 export const HeroSection = () => {
   return (
     <div className="heroSectionV3 ">
-      <div className="flex flex-col container padding_0">
+      <div className="container padding_0">
         <div className="column-1">
           <div className="navbarRoot__logo">
             <Link href="/">
@@ -13,9 +13,9 @@ export const HeroSection = () => {
             </Link>
             <div className="border_down"></div>
             <div className="hero_title">
-              <h2>
+              <h1>
                 Find the Right Person <br /> to Spend Rest of Your <br /> Life
-              </h2>
+              </h1>
             </div>
             <div>
               <GetStartedFrom />

@@ -107,9 +107,10 @@ const GetStartedFrom = () => {
                 defaultValue={formData.ages}
                 range={1}
                 minRange={1}
-                // onChange={handleAge}
-                //   style={{ width: "200px" }}
-                // onChange={(event) => handleFormChange("ages", event)}
+                sx={selectMobileStyles_res}
+              // onChange={handleAge}
+              //   style={{ width: "200px" }}
+              // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
@@ -122,7 +123,8 @@ const GetStartedFrom = () => {
           defaultValue="20"
           //   styles={{ label: labelStyles }}
           data={religions}
-          sx={selectMobileStyles}
+          // sx={selectMobileStyles}
+          sx={selectMobileStyles_res}
           searchable
         />
         <MultiSelect
@@ -132,14 +134,12 @@ const GetStartedFrom = () => {
           //   styles={{ label: labelStyles }}
           data={motherTongues}
           // style={{ height: "40px", overflow: "auto" }}
-          sx={selectMultiStyles}
+          sx={selectMobileStyles_res}
           searchable
         />
       </div>
       <div>
-        <div>
-          <button className="primary-btn-v3">Let's Get Started</button>
-        </div>
+        <button className="primary-btn-v3">Let's Get Started</button>
       </div>
     </>
     // <div className="landingv2">
