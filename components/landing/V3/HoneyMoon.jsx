@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const HoneyMoon = () => {
@@ -11,7 +12,9 @@ const HoneyMoon = () => {
           one-stop solutions can be incredibly convenient for couples looking to
           have a stress-free and enjoyable honeymoon.
         </p>
-        <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
+        <Link href="/login">
+          <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
+        </Link>
       </div>
       <div className="honeymoon--right">
         <div className="flex flex-gap-20 images">

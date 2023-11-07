@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const WeddingPlan = () => {
@@ -10,7 +11,10 @@ const WeddingPlan = () => {
           on your engagement! Planning your wedding is an exciting journey, and
           We are here to help you get started.
         </p>
-        <button className="custom-button mt-25">Learn More &rarr;</button>
+        <Link href="/login">
+          <button className="custom-button mt-25">Learn More &rarr;</button>
+
+        </Link>
       </div>
       <div className="honeymoon--right ">
         <div className="flex flex-gap-10 w-100 images responsive_img_part">

@@ -1,6 +1,7 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
 const AuthenticBlue = () => {
   return (
     <div className="authentic_main">
@@ -16,7 +17,7 @@ const AuthenticBlue = () => {
               see users with a verified badge that represents our previous
               eligibility requirements.
             </p>
-            <ol className="pl-15 mt-15 mb-30">
+            <ol className="pl-15 mt-15">
               <li
                 className="mb-10"
                 style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
@@ -32,7 +33,7 @@ const AuthenticBlue = () => {
                 method for your monthly payment.{" "}
               </li>
               <li
-                className="mb-10"
+                className=""
                 style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
               >
                 {" "}
@@ -40,9 +41,11 @@ const AuthenticBlue = () => {
               </li>
             </ol>
 
-            <button className="custom-button mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
-              See More <IconArrowRight></IconArrowRight>
-            </button>
+            <Link href="/login">
+              <button className="custom-button mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
+                See More <IconArrowRight></IconArrowRight>
+              </button>
+            </Link>
           </div>
 
           <div className="blu_img">

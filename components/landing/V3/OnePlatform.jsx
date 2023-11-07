@@ -6,16 +6,18 @@ const OnePlatform = () => {
     <div className="one_platform">
       <div className="container">
         <h1 className="text-center heading1V3">Everything In One Platform!</h1>
-        <div className="card">
-          <CommonCard
-            width="w-50"
-            title="Group Chat"
-            description="Group chat is a type of communication platform that allows members of a group to quickly and easily exchange information in real-time through instant messaging. We can add you to different groups such as (Doctor group, American citizen group, Russian group, Engineer group etc) if you want."
-            buttonColor="#9908F5"
-            buttonText="Learn More"
-          />
-          <div className="inner_div inner_div_for_mobile">
-            <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
+        <div className="py-30">
+          <div className="card">
+            <CommonCard
+              width="w-50"
+              title="Group Chat"
+              description="Group chat is a type of communication platform that allows members of a group to quickly and easily exchange information in real-time through instant messaging. We can add you to different groups such as (Doctor group, American citizen group, Russian group, Engineer group etc) if you want."
+              buttonColor="#9908F5"
+              buttonText="Learn More"
+            />
+            <div className="inner_div inner_div_for_mobile">
+              <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
+            </div>
           </div>
         </div>
         <div className="img_card  mt-30">

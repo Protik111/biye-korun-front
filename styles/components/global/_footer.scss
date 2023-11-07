@@ -3,6 +3,10 @@
     background-color: rgba(0, 0, 0, 0.8);
     position: relative;
 
+    @include mdMaxBreakPoint {
+        margin-top: 80px;
+    }
+
 
     .contact_us {
         position: absolute;
@@ -26,7 +30,9 @@
         @include mdMaxBreakPoint {
             width: 95%;
             padding: 10px;
+
         }
+
 
         h3 {
             font-family: 'Inter', sans-serif;
@@ -128,10 +134,12 @@
         flex-flow: row wrap;
         padding: 30px 30px 20px 30px;
         margin-top: 60px;
+        column-gap: 80px;
         // color: white;
 
         @include mdMaxBreakPoint {
             margin-top: 80px;
+            gap: 10px;
         }
     }
 
