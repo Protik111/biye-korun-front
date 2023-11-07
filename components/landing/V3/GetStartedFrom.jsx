@@ -63,7 +63,6 @@ const GetStartedFrom = () => {
     }));
   };
 
-
   return (
     <>
       <div className="flex flex-gap-10 mb-10 mt-15 responsive_from">
@@ -110,9 +109,9 @@ const GetStartedFrom = () => {
                 range={1}
                 minRange={1}
                 sx={selectMobileStyles_res}
-              // onChange={handleAge}
-              //   style={{ width: "200px" }}
-              // onChange={(event) => handleFormChange("ages", event)}
+                // onChange={handleAge}
+                //   style={{ width: "200px" }}
+                // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
@@ -143,7 +142,10 @@ const GetStartedFrom = () => {
       <div>
         {/* <Link href="/login">
         </Link> */}
-        <button onClick={() => setModalOpen(true)} className="primary-btn-v3">Let's Get Started</button>
+
+        <button onClick={() => setModalOpen(true)} className="primary-btn-v3">
+          Let's Get Started
+        </button>
       </div>
 
       {modalOpen && (

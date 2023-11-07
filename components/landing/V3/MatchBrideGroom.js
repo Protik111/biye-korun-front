@@ -85,7 +85,9 @@ export const MatchBrideGroom = () => {
                           `5 feet 10 inches`}
                       </p>
                       <p className="paragraphV3">
-                        {item?.location.city}, {item?.location.country}
+                        {`${item?.location.city ? item?.location.city : ""} ${
+                          item?.location.country
+                        }`}
                       </p>
                     </div>
                   </div>
@@ -115,7 +117,7 @@ export const MatchBrideGroom = () => {
         )}
         <div className="register_btn flex justify-center">
           <button
-            className="custom-button reg_btn_clr flex justify-center align-center flex-gap-5"
+            className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5"
             onClick={handleRegister}
           >
             {!isAuthenticated ? "Register Now" : "Let's Begin"}{" "}

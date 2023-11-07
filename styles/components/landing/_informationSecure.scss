@@ -3,9 +3,9 @@
   padding: 50px 0;
 
   .left {
-    padding-top: 50px;
+    // padding-top: 50px;
     position: relative;
-
+    margin-top: 8px;
     // max-width: 80%;
     img {
       max-width: 100%;
@@ -99,7 +99,6 @@
   background: #f5f5f5;
   padding: 50px 0;
 
-
   @include mdMaxBreakPoint {
     padding: 20px 0;
   }
@@ -107,16 +106,19 @@
   .custom_grid {
     display: grid;
     grid-template-columns: 50% 50%;
-
+    gap: 20px;
     .blu_img {
       max-width: 100%;
       display: block;
-      object-fit: cover;
-
       img {
         display: block;
+        max-width: 100%;
         width: 100%;
-        object-fit: cover;
+        object-fit: none;
+        height: 482px;
+        @include getDown(600px) {
+          height: auto;
+        }
       }
     }
 
@@ -173,6 +175,10 @@
     &:hover {
       transform: translateY(-5px);
     }
+    @include getDown(600px) {
+      margin: 0;
+      padding: 0 10px;
+    }
   }
 
   .card {
@@ -181,7 +187,7 @@
     .inner_div {
       position: absolute;
       right: 0;
-      top: -16%;
+      top: -8%;
 
       img {
         width: 515px;

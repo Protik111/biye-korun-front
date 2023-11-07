@@ -20,13 +20,19 @@ const AuthenticBlue = () => {
             <ol className="pl-15 mt-15">
               <li
                 className="mb-10"
-                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+                style={{
+                  fontSize: "18px",
+                  color: "rgba(0, 0, 0, 0.80)",
+                }}
               >
                 Create an account. Go to take Blue
               </li>
               <li
                 className="mb-10"
-                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+                style={{
+                  fontSize: "18px",
+                  color: "rgba(0, 0, 0, 0.80)",
+                }}
               >
                 {" "}
                 Set up payment. Select your preferred payment <br />
@@ -34,7 +40,10 @@ const AuthenticBlue = () => {
               </li>
               <li
                 className=""
-                style={{ fontSize: "20px", color: "rgba(0, 0, 0, 0.6)" }}
+                style={{
+                  fontSize: "18px",
+                  color: "rgba(0, 0, 0, 0.80)",
+                }}
               >
                 {" "}
                 Verify identity.
@@ -42,7 +51,7 @@ const AuthenticBlue = () => {
             </ol>
 
             <Link href="/login">
-              <button className="custom-button mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
+              <button className="secondary-btn-v3 mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
                 See More <IconArrowRight></IconArrowRight>
               </button>
             </Link>
