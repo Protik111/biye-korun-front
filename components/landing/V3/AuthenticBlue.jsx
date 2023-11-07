@@ -18,36 +18,15 @@ const AuthenticBlue = () => {
               eligibility requirements.
             </p>
             <ol className="pl-15 mt-15">
-              <li
-                className="mb-10"
-                style={{
-                  fontSize: "18px",
-                  color: "rgba(0, 0, 0, 0.80)",
-                }}
-              >
+              <li className="mb-10 authentic_li">
                 Create an account. Go to take Blue
               </li>
-              <li
-                className="mb-10"
-                style={{
-                  fontSize: "18px",
-                  color: "rgba(0, 0, 0, 0.80)",
-                }}
-              >
+              <li className="mb-10 authentic_li">
                 {" "}
                 Set up payment. Select your preferred payment <br />
                 method for your monthly payment.{" "}
               </li>
-              <li
-                className=""
-                style={{
-                  fontSize: "18px",
-                  color: "rgba(0, 0, 0, 0.80)",
-                }}
-              >
-                {" "}
-                Verify identity.
-              </li>
+              <li className="authentic_li"> Verify identity.</li>
             </ol>
 
             <Link href="/login">

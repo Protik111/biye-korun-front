@@ -1,6 +1,7 @@
 .honeymoon {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 40px;
 
   @include mdMaxBreakPoint {
     grid-template-columns: 1fr;
@@ -31,6 +32,7 @@
           width: 160px;
         }
       }
+
       .small1 {
         @include getDown(1024px) {
           width: 100%;
@@ -61,6 +63,7 @@
         }
       }
     }
+
     .responsive_img_part {
       @include getDown(768px) {
         display: flex;

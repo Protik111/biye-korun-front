@@ -108,7 +108,11 @@ const GetStartedFrom = () => {
                 defaultValue={formData.ages}
                 range={1}
                 minRange={1}
-                sx={selectMobileStyles_res}
+                // sx={selectMobileStyles_res}
+                // onChange={handleAge}
+                //   style={{ width: "200px" }}
+                // onChange={(event) => handleFormChange("ages", event)}
+                // sx={selectMobileStyles_res}
                 // onChange={handleAge}
                 //   style={{ width: "200px" }}
                 // onChange={(event) => handleFormChange("ages", event)}

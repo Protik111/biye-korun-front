@@ -107,6 +107,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 20px;
+
     .blu_img {
       max-width: 100%;
       display: block;
@@ -127,7 +128,14 @@
     }
   }
 }
-
+.authentic_li {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  // line-height: 34px; /* 188.889% */
+}
 // world wide connectivity
 .world_connectivity {
   background: #fff;

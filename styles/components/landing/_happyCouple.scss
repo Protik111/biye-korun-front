@@ -24,10 +24,19 @@
                 padding: 20px;
                 border-radius: 10px;
 
+
+                @include mdMaxBreakPoint {
+                    min-width: 350px;
+                }
+
                 img {
                     max-width: 100%;
                     object-fit: contain;
                     height: 80px;
+
+                    @include mdMaxBreakPoint {
+                        height: 50px;
+                    }
                 }
 
                 .desc {
@@ -94,6 +103,10 @@
             object-fit: cover;
             height: 80px;
             cursor: pointer;
+
+            @include mdMaxBreakPoint {
+                height: 40px;
+            }
         }
     }
 }

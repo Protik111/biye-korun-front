@@ -36,31 +36,31 @@ const InformationSecure = () => {
           </p>
 
           <ul class="icon-list">
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Register for Free!
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               100% human verified profiles
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Chat, Voice & Video calling
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Private, personalized, and highly confidential service
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
