@@ -25,7 +25,7 @@ const WeddingPlan = () => {
               loading="lazy"
             />
           </div>
-          <div className="flex flex-column justify-center responsive_img_part ">
+          <div className="flex flex-column justify-center responsive_img_part flex-gap-5">
             <div className="top_head ">
               <img
                 // className="large"
