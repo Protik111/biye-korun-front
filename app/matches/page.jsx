@@ -1,5 +1,6 @@
 "use client"
 
+import Navbar from "@/components/global/Navbar";
 import Matches from "@/components/matches/Matches"
 import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import { Loader } from "@mantine/core";
@@ -15,6 +16,7 @@ const page = () => {
 
     return (
         <div className='matches'>
+            <Navbar></Navbar>
             <Matches></Matches>
             <div className="style_v2">
 

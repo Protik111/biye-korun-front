@@ -5,6 +5,7 @@ import Tapbar from "@/components/dashboard/Tapbar";
 import "../globals.scss";
 import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import { Loader } from "@mantine/core";
+import Navbar from "@/components/global/Navbar";
 // import Navbar from "@/components/global/Navbar";
 // import dynamic from "next/dynamic";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
 
   return (
     <div>
+      <Navbar></Navbar>
       <Tapbar></Tapbar>
       {children}
     </div>

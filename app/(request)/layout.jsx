@@ -4,6 +4,7 @@ import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import "../globals.scss";
 import RequestTapbar from "@/components/request/RequestTapbar";
 import { Loader } from "@mantine/core";
+import Navbar from "@/components/global/Navbar";
 
 
 export default function RootLayout({ children }) {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
 
   return (
     <div>
+      <Navbar></Navbar>
       <RequestTapbar></RequestTapbar>
       {children}
     </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import Navbar from "@/components/global/Navbar";
 import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import { Loader } from "@mantine/core";
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
 
   return (
     <div>
+      <Navbar></Navbar>
       <div>{children}</div>
     </div>
   )

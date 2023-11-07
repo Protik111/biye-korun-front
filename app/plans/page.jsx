@@ -6,6 +6,7 @@ import QuestionAnswer from "@/components/plans/QuestionAnswer"
 import Footer from "@/components/global/Footer"
 import useProtectedRoute from "@/hooks/common/useProtectedRoute"
 import { Loader } from "@mantine/core"
+import Navbar from "@/components/global/Navbar"
 
 const page = () => {
     const { isLoading } = useProtectedRoute();
@@ -18,6 +19,7 @@ const page = () => {
 
     return (
         <div className='plans'>
+            <Navbar></Navbar>
             <PlansHero></PlansHero>
             {/* <MatchMaking></MatchMaking> */}
             <QuestionAnswer></QuestionAnswer>

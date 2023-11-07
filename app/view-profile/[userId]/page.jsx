@@ -1,5 +1,6 @@
 "use client"
 import ViewProfile from "@/components/dashboard/ViewProfile"
+import Navbar from "@/components/global/Navbar";
 import useProtectedRoute from "@/hooks/common/useProtectedRoute";
 import { Loader } from "@mantine/core";
 
@@ -14,6 +15,7 @@ const page = () => {
 
     return (
         <>
+            <Navbar></Navbar>
             <ViewProfile></ViewProfile>
         </>
     )

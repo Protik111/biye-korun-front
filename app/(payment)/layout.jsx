@@ -1,3 +1,4 @@
+import Navbar from "@/components/global/Navbar"
 
 
 export const metadata = {
@@ -8,6 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <div>
+            <Navbar></Navbar>
             <div>{children}</div>
         </div>
     )
