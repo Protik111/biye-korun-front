@@ -15,7 +15,7 @@ const RequestTapbar = () => {
   };
 
   return (
-    <div className="tapbar">
+    <div className="tapbar p-15">
       <div className="container">
         <Tabs
           defaultValue={pathname.replace(/^\/+/, "")}

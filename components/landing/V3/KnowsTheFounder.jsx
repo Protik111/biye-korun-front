@@ -5,7 +5,7 @@ const KnowsTheFounder = () => {
     <div className="knows_founder_main">
       <div className="flex flex-column flex-gap-20 ">
         <div className="title">
-          <h1>Know The Founder</h1>
+          <h1 className="heading1V3">Know The Founder</h1>
         </div>
         <div className="video_frame">
           <iframe

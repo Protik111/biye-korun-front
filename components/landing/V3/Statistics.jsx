@@ -5,20 +5,20 @@ const Statistics = () => {
     <div className="clients_bg">
       <div className=" statistics-section container">
         <div className="statistic ">
-          <h1>1,00K</h1>
-          <p>Bride & Grooms</p>
+          <h1 className="heading1V3">1,00K</h1>
+          <p className="paragraphV3">Bride & Grooms</p>
         </div>
         <div className="statistic">
-          <h1>10+</h1>
-          <p>Years of Experience</p>
+          <h1 className="heading1V3">10+</h1>
+          <p className="paragraphV3">Years of Experience</p>
         </div>
         <div className="statistic">
-          <h1>500+</h1>
-          <p>Event Completed</p>
+          <h1 className="heading1V3">500+</h1>
+          <p className="paragraphV3">Event Completed</p>
         </div>
         <div className="statistic">
-          <h1>1.2k</h1>
-          <p>Happy Client</p>
+          <h1 className="heading1V3">1.2k</h1>
+          <p className="paragraphV3">Happy Client</p>
         </div>
       </div>
     </div>

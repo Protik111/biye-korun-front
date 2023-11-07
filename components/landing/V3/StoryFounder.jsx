@@ -13,8 +13,8 @@ const StoryFounder = () => {
               <img src="/landing/tringle.png" alt="founder" />
             </div>
             <div className="right_content_card ">
-              <h2 className="mt-15 mb-15">Story of The Founder</h2>
-              <p>
+              <h2 className="mt-15 mb-15 heading2V3">Story of The Founder</h2>
+              <p className="paragraphV3">
                 The personal love story of Shiblu Ahmad serves as the
                 inspiration behind BiyeKorun. He met his American wife on Yahoo
                 chat in 2005, leading to their marriage in 2009. Shiblu's

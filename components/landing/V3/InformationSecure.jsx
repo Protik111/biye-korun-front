@@ -15,8 +15,8 @@ const InformationSecure = () => {
               <img src="/landing/circle.png" alt="founder" />
             </div>
             <div className="inner_circle flex flex-column flex-gap-10 justify-center align-center">
-              <h1>AR</h1>
-              <p>
+              <h1 className="heading1V3">AR</h1>
+              <p className="paragraphV3">
                 We only display <br />
                 your initial.
               </p>
@@ -24,8 +24,8 @@ const InformationSecure = () => {
           </div>
         </div>
         <div className="right flex flex-column flex-gap-20 pl-25">
-          <h1>Your Information is Protected and Secure</h1>
-          <p>
+          <h1 className="heading1V3">Your Information is Protected and Secure</h1>
+          <p className="paragraphV3">
             Most Trusted Matrimony Service for Bangladeshis. Register Now to
             Find Your Life Partner. Thousands of Bangladeshis got married
             through Bangladeshi Matrimony, you could be next. Hassle-Free

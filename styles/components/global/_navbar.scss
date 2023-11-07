@@ -1,5 +1,6 @@
 .navbarRoot {
   background-color: $primaryColor;
+  padding: 10px 0;
 
 
   &__logo img {
@@ -12,6 +13,10 @@
     }
 
     cursor: pointer;
+  }
+
+  .mantine-1gnuw89 {
+    margin-top: 0 !important;
   }
 }
 

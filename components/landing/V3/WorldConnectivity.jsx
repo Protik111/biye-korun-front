@@ -5,7 +5,7 @@ const WorldConnectivity = () => {
     <div className="world_connectivity">
       <div className="container flex flex-column flex-gap-20">
         <div className="title">
-          <h1>World Wide Connectivity</h1>
+          <h1 className="heading1V3">World Wide Connectivity</h1>
         </div>
         <div className="right_section">
           <div className="video-thumb">

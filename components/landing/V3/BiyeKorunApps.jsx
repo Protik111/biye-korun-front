@@ -5,8 +5,8 @@ const BiyeKorunApps = () => {
         <div className='biyeKorunApps'>
             <div className='biyeKorunApps__wrapper container'>
                 <div className='biyeKorunApps__wrapper--left'>
-                    <h2 className=''>BiyeKorun Apps</h2>
-                    <p className='mt-10'>Over 1 lakh+ installs</p>
+                    <h2 className='heading2V3'>BiyeKorun Apps</h2>
+                    <p className='mt-10 paragraphV3'>Over 1 lakh+ installs</p>
                     <p>Always stay up to date with faster & easier matchmaking <br />
                         Get 24/7 support and world class user experience.
                     </p>

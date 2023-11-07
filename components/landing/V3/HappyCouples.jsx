@@ -30,7 +30,7 @@ const HappyCouples = () => {
     return (
         <div className='root-happy__couple'>
 
-            <h1 className='text-center'>Success Stories of Happy Couples</h1>
+            <h1 className='text-center heading1V3'>Success Stories of Happy Couples</h1>
             <div className='w-25 m-auto p-15'>
                 <hr />
             </div>

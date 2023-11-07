@@ -21,7 +21,7 @@ const Tapbar = () => {
 
 
   return (
-    <div className="tapbar">
+    <div className="tapbar p-15">
       <div className="container">
         <Tabs defaultValue={pathname.replace(/^\/+/, '')} color="pink" variant="pills">
           <Tabs.List grow position="apart">

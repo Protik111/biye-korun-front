@@ -4,8 +4,8 @@ const HoneyMoon = () => {
   return (
     <div className="honeymoon container">
       <div className="honeymoon--left">
-        <h2>Honeymoon Plan</h2>
-        <p className="mt-25">
+        <h2 className="heading2V3">Honeymoon Plan</h2>
+        <p className="mt-25 paragraphV3">
           BiyeKorun offers a comprehensive solution for planning and enjoying
           honeymoons, providing a seamless experience from start to finish. Such
           one-stop solutions can be incredibly convenient for couples looking to

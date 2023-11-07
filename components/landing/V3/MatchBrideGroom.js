@@ -18,7 +18,7 @@ export const MatchBrideGroom = () => {
       <div className="container">
         <div className="flex justify-between align-center mt-30 mb-30 match_title_for_mobile">
           <div className="title">
-            <h1>Match Bride & Grooms</h1>
+            <h1 className="heading1V3">Match Bride & Grooms</h1>
           </div>
           <div className="see_more_btn">
             <Button size="xs" style={{ color: "red", background: "#FFF" }}>
@@ -33,19 +33,19 @@ export const MatchBrideGroom = () => {
                 <div className="header">
                   <div className="flex flex-gap-10 justify-between align-center">
                     <div className="flex flex-gap-10 align-center">
-                      <h3 className="name"> AR </h3>
+                      <h3 className="name heading3V3"> AR </h3>
                       <span>#54326</span>
                     </div>
                     <div>
                       <BiDotsHorizontalRounded />
                     </div>
                   </div>
-                  <p className="subtitle">Software Engineer - Graduate</p>
+                  <p className="subtitle paragraphV3">Software Engineer - Graduate</p>
                 </div>
                 <div className="content">
                   <div className="details">
-                    <p>25 years, 5ft 5 in</p>
-                    <p>Islam Dhaka, Bangladesh</p>
+                    <p className="paragraphV3">25 years, 5ft 5 in</p>
+                    <p className="paragraphV3">Islam Dhaka, Bangladesh</p>
                   </div>
                 </div>
                 <div className="footer">

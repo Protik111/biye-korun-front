@@ -15,7 +15,7 @@ const ProfileTapbar = () => {
   // console.log('pathname', pathname.replace(/^\/+/, ''))
 
   return (
-    <div className="tapbar">
+    <div className="tapbar p-15">
       <div className="container">
         <Tabs
           defaultValue={pathname.replace(/^\/+/, "")}

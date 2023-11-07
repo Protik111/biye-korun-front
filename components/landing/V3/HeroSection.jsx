@@ -13,7 +13,7 @@ export const HeroSection = () => {
             </Link>
             <div className="border_down"></div>
             <div className="hero_title">
-              <h1>
+              <h1 className="heading1V3">
                 Find the Right Person <br /> to Spend Rest of Your <br /> Life
               </h1>
             </div>
