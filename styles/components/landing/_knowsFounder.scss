@@ -3,13 +3,18 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 80vh;
+
+  @include mdMaxBreakPoint {
+    height: 30vh;
+  }
 
   .title {
     text-align: center;
     font-size: 24px;
     position: relative;
     padding-top: 70px;
+
     &::after {
       content: "";
       display: block;
@@ -22,13 +27,17 @@
       left: 0;
       right: 0;
     }
+
     @include getDown(1024px) {
       padding-top: 30px;
     }
   }
+
   .video_frame {
-    width: 750px; /* Set the width to 400 pixels */
-    height: 460px; /* Set the height to 200 pixels */
+    width: 750px;
+    /* Set the width to 400 pixels */
+    height: 460px;
+    /* Set the height to 200 pixels */
     background-image: url("/landing/videoBg.png");
     background-position: center center;
     background-size: cover;
@@ -38,11 +47,18 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+
+    @include mdMaxBreakPoint {
+      height: 250px;
+    }
+
     .video-container {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 aspect ratio for widescreen videos (9 / 16 * 100%) */
-      margin-bottom: 15px; /* Optional spacing between the video and other content */
+      padding-top: 56.25%;
+      /* 16:9 aspect ratio for widescreen videos (9 / 16 * 100%) */
+      margin-bottom: 15px;
+      /* Optional spacing between the video and other content */
 
       iframe {
         position: absolute;
