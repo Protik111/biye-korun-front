@@ -1,13 +1,16 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import SwiperCore from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 // Initialize the required Swiper modules
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+// SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const HappyCouples = () => {
     const swiperRef = useRef(null);
@@ -35,11 +38,6 @@ const HappyCouples = () => {
                 <hr />
             </div>
             <Swiper
-                autoplay={{
-                    delay: 500,
-                    disableOnInteraction: false,
-                }} // Specify the delay in milliseconds
-                speed={800}
                 // navigation={{
                 //     nextEl: '.next-arrow',
                 //     prevEl: '.prev-arrow',
@@ -47,6 +45,15 @@ const HappyCouples = () => {
                 // pagination={{
                 //     type: 'fraction',
                 // }}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                // pagination={{
+                //     clickable: true,
+                // }}
+                // navigation={true}
+                modules={[Autoplay]}
                 className="mySwiper"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
@@ -70,6 +77,49 @@ const HappyCouples = () => {
                         </div>
                     </div>
                 </SwiperSlide>
+                <SwiperSlide>
+                    <div className="happy__couple container">
+                        <div className="happy__couple--left">
+                            <div className='info'>
+                                <div className='flex flex-column align-center flex-gap-15'>
+                                    <div className=''>
+                                        <img src="/V3/landing/quote.png" alt="Quote" loading="lazy" />
+                                    </div>
+                                    <p className='desc'>We are very happy in our married life. We found our life partner through Biye korun platform. Biye korun is an excellent platform. Many many thanks to the owner of this platform</p>
+                                    <p className='name'>Anika Sarma & Rahul Ganguli</p>
+                                    <p className='title'>Happy Couple</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="happy__couple--right rounded-15">
+
+                            <img src="/V3/landing/slide.png" alt="Gift Collection" loading="lazy" />
+                        </div>
+                    </div>
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <div className="happy__couple container">
+                        <div className="happy__couple--left">
+                            <div className='info'>
+                                <div className='flex flex-column align-center flex-gap-15'>
+                                    <div className=''>
+                                        <img src="/V3/landing/quote.png" alt="Quote" loading="lazy" />
+                                    </div>
+                                    <p className='desc'>We are very happy in our married life. We found our life partner through Biye korun platform. Biye korun is an excellent platform. Many many thanks to the owner of this platform</p>
+                                    <p className='name'>Anika Sarma & Rahul Ganguli</p>
+                                    <p className='title'>Happy Couple</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="happy__couple--right rounded-15">
+
+                            <img src="/V3/landing/slide.png" alt="Gift Collection" loading="lazy" />
+                        </div>
+                    </div>
+                </SwiperSlide>
+
+
                 <SwiperSlide>
                     <div className="happy__couple container">
                         <div className="happy__couple--left">
