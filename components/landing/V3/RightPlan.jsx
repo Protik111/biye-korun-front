@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 const list1 = [
     "Search Profile",
@@ -54,9 +55,11 @@ const RightPlan = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <button>Sign Up For Free</button>
-                    </div>
+                    <Link href="/login">
+                        <div>
+                            <button>Sign Up For Free</button>
+                        </div>
+                    </Link>
                 </div>
 
                 <div className='rightPlan__wrapper-item rightPlan__wrapper-item-middle'>
@@ -82,7 +85,9 @@ const RightPlan = () => {
                     </div>
 
                     <div>
-                        <button>Subscribe Now</button>
+                        <Link href="/login">
+                            <button>Subscribe Now</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -110,7 +115,9 @@ const RightPlan = () => {
                     </div>
 
                     <div>
-                        <button>Subscribe Now</button>
+                        <Link href="/login">
+                            <button>Subscribe Now</button>
+                        </Link>
                     </div>
                 </div>
             </div>

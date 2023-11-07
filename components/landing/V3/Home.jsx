@@ -32,26 +32,26 @@ const HomeComp = () => {
         <AuthenticBlue />
         <WorldConnectivity />
         <OnePlatform />
-        <WeddingPlan />
+        <div className="section-padding-v3">
+          <WeddingPlan />
+        </div>
       </div>
+      <GiftCollection></GiftCollection>
       <div className="section-padding-v3">
-        <GiftCollection></GiftCollection>
+        <HoneyMoon></HoneyMoon>
       </div>
-      <HoneyMoon></HoneyMoon>
+      <BiyeKorunApps></BiyeKorunApps>
       <div className="section-padding-v3">
-        <BiyeKorunApps></BiyeKorunApps>
+        <RightPlan></RightPlan>
       </div>
-      <RightPlan></RightPlan>
-      <div className="section-padding-v3">
-        <HappyCouples></HappyCouples>
-      </div>
+      <HappyCouples></HappyCouples>
       <div className="">
         <Faqs></Faqs>
       </div>
       <div className="section-padding-v3">
         <EventsInquiry></EventsInquiry>
       </div>
-      <div className="">
+      <div className="pt-30">
         <Footer></Footer>
       </div>
     </>

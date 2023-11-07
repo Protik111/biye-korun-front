@@ -1,5 +1,6 @@
 import React from "react";
 import { IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
 const StoryFounder = () => {
   return (
     <div className="story_founder">
@@ -22,10 +23,12 @@ const StoryFounder = () => {
                 finding love across continents underpins the platform's core
                 value: connecting Bangladeshis worldwide.
               </p>
-              <button className="mb-20 mt-20 custom-button flex align-center justify-center flex-gap-5">
-                See More
-                <IconArrowRight></IconArrowRight>
-              </button>
+              <Link href="/login">
+                <button className="secondary-btn-v3 mt-25">
+                  See More &rarr;
+                  {/* <IconArrowRight></IconArrowRight> */}
+                </button>
+              </Link>
             </div>
           </div>
           <div className="right_content_for_mobile">

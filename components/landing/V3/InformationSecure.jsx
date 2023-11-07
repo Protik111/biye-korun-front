@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
 import { IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
 const InformationSecure = () => {
   return (
     <div className="information_main">
@@ -71,9 +72,11 @@ const InformationSecure = () => {
             </li>
           </ul>
 
-          <button className="custom-button reg_btn_clr flex justify-center align-center flex-gap-5">
-            See More <IconArrowRight></IconArrowRight>
-          </button>
+          <Link href="/login">
+            <button className="custom-button reg_btn_clr flex justify-center align-center flex-gap-5">
+              See More <IconArrowRight></IconArrowRight>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

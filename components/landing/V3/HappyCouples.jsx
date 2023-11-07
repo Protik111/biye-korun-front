@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 // Initialize the required Swiper modules
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const HappyCouples = () => {
     const swiperRef = useRef(null);
@@ -35,13 +35,15 @@ const HappyCouples = () => {
                 <hr />
             </div>
             <Swiper
-                navigation={{
-                    nextEl: '.next-arrow',
-                    prevEl: '.prev-arrow',
-                }}
-                pagination={{
-                    type: 'fraction',
-                }}
+                autoplay={{ delay: 5000 }} // Specify the delay in milliseconds
+                speed={800}
+                // navigation={{
+                //     nextEl: '.next-arrow',
+                //     prevEl: '.prev-arrow',
+                // }}
+                // pagination={{
+                //     type: 'fraction',
+                // }}
                 className="mySwiper"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >

@@ -3,16 +3,18 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 110vh;
+    height: 1020px;
+    ;
+
     position: relative;
 
     @include mdMaxBreakPoint {
-        height: 150vh;
+        height: 1000px;
     }
 
-    @include smMaxBreakPoint {
-        height: 150vh;
-    }
+    // @include smMaxBreakPoint {
+    //     height: 1020px;
+    // }
 
 
     &__wrapper {
@@ -20,7 +22,7 @@
         z-index: 1000;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 50px;
         justify-content: center;
         margin: auto;
         top: 0;
@@ -33,11 +35,19 @@
         }
 
         &--left {
-            margin: auto;
+            // margin: auto;
+
+            margin-top: 50px;
+
+            @include mdMaxBreakPoint {
+                margin-top: 0;
+            }
 
             img {
                 max-width: 100%;
                 object-fit: cover;
+                height: 920px;
+                border-radius: 10px;
 
                 @include mdMaxBreakPoint {
                     display: none;
@@ -47,6 +57,12 @@
 
         &--right {
             // margin: 0 auto;
+            margin-top: 30px;
+
+            @include mdMaxBreakPoint {
+                margin-top: 0;
+                // padding-bottom: 100px;
+            }
 
             h2 {
                 font-family: 'Inter', sans-serif;

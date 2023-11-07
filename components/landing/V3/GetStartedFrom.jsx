@@ -63,6 +63,7 @@ const GetStartedFrom = () => {
     }));
   };
 
+
   return (
     <>
       <div className="flex flex-gap-10 mb-10 mt-15 responsive_from">
@@ -109,9 +110,9 @@ const GetStartedFrom = () => {
                 range={1}
                 minRange={1}
                 sx={selectMobileStyles_res}
-                // onChange={handleAge}
-                //   style={{ width: "200px" }}
-                // onChange={(event) => handleFormChange("ages", event)}
+              // onChange={handleAge}
+              //   style={{ width: "200px" }}
+              // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
@@ -140,10 +141,23 @@ const GetStartedFrom = () => {
         />
       </div>
       <div>
-        <Link href="/login">
-          <button className="primary-btn-v3">Let's Get Started</button>
-        </Link>
+        {/* <Link href="/login">
+        </Link> */}
+        <button onClick={() => setModalOpen(true)} className="primary-btn-v3">Let's Get Started</button>
       </div>
+
+      {modalOpen && (
+        <CenteredModal
+          modalOpen={modalOpen}
+          handleModalClose={handleModalClose}
+          modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}
+        >
+          {/* <MultistepRegistration></MultistepRegistration> */}
+          <FormProvider>
+            <Form></Form>
+          </FormProvider>
+        </CenteredModal>
+      )}
     </>
     // <div className="landingv2">
     //   <div className="container">
