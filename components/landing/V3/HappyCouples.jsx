@@ -35,7 +35,10 @@ const HappyCouples = () => {
                 <hr />
             </div>
             <Swiper
-                autoplay={{ delay: 5000 }} // Specify the delay in milliseconds
+                autoplay={{
+                    delay: 500,
+                    disableOnInteraction: false,
+                }} // Specify the delay in milliseconds
                 speed={800}
                 // navigation={{
                 //     nextEl: '.next-arrow',
