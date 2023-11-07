@@ -23,7 +23,7 @@
       &:not(:last-child)::after {
         content: "";
         height: 50px;
-        width: 3px;
+        width: 1px;
         position: absolute;
         top: -20px;
         bottom: 0;

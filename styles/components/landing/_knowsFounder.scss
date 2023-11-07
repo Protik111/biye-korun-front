@@ -28,7 +28,7 @@
   }
   .video_frame {
     width: 750px; /* Set the width to 400 pixels */
-    height: 550px; /* Set the height to 200 pixels */
+    height: 460px; /* Set the height to 200 pixels */
     background-image: url("/landing/videoBg.png");
     background-position: center center;
     background-size: cover;
@@ -38,6 +38,22 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 aspect ratio for widescreen videos (9 / 16 * 100%) */
+      margin-bottom: 15px; /* Optional spacing between the video and other content */
+
+      iframe {
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        right: 2%;
+        bottom: 2%;
+        width: 96%;
+        height: 100%;
+      }
+    }
 
     @include getDown(1024px) {
       width: 100%;

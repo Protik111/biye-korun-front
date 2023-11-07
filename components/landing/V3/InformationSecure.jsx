@@ -25,7 +25,9 @@ const InformationSecure = () => {
           </div>
         </div>
         <div className="right flex flex-column flex-gap-20 pl-25">
-          <h1 className="heading1V3">Your Information is Protected and Secure</h1>
+          <h1 className="heading1V3">
+            Your Information is Protected and Secure
+          </h1>
           <p className="paragraphV3">
             Most Trusted Matrimony Service for Bangladeshis. Register Now to
             Find Your Life Partner. Thousands of Bangladeshis got married
@@ -34,31 +36,31 @@ const InformationSecure = () => {
           </p>
 
           <ul class="icon-list">
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Register for Free!
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               100% human verified profiles
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Chat, Voice & Video calling
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Private, personalized, and highly confidential service
             </li>
-            <li>
+            <li className="authentic_li">
               <i class="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
@@ -73,7 +75,7 @@ const InformationSecure = () => {
           </ul>
 
           <Link href="/login">
-            <button className="custom-button reg_btn_clr flex justify-center align-center flex-gap-5">
+            <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
               See More <IconArrowRight></IconArrowRight>
             </button>
           </Link>

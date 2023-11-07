@@ -5,15 +5,14 @@ const WeddingPlan = () => {
   return (
     <div className="honeymoon container">
       <div className="honeymoon--left">
-        <h2 className="heading2V3">Honeymoon Plan</h2>
-        <p className="mt-25 pr-10 paragraphV3">
+        <h2 className="heading2V3">Wedding Plan</h2>
+        <p className="mt-25 pr-10 paragraphV3 ">
           Congratulations on finding your life partner on the BiyeKorun app and
           on your engagement! Planning your wedding is an exciting journey, and
           We are here to help you get started.
         </p>
         <Link href="/login">
-          <button className="custom-button mt-25">Learn More &rarr;</button>
-
+          <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
         </Link>
       </div>
       <div className="honeymoon--right ">
