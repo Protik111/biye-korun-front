@@ -106,6 +106,7 @@
   @include lgMaxBreakPoint {
     grid-template-columns: 1fr;
   }
+
   @include getDown(768px) {
     grid-template-columns: 1fr;
   }
@@ -601,7 +602,7 @@
 
 // border
 .border-1 {
-  border: 1px solid $secondaryColor;
+  border: 1px solid $secondaryColorV3;
 }
 
 .border-1-secondary {
@@ -609,7 +610,7 @@
 }
 
 .border-1-top {
-  border-top: 1px solid $primaryColor;
+  border-top: 1px solid $secondaryColorV3;
 }
 
 .pointer {
