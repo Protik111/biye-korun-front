@@ -3,15 +3,17 @@ import Link from "next/link"
 const Footer = () => {
     return (
         <div className="footer_container py-30">
-            <div className='contact_us'>
-                <div className="">
-                    <h3>Get More Updates</h3>
-                    <p>Please subscribe our newsletter</p>
-                </div>
+            <div className="container">
+                <div className='contact_us'>
+                    <div className="">
+                        <h3>Get More Updates</h3>
+                        <p>Please subscribe our newsletter</p>
+                    </div>
 
-                <div class="input-box">
-                    <input placeholder="Email..." type="text" class="text_input" />
-                    <button value="Save" class="btn">Submit</button>
+                    <div class="input-box">
+                        <input placeholder="Email..." type="text" class="text_input" />
+                        <button value="Save" class="btn">Submit</button>
+                    </div>
                 </div>
             </div>
             <div className="footer container">

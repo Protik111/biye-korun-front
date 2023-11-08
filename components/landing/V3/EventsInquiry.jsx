@@ -1,4 +1,4 @@
-import { Input, Select, Textarea } from '@mantine/core'
+import { Autocomplete, Input, Select, Textarea } from '@mantine/core'
 import { DatePickerInput, TimeInput } from '@mantine/dates'
 import { IconArrowDown, IconCalendarStats, IconChevronDown } from '@tabler/icons-react'
 import React from 'react'
@@ -68,7 +68,8 @@ const EventsInquiry = () => {
                         />
 
                         <br />
-                        <Select
+                        <Autocomplete
+                            searchable
                             placeholder="Select How Many People?"
                             // styles={{ label: labelStyles }}
                             // data={countries}
@@ -77,11 +78,10 @@ const EventsInquiry = () => {
                             size="xl"
                             radius="md"
                             rightSection={<IconChevronDown color='white' />}
-                            // value={["Event 1", "Event 2", "Event 3"]}
-                            // name="basic2country"
-                            // onChange={(event) => handleChange("basic2country", event)}
-                            // error={fieldErrors.basic2country}
-                            searchable
+                        // value={["Event 1", "Event 2", "Event 3"]}
+                        // name="basic2country"
+                        // onChange={(event) => handleChange("basic2country", event)}
+                        // error={fieldErrors.basic2country}
                         />
                         <br />
                         <TimeInput
