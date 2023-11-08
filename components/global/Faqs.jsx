@@ -53,7 +53,7 @@ const Faqs = () => {
 
     return (
         <div className='faqs py-30' id="faqs">
-            <h1 className='text-center heading1V3'>Frequently Asked Questions</h1>
+            <h1 className='text-center heading1V3'>FAQs</h1>
             <div className='w-25 m-auto p-15'>
                 <hr />
             </div>
