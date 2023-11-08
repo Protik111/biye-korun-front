@@ -5,7 +5,9 @@ const OnePlatform = () => {
   return (
     <div className="one_platform">
       <div className="container">
-        <h1 className="text-center heading1V3">Everything In One Platform!</h1>
+        <div className="title">
+          <h1 className="heading1V3">Everything In One Platform!</h1>
+        </div>
         <div className="py-30">
           <div className="card">
             <CommonCard

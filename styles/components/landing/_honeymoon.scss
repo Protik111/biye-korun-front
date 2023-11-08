@@ -19,7 +19,15 @@
         object-fit: cover;
         border-radius: 10px;
       }
-
+      .left_img {
+        max-width: 100%;
+        img {
+          max-width: 100%;
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+        }
+      }
       .small {
         // height: auto;
         width: 230px;
@@ -38,9 +46,19 @@
           width: 100%;
         }
       }
-
+      .top_head {
+        width: 300px;
+        height: auto;
+        img {
+          max-width: 100%;
+          object-fit: contain;
+        }
+        @include getDown(600px) {
+          width: 100%;
+        }
+      }
       .small_xs {
-        width: 137px;
+        width: 100%;
 
         @include mdMaxBreakPoint {
           width: 100%;

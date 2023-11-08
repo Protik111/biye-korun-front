@@ -16,8 +16,8 @@ const WeddingPlan = () => {
         </Link>
       </div>
       <div className="honeymoon--right ">
-        <div className="flex flex-gap-10 w-100 images responsive_img_part">
-          <div className="">
+        <div className="flex flex-gap-10  images responsive_img_part">
+          <div className="left_img">
             <img
               className=""
               src="/landing/w1.png"
@@ -25,8 +25,8 @@ const WeddingPlan = () => {
               loading="lazy"
             />
           </div>
-          <div className="flex flex-column justify-center responsive_img_part flex-gap-5">
-            <div className="top_head ">
+          <div className=" flex flex-column flex-gap-10 responsive_img_part  ">
+            <div className="top_head">
               <img
                 // className="large"
                 src="/landing/w2.png"
@@ -34,19 +34,13 @@ const WeddingPlan = () => {
                 loading="lazy"
               />
             </div>
-            <div className="top_down flex flex-gap-10 responsive_img_part">
-              <img
-                className="small_xs "
-                src="/landing/w3.png"
-                alt="Honeymoon"
-                loading="lazy"
-              />
-              <img
-                className="small_xs "
-                src="/landing/w4.png"
-                alt="Honeymoon"
-                loading="lazy"
-              />
+            <div className="flex flex-gap-10 ">
+              <div className="small_xs">
+                <img src="/landing/w3.png" alt="Honeymoon" loading="lazy" />
+              </div>
+              <div className="small_xs">
+                <img src="/landing/w4.png" alt="Honeymoon" loading="lazy" />
+              </div>
             </div>
           </div>
         </div>
