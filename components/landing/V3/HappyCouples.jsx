@@ -93,7 +93,7 @@ const HappyCouples = () => {
                         </div>
                         <div className="happy__couple--right rounded-15">
 
-                            <img src="/V3/landing/slide.png" alt="Gift Collection" loading="lazy" />
+                            <img src="/V3/landing/slide5.jpg" alt="Gift Collection" loading="lazy" />
                         </div>
                     </div>
                 </SwiperSlide>
@@ -114,7 +114,7 @@ const HappyCouples = () => {
                         </div>
                         <div className="happy__couple--right rounded-15">
 
-                            <img src="/V3/landing/slide.png" alt="Gift Collection" loading="lazy" />
+                            <img src="/V3/landing/slide4.jpg" alt="Gift Collection" loading="lazy" />
                         </div>
                     </div>
                 </SwiperSlide>
@@ -136,7 +136,28 @@ const HappyCouples = () => {
                         </div>
                         <div className="happy__couple--right rounded-15">
 
-                            <img src="/V3/landing/slide.png" alt="Gift Collection" loading="lazy" />
+                            <img src="/V3/landing/slide2.jpg" alt="Gift Collection" loading="lazy" />
+                        </div>
+                    </div>
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    <div className="happy__couple container">
+                        <div className="happy__couple--left">
+                            <div className='info'>
+                                <div className='flex flex-column align-center flex-gap-15'>
+                                    <div className=''>
+                                        <img src="/V3/landing/quote.png" alt="Quote" loading="lazy" />
+                                    </div>
+                                    <p className='desc'>We are very happy in our married life. We found our life partner through Biye korun platform. Biye korun is an excellent platform. Many many thanks to the owner of this platform</p>
+                                    <p className='name'>Anika Sarma & Rahul Ganguli</p>
+                                    <p className='title'>Happy Couple</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="happy__couple--right rounded-15">
+
+                            <img src="/V3/landing/slide3.jpg" alt="Gift Collection" loading="lazy" />
                         </div>
                     </div>
                 </SwiperSlide>

@@ -3,10 +3,20 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
+import useAnimation from "@/hooks/common/useAnimation";
+import { useEffect } from "react";
+
 const InformationSecure = () => {
+  const { makeAnimation } = useAnimation(600);
+
+  useEffect(() => {
+    makeAnimation()
+  }, [])
+
   return (
     <div className="information_main">
-      <div className="container grid grid-cols-2 grid-gap-25 grid-cols-2-responsive">
+      <div data-aos="fade-up"
+        data-aos-anchor-placement="center-bottom" className="container grid grid-cols-2 grid-gap-25 grid-cols-2-responsive">
         <div className="left">
           <div>
             <img src="/landing/infomation.png" alt="information" />

@@ -46,12 +46,12 @@ const HomeComp = () => {
       </div>
       <HappyCouples></HappyCouples>
       <div className="">
-        <Faqs></Faqs>
       </div>
+      <Faqs></Faqs>
       <div className="section-padding-v3">
         <EventsInquiry></EventsInquiry>
       </div>
-      <div className="pt-30">
+      <div>
         <Footer></Footer>
       </div>
     </>

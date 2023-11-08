@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
+import useAnimation from "@/hooks/common/useAnimation";
+
 const StoryFounder = () => {
+  const { makeAnimation } = useAnimation();
+
+  useEffect(() => {
+    makeAnimation()
+  }, [])
+
   return (
     <div className="story_founder">
       <div className="container ">
         <div className="flex flex-gap-20 w-100 story_res_left_img">
-          <div className="left_img">
+          <div className="left_img" data-aos="fade-right">
             <img src="/landing/shiblu.png" alt="founder" />
           </div>
           <div className="right_content">
             <div className="tringle">
               <img src="/landing/tringle.png" alt="founder" />
             </div>
-            <div className="right_content_card ">
+            <div className="right_content_card" data-aos="fade-left">
               <h2 className="mt-15 mb-15 heading2V3">Story of The Founder</h2>
               <p className="paragraphV3">
                 The personal love story of Shiblu Ahmad serves as the

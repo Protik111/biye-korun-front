@@ -4,7 +4,35 @@ const GiftCollection = () => {
     return (
         <div className="gift__collection container">
             <div className="gift__collection--left">
-                <img src="/V3/landing/Gift-card.png" alt="Gift Collection" loading="lazy" />
+                {/* <img src="/V3/landing/Gift-card.png" alt="Gift Collection" loading="lazy" /> */}
+                <div className="flex flex-gap-20 images">
+                    <img
+                        className="small"
+                        src="/V3/landing/card/card1.png"
+                        alt="Honeymoon"
+                        loading="lazy"
+                    />
+                    <img
+                        className="large"
+                        src="/V3/landing/card/card4.png"
+                        alt="Honeymoon"
+                        loading="lazy"
+                    />
+                </div>
+                <div className="flex flex-gap-20 mt-20 images">
+                    <img
+                        className="large"
+                        src="/V3/landing/card/card3.png"
+                        alt="Honeymoon"
+                        loading="lazy"
+                    />
+                    <img
+                        className="small"
+                        src="/V3/landing/card/card4.png"
+                        alt="Honeymoon"
+                        loading="lazy"
+                    />
+                </div>
             </div>
             <div className="gift__collection--right rounded-15">
                 <h2 className="heading2V3">Gift Collection</h2>
