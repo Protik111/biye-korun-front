@@ -12,6 +12,8 @@ import { heightCalculator } from "@/utils/heightCalculator";
 import CenteredModal from "@/components/global/CenteredModal";
 import { FormProvider } from "@/context/FormContext";
 import Form from "@/components/multiStepRegistration/Form";
+import { useEffect } from "react";
+import useAnimation from "@/hooks/common/useAnimation";
 
 export const MatchBrideGroom = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -34,11 +36,17 @@ export const MatchBrideGroom = () => {
     router.push("/login");
   };
 
+  const { makeAnimation } = useAnimation(600);
+
+  useEffect(() => {
+    makeAnimation()
+  }, [])
+
   return (
     <div className="matches_main">
       <div className="container">
         <div className="flex justify-between align-center  match_title_for_mobile">
-          <div className="title">
+          <div className="title" data-aos="fade-right">
             <h1 className="heading1V3">Match Bride & Grooms</h1>
           </div>
           <div className="see_more_btn">
@@ -85,9 +93,8 @@ export const MatchBrideGroom = () => {
                           `5 feet 10 inches`}
                       </p>
                       <p className="paragraphV3">
-                        {`${item?.location.city ? item?.location.city : ""} ${
-                          item?.location.country
-                        }`}
+                        {`${item?.location.city ? item?.location.city : ""} ${item?.location.country
+                          }`}
                       </p>
                     </div>
                   </div>

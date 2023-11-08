@@ -48,7 +48,7 @@ const Footer = () => {
                             </li>
 
                             <li>
-                                <Link className="contact-desc" href="/plans">Term</Link>
+                                <Link className="contact-desc" href="/terms-&-conditions">Terms & Conditions</Link>
                             </li>
 
                             <li>

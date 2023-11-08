@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CommonCard from "./CommonCard";
+import useAnimation from "@/hooks/common/useAnimation";
 
 const OnePlatform = () => {
+  const { makeAnimation } = useAnimation(600);
+
+  useEffect(() => {
+    makeAnimation()
+  }, [])
+
   return (
     <div className="one_platform">
       <div className="container">
