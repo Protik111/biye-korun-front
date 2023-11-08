@@ -20,9 +20,19 @@ const OnePlatform = () => {
             </div>
           </div>
         </div>
-        <div className="img_card  mt-30">
-          <div className="flex flex-column w-60 mobile_res_card_img">
-            <img src="/landing/ring.png" alt="ring" />
+        <div className="img_card mt-30 w-100">
+          <div className="flex flex-column flex-gap-10">
+            <div className="flex flex-gap-10 w-50 mobile_res_card_img">
+              <div>
+                <img src="/landing/e1.png" alt="ring" />
+              </div>
+              <div>
+                <img src="/landing/e2.png" alt="ring" />
+              </div>
+            </div>
+            <div className="w-50 mobile_res_card_img">
+              <img src="/landing/e3.png" alt="ring" />
+            </div>
           </div>
 
           <div className="card_absolute w-60 hide_mobile">

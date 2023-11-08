@@ -30,7 +30,7 @@ const AuthenticBlue = () => {
             </ol>
 
             <Link href="/login">
-              <button className="secondary-btn-v3 mb-30 reg_btn_clr flex justify-center align-center flex-gap-5">
+              <button className="secondary-btn-v3  reg_btn_clr flex justify-center align-center flex-gap-5">
                 See More <IconArrowRight></IconArrowRight>
               </button>
             </Link>

@@ -3,17 +3,19 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 80vh;
-
+  height: 100%;
+  padding: 100px 0;
   @include mdMaxBreakPoint {
-    height: 30vh;
+    // height: 30vh;
+  }
+  @include getDown(600px) {
+    padding: 45px 0;
   }
 
   .title {
     text-align: center;
     font-size: 24px;
     position: relative;
-    padding-top: 70px;
 
     &::after {
       content: "";
@@ -42,14 +44,19 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 65px auto 0 auto;
+    margin: 50px auto 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
 
-    @include mdMaxBreakPoint {
-      height: 250px;
+    // @include mdMaxBreakPoint {
+    //   height: 250px;
+    // }
+    @include getDown(600px) {
+      margin: 16px auto 0 auto;
+      height: 200px;
+      width: 313px;
     }
 
     .video-container {
@@ -57,22 +64,18 @@
       width: 100%;
       padding-top: 56.25%;
       /* 16:9 aspect ratio for widescreen videos (9 / 16 * 100%) */
-      margin-bottom: 15px;
+      // margin-bottom: 15px;
       /* Optional spacing between the video and other content */
 
       iframe {
         position: absolute;
-        top: 2%;
+        top: 0;
         left: 2%;
         right: 2%;
         bottom: 2%;
         width: 96%;
         height: 100%;
       }
-    }
-
-    @include getDown(1024px) {
-      width: 100%;
     }
   }
 }

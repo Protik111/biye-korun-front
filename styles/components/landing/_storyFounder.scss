@@ -1,6 +1,7 @@
 .story_founder {
   position: relative;
-  padding: 100px 0;
+  padding-top: 100px;
+  padding-bottom: 200px;
   background: #f5f5f5;
   .story_res_left_img {
     max-width: 100%;
@@ -13,6 +14,7 @@
     }
   }
   .left_img {
+    width: 60%;
     img {
       max-width: 100%;
       display: block;
@@ -28,8 +30,9 @@
   .right_content {
     display: flex;
     flex-direction: column;
+
     .tringle {
-      margin-left: 25px;
+      // margin-left: 4px;
       img {
         display: block;
         max-width: 100%;
@@ -46,8 +49,9 @@
     .right_content_card {
       position: absolute;
       left: 45%;
-      bottom: 9%;
+      bottom: 13%;
       width: 700px;
+      height: auto;
       padding: 20px;
       flex-shrink: 0;
       background: #fff;
