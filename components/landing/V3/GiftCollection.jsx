@@ -14,7 +14,7 @@ const GiftCollection = () => {
                     />
                     <img
                         className="large"
-                        src="/V3/landing/card/card4.png"
+                        src="/V3/landing/card/card2.png"
                         alt="Honeymoon"
                         loading="lazy"
                     />
