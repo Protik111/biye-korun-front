@@ -1,6 +1,6 @@
 .information_main {
   background: #fff;
-  padding: 50px 0;
+  padding: 100px 0;
 
   .left {
     // padding-top: 50px;
@@ -97,7 +97,7 @@
 // authentic_main
 .authentic_main {
   background: #f5f5f5;
-  padding: 50px 0;
+  padding: 0 0;
 
   @include mdMaxBreakPoint {
     padding: 20px 0;
@@ -107,7 +107,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 20px;
-
+    padding: 100px 0;
     .blu_img {
       max-width: 100%;
       display: block;
@@ -116,7 +116,7 @@
         max-width: 100%;
         width: 100%;
         object-fit: none;
-        height: 482px;
+        height: 500px;
         @include getDown(600px) {
           height: auto;
         }
@@ -228,7 +228,7 @@
       @include common_card();
       position: absolute;
       right: 0;
-      top: -1%;
+      top: -7%;
     }
 
     .mobile_res_card_img {
