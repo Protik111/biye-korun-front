@@ -10,14 +10,17 @@ const InformationSecure = () => {
   const { makeAnimation } = useAnimation(600);
 
   useEffect(() => {
-    makeAnimation()
-  }, [])
+    makeAnimation();
+  }, []);
 
   return (
     <div className="information_main">
-      <div data-aos="fade-up"
-        data-aos-anchor-placement="center-bottom" className="container grid grid-cols-2 grid-gap-25 grid-cols-2-responsive">
-        <div className="left">
+      <div
+        data-aos="fade-up"
+        data-aos-anchor-placement="center-bottom"
+        className="container grid grid-cols-2 grid-gap-25 grid-cols-2-responsive"
+      >
+        <div className="left item-1">
           <div>
             <img src="/landing/infomation.png" alt="information" />
           </div>
@@ -34,7 +37,7 @@ const InformationSecure = () => {
             </div>
           </div>
         </div>
-        <div className="right flex flex-column flex-gap-20 pl-25">
+        <div className="right flex flex-column flex-gap-20 pl-25 item-2">
           <h1 className="heading1V3">
             Your Information is Protected and Secure
           </h1>

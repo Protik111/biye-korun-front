@@ -7,7 +7,7 @@ const AuthenticBlue = () => {
     <div className="authentic_main">
       <div className="container">
         <div className="custom_grid">
-          <div className="flex flex-column flex-gap-20">
+          <div className="flex flex-column flex-gap-20 ">
             <h1 className="heading1V3">Authentic Blue Mark</h1>
             <p className="paragraphV3">
               The verified badge means that BiyeKorun has confirmed that the
@@ -36,7 +36,7 @@ const AuthenticBlue = () => {
             </Link>
           </div>
 
-          <div className="blu_img">
+          <div className="blu_img ">
             <img src="/landing/blueMark.png" alt="blue" />
           </div>
         </div>

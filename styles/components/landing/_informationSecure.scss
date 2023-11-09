@@ -74,6 +74,14 @@
     }
   }
 
+  @include getDown(600px) {
+    .item-1 {
+      order: 2;
+    }
+    .item-2 {
+      order: 1;
+    }
+  }
   .icon-list {
     list-style: none;
     padding: 0;
@@ -123,6 +131,7 @@
         height: 500px;
         @include getDown(600px) {
           height: auto;
+          object-fit: cover;
         }
       }
     }
@@ -217,6 +226,12 @@
   .card {
     @include common_card();
 
+    @include getDown(1024px) {
+      .common_card_resposive {
+        width: 49%;
+      }
+    }
+
     .inner_div {
       position: absolute;
       right: 0;
@@ -226,10 +241,20 @@
         width: 515px;
         display: block;
         object-fit: contain;
+        @include getDown(768px) {
+          width: 190px;
+        }
+        @include getDown(600px) {
+          width: 135px;
+        }
       }
 
       @include getDown(1024px) {
-        display: none;
+        // display: none;
+        top: -16%;
+      }
+      @include getDown(600px) {
+        top: 80%;
       }
     }
 
@@ -242,7 +267,11 @@
 
   .img_card {
     position: relative;
-
+    @include getDown(600px) {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
     img {
       max-width: 100%;
       display: block;

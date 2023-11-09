@@ -96,7 +96,9 @@
       width: 100% !important;
     }
   }
-
+  @include getDown(600px) {
+    padding: 25px 0;
+  }
   .video_title {
     text-align: center;
 
