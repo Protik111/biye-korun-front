@@ -35,6 +35,7 @@
 
     @include getDown(600px) {
       flex-direction: column;
+      gap: 15px;
     }
 
     h3 {

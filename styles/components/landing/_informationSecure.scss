@@ -2,7 +2,7 @@
   background: #fff;
   padding: 100px 0;
   @include getDown(600px) {
-    padding: 50px 0;
+    padding: 25px 0;
   }
   .left {
     // padding-top: 50px;
@@ -118,7 +118,7 @@
     gap: 20px;
     padding: 100px 0;
     @include getDown(600px) {
-      padding: 50px 0;
+      padding: 25px 0;
     }
     .blu_img {
       max-width: 100%;
@@ -154,7 +154,7 @@
   background: #fff;
   padding: 100px 0;
   @include getDown(600px) {
-    padding-top: 50px;
+    padding-top: 25px;
     padding-bottom: 0;
   }
 
@@ -220,7 +220,7 @@
     }
 
     @include getDown(1024px) {
-      padding-top: 30px;
+      padding-top: 25px;
     }
   }
   .card {
