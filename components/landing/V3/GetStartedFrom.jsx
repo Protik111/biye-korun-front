@@ -147,7 +147,16 @@ const GetStartedFrom = () => {
         {/* <Link href="/login">
         </Link> */}
 
-        <button onClick={() => setModalOpen(true)} className="primary-btn-v3">
+        <button
+          onClick={() => setModalOpen(true)}
+          className="primary-btn-v3 hide_mobile"
+        >
+          Let's Get Started
+        </button>
+        <button
+          onClick={() => setModalOpen(true)}
+          className="secondary-btn-v3 show_mobile"
+        >
           Let's Get Started
         </button>
       </div>

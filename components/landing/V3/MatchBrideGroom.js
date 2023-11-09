@@ -25,11 +25,7 @@ export const MatchBrideGroom = () => {
   const handleModalClose = () => setModalOpen(false);
 
   const handleRegister = () => {
-    if (!isAuthenticated) {
-      setModalOpen(true);
-    } else {
-      router.push("/my-matches");
-    }
+    router.push("/login");
   };
 
   const handleRedirect = () => {
@@ -39,21 +35,21 @@ export const MatchBrideGroom = () => {
   const { makeAnimation } = useAnimation(600);
 
   useEffect(() => {
-    makeAnimation()
-  }, [])
+    makeAnimation();
+  }, []);
 
   return (
     <div className="matches_main">
       <div className="container">
-        <div className="flex justify-between align-center  match_title_for_mobile">
+        <div className="flex flex-column align-center ">
           <div className="title" data-aos="fade-right">
             <h1 className="heading1V3">Match Bride & Grooms</h1>
           </div>
-          <div className="see_more_btn">
+          {/* <div className="see_more_btn">
             <Button size="xs" style={{ color: "red", background: "#FFF" }}>
               See More
             </Button>
-          </div>
+          </div> */}
         </div>
         {data?.data?.length > 0 ? (
           <div class="card-container">
@@ -69,20 +65,28 @@ export const MatchBrideGroom = () => {
                             item?.firstName + " " + item?.lastName
                           )}
                         </h3>
-                        <span>#{item.userId}</span>
                       </div>
                       <div>
                         <BiDotsHorizontalRounded />
                       </div>
                     </div>
+                    {/* <div>
+                      <p>#{item.userId}</p>
+                    </div>
                     <p className="subtitle paragraphV3">
                       {item?.educationCareer?.occupation
                         ? item?.educationCareer?.occupation
                         : "Software Engineer"}
-                    </p>
+                    </p> */}
                   </div>
                   <div className="content">
                     <div className="details">
+                      <p>#{item.userId}</p>
+                      <p className="subtitle paragraphV3">
+                        {item?.educationCareer?.occupation
+                          ? item?.educationCareer?.occupation
+                          : "Software Engineer"}
+                      </p>
                       <p className="paragraphV3">
                         {" "}
                         {item?.dateOfBirth
@@ -93,15 +97,16 @@ export const MatchBrideGroom = () => {
                           `5 feet 10 inches`}
                       </p>
                       <p className="paragraphV3">
-                        {`${item?.location.city ? item?.location.city : ""} ${item?.location.country
-                          }`}
+                        {`${item?.location.city ? item?.location.city : ""} ${
+                          item?.location.country
+                        }`}
                       </p>
                     </div>
                   </div>
                   <div className="footer">
-                    <button className="custom-button" onClick={handleRedirect}>
+                    {/* <button className="custom-button" onClick={handleRedirect}>
                       Send Request
-                    </button>
+                    </button> */}
                     <button
                       className="custom-button btn_clr"
                       onClick={handleRedirect}
@@ -127,7 +132,8 @@ export const MatchBrideGroom = () => {
             className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5"
             onClick={handleRegister}
           >
-            {!isAuthenticated ? "Register Now" : "Let's Begin"}{" "}
+            See More
+            {/* {!isAuthenticated ? "Register Now" : "Let's Begin"}{" "} */}
             <BsArrowRight></BsArrowRight>
           </button>
         </div>

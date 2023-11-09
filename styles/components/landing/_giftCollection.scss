@@ -1,93 +1,97 @@
 .gift__collection {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    position: relative;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  position: relative;
+  gap: 20px;
+
+  @include mdMaxBreakPoint {
+    grid-template-columns: 100%;
+  }
+
+  @include mdMaxBreakPoint {
+    margin-top: 30px;
+  }
+  @include getDown(600px) {
+    .gift_item-1 {
+      order: 2;
+    }
+  }
+
+  &--left {
+    // margin-right: -200px;
+    z-index: 1000;
+    margin: auto -100px auto 0;
 
     @include mdMaxBreakPoint {
-        grid-template-columns: 100%;
+      margin: auto;
     }
+
+    // img {
+    //     max-width: 100%;
+    //     object-fit: contain;
+    // }
+
+    img {
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      height: 180px;
+
+      @include mdMaxBreakPoint {
+        height: 150px;
+      }
+    }
+
+    .small {
+      // height: auto;
+      width: 260px;
+
+      @include mdMaxBreakPoint {
+        width: 200px;
+      }
+
+      @include smMaxBreakPoint {
+        width: 160px;
+      }
+    }
+
+    .small1 {
+      @include getDown(1024px) {
+        width: 100%;
+      }
+    }
+
+    .small_xs {
+      width: 137px;
+
+      @include mdMaxBreakPoint {
+        width: 100%;
+      }
+
+      @include smMaxBreakPoint {
+        width: 100%;
+      }
+    }
+
+    .large {
+      width: 260px;
+
+      @include mdMaxBreakPoint {
+        width: 250px;
+      }
+
+      @include smMaxBreakPoint {
+        width: 160px;
+      }
+    }
+  }
+
+  &--right {
+    background-color: #f5f5f5;
+    padding: 60px 100px;
 
     @include mdMaxBreakPoint {
-        margin-top: 30px;
+      padding: 10px;
     }
-
-    &--left {
-        // margin-right: -200px;
-        z-index: 1000;
-        margin: auto -100px auto 0;
-
-        @include mdMaxBreakPoint {
-            margin: auto;
-        }
-
-        // img {
-        //     max-width: 100%;
-        //     object-fit: contain;
-        // }
-
-        img {
-            max-width: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-            height: 180px;
-
-            @include mdMaxBreakPoint {
-                height: 150px;
-            }
-        }
-
-        .small {
-            // height: auto;
-            width: 260px;
-
-            @include mdMaxBreakPoint {
-                width: 200px;
-            }
-
-            @include smMaxBreakPoint {
-                width: 160px;
-            }
-        }
-
-        .small1 {
-            @include getDown(1024px) {
-                width: 100%;
-            }
-        }
-
-        .small_xs {
-            width: 137px;
-
-            @include mdMaxBreakPoint {
-                width: 100%;
-            }
-
-            @include smMaxBreakPoint {
-                width: 100%;
-            }
-        }
-
-        .large {
-            width: 260px;
-
-            @include mdMaxBreakPoint {
-                width: 250px;
-            }
-
-            @include smMaxBreakPoint {
-                width: 160px;
-            }
-        }
-    }
-
-    &--right {
-        background-color: #F5F5F5;
-        padding: 60px 100px;
-
-        @include mdMaxBreakPoint {
-            padding: 10px
-        }
-
-    }
+  }
 }

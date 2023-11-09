@@ -32,6 +32,9 @@
       @include mdMaxBreakPoint {
         display: none;
       }
+      @include getDown(1024px) {
+        width: 372px;
+      }
     }
 
     .hero_title {
@@ -47,7 +50,18 @@
         margin-top: 30px;
       }
     }
-
+    .hide_mobile {
+      display: block;
+      @include getDown(600px) {
+        display: none;
+      }
+    }
+    .show_mobile {
+      display: none;
+      @include getDown(600px) {
+        display: block;
+      }
+    }
     .responsive_from {
       @include smMaxBreakPoint {
         display: flex;
