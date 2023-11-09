@@ -1,11 +1,22 @@
 .heroSectionV3 {
-  background: url("/landing/herov3.png"), url("/landing/backgroundbg.png");
+  background: url("/landing/hero-right.png"), url("/landing/backgroundbg.png");
   //   background-position: right, cover;
   background-position-y: top;
   background-position-x: right;
   background-size: 710px, 100% 100%;
   background-repeat: no-repeat, no-repeat;
   padding-bottom: 129px;
+
+  @include mdMaxBreakPoint {
+    background: url("/landing/backgroundbg.png");
+    //   background-position: right, cover;
+    background-position-y: top;
+    background-position-x: right;
+    // background-size: 710px, 100% 100%;
+    background-repeat: no-repeat, no-repeat;
+    padding-bottom: 20px;
+
+  }
 
   //   .padding_0 {
   //     padding: 0;
@@ -32,8 +43,18 @@
       @include mdMaxBreakPoint {
         display: none;
       }
+
       @include getDown(1024px) {
         width: 372px;
+      }
+    }
+
+    .form-btn {
+      @include mdMaxBreakPoint {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
     }
 
@@ -42,26 +63,32 @@
       margin-top: 103px;
 
       @include mdMaxBreakPoint {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        // text-align: center;
         width: 100%;
         margin-top: 30px;
       }
     }
+
     .hide_mobile {
       display: block;
+
       @include getDown(600px) {
         display: none;
       }
     }
+
     .show_mobile {
       display: none;
+
       @include getDown(600px) {
         display: block;
       }
     }
+
     .responsive_from {
       @include smMaxBreakPoint {
         display: flex;

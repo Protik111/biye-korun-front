@@ -19,7 +19,7 @@ const EventsInquiry = () => {
         <div className='eventsInquiry'>
             <div className='eventsInquiry__wrapper container'>
                 <div className='eventsInquiry__wrapper--left'>
-                    <img src="/V3/landing/bride-groom.png" alt="bride-groom" loading='lazy' />
+                    <img src="/landing/Footer.jpg" alt="bride-groom" loading='lazy' />
                 </div>
 
                 <div className='eventsInquiry__wrapper--right'>

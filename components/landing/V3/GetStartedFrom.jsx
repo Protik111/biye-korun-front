@@ -108,57 +108,58 @@ const GetStartedFrom = () => {
                 defaultValue={formData.ages}
                 range={1}
                 minRange={1}
-                // sx={selectMobileStyles_res}
-                // onChange={handleAge}
-                //   style={{ width: "200px" }}
-                // onChange={(event) => handleFormChange("ages", event)}
-                // sx={selectMobileStyles_res}
-                // onChange={handleAge}
-                //   style={{ width: "200px" }}
-                // onChange={(event) => handleFormChange("ages", event)}
+              // sx={selectMobileStyles_res}
+              // onChange={handleAge}
+              //   style={{ width: "200px" }}
+              // onChange={(event) => handleFormChange("ages", event)}
+              // sx={selectMobileStyles_res}
+              // onChange={handleAge}
+              //   style={{ width: "200px" }}
+              // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
         </div>
       </div>
-      <div className="flex flex-gap-10 mb-30 responsive_from">
-        <MultiSelect
-          size="md"
-          placeholder="Select Religion"
-          defaultValue="20"
-          //   styles={{ label: labelStyles }}
-          data={religions}
-          // sx={selectMobileStyles}
-          sx={selectMobileStyles_res}
-          searchable
-        />
-        <MultiSelect
-          size="md"
-          placeholder="Select Language"
-          defaultValue="20"
-          //   styles={{ label: labelStyles }}
-          data={motherTongues}
-          // style={{ height: "40px", overflow: "auto" }}
-          sx={selectMobileStyles_res}
-          searchable
-        />
-      </div>
       <div>
-        {/* <Link href="/login">
-        </Link> */}
+        <div className="flex flex-gap-10 mb-30 responsive_from">
+          <MultiSelect
+            size="md"
+            placeholder="Select Religion"
+            defaultValue="20"
+            //   styles={{ label: labelStyles }}
+            data={religions}
+            // sx={selectMobileStyles}
+            sx={selectMobileStyles_res}
+            searchable
+          />
+          <MultiSelect
+            size="md"
+            placeholder="Select Language"
+            defaultValue="20"
+            //   styles={{ label: labelStyles }}
+            data={motherTongues}
+            // style={{ height: "40px", overflow: "auto" }}
+            sx={selectMobileStyles_res}
+            searchable
+          />
+        </div>
+        <div className="flex flex-gap-15">
+          <button
 
-        <button
-          onClick={() => setModalOpen(true)}
-          className="primary-btn-v3 hide_mobile"
-        >
-          Let's Get Started
-        </button>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="secondary-btn-v3 show_mobile"
-        >
-          Let's Get Started
-        </button>
+            onClick={() => setModalOpen(true)}
+            className="secondary-btn-v3 width-20-hero"
+          >
+            Let's Get Started
+          </button>
+          <button
+
+            onClick={() => router.push('/login')}
+            className="primary-btn-v3 width-20-hero"
+          >
+            Login
+          </button>
+        </div>
       </div>
 
       {modalOpen && (

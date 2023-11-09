@@ -246,6 +246,7 @@
 .padding_left_right {
   padding: 0 20px;
 }
+
 /* Margin X-axis (Horizontal) */
 .mx-5 {
   margin-left: 5px;
@@ -661,5 +662,15 @@
 
   @include smMaxBreakPoint {
     padding: 20px 0;
+  }
+}
+
+
+//home button
+.width-20-hero {
+  width: 20%;
+
+  @include smMaxBreakPoint {
+    width: 50%;
   }
 }

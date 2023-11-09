@@ -37,7 +37,7 @@ const AuthenticBlue = () => {
           </div>
 
           <div className="blu_img ">
-            <img src="/landing/blueMark.png" alt="blue" />
+            <img src="/landing/Blue-check-mark.png" alt="blue" />
           </div>
         </div>
       </div>

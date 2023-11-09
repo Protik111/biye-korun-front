@@ -18,13 +18,15 @@ export const HeroSection = () => {
               <img src="/landing/logo.png" alt="Biye Korun Logo" />
             </Link>
             <div className="border_down"></div>
-            <div className="hero_title" data-aos="fade-up">
-              <h1 className="heading1V3">
-                Find the Right Person <br /> to Spend Rest of Your <br /> Life
-              </h1>
-            </div>
-            <div data-aos="fade-up">
-              <GetStartedFrom />
+            <div className="form-btn">
+              <div className="hero_title" data-aos="fade-up">
+                <h1 className="heading1V3">
+                  Find the Right Person <br /> to Spend Rest of Your <br /> Life
+                </h1>
+              </div>
+              <div data-aos="fade-up">
+                <GetStartedFrom />
+              </div>
             </div>
           </div>
         </div>

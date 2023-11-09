@@ -93,9 +93,9 @@ p {
 //version 3 typography
 
 .heading1V3 {
-  font-weight: 400;
+  font-weight: 600;
   // font-size: 34px;
-  font-size: 28px;
+  font-size: 32px;
   // line-height: 4.72px;
   margin: 0;
   // color: $secondaryColorLight;
@@ -105,7 +105,7 @@ p {
   @include mdMinBreakPoint {
     font-size: 60px;
     font-family: "Inter", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 64.72px;
     letter-spacing: 0em;
   }
