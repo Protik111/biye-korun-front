@@ -29,6 +29,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
 const GetStartedFrom = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
