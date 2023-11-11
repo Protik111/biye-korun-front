@@ -1,52 +1,175 @@
-.loginComp {
+// .loginComp {
+//   &__wrapper {
+//     background-image: url("/auth/login-page2.jpg");
+//     background-size: cover;
+//     width: 100%;
+//     height: 100%;
+//     padding: 30px;
 
-    &__wrapper {
-        background-image: url("/auth/login-page2.jpg");
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        padding: 30px;
+//     @include smMaxBreakPoint {
+//       background-image: none;
+//     }
+
+//     &--left {
+//       background-color: white;
+//     }
+
+//     &--right {
+//       @include mdMaxBreakPoint {
+//         grid-row: 1;
+//       }
+
+//       img {
+//         max-width: 100%;
+//         height: auto;
+//         object-fit: cover;
+
+//         @include lgMaxBreakPoint {
+//           height: 200px;
+//           display: none;
+//         }
+
+//         @include smMaxBreakPoint {
+//           height: 200px;
+//         }
+//       }
+
+//       .forgot-img {
+//         height: 500px;
+
+//         @include lgMaxBreakPoint {
+//           height: 200px;
+//           display: none;
+//         }
+
+//         @include smMaxBreakPoint {
+//           height: 200px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.loginComp {
+  &__wrapper {
+    // background-image: url("/auth/login-page2.jpg");
+    // background-size: cover;
+    // border: 1px solid red;
+    width: 100%;
+    // height: 100%;
+    // padding: 30px;
+
+    @include smMaxBreakPoint {
+      background-image: none;
+    }
+
+    &--left {
+      background-image: url("/auth/loginLeftbg.png");
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    &--right {
+      background-image: url("/auth/rightLoginbg.png");
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      @include mdMaxBreakPoint {
+        grid-row: 1;
+      }
+      .right_content_img {
+        img {
+          max-width: 100%;
+          height: 62px;
+          object-fit: contain;
+          cursor: pointer;
+        }
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+
+        @include lgMaxBreakPoint {
+          height: 200px;
+          display: none;
+        }
 
         @include smMaxBreakPoint {
-            background-image: none;
+          height: 200px;
+        }
+      }
+
+      .forgot-img {
+        height: 500px;
+
+        @include lgMaxBreakPoint {
+          height: 200px;
+          display: none;
         }
 
-        &--left {
-            background-color: white;
+        @include smMaxBreakPoint {
+          height: 200px;
         }
-
-        &--right {
-            @include mdMaxBreakPoint {
-                grid-row: 1;
-            }
-
-            img {
-                max-width: 100%;
-                height: auto;
-                object-fit: cover;
-
-                @include lgMaxBreakPoint {
-                    height: 200px;
-                    display: none;
-                }
-
-                @include smMaxBreakPoint {
-                    height: 200px;
-                }
-            }
-
-            .forgot-img {
-                height: 500px;
-
-                @include lgMaxBreakPoint {
-                    height: 200px;
-                    display: none;
-                }
-
-                @include smMaxBreakPoint {
-                    height: 200px;
-                }
-            }
-        }
+      }
     }
+  }
+
+  .login-carousel {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .image-slider {
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin: auto;
+    .slider-content {
+      display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      animation: slide 12s linear infinite; /* Adjust duration as needed */
+
+      .slide {
+        // width: 100%;
+        flex: 0 0 auto;
+        text-align: center;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  @keyframes slide {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    16.666% {
+      transform: translateX(0);
+    }
+    33.333% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(-100%);
+    }
+    66.666% {
+      transform: translateX(-200%);
+    }
+    83.333% {
+      transform: translateX(-200%);
+    }
+  }
+
+  /* Style for images (adjust as needed) */
+  //   .slide img {
+  //     width: 100%;
+  //     height: auto;
+  //   }
 }

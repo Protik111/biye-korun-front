@@ -10,11 +10,26 @@ import { configureAxiosHeader } from "@/utils/setAxiosHeader";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import required modules
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectCreative,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import Link from "next/link";
+import LoginSlide from "./LoginSlide";
+import LoginSlider from "./LoginSlide";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 const LoginComp = () => {
+  const swiperRef = useRef(null);
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
@@ -99,9 +114,120 @@ const LoginComp = () => {
   };
 
   return (
-    <div className="loginComp flex justify-center align-center min-vh-75 container">
-      <div className="loginComp__wrapper container-box-vh-50 grid grid-cols-2 grid-cols-2-responsive place-center px-15">
-        <div className="loginComp__wrapper--left box-shadow px-25 py-30 rounded-10">
+    // <div className="loginComp flex justify-center align-center min-vh-75 container">
+    //   <div className="loginComp__wrapper container-box-vh-50 grid grid-cols-2 grid-cols-2-responsive place-center px-15">
+    //     <div className="loginComp__wrapper--left box-shadow px-25 py-30 rounded-10">
+    //       <h4 className="text-center">Sign In</h4>
+    //       <br />
+
+    //       <TextInput
+    //         label="Email"
+    //         placeholder="Enter Email"
+    //         size="md"
+    //         withAsterisk
+    //         name="email"
+    //         fullWidth
+    //         sx={logininput}
+    //         value={formData.email}
+    //         onChange={(event) => handleChange("email", event.target.value)}
+    //         error={formDataError.email}
+    //       />
+    //       <br />
+
+    //       <PasswordInput
+    //         label="Password"
+    //         placeholder="Enter Password"
+    //         size="md"
+    //         withAsterisk
+    //         name="password"
+    //         fullWidth
+    //         sx={logininput}
+    //         value={formData.password}
+    //         onChange={(event) => handleChange("password", event.target.value)}
+    //         error={formDataError.password}
+    //       />
+    //       <br />
+
+    //       <Button
+    //         size="md"
+    //         fullWidth
+    //         // leftIcon={<IconArrowNarrowLeft />}
+    //         style={btnBackground}
+    //         type="button"
+    //         className={`button`}
+    //         onClick={handleLogin}
+    //         disabled={loading}
+    //       >
+    //         {loading ? (
+    //           <>
+    //             <LoaderWithText
+    //               text="Signing in.."
+    //               color="white"
+    //             ></LoaderWithText>
+    //           </>
+    //         ) : (
+    //           <>Sign In</>
+    //         )}
+    //       </Button>
+    //       <br></br>
+
+    //       <div>
+    //         <p style={{ color: "#828282" }}>
+    //           Forgot Password?
+    //           <Link href="/forgot-password">
+    //             <span style={{ color: "#F87A1D" }} className="underline">
+    //               {" "}
+    //               Recover now!
+    //             </span>
+    //           </Link>
+    //         </p>
+    //         <p style={{ color: "#828282" }}>
+    //           New to Biye Korun?{" "}
+    //           <span
+    //             style={{ color: "#F87A1D" }}
+    //             onClick={() => setModalOpen(true)}
+    //             className="underline pointer"
+    //           >
+    //             Create an Account!
+    //           </span>
+    //         </p>
+    //       </div>
+
+    //       {/* <Button
+    //                     size="md"
+    //                     fullWidth
+    //                     // variant="outline"
+    //                     // leftIcon={<IconArrowNarrowLeft />}
+    //                     // style={btnBackground}
+    //                     type="button"
+    //                     className={`button mt-10`}
+    //                     onClick={() => setModalOpen(true)}
+    //                 // disabled={loading}
+    //                 >
+    //                     Register
+    //                 </Button> */}
+    //     </div>
+    //     <div className="loginComp__wrapper--right">
+    //       {/* <img src="/auth/login-password.svg" alt="login" /> */}
+    //     </div>
+    //   </div>
+
+    //   {modalOpen && (
+    //     <CenteredModal
+    //       modalOpen={modalOpen}
+    //       handleModalClose={handleModalClose}
+    //       modalTitle={<h3 className="text-center">Let's Create an Account!</h3>}
+    //     >
+    //       {/* <MultistepRegistration></MultistepRegistration> */}
+    //       <FormProvider>
+    //         <Form handleModalClose={handleModalClose}></Form>
+    //       </FormProvider>
+    //     </CenteredModal>
+    //   )}
+    // </div>
+    <div className="loginComp flex justify-center align-center min-vh-100 container">
+      <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center">
+        <div className="loginComp__wrapper--left box-shadow  flex  flex-column justify-center align-center ">
           <h4 className="text-center">Sign In</h4>
           <br />
 
@@ -111,6 +237,7 @@ const LoginComp = () => {
             size="md"
             withAsterisk
             name="email"
+            radius="xl"
             fullWidth
             sx={logininput}
             value={formData.email}
@@ -118,19 +245,31 @@ const LoginComp = () => {
             error={formDataError.email}
           />
           <br />
+          <div>
+            <PasswordInput
+              label="Password"
+              placeholder="Enter Password"
+              size="md"
+              radius="xl"
+              withAsterisk
+              name="password"
+              fullWidth
+              sx={logininput}
+              value={formData.password}
+              onChange={(event) => handleChange("password", event.target.value)}
+              error={formDataError.password}
+            />
 
-          <PasswordInput
-            label="Password"
-            placeholder="Enter Password"
-            size="md"
-            withAsterisk
-            name="password"
-            fullWidth
-            sx={logininput}
-            value={formData.password}
-            onChange={(event) => handleChange("password", event.target.value)}
-            error={formDataError.password}
-          />
+            <p style={{ color: "#828282" }}>
+              Forgot Password?
+              <Link href="/forgot-password">
+                <span style={{ color: "#F87A1D" }} className="underline">
+                  {" "}
+                  Recover now!
+                </span>
+              </Link>
+            </p>
+          </div>
           <br />
 
           <Button
@@ -142,6 +281,7 @@ const LoginComp = () => {
             className={`button`}
             onClick={handleLogin}
             disabled={loading}
+            radius="xl"
           >
             {loading ? (
               <>
@@ -157,7 +297,7 @@ const LoginComp = () => {
           <br></br>
 
           <div>
-            <p style={{ color: "#828282" }}>
+            {/* <p style={{ color: "#828282" }}>
               Forgot Password?
               <Link href="/forgot-password">
                 <span style={{ color: "#F87A1D" }} className="underline">
@@ -165,7 +305,7 @@ const LoginComp = () => {
                   Recover now!
                 </span>
               </Link>
-            </p>
+            </p> */}
             <p style={{ color: "#828282" }}>
               New to Biye Korun?{" "}
               <span
@@ -192,8 +332,8 @@ const LoginComp = () => {
                         Register
                     </Button> */}
         </div>
-        <div className="loginComp__wrapper--right">
-          {/* <img src="/auth/login-password.svg" alt="login" /> */}
+        <div className="loginComp__wrapper--right flex flex-column flex-gap-20 justify-center align-center ">
+          <LoginSlide />
         </div>
       </div>
 

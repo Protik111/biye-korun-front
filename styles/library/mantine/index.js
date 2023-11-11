@@ -45,7 +45,14 @@ export const logininput = {
 
 export const btnBackground = {
   // backgroundColor: '#F143CB',
+  width: "300px",
   backgroundColor: "#FD123F",
+  "@media (max-width: 640px)": {
+    width: "250px",
+  },
+  "@media (max-width: 400px)": {
+    width: "200px",
+  },
 
   "&:hover": {
     backgroundColor: "#9880E7",
