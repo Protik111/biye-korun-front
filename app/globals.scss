@@ -86,6 +86,7 @@ body {
   min-height: 50vh;
   border-radius: 10px;
 }
+
 .container-box-vh-70 {
   // background-color: $whiteColor;
   // border: 1px solid $primaryColor;
@@ -210,6 +211,12 @@ body {
 //custom aspect ration
 .mantine-AspectRatio-root {
   border-radius: 15px !important;
+}
+
+//hero multiselect option
+.mantine-MultiSelect-values {
+  max-height: 10px !important;
+  overflow-y: auto;
 }
 
 //notification

@@ -4,7 +4,7 @@ import GetStartedFrom from "./GetStartedFrom";
 import useAnimation from "@/hooks/common/useAnimation";
 
 export const HeroSection = () => {
-  const { makeAnimation } = useAnimation();
+  const { makeAnimation } = useAnimation(600);
 
   useEffect(() => {
     makeAnimation()
@@ -15,7 +15,7 @@ export const HeroSection = () => {
         <div className="column-1">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="/landing/logo.png" alt="Biye Korun Logo" />
+              <img src="/landing/logo-svg.svg" alt="Biye Korun Logo" />
             </Link>
             <div className="border_down"></div>
             <div className="form-btn">

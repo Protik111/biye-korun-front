@@ -36,7 +36,7 @@ const GetStartedFrom = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    ages: [18, 50],
+    ages: [18, 65],
   });
 
   // console.log('matches', matches);
@@ -109,6 +109,7 @@ const GetStartedFrom = () => {
                 defaultValue={formData.ages}
                 range={1}
                 minRange={1}
+                onChange={(event) => handleFormChange("ages", event)}
               // sx={selectMobileStyles_res}
               // onChange={handleAge}
               //   style={{ width: "200px" }}
