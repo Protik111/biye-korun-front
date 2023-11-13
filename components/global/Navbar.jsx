@@ -167,8 +167,9 @@ function Navbar() {
                     {notifications
                       ?.map((item, i) => (
                         <Menu.Item
-                          className={`${item.opened ? "noti-light" : "noti-gray"
-                            }`}
+                          className={`${
+                            item.opened ? "noti-light" : "noti-gray"
+                          }`}
                           onClick={() => notificationMarkRead(item)}
                         >
                           <div className="flex align-center flex-gap-15">

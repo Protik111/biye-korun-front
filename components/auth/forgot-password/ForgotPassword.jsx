@@ -5,7 +5,11 @@ import Form from "@/components/multiStepRegistration/Form";
 import { FormProvider } from "@/context/FormContext";
 import { loadUser, login } from "@/redux/features/auth/authSlice";
 import { loadUserData } from "@/redux/features/user/userSlice";
-import { btnBackground, logininput } from "@/styles/library/mantine";
+import {
+  btnBackground1,
+  btnBackground11,
+  logininput,
+} from "@/styles/library/mantine";
 import setAuthToken from "@/utils/setAuthToken";
 import { configureAxiosHeader } from "@/utils/setAxiosHeader";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
@@ -217,14 +221,16 @@ const ForgotPassword = () => {
 
   return (
     <div className="loginComp flex justify-center align-center min-vh-100 container">
-      <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center px-15">
+      <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center ">
         <div className="loginComp__wrapper--left box-shadow flex  flex-column justify-center align-center">
-          <h4 className="text-center">Forget Password</h4>
+          <h4 className="text-center" style={{ color: "#000" }}>
+            Forget Password
+          </h4>
           <br />
 
           {switchSection ? (
             <>
-              <div className="accountSettings__top">
+              <div className="accountSettings__top responsive_setting">
                 <div>
                   <label className="label label-required">
                     Enter The OTP
@@ -284,7 +290,7 @@ const ForgotPassword = () => {
                 <Button
                   className="mt-15"
                   onClick={() => handleUpdatePassword()}
-                  style={btnBackground}
+                  style={btnBackground1}
                   fullWidth
                   disabled={otp?.length !== 6 || passLoading}
                   variant="filled"
@@ -322,7 +328,7 @@ const ForgotPassword = () => {
                 size="md"
                 fullWidth
                 // leftIcon={<IconArrowNarrowLeft />}
-                style={btnBackground}
+                style={btnBackground1}
                 type="button"
                 className={`button`}
                 onClick={handleSendOTP}

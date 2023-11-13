@@ -2,7 +2,10 @@
 import { Button, Textarea } from "@mantine/core";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-import parsePhoneNumber, { AsYouType, isValidPhoneNumber } from "libphonenumber-js";
+import parsePhoneNumber, {
+  AsYouType,
+  isValidPhoneNumber,
+} from "libphonenumber-js";
 
 const Step3 = ({
   onNextStep,
@@ -13,7 +16,6 @@ const Step3 = ({
 }) => {
   const { about, phone } = formValues;
   const phoneInfo = parsePhoneNumber(phone);
-
 
   const validateForm = () => {
     const errors = {};
@@ -26,13 +28,19 @@ const Step3 = ({
 
     if (!phone || !phoneInfo) {
       errors.phone = "Phone is required";
-    } else if (phoneInfo?.country === "US" || phoneInfo?.countryCallingCode === "1") {
-      const formatted = phoneInfo.formatNational()
+    } else if (
+      phoneInfo?.country === "US" ||
+      phoneInfo?.countryCallingCode === "1"
+    ) {
+      const formatted = phoneInfo.formatNational();
       if (!isValidPhoneNumber(formatted, "US")) {
         errors.phone = "Enter a valid number";
       }
-    } else if (phoneInfo?.country === "BD" || phoneInfo?.countryCallingCode === "880") {
-      const formatted = phoneInfo.formatNational()
+    } else if (
+      phoneInfo?.country === "BD" ||
+      phoneInfo?.countryCallingCode === "880"
+    ) {
+      const formatted = phoneInfo.formatNational();
       if (!isValidPhoneNumber(formatted, "BD")) {
         errors.phone = "Enter a valid number";
       }
@@ -60,11 +68,17 @@ const Step3 = ({
   const handleChangePhone = (name, value) => {
     const asYouType = new AsYouType();
     // let input = asYouType.input(value);
-    const input = parsePhoneNumber(value)
+    const input = parsePhoneNumber(value);
     console.log(input);
-    if (asYouType.getChars().startsWith(1) && asYouType.getChars().length <= 11) {
+    if (
+      asYouType.getChars().startsWith(1) &&
+      asYouType.getChars().length <= 11
+    ) {
       return setFormValues((prev) => ({ ...prev, [name]: input }));
-    } else if (!asYouType.getChars().startsWith(1) && asYouType.getChars().length <= 10) {
+    } else if (
+      !asYouType.getChars().startsWith(1) &&
+      asYouType.getChars().length <= 10
+    ) {
       return setFormValues((prev) => ({ ...prev, [name]: input }));
     } else {
       return;
@@ -96,8 +110,7 @@ const Step3 = ({
           defaultCountry="bd"
           value={phone}
           onChange={(phone) => handleFormChange("phone", phone)}
-        // onChange={(phone) => handleChangePhone("phone", phone)}
-
+          // onChange={(phone) => handleChangePhone("phone", phone)}
         />
         {formErrors.phone && (
           <p className="error-message">{formErrors.phone} </p>

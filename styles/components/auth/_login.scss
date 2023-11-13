@@ -68,6 +68,16 @@
       background-size: cover;
       width: 100%;
       height: 100%;
+      @include getDown(600px) {
+        background-image: none;
+        padding-top: 50px;
+        padding-bottom: 100px;
+      }
+      .margin_left {
+        @include getDown(600px) {
+          margin-left: 21px;
+        }
+      }
     }
 
     &--right {
@@ -78,12 +88,20 @@
       @include mdMaxBreakPoint {
         grid-row: 1;
       }
+
+      @include getDown(600px) {
+        height: 400px;
+      }
       .right_content_img {
         img {
           max-width: 100%;
           height: 62px;
           object-fit: contain;
           cursor: pointer;
+        }
+
+        @include getDown(600px) {
+          margin-top: 10px;
         }
       }
       img {
@@ -92,15 +110,19 @@
         object-fit: cover;
 
         @include lgMaxBreakPoint {
-          height: 200px;
+          // height: auto;
+          // display: none;
+        }
+
+        // @include smMaxBreakPoint {
+        //   height: 200px;
+        // }
+      }
+      .hide_mobile {
+        @include getDown(600px) {
           display: none;
         }
-
-        @include smMaxBreakPoint {
-          height: 200px;
-        }
       }
-
       .forgot-img {
         height: 500px;
 
@@ -119,57 +141,60 @@
   .login-carousel {
     max-width: 400px;
     width: 100%;
-  }
 
-  .image-slider {
-    overflow: hidden;
-    width: 100%;
-    max-width: 600px; /* Adjust as needed */
-    margin: auto;
-    .slider-content {
-      display: flex;
-      //   justify-content: center;
-      //   align-items: center;
-      animation: slide 12s linear infinite; /* Adjust duration as needed */
-
-      .slide {
-        // width: 100%;
-        flex: 0 0 auto;
-        text-align: center;
-        img {
-          width: 100%;
-          height: auto;
-          object-fit: cover;
-        }
-      }
+    @include getDown(600px) {
+      height: 256px;
+      max-width: 330px;
     }
   }
 
-  @keyframes slide {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    16.666% {
-      transform: translateX(0);
-    }
-    33.333% {
-      transform: translateX(-100%);
-    }
-    50% {
-      transform: translateX(-100%);
-    }
-    66.666% {
-      transform: translateX(-200%);
-    }
-    83.333% {
-      transform: translateX(-200%);
-    }
+  @include getDown(600px) {
+    min-height: 0;
+    padding: 0 0;
   }
+  // .image-slider {
+  //   overflow: hidden;
+  //   width: 100%;
+  //   max-width: 600px; /* Adjust as needed */
+  //   margin: auto;
+  //   .slider-content {
+  //     display: flex;
+  //     //   justify-content: center;
+  //     //   align-items: center;
+  //     animation: slide 12s linear infinite; /* Adjust duration as needed */
 
-  /* Style for images (adjust as needed) */
-  //   .slide img {
-  //     width: 100%;
-  //     height: auto;
+  //     .slide {
+  //       // width: 100%;
+  //       flex: 0 0 auto;
+  //       text-align: center;
+  //       img {
+  //         width: 100%;
+  //         height: auto;
+  //         object-fit: cover;
+  //       }
+  //     }
   //   }
+  // }
+
+  // @keyframes slide {
+  //   0%,
+  //   100% {
+  //     transform: translateX(0);
+  //   }
+  //   16.666% {
+  //     transform: translateX(0);
+  //   }
+  //   33.333% {
+  //     transform: translateX(-100%);
+  //   }
+  //   50% {
+  //     transform: translateX(-100%);
+  //   }
+  //   66.666% {
+  //     transform: translateX(-200%);
+  //   }
+  //   83.333% {
+  //     transform: translateX(-200%);
+  //   }
+  // }
 }

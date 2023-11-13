@@ -29,10 +29,10 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-
 const GetStartedFrom = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
+  const [selectedValues, setSelectedValues] = useState([]); // Set initial selected values
 
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -64,6 +64,11 @@ const GetStartedFrom = () => {
     }));
   };
 
+  const handleSelect = (values) => {
+    if (values.length <= 5) {
+      setSelectedValues(values);
+    }
+  };
   return (
     <>
       <div className="flex flex-gap-10 mb-10 mt-15 responsive_from">
@@ -110,14 +115,14 @@ const GetStartedFrom = () => {
                 range={1}
                 minRange={1}
                 onChange={(event) => handleFormChange("ages", event)}
-              // sx={selectMobileStyles_res}
-              // onChange={handleAge}
-              //   style={{ width: "200px" }}
-              // onChange={(event) => handleFormChange("ages", event)}
-              // sx={selectMobileStyles_res}
-              // onChange={handleAge}
-              //   style={{ width: "200px" }}
-              // onChange={(event) => handleFormChange("ages", event)}
+                // sx={selectMobileStyles_res}
+                // onChange={handleAge}
+                //   style={{ width: "200px" }}
+                // onChange={(event) => handleFormChange("ages", event)}
+                // sx={selectMobileStyles_res}
+                // onChange={handleAge}
+                //   style={{ width: "200px" }}
+                // onChange={(event) => handleFormChange("ages", event)}
               />
             </Popover.Dropdown>
           </Popover>
@@ -128,7 +133,6 @@ const GetStartedFrom = () => {
           <MultiSelect
             size="md"
             placeholder="Select Religion"
-            defaultValue="20"
             //   styles={{ label: labelStyles }}
             data={religions}
             // sx={selectMobileStyles}
@@ -137,26 +141,24 @@ const GetStartedFrom = () => {
           />
           <MultiSelect
             size="md"
-            placeholder="Select Language"
-            defaultValue="20"
+            placeholder="Select Language "
             //   styles={{ label: labelStyles }}
             data={motherTongues}
-            // style={{ height: "40px", overflow: "auto" }}
             sx={selectMobileStyles_res}
+            onChange={handleSelect}
+            value={selectedValues}
             searchable
           />
         </div>
         <div className="flex flex-gap-15">
           <button
-
             onClick={() => setModalOpen(true)}
             className="secondary-btn-v3 width-20-hero"
           >
             Let's Get Started
           </button>
           <button
-
-            onClick={() => router.push('/login')}
+            onClick={() => router.push("/login")}
             className="primary-btn-v3 width-20-hero"
           >
             Login

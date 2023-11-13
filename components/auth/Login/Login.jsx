@@ -4,7 +4,11 @@ import Form from "@/components/multiStepRegistration/Form";
 import { FormProvider } from "@/context/FormContext";
 import { loadUser, login } from "@/redux/features/auth/authSlice";
 import { loadUserData } from "@/redux/features/user/userSlice";
-import { btnBackground, logininput } from "@/styles/library/mantine";
+import {
+  btnBackground,
+  btnBackground1,
+  logininput,
+} from "@/styles/library/mantine";
 import setAuthToken from "@/utils/setAuthToken";
 import { configureAxiosHeader } from "@/utils/setAxiosHeader";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
@@ -228,7 +232,9 @@ const LoginComp = () => {
     <div className="loginComp flex justify-center align-center min-vh-100 container">
       <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center">
         <div className="loginComp__wrapper--left box-shadow  flex  flex-column justify-center align-center ">
-          <h4 className="text-center">Sign In</h4>
+          <h4 className="text-center" style={{ color: "#000" }}>
+            Sign In
+          </h4>
           <br />
 
           <TextInput
@@ -260,7 +266,7 @@ const LoginComp = () => {
               error={formDataError.password}
             />
 
-            <p style={{ color: "#828282" }}>
+            <p style={{ color: "#828282" }} className="margin_left">
               Forgot Password?
               <Link href="/forgot-password">
                 <span style={{ color: "#F87A1D" }} className="underline">
@@ -276,7 +282,7 @@ const LoginComp = () => {
             size="md"
             fullWidth
             // leftIcon={<IconArrowNarrowLeft />}
-            style={btnBackground}
+            style={btnBackground1}
             type="button"
             className={`button`}
             onClick={handleLogin}
