@@ -41,7 +41,9 @@ const LoginSlider = () => {
       <div className="right_content_img">
         <img src="biye-korun-logo-with-tagline.png" alt="" />
       </div>
-      <h1 style={{ color: "white" }}>Welcome Back!</h1>
+      <h1 style={{ color: "white" }} className="hide_mobile">
+        Welcome Back!
+      </h1>
       {/* <div class="image-slider">
             <div class="slider-content">
               <div class="slide">

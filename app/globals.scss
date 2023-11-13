@@ -140,7 +140,7 @@ body {
   border-radius: 0.25rem;
 
   &:focus {
-    border: 1px solid #1c7ed6 !important;
+    // border: 1px solid #1c7ed6 !important;
 
     .react-international-phone-country-selector-button {
       height: 3.625rem !important;
@@ -157,6 +157,22 @@ body {
   min-width: 365px !important;
 }
 
+.home_event_inquiry {
+  .react-international-phone-input {
+    background: transparent !important;
+    outline: none !important;
+    color: white !important;
+    height: 3.625rem !important;
+  }
+  .react-international-phone-country-selector-button {
+    background: transparent !important;
+    outline: none !important;
+    color: white !important;
+  }
+  .react-international-phone-country-selector-button {
+    height: 3.625rem !important;
+  }
+}
 //overriding react-international-phone-input end
 
 //overriding mantine autocomplete scrollbar

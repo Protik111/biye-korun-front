@@ -35,17 +35,18 @@ export const selectMultiStyles = {
 
 export const logininput = {
   width: "300px",
-  "@media (max-width: 640px)": {
-    width: "250px",
+  "@media (max-width: 600px)": {
+    width: "345px",
+    padding: "0 20px",
   },
-  "@media (max-width: 400px)": {
-    width: "200px",
-  },
+  // "@media (max-width: 400px)": {
+  //   width: "200px",
+  // },
 };
 
 export const btnBackground = {
   // backgroundColor: '#F143CB',
-  width: "300px",
+  // width: "300px",
   backgroundColor: "#FD123F",
   "@media (max-width: 640px)": {
     width: "250px",
@@ -59,6 +60,19 @@ export const btnBackground = {
   },
 };
 
+export const btnBackground1 = {
+  // backgroundColor: '#F143CB',
+  width: "300px",
+  backgroundColor: "#FD123F",
+  "@media (max-width: 600px)": {
+    width: "100%",
+    padding: "0 ",
+  },
+
+  "&:hover": {
+    backgroundColor: "#9880E7",
+  },
+};
 export const fontSizeMnd = {
   fontSize: "16px",
 };

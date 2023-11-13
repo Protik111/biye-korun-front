@@ -1,4 +1,4 @@
-@import './mixins';
+@import "./mixins";
 
 h1 {
   font-style: normal;
@@ -33,7 +33,7 @@ h3 {
   font-size: 16px;
   line-height: 125%;
   margin: 0;
-  color: #713ABE;
+  color: #713abe;
 
   @include smMaxBreakPoint {
     font-weight: 400;
@@ -52,7 +52,7 @@ h4 {
   font-size: 16px;
   line-height: 125%;
   margin: 0;
-  color: #713ABE;
+  color: #713abe;
 
   @include smMaxBreakPoint {
     font-size: 18px;
@@ -108,6 +108,10 @@ p {
     font-weight: 700;
     line-height: 64.72px;
     letter-spacing: 0em;
+  }
+
+  @include getDown(600px) {
+    font-size: 29px;
   }
 }
 

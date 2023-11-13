@@ -1,23 +1,30 @@
 .accountSettings {
-    .accountSettings__top {
-        max-width: 280px;
+  .accountSettings__top {
+    max-width: 280px;
 
-        .coundown {
-            margin-top: 10px;
-        }
+    .coundown {
+      margin-top: 10px;
     }
+  }
 }
-
-.delete__top--container {
+.responsive_setting {
+  @include getDown(600px) {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.delete__top--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
 
-    .delete__top {
-        max-width: 280px;
+  .delete__top {
+    max-width: 280px;
 
-        .coundown {
-            margin-top: 10px;
-        }
+    .coundown {
+      margin-top: 10px;
     }
+  }
 }
