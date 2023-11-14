@@ -22,6 +22,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@tabler/icons-react": "^2.31.0",
     "@tiptap/extension-underline": "^2.1.12",
+    "@tiptap/pm": "^2.1.12",
     "@tiptap/react": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "@uiw/react-md-editor": "^3.24.1",

@@ -223,7 +223,10 @@ const ForgotPassword = () => {
     <div className="loginComp flex justify-center align-center min-vh-100 container">
       <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center ">
         <div className="loginComp__wrapper--left box-shadow flex  flex-column justify-center align-center">
-          <h4 className="text-center" style={{ color: "#000" }}>
+          <h4
+            className="text-center"
+            style={{ color: "#000", fontWeight: "bold" }}
+          >
             Forget Password
           </h4>
           <br />
@@ -248,7 +251,7 @@ const ForgotPassword = () => {
                     placeholder=""
                   />
                 </div>
-
+                <br />
                 <PasswordInput
                   className="mt-5"
                   label="New Password"
@@ -265,6 +268,7 @@ const ForgotPassword = () => {
                   }
                   error={formValuesError.password}
                 />
+                <br />
                 <PasswordInput
                   className="mt-5"
                   label="Confirm Password"
@@ -285,7 +289,7 @@ const ForgotPassword = () => {
                   error={formValuesError.confirmPassword}
                 />
               </div>
-
+              <br />
               <div className="">
                 <Button
                   className="mt-15"

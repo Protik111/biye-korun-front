@@ -89,6 +89,10 @@
 
 // custom css for editors
 /* TitTap Editor Design */
+.tiptap {
+  height: 170px;
+  overflow: auto;
+}
 .ProseMirror {
   padding: 10px;
   // border-top: 1px solid red !important;

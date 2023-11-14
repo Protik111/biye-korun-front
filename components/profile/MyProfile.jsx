@@ -481,8 +481,13 @@ const MyProfile = () => {
                 <div className="single-item">
                   <p className="left">Family Location</p>
                   <p className="right">
-                    {familyCountry || notSpecfied}, {familyCity || notSpecfied},{" "}
-                    {familyState || notSpecfied}
+                    {familyCountry && <span>{familyCountry}, </span>}
+                    {familyCity && <span>{familyCity}, </span>}
+                    {familyState && <span>{familyState}</span>}
+                    {!familyCountry &&
+                      !familyCity &&
+                      !familyState &&
+                      notSpecfied}
                   </p>
                 </div>
                 <div className="single-item">

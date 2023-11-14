@@ -158,7 +158,6 @@ const EventsInquiry = () => {
               searchable
             /> */}
 
-              <br />
               {/* <Autocomplete
               searchable
               placeholder="Select How Many People?"
@@ -192,6 +191,7 @@ const EventsInquiry = () => {
                 name="description"
                 withAsterisk
               />
+              <br />
               <br />
               <button className="btn">Submit Now</button>
             </div>
