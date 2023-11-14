@@ -146,22 +146,33 @@ function Navbar() {
                   width={380}
                   shadow="md"
                 >
-                  <Menu.Target className="mr-20">
-                    <Indicator
-                      color="red"
-                      inline
-                      label={
-                        notifications?.filter((item) => !item.opened).length
-                      }
-                      size={16}
-                    >
+                  {notifications?.filter((item) => !item.opened).length > 0 ? (
+                    <Menu.Target className="mr-20">
+                      <Indicator
+                        color="red"
+                        inline
+                        label={
+                          notifications?.filter((item) => !item.opened).length
+                        }
+                        size={16}
+                      >
+                        <IconBell
+                          cursor="pointer"
+                          size="25"
+                          color="white"
+                        ></IconBell>
+                      </Indicator>
+                    </Menu.Target>
+                  ) : (
+                    <Menu.Target className="mr-20 disabled_css">
                       <IconBell
                         cursor="pointer"
                         size="25"
                         color="white"
+                        disabled={true}
                       ></IconBell>
-                    </Indicator>
-                  </Menu.Target>
+                    </Menu.Target>
+                  )}
 
                   <Menu.Dropdown>
                     {notifications

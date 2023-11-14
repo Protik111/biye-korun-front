@@ -665,7 +665,6 @@
   }
 }
 
-
 //home button
 .width-20-hero {
   width: 20%;
@@ -673,4 +672,9 @@
   @include smMaxBreakPoint {
     width: 50%;
   }
+}
+
+.disabled_css {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -238,7 +238,7 @@ const BasicProfile = ({ profile, fetchSingleProfile }) => {
           )}
         </div>
 
-        {profile?.postedBy == "Myself" && (
+        {profile?.postedBy !== "Myself" && (
           <div>
             <p className="mt-5 opacity-8  run_text">
               This profile is created and maintained by Friends & Family.

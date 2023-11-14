@@ -232,7 +232,10 @@ const LoginComp = () => {
     <div className="loginComp flex justify-center align-center min-vh-100 container">
       <div className="loginComp__wrapper container-box-vh-70 grid grid-cols-2 grid-cols-2-responsive place-center">
         <div className="loginComp__wrapper--left box-shadow  flex  flex-column justify-center align-center ">
-          <h4 className="text-center" style={{ color: "#000" }}>
+          <h4
+            className="text-center"
+            style={{ color: "#000", fontWeight: "bold" }}
+          >
             Sign In
           </h4>
           <br />
@@ -266,7 +269,10 @@ const LoginComp = () => {
               error={formDataError.password}
             />
 
-            <p style={{ color: "#828282" }} className="margin_left">
+            <p
+              style={{ color: "#828282", paddingTop: "10px" }}
+              className="margin_left"
+            >
               Forgot Password?
               <Link href="/forgot-password">
                 <span style={{ color: "#F87A1D" }} className="underline">

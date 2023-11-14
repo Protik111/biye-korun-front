@@ -37,11 +37,13 @@ const LoginSlider = () => {
   }
 
   return (
-    <div className="loginComp__wrapper--right flex flex-column flex-gap-20 justify-center align-center ">
-      <div className="right_content_img">
-        <img src="biye-korun-logo-with-tagline.png" alt="" />
-      </div>
-      <h1 style={{ color: "white" }} className="hide_mobile">
+    <div className="loginComp__wrapper--right flex flex-column flex-gap-10 justify-center align-center ">
+      <Link href={"/"}>
+        <div className="right_content_img">
+          <img src="/landing/logo-svg.svg" alt="" />
+        </div>
+      </Link>
+      <h1 style={{ color: "white" }} className="hide_mobile mb-25">
         Welcome Back!
       </h1>
       {/* <div class="image-slider">
