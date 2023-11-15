@@ -162,6 +162,18 @@ body {
     background: transparent !important;
     outline: none !important;
     color: white !important;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.12)
+      ),
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.12)
+      ) !important;
+    border: 1px solid rgba(196, 191, 191, 0.8) !important;
+    color: white;
     height: 3.625rem !important;
   }
   .react-international-phone-country-selector-button {
@@ -171,6 +183,18 @@ body {
   }
   .react-international-phone-country-selector-button {
     height: 3.625rem !important;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.12)
+      ),
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.12)
+      ) !important;
+    border: 1px solid rgba(196, 191, 191, 0.8) !important;
+    color: white;
   }
 }
 //overriding react-international-phone-input end

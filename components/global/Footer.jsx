@@ -33,9 +33,9 @@ const Footer = () => {
 
           <div className="flex flex-gap-10 footer-social-icons">
             <img src="/V3/landing/icon/fb.svg" loading="lazy" alt="" />
-            {/* <img src="/V3/landing/icon/twitter.svg" loading="lazy" alt="" />
-                        <img src="/V3/landing/icon/linkedin.svg" loading="lazy" alt="" />
-                        <img src="/V3/landing/icon/insta.svg" loading="lazy" alt="" /> */}
+            <img src="/V3/landing/icon/youtube.svg" loading="lazy" alt="" />
+            {/* <img src="/V3/landing/icon/linkedin.svg" loading="lazy" alt="" />
+            <img src="/V3/landing/icon/insta.svg" loading="lazy" alt="" /> */}
           </div>
         </div>
 
