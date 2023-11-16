@@ -1,7 +1,7 @@
 import useFormContext from "@/hooks/common/useFormContext";
 import FormInputs from "./FormInputs";
 import { Button, Notification } from "@mantine/core";
-import { btnBackground } from "@/styles/library/mantine";
+import { btnBackground, btnBackground_prev } from "@/styles/library/mantine";
 import { IconArrowNarrowRight, IconArrowNarrowLeft } from "@tabler/icons-react";
 import { format } from "date-fns";
 import { loadUser, register, reset } from "@/redux/features/auth/authSlice";
@@ -145,13 +145,14 @@ const Form = ({ handleModalClose }) => {
 
         <div className="button-container">
           {page === 1 && (
-            <div className="flex flex-gap-15">
+            <div className="flex flex-column flex-gap-15">
               <Button
                 size="md"
                 fullWidth
                 leftIcon={<IconArrowNarrowLeft />}
-                style={btnBackground}
+                style={{ backgroundColor: "#feeaec", color: "red" }}
                 type="button"
+                radius="xl"
                 className={`button ${prevHide}`}
                 onClick={handlePrev}
                 disabled={disablePrev}
@@ -163,6 +164,8 @@ const Form = ({ handleModalClose }) => {
                 size="md"
                 fullWidth
                 type="submit"
+                radius="xl"
+                style={btnBackground}
                 className={`button ${submitHide}`}
                 // disabled={!canSubmit}
                 onClick={handleSubmit}
@@ -176,7 +179,7 @@ const Form = ({ handleModalClose }) => {
                     ></LoaderWithText>
                   </>
                 ) : (
-                  <>Sign up</>
+                  <>Sign up </>
                 )}
               </Button>
             </div>
@@ -187,6 +190,7 @@ const Form = ({ handleModalClose }) => {
               rightIcon={<IconArrowNarrowRight />}
               size="md"
               fullWidth
+              radius="xl"
               style={btnBackground}
               className={`button ${nextHide}`}
               onClick={handleNext}

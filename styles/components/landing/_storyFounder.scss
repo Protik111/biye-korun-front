@@ -33,6 +33,10 @@
       flex-direction: column;
       gap: 0;
     }
+
+    @include getDown(600px) {
+      display: none;
+    }
   }
   .right_content {
     display: flex;
@@ -64,9 +68,33 @@
       background: #fff;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       padding: 40px 30px;
+      @include getDown(600px) {
+        position: unset;
+        width: 100%;
+        background-color: #f5f5f5;
+        box-shadow: none;
+      }
+      .hide_desktop {
+        display: none;
+        @include getDown(600px) {
+          display: block;
+          padding: 0px 0px;
+        }
+      }
     }
-    @media (max-width: 1024px) {
-      display: none;
+    // @media (max-width: 1024px) {
+    //   display: none;
+    // }
+    img {
+      display: block;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .btn_mobile {
+      @include getDown(600px) {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
   .right_content_for_mobile {
@@ -91,6 +119,7 @@
   }
 
   @include getDown(600px) {
-    padding: 25px 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 }

@@ -7,12 +7,12 @@ const StoryFounder = () => {
   const { makeAnimation } = useAnimation();
 
   useEffect(() => {
-    makeAnimation()
-  }, [])
+    makeAnimation();
+  }, []);
 
   return (
     <div className="story_founder">
-      <div className="container ">
+      <div className="container">
         <div className="flex flex-gap-20 w-100 story_res_left_img">
           <div className="left_img" data-aos="fade-right">
             <img src="/landing/shiblu.png" alt="founder" />
@@ -31,15 +31,22 @@ const StoryFounder = () => {
                 finding love across continents underpins the platform's core
                 value: connecting Bangladeshis worldwide.
               </p>
-              <Link href={"/about-us"}>
-                <button className="secondary-btn-v3 mt-25">
-                  See More &rarr;
-                  {/* <IconArrowRight></IconArrowRight> */}
-                </button>
-              </Link>
+
+              <div className="mt-25 hide_desktop" data-aos="fade-right">
+                <img src="/landing/shiblu.png" alt="founder" />
+              </div>
+
+              <div className="btn_mobile">
+                <Link href={"/about-us"}>
+                  <button className="secondary-btn-v3 mt-25">
+                    See More &rarr;
+                    {/* <IconArrowRight></IconArrowRight> */}
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="right_content_for_mobile">
+          {/* <div className="right_content_for_mobile">
             <div className="right_content_card ">
               <h1 className="mt-15 mb-15">Story of The Founder</h1>
               <p>
@@ -50,6 +57,10 @@ const StoryFounder = () => {
                 finding love across continents underpins the platform's core
                 value: connecting Bangladeshis worldwide.
               </p>
+
+              <div className="left_img mt-25" data-aos="fade-right">
+                <img src="/landing/shiblu.png" alt="founder" />
+              </div>
               <Link href={"/about-us"}>
                 <button className="mb-20 mt-20 secondary-btn-v3 flex align-center justify-center flex-gap-5">
                   See More
@@ -57,7 +68,7 @@ const StoryFounder = () => {
                 </button>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

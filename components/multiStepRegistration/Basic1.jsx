@@ -25,12 +25,14 @@ const Basic1 = () => {
     data?.basic1postedBy === "My Sister";
 
   const content = (
-    <div className="mutlistep__registration px-10">
+    <div className="mutlistep__registration basic1 px-10">
       <Select
         size="md"
         placeholder="Select"
         label="Profile For"
         // styles={{ label: labelStyles }}
+        radius="xl"
+        variant="filled"
         data={profileFor}
         value={data.basic1postedBy}
         withAsterisk
@@ -44,9 +46,11 @@ const Basic1 = () => {
       <div className="flex flex-gap-10">
         <TextInput
           label="First Name"
-          placeholder="First name"
+          placeholder="First name "
           size="md"
           withAsterisk
+          variant="filled"
+          radius="xl"
           name="basic1firstName"
           value={data.basic1firstName}
           onChange={(event) =>
@@ -60,7 +64,9 @@ const Basic1 = () => {
           label="Last Name"
           placeholder="Last name"
           size="md"
+          radius="xl"
           withAsterisk
+          variant="filled"
           name="basic1lastName"
           value={data.basic1lastName}
           onChange={(event) =>
@@ -81,21 +87,25 @@ const Basic1 = () => {
         error={fieldErrors.basic1gender}
         className="custom-disable"
       >
-        <Group mt="xs">
-          <Radio
-            disabled={genderDisable}
-            checked={data.gender === "Male"}
-            color="pink"
-            value="Male"
-            label="Male"
-          />
-          <Radio
-            disabled={genderDisable}
-            checked={data.gender === "Female"}
-            color="pink"
-            value="Female"
-            label="Female"
-          />
+        <Group mt="xs" className="flex flex-gap-20">
+          <div className="male flex-basis-fifty">
+            <Radio
+              disabled={genderDisable}
+              checked={data.gender === "Male"}
+              color="pink"
+              value="Male"
+              label="Male"
+            />
+          </div>
+          <div className="male flex-basis-fifty">
+            <Radio
+              disabled={genderDisable}
+              checked={data.gender === "Female"}
+              color="pink"
+              value="Female"
+              label="Female"
+            />
+          </div>
         </Group>
       </Radio.Group>
 
@@ -105,6 +115,8 @@ const Basic1 = () => {
         size="md"
         placeholder="Select religion"
         label="Religion"
+        radius="xl"
+        variant="filled"
         data={religions}
         value={data.basic1religion}
         withAsterisk
@@ -120,9 +132,11 @@ const Basic1 = () => {
         size="md"
         placeholder="Select language"
         label="Language"
+        radius="xl"
         data={communities}
         value={data.basic1community}
         withAsterisk
+        variant="filled"
         name="basic1community"
         onChange={(event) => handleChange("basic1community", event)}
         error={fieldErrors.basic1community}

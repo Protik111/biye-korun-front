@@ -88,7 +88,12 @@
 .flex-basis-50 {
   flex-basis: 50px;
 }
-
+.flex-basis-fifty {
+  flex-basis: 47%;
+  @include getDown(400px) {
+    flex-basis: 44%;
+  }
+}
 /* CSS Grid */
 .grid {
   display: grid;

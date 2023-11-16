@@ -38,10 +38,10 @@ const InformationSecure = () => {
           </div>
         </div>
         <div className="right flex flex-column flex-gap-20 pl-25 item-2">
-          <h1 className="heading1V3">
+          <h1 className="heading1V3 left_align ">
             Your Information is Protected and Secure
           </h1>
-          <p className="paragraphV3">
+          <p className="paragraphV3 left_align">
             Most Trusted Matrimony Service for Bangladeshis. Register Now to
             Find Your Life Partner. Thousands of Bangladeshis got married
             through Bangladeshi Matrimony, you could be next. Hassle-Free
@@ -87,12 +87,21 @@ const InformationSecure = () => {
             </li>
           </ul>
 
-          <Link href="/login">
-            <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
-              See More <IconArrowRight></IconArrowRight>
-            </button>
-          </Link>
+          <div className="hide_mobile">
+            <Link href="/login">
+              <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
+                See More <IconArrowRight></IconArrowRight>
+              </button>
+            </Link>
+          </div>
         </div>
+      </div>
+      <div className="desktop_hide flex justify-center align-center">
+        <Link href="/login">
+          <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
+            See More <IconArrowRight></IconArrowRight>
+          </button>
+        </Link>
       </div>
     </div>
   );

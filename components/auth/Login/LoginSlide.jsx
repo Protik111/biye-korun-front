@@ -40,7 +40,7 @@ const LoginSlider = () => {
     <div className="loginComp__wrapper--right flex flex-column flex-gap-10 justify-center align-center ">
       <Link href={"/"}>
         <div className="right_content_img">
-          <img src="/landing/logo-svg.svg" alt="" />
+          <img src="/logoNew.svg" alt="" />
         </div>
       </Link>
       <h1 style={{ color: "white" }} className="hide_mobile mb-25">

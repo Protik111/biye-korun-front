@@ -33,7 +33,7 @@ const Basic2 = () => {
   }, [data2]);
 
   const content = (
-    <div className="mutlistep__registration px-10 py-10">
+    <div className="mutlistep__registration basic1 px-10 py-10">
       <br />
 
       <TextInput
@@ -41,6 +41,8 @@ const Basic2 = () => {
         placeholder="Enter email"
         size="md"
         withAsterisk
+        variant="filled"
+        radius="xl"
         name="basic2email"
         value={data.basic2email}
         onChange={(event) => handleChange("basic2email", event.target.value)}
@@ -52,7 +54,9 @@ const Basic2 = () => {
         label="Password"
         placeholder="Enter password"
         size="md"
+        radius="xl"
         withAsterisk
+        variant="filled"
         name="basic2password"
         value={data.basic2password}
         onChange={(event) => handleChange("basic2password", event.target.value)}
@@ -66,8 +70,10 @@ const Basic2 = () => {
         label="Country"
         // styles={{ label: labelStyles }}
         // data={countries}
+        radius="xl"
         data={countryList}
         value={data.basic2country}
+        variant="filled"
         withAsterisk
         name="basic2country"
         onChange={(event) => handleChange("basic2country", event)}
@@ -83,10 +89,12 @@ const Basic2 = () => {
         // description="Years must be at least 18"
         label="Date of Birth"
         placeholder="Pick a date"
+        variant="filled"
         mx="auto"
-        size="sm"
+        size="md"
         maw={400}
         withAsterisk
+        radius="xl"
         value={data.basic2dob}
         onChange={(event) => handleChange("basic2dob", event)}
         error={fieldErrors.basic2dob}
