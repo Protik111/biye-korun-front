@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import CommonCard from "./CommonCard";
 import useAnimation from "@/hooks/common/useAnimation";
+import Link from "next/link";
+import { IconArrowRight } from "@tabler/icons-react";
 
 const OnePlatform = () => {
   const { makeAnimation } = useAnimation(600);
 
   useEffect(() => {
-    makeAnimation()
-  }, [])
+    makeAnimation();
+  }, []);
 
   return (
     <div className="one_platform">
@@ -17,15 +19,38 @@ const OnePlatform = () => {
         </div>
         <div className="py-30">
           <div className="card">
-            <CommonCard
-              width="w-50"
-              title="Group Chat"
-              description="Group chat is a type of communication platform that allows members of a group to quickly and easily exchange information in real-time through instant messaging. We can add you to different groups such as (Doctor group, American citizen group, Russian group, Engineer group etc) if you want."
-              buttonColor="#9908F5"
-              buttonText="Learn More"
-            />
-            <div className="inner_div inner_div_for_mobile">
-              <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
+            <div className="hide_mobile">
+              <CommonCard
+                width="w-50"
+                title="Group Chat"
+                description="Group chat is a type of communication platform that allows members of a group to quickly and easily exchange information in real-time through instant messaging. We can add you to different groups such as (Doctor group, American citizen group, Russian group, Engineer group etc) if you want."
+                buttonColor="#9908F5"
+                buttonText="Learn More"
+              />
+              <div className="inner_div inner_div_for_mobile">
+                <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
+              </div>
+            </div>
+
+            <div className="show_mobile pdding_50">
+              <CommonCard
+                width="w-50"
+                title="Group Chat"
+                description="Group chat is a type of communication platform that allows members of a group to quickly and easily exchange information in real-time through instant messaging. We can add you to different groups such as (Doctor group, American citizen group, Russian group, Engineer group etc) if you want."
+                buttonColor="#9908F5"
+                className="desktop_hide"
+                // buttonText="Learn More"
+              />
+              <div className=" inner_div_for_mobile mt-25">
+                <img src="/landing/mobilePlatfrom.png" alt="mobilePlatfrom" />
+              </div>
+              <div className="desktop_hide flex justify-center align-center mt-30">
+                <Link href="/login">
+                  <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
+                    See More <IconArrowRight></IconArrowRight>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

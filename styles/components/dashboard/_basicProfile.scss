@@ -1,21 +1,44 @@
 .basicProfile {
-    // &__top {
-    //     &-wrapper {
-    //         @include smMaxBreakPoint {
-    //             flex-direction: column !important;
-    //         }
-    //     }
-    // }
+  // &__top {
+  //     &-wrapper {
+  //         @include smMaxBreakPoint {
+  //             flex-direction: column !important;
+  //         }
+  //     }
+  // }
 
-    &__details {
-        display: flex;
+  &__details {
+    display: flex;
 
-        &--left {
-            flex: 1;
-        }
-
-        &--right {
-            flex: 1;
-        }
+    &--left {
+      flex: 1;
     }
+
+    &--right {
+      flex: 1;
+    }
+  }
+}
+
+.basic1 {
+  .male {
+    padding: 10px 34px;
+    border-radius: 30px;
+    // background: #f8f8f8;
+    // border: 0.0625rem solid #ced4da !important;
+    border: 0.0625rem solid transparent !important;
+    background-color: #f1f3f5 !important;
+  }
+  .mantine-2s83yj {
+    background-color: #f8f8f8 !important;
+    opacity: 0.5 !important;
+  }
+  .mantine-1fn9nxy {
+    background-color: #f8f8f8 !important;
+    opacity: 0.5 !important;
+  }
+  .mantine-1u4id77 {
+    background-color: #f8f8f8 !important;
+    opacity: 0.5 !important;
+  }
 }

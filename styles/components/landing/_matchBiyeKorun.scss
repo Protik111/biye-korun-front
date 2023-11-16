@@ -6,7 +6,7 @@
   //   margin-top: 100px;
   // }
   @include getDown(600px) {
-    padding: 25px 0;
+    padding: 50px 0;
   }
 
   .title {
@@ -73,14 +73,14 @@
       }
 
       @include getDown(600px) {
-        flex: 0 1 calc(50% - 5px);
+        flex: 0 1 calc(51% - 5px);
         width: calc(50% - 20px);
         margin: 30px 0;
         min-height: 250px;
       }
 
       @include getDown(364px) {
-        height: 282px;
+        height: 240px;
       }
 
       &:hover {
@@ -93,7 +93,10 @@
       .header {
         padding: 0 20px;
         padding-top: 40px;
-
+        @include getDown(600px) {
+          padding: 0 10px;
+          padding-top: 40px;
+        }
         .name {
           font-size: 30px;
           margin: 0;
@@ -116,7 +119,9 @@
         font-size: 14px;
         height: 109px;
         flex-grow: 1;
-
+        @include getDown(600px) {
+          padding: 0 10px;
+        }
         .details p {
           flex: 1;
           text-align: left;

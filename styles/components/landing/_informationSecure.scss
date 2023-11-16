@@ -2,7 +2,7 @@
   background: #fff;
   padding: 100px 0;
   @include getDown(600px) {
-    padding: 25px 0;
+    padding: 50px 0;
   }
   .left {
     // padding-top: 50px;
@@ -74,6 +74,18 @@
     }
   }
 
+  .hide_mobile {
+    @include getDown(600px) {
+      display: none;
+    }
+  }
+  .desktop_hide {
+    display: none;
+    @include getDown(600px) {
+      display: flex;
+      margin-top: 20px;
+    }
+  }
   @include getDown(600px) {
     .item-1 {
       order: 2;
@@ -92,7 +104,8 @@
       display: flex;
       align-items: center;
       margin-bottom: 10px;
-
+      font-size: 16px;
+      font-weight: 500;
       .left-icon {
         margin-right: 10px;
       }
@@ -109,7 +122,7 @@
   background: #f5f5f5;
 
   @include mdMaxBreakPoint {
-    padding: 20px 0;
+    padding: 50px 0;
   }
 
   .custom_grid {
@@ -118,7 +131,7 @@
     gap: 20px;
     padding: 100px 0;
     @include getDown(600px) {
-      padding: 25px 0;
+      padding: 0 0;
     }
     .blu_img {
       max-width: 100%;
@@ -140,11 +153,23 @@
       grid-template-columns: 100%;
     }
   }
+  .hide_mobile {
+    @include getDown(600px) {
+      display: none;
+    }
+  }
+  .desktop_hide {
+    display: none;
+    @include getDown(600px) {
+      display: flex;
+      margin-top: 20px;
+    }
+  }
 }
 .authentic_li {
   color: rgba(0, 0, 0, 0.8);
   font-family: "Inter", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   // line-height: 34px; /* 188.889% */
@@ -154,7 +179,7 @@
   background: #fff;
   padding: 100px 0;
   @include getDown(600px) {
-    padding-top: 25px;
+    padding-top: 50px;
     padding-bottom: 0;
   }
 
@@ -250,17 +275,30 @@
       }
 
       @include getDown(1024px) {
-        // display: none;
+        display: none;
         top: -16%;
       }
       @include getDown(600px) {
         top: 80%;
       }
     }
-
+    .inner_div_for_mobile {
+      @include getDown(600px) {
+        img {
+          display: block;
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
     .common_card_resposive {
       @include getDown(1024px) {
         width: 100%;
+      }
+    }
+    .pdding_50 {
+      @include getDown(600px) {
+        padding: 50px 0;
       }
     }
   }
@@ -311,12 +349,30 @@
     padding: 10px 0;
   }
 }
+.hide_mobile {
+  @include getDown(1024px) {
+    display: none;
+  }
+}
 
+.show_mobile {
+  display: none;
+
+  @include getDown(1024px) {
+    display: block;
+  }
+}
 .green_btn_color {
   background-color: #9908f5;
 
   &:hover {
     background: darken(#b881d8, 10%);
     /* Darken the background color on hover */
+  }
+}
+
+.left_align {
+  @include getDown(600px) {
+    text-align: left;
   }
 }

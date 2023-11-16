@@ -8,8 +8,8 @@ const AuthenticBlue = () => {
       <div className="container">
         <div className="custom_grid">
           <div className="flex flex-column flex-gap-20 ">
-            <h1 className="heading1V3">Authentic Blue Mark</h1>
-            <p className="paragraphV3">
+            <h1 className="heading1V3 left_align">Authentic Blue Mark</h1>
+            <p className="paragraphV3 left_align">
               The verified badge means that BiyeKorun has confirmed that the
               Page or profile is the authentic presence of the individual,
               public figure that it represents. Previously, the verified badge
@@ -30,7 +30,7 @@ const AuthenticBlue = () => {
             </ol>
 
             <Link href="/login">
-              <button className="secondary-btn-v3  reg_btn_clr flex justify-center align-center flex-gap-5">
+              <button className="secondary-btn-v3 hide_mobile reg_btn_clr flex justify-center align-center flex-gap-5">
                 See More <IconArrowRight></IconArrowRight>
               </button>
             </Link>
@@ -39,6 +39,13 @@ const AuthenticBlue = () => {
           <div className="blu_img ">
             <img src="/landing/Blue-check-mark.png" alt="blue" />
           </div>
+        </div>
+        <div className="desktop_hide flex justify-center align-center mt-25">
+          <Link href="/login">
+            <button className="secondary-btn-v3 reg_btn_clr flex justify-center align-center flex-gap-5">
+              See More <IconArrowRight></IconArrowRight>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

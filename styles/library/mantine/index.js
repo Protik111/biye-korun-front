@@ -16,7 +16,7 @@ export const selectMobileStyles = {
 export const selectMobileStyles_res = {
   width: "325px",
   "@media (max-width: 640px)": {
-    width: "350px",
+    width: "165px",
   },
 };
 
@@ -47,7 +47,7 @@ export const logininput = {
 export const btnBackground = {
   // backgroundColor: '#F143CB',
   // width: "300px",
-  backgroundColor: "#FD123F",
+  backgroundColor: "#F42A41",
   "@media (max-width: 640px)": {
     width: "250px",
   },
@@ -60,6 +60,9 @@ export const btnBackground = {
   },
 };
 
+export const btnBackground_prev = {
+  backgroundColor: "rgba(244, 42, 65, 0.1)",
+};
 export const btnBackground1 = {
   // backgroundColor: '#F143CB',
   width: "300px",

@@ -15,7 +15,10 @@
     // background-size: 710px, 100% 100%;
     background-repeat: no-repeat, no-repeat;
     padding-bottom: 20px;
+  }
 
+  @include getDown(600px) {
+    padding-bottom: 50px;
   }
 
   //   .padding_0 {
@@ -92,7 +95,7 @@
     .responsive_from {
       @include smMaxBreakPoint {
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
