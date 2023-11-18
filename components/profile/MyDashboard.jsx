@@ -1,4 +1,11 @@
-import { Anchor, Badge, Button, Divider } from "@mantine/core";
+import {
+  Anchor,
+  Badge,
+  Button,
+  Divider,
+  Progress,
+  Accordion,
+} from "@mantine/core";
 import React, { useState } from "react";
 import ThemeIconComp from "../global/ThemeIconComp";
 import { IconCheck, IconLock, IconX } from "@tabler/icons-react";
@@ -12,7 +19,36 @@ import Link from "next/link";
 import { DisableRightClick } from "@/utils/DisableRightClick";
 import ReuseModal from "../global/ReuseModal";
 import VerifyModalBody from "../dashboard/VerifyModalBody";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import {
+  IoMdCheckmarkCircleOutline,
+  IoIosCloseCircleOutline,
+} from "react-icons/io";
 
+import CountUp from "react-countup";
+import MatchesInfo from "../dashboard/MatchesInfo";
+const groceries = [
+  {
+    emoji: "🍎",
+    value: "Engagement plan",
+    description: "Coming Soon...",
+  },
+  {
+    emoji: "🍌",
+    value: "Wedding Plan",
+    description: "Coming Soon...",
+  },
+  {
+    emoji: "🥦",
+    value: "Gift Collection",
+    description: "Coming Soon...",
+  },
+  {
+    emoji: "🥦",
+    value: "Honeymoon Plan",
+    description: "Coming Soon...",
+  },
+];
 const MyDashboard = () => {
   const router = useRouter();
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -87,9 +123,20 @@ const MyDashboard = () => {
     router.push(`/settings/?state=${num}`);
   };
 
+  const items = groceries.map((item) => (
+    <Accordion.Item
+      key={item.value}
+      value={item.value}
+      style={{ backgroundColor: "white" }}
+    >
+      <Accordion.Control>{item.value}</Accordion.Control>
+      <Accordion.Panel>{item.description}</Accordion.Panel>
+    </Accordion.Item>
+  ));
+
   return (
     <div className="myDashboard container">
-      <div className="myDashboard__topBox">
+      {/* <div className="myDashboard__topBox">
         <div className="myDashboard__topBox--left container-box-bg rounded-10">
           <div className="profile--img">
             <img
@@ -102,9 +149,7 @@ const MyDashboard = () => {
                 <h3>{firstName + " " + lastName}</h3>
                 <p className="small-text">User ID: {userId}</p>
               </div>
-              {/* <Button variant="light" color="red" radius="xl" size="xs">
-                                Edit
-                            </Button> */}
+             
             </div>
             <Divider my={10}></Divider>
 
@@ -178,7 +223,6 @@ const MyDashboard = () => {
               </div>
 
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                {/* <p className="small-text">Email verified</p> */}
                 <Anchor
                   href="#"
                   onClick={openModal}
@@ -229,48 +273,14 @@ const MyDashboard = () => {
             />
             <div>
               <div className="flex align-center flex-gap-5">
-                {/* <h2>{pendingCount}</h2> */}
                 <h2>{data2?.data?.length || 0}</h2>
-                {/* <Badge variant="outline" color="pink">
-                                    5 New
-                                </Badge> */}
+               
               </div>
               <p>Recent Visitors </p>
             </div>
           </div>
 
-          {/* <div className="container-box-bg flex justify-between p-15 mt-15 flex-wrap">
-            <div className="flex align-center flex-gap-5">
-              <p>
-                Only Premium{" "}
-                <Anchor href="/plans" target="_blank">
-                  Members
-                </Anchor>{" "}
-                <br /> can avail these benefits
-              </p>
-              <ThemeIconComp iconComp={<IconLock size={16} />} />
-            </div>
-            <Divider
-              size="sm"
-              style={{ height: "60px" }}
-              orientation="vertical"
-            />
-            <div>
-              <h2 className="opacity-4">0</h2>
-              <p className="opacity-4">Contacts viewed</p>
-            </div>
-            <Divider
-              size="sm"
-              style={{ height: "60px" }}
-              orientation="vertical"
-            />
-            <div>
-              <div className="flex align-center flex-gap-5">
-                <h2 className="opacity-4">0</h2>
-              </div>
-              <p className="opacity-4">Chats initiated</p>
-            </div>
-          </div> */}
+          
 
           <h3 className="mt-25">Profile Updated</h3>
           <div className="container-box-bg p-15 mt-10 flex-wrap profile-updated">
@@ -284,11 +294,9 @@ const MyDashboard = () => {
               </h3>
 
               <div className="flex flex-column align-center">
-                {/* <p className="mb-5">Go ahead, check out your Matches</p> */}
                 <Button
                   size="md"
                   radius="xl"
-                  // leftIcon={<IconArrowNarrowLeft />}
                   style={btnBackground}
                   type="button"
                   className={`button`}
@@ -306,9 +314,115 @@ const MyDashboard = () => {
             <img src="/profile/off.png" alt="off" />
           </div>
         </div>
-      </div>
-      <MyDashboardBottom></MyDashboardBottom>
+      </div> */}
+      {/* <MyDashboardBottom></MyDashboardBottom> */}
+      <div className="dashboard_grid px-20">
+        <div className="dashboard_grid_left pt-20 pb-20 flex flex-column flex-gap-20 px-20">
+          <div className="flex justify-between align-center ">
+            <h1 className="">Profile</h1>
+            <div className="">
+              <HiOutlineDotsHorizontal />
+            </div>
+          </div>
 
+          <div className="flex flex-column justify-center align-center flex-gap-20 ">
+            <div className="profile_img">
+              <img src={url?.large || imageUrl} alt="Profile" />
+            </div>
+            <h1>Annamika Rahman</h1>
+            <p>User ID: BKLOBBNG09876</p>
+          </div>
+          <div className="flex justify-between align-center  pt-15">
+            <div>
+              <h3>
+                Account Type <span>: Free</span>
+              </h3>
+            </div>
+            <div>
+              <Button variant="white" color="red" size="md">
+                Upgrade
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-column justify-center  pt-20">
+            <div className="flex justify-between align-center">
+              <p className="mb-10">Profile Completion</p>
+              <p>60%</p>
+            </div>
+            <Progress color="violet" radius="md" value={60} animated />
+          </div>
+
+          <div className="statistics-section pt-20">
+            <div className="statistic ">
+              <h1 className="heading1V3">
+                <p className="paragraphV3 label">Pending Invitation</p>
+                <CountUp
+                  start={1}
+                  end={50}
+                  duration={5}
+                  redraw={true}
+                ></CountUp>
+              </h1>
+            </div>
+            <div className="statistic">
+              <h1 className="heading1V3">
+                <p className="paragraphV3 label">Connection</p>
+                <CountUp
+                  start={1}
+                  end={10}
+                  duration={5}
+                  redraw={true}
+                ></CountUp>
+              </h1>
+            </div>
+            <div className="statistic">
+              <p className="paragraphV3 label">Visitors</p>
+              <h1 className="heading1V3">
+                <CountUp
+                  start={1}
+                  end={30}
+                  duration={5}
+                  // suffix="+"
+                  redraw={true}
+                ></CountUp>
+              </h1>
+            </div>
+          </div>
+          <div className="">
+            <div className="border_line" />
+          </div>
+          <div className="flex flex-column justify-center flex-gap-10  pt-20 mb-15">
+            <h1 className="mb-10">Verification</h1>
+            <div className="email_verify flex justify-between ">
+              <p>Email</p>
+
+              <IoMdCheckmarkCircleOutline color="#40C057" size={25} />
+            </div>
+            <div className="email_verify flex justify-between ">
+              <p>Phone</p>
+
+              <IoIosCloseCircleOutline color="red" size={25} />
+            </div>
+            <div className="email_verify flex justify-between ">
+              <p>Verify ID</p>
+
+              <IoIosCloseCircleOutline color="red" size={25} />
+            </div>
+          </div>
+          <div className="">
+            <div className="border_line" />
+          </div>
+          <div className="flex flex-column justify-center flex-gap-10  pt-20 mb-15">
+            <h1 className="mb-10">Unique Service</h1>
+            <Accordion variant="separated" radius="md">
+              {items}
+            </Accordion>
+          </div>
+        </div>
+        <div className="dashboard_grid_right">
+          <MatchesInfo />
+        </div>
+      </div>
       <ReuseModal
         isOpen={isModalOpen}
         onClose={closeModal}
