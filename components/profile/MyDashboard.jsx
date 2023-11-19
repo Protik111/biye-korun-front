@@ -25,30 +25,10 @@ import {
   IoIosCloseCircleOutline,
 } from "react-icons/io";
 
-import CountUp from "react-countup";
 import MatchesInfo from "../dashboard/MatchesInfo";
-const groceries = [
-  {
-    emoji: "🍎",
-    value: "Engagement plan",
-    description: "Coming Soon...",
-  },
-  {
-    emoji: "🍌",
-    value: "Wedding Plan",
-    description: "Coming Soon...",
-  },
-  {
-    emoji: "🥦",
-    value: "Gift Collection",
-    description: "Coming Soon...",
-  },
-  {
-    emoji: "🥦",
-    value: "Honeymoon Plan",
-    description: "Coming Soon...",
-  },
-];
+import UniqueService from "./UniqueService";
+import DashBoardCounter from "./DashBoardCounter";
+
 const MyDashboard = () => {
   const router = useRouter();
   const { userInfo } = useSelector((state) => state.user) || {};
@@ -95,6 +75,7 @@ const MyDashboard = () => {
     education: { college, education } = {},
     family: { children, livingWith } = {},
     lifestyle: { diet, maritalStatus } = {},
+
     profession: {
       employer,
       income: { min, max } = {},
@@ -123,17 +104,6 @@ const MyDashboard = () => {
     router.push(`/settings/?state=${num}`);
   };
 
-  const items = groceries.map((item) => (
-    <Accordion.Item
-      key={item.value}
-      value={item.value}
-      style={{ backgroundColor: "white" }}
-    >
-      <Accordion.Control>{item.value}</Accordion.Control>
-      <Accordion.Panel>{item.description}</Accordion.Panel>
-    </Accordion.Item>
-  ));
-
   return (
     <div className="myDashboard container">
       {/* <div className="myDashboard__topBox">
@@ -149,7 +119,6 @@ const MyDashboard = () => {
                 <h3>{firstName + " " + lastName}</h3>
                 <p className="small-text">User ID: {userId}</p>
               </div>
-             
             </div>
             <Divider my={10}></Divider>
 
@@ -187,10 +156,7 @@ const MyDashboard = () => {
                 Verification{" "}
               </label>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                <Anchor
-                  href="#"
-                  onClick={() => handleClick("3")}
-                >
+                <Anchor href="#" onClick={() => handleClick("3")}>
                   Email
                 </Anchor>
                 <ThemeIconComp
@@ -206,9 +172,7 @@ const MyDashboard = () => {
                 />
               </div>
               <div className="flex justify-between align-center justify-center flex-gap-25 w-100 ">
-                <Anchor href="#">
-                  Mobile Number
-                </Anchor>
+                <Anchor href="#">Mobile Number</Anchor>
                 <ThemeIconComp
                   color={isPhoneVerified?.status ? "green" : "red"}
                   size="sm"
@@ -274,13 +238,10 @@ const MyDashboard = () => {
             <div>
               <div className="flex align-center flex-gap-5">
                 <h2>{data2?.data?.length || 0}</h2>
-               
               </div>
               <p>Recent Visitors </p>
             </div>
           </div>
-
-          
 
           <h3 className="mt-25">Profile Updated</h3>
           <div className="container-box-bg p-15 mt-10 flex-wrap profile-updated">
@@ -316,10 +277,10 @@ const MyDashboard = () => {
         </div>
       </div> */}
       {/* <MyDashboardBottom></MyDashboardBottom> */}
-      <div className="dashboard_grid px-20">
-        <div className="dashboard_grid_left pt-20 pb-20 flex flex-column flex-gap-20 px-20">
+      <div className="dashboard_grid  ">
+        <div className="dashboard_grid_left pt-20 pb-20 flex flex-column flex-gap-20 ">
           <div className="flex justify-between align-center ">
-            <h1 className="">Profile</h1>
+            <h1 className="pt-20">Profile</h1>
             <div className="">
               <HiOutlineDotsHorizontal />
             </div>
@@ -329,8 +290,8 @@ const MyDashboard = () => {
             <div className="profile_img">
               <img src={url?.large || imageUrl} alt="Profile" />
             </div>
-            <h1>Annamika Rahman</h1>
-            <p>User ID: BKLOBBNG09876</p>
+            <h1>{firstName + " " + lastName}</h1>
+            <p>User ID: {userId}</p>
           </div>
           <div className="flex justify-between align-center  pt-15">
             <div>
@@ -352,41 +313,12 @@ const MyDashboard = () => {
             <Progress color="violet" radius="md" value={60} animated />
           </div>
 
-          <div className="statistics-section pt-20">
-            <div className="statistic ">
-              <h1 className="heading1V3">
-                <p className="paragraphV3 label">Pending Invitation</p>
-                <CountUp
-                  start={1}
-                  end={50}
-                  duration={5}
-                  redraw={true}
-                ></CountUp>
-              </h1>
-            </div>
-            <div className="statistic">
-              <h1 className="heading1V3">
-                <p className="paragraphV3 label">Connection</p>
-                <CountUp
-                  start={1}
-                  end={10}
-                  duration={5}
-                  redraw={true}
-                ></CountUp>
-              </h1>
-            </div>
-            <div className="statistic">
-              <p className="paragraphV3 label">Visitors</p>
-              <h1 className="heading1V3">
-                <CountUp
-                  start={1}
-                  end={30}
-                  duration={5}
-                  // suffix="+"
-                  redraw={true}
-                ></CountUp>
-              </h1>
-            </div>
+          <div>
+            <DashBoardCounter
+              pendingCount={pendingCount}
+              acceptedCount={acceptedCount}
+              visitiors={data2?.data?.length}
+            />
           </div>
           <div className="">
             <div className="border_line" />
@@ -408,15 +340,18 @@ const MyDashboard = () => {
 
               <IoIosCloseCircleOutline color="red" size={25} />
             </div>
+
+            <div className="email_verify flex justify-between ">
+              <p>Blue Batch</p>
+
+              <IoIosCloseCircleOutline color="red" size={25} />
+            </div>
           </div>
           <div className="">
             <div className="border_line" />
           </div>
           <div className="flex flex-column justify-center flex-gap-10  pt-20 mb-15">
-            <h1 className="mb-10">Unique Service</h1>
-            <Accordion variant="separated" radius="md">
-              {items}
-            </Accordion>
+            <UniqueService />
           </div>
         </div>
         <div className="dashboard_grid_right">

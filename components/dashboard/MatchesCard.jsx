@@ -53,7 +53,7 @@ export const MatchesCard = () => {
                         {" "}
                         {abbreviateName(item?.firstName + " " + item?.lastName)}
                       </h3>
-                      <p>#{item.userId}</p>
+                      <p className="hide_mobile">#{item.userId}</p>
                     </div>
                     <div>
                       <BiDotsHorizontalRounded />
@@ -70,7 +70,7 @@ export const MatchesCard = () => {
                 </div>
                 <div className="content">
                   <div className="details">
-                    {/* <p>#{item.userId}</p> */}
+                    <p className="hide_desktop">#{item.userId}</p>
                     <p className="subtitle paragraphV3">
                       {item?.educationCareer?.occupation
                         ? item?.educationCareer?.occupation
@@ -95,12 +95,12 @@ export const MatchesCard = () => {
                 <div className="px-20">
                   <div className="border_line" />
                 </div>
-                <div className="footer flex justify-between ">
-                  <div className="flex flex-gap-10">
-                    <div className="pointer">
+                <div className="footer  ">
+                  <div className="flex flex-gap-10 ">
+                    <div className="pointer circle_img">
                       <img src="/dashboard/love.svg" alt="" />
                     </div>
-                    <div className="pointer">
+                    <div className="pointer circle_img">
                       <img src="/dashboard/star.svg" alt="" />
                     </div>
                   </div>
