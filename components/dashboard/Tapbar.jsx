@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import useAxios from "@/hooks/axios/useAxios";
 import { fontSizeMnd } from "@/styles/library/mantine";
 import { Tabs } from "@mantine/core";
 import { usePathname, useRouter } from "next/navigation";
 
 const Tapbar = () => {
-  const { data, error, loading, refetch } = useAxios("user/match-count")
+  const { data, error, loading, refetch } = useAxios("user/match-count");
 
   // console.log('data', data);
 
@@ -14,16 +14,26 @@ const Tapbar = () => {
 
   const handleChangeTab = (value) => {
     router.push(`/${value}`);
-    refetch()
+    refetch();
   };
 
-  const { data: { myMatchTotal, newMatchTotal, recentViewTotal, todayMatchTotal } = {} } = data || {};
-
+  const {
+    data: {
+      myMatchTotal,
+      newMatchTotal,
+      recentViewTotal,
+      todayMatchTotal,
+    } = {},
+  } = data || {};
 
   return (
     <div className="tapbar p-15">
       <div className="container">
-        <Tabs defaultValue={pathname.replace(/^\/+/, '')} color="pink" variant="pills">
+        <Tabs
+          defaultValue={pathname.replace(/^\/+/, "")}
+          color="pink"
+          variant="pills"
+        >
           <Tabs.List grow position="apart">
             {/* <Tabs.Tab
               sx={fontSizeMnd}
@@ -37,21 +47,23 @@ const Tapbar = () => {
               value="todays-matches"
               onClick={() => handleChangeTab("todays-matches")}
             >
-              Today's Matches <b>{todayMatchTotal ? `(${todayMatchTotal})` : ''}</b>
+              Today's Matches{" "}
+              <b>{todayMatchTotal ? `(${todayMatchTotal})` : ""}</b>
             </Tabs.Tab>
             <Tabs.Tab
               sx={fontSizeMnd}
               value="my-matches"
               onClick={() => handleChangeTab("my-matches")}
             >
-              My Matches <b>{myMatchTotal ? `(${myMatchTotal})` : ''}</b>
+              My Matches <b>{myMatchTotal ? `(${myMatchTotal})` : ""}</b>
             </Tabs.Tab>
             <Tabs.Tab
               sx={fontSizeMnd}
               value="recently-viewed"
               onClick={() => handleChangeTab("recently-viewed")}
             >
-              Recently Viewed <b>{recentViewTotal ? `(${recentViewTotal})` : ''}</b>
+              Recently Viewed{" "}
+              <b>{recentViewTotal ? `(${recentViewTotal})` : ""}</b>
             </Tabs.Tab>
             {/* <Tabs.Tab sx={fontSizeMnd} value="more-matches">More Matches</Tabs.Tab> */}
           </Tabs.List>

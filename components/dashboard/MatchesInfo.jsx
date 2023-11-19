@@ -8,9 +8,9 @@ import {
 import { MatchesCard } from "./MatchesCard";
 const MatchesInfo = () => {
   return (
-    <div className="dashboard_grid_left pt-20 pb-20 flex flex-column flex-gap-20 px-20">
-      <h1 className="">Matches Information</h1>
-      <div className="tab_section flex flex-gap-20">
+    <div className="dashboard_grid_right pt-20 pb-20 flex flex-column flex-gap-20 ">
+      <h1 className="pt-20">Matches Information</h1>
+      <div className="tab_section flex flex-gap-20 ">
         <Tabs
           color="red"
           variant="pills"
