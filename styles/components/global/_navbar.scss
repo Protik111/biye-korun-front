@@ -1,5 +1,7 @@
+$search-color: #ccc; // Color for search icon
 .navbarRoot {
-  background-color: $primaryColor;
+  // background-color: $primaryColor;
+  background: #9908f5;
   padding: 10px 0;
 
   &__logo img {
@@ -14,6 +16,41 @@
     cursor: pointer;
   }
 
+  // SearchInput.scss
+
+  .search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      color: #aaa; // Adjust the color as needed
+    }
+
+    .search-input {
+      padding-left: 30px; // Adjust padding to accommodate icon
+      border: 1px solid #ccc; // Define your desired border styles
+      border-radius: 5px;
+      height: 40px; // Set your preferred height
+      width: 300px; // Set your preferred width
+      font-size: 16px; // Define your desired font size
+      outline: none; // Remove default input outline
+    }
+    @include getDown(768px) {
+      display: none;
+    }
+  }
+  .notification_main {
+    background: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .indicator_m {
+    margin: 15px auto;
+  }
   .mantine-1gnuw89 {
     margin-top: 0 !important;
   }
@@ -44,7 +81,7 @@ a {
 
   display: flex;
   align-items: center;
-
+  gap: 20px;
   .user-profile {
     display: inline-block;
   }

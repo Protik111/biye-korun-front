@@ -38,6 +38,7 @@ import dayjs from "dayjs"; // import relativeTime plugin
 import relativeTime from "dayjs/plugin/relativeTime";
 import { updateNotification } from "@/redux/features/notification/notificationSlice";
 import axios from "axios";
+import { CiSearch } from "react-icons/ci";
 
 // extend dayjs with relativeTime plugin
 dayjs.extend(relativeTime);
@@ -118,6 +119,19 @@ function Navbar() {
 
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
+
+            <div className="search-input-container">
+              {/* <i className="search-icon fas fa-search"></i> */}
+              <CiSearch className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search..."
+                // value={value}
+                // onChange={onChange}
+              />
+            </div>
+
             {!isAuthenticated ? (
               <Link href="/login">
                 <Button
@@ -134,111 +148,125 @@ function Navbar() {
                 </button> */}
               </Link>
             ) : (
-              <div className="">
-                <Menu
-                  position="bottom-end"
-                  offset={2}
-                  withArrow
-                  arrowPosition="center"
-                  width={380}
-                  shadow="md"
-                >
-                  {notifications?.filter((item) => !item.opened).length > 0 ? (
-                    <Menu.Target className="mr-20">
-                      <Indicator
-                        color="red"
-                        inline
-                        label={
-                          notifications?.filter((item) => !item.opened).length
-                        }
-                        size={16}
-                      >
-                        <IconBell
-                          cursor="pointer"
-                          size="25"
-                          color="white"
-                        ></IconBell>
-                      </Indicator>
-                    </Menu.Target>
-                  ) : (
-                    <Menu.Target className="mr-20 disabled_css">
-                      <IconBell
+              <div className="flex flex-gap-15 justify-center align-center">
+                <div className="notification_main">
+                  <Menu
+                    position="bottom-end"
+                    offset={2}
+                    withArrow
+                    arrowPosition="center"
+                    width={380}
+                    shadow="lg"
+                  >
+                    {notifications?.filter((item) => !item.opened).length >
+                    0 ? (
+                      <Menu.Target className="indicator_m">
+                        <Indicator
+                          color="red"
+                          inline
+                          label={
+                            notifications?.filter((item) => !item.opened).length
+                          }
+                          size={16}
+                        >
+                          <IconBell
+                            cursor="pointer"
+                            size="25"
+                            color="black"
+                          ></IconBell>
+                        </Indicator>
+                      </Menu.Target>
+                    ) : (
+                      <Menu.Target className="indicator_m disabled_css1">
+                        {/* <IconBell
                         cursor="pointer"
                         size="25"
                         color="white"
                         disabled={true}
-                      ></IconBell>
-                    </Menu.Target>
-                  )}
-
-                  <Menu.Dropdown>
-                    {notifications
-                      ?.map((item, i) => (
-                        <Menu.Item
-                          className={`${
-                            item.opened ? "noti-light" : "noti-gray"
-                          }`}
-                          onClick={() => notificationMarkRead(item)}
+                      ></IconBell> */}
+                        <Indicator
+                          color="green"
+                          inline
+                          label={notifications?.filter((item) => !item.opened)}
                         >
-                          <div className="flex align-center flex-gap-15">
-                            <div>
-                              <Avatar
-                                onContextMenu={(e) => DisableRightClick(e)}
-                                sx={{
-                                  objectFit: "containe",
-                                  borderRadius: "50%",
-                                  height: "35px",
-                                  width: "35px",
-                                }}
-                                mx="auto"
-                                size="sm"
-                                src={
-                                  item?.userFrom?.profilePicture?.url?.small ||
-                                  imageUrl
-                                }
-                                alt={item?.name}
-                              />
-                            </div>
-                            <div>
-                              <p className="noti">
-                                {generateNotificationText(
-                                  item.notificationType,
-                                  item.userFrom,
-                                  item.entityId
-                                )}
-                              </p>
-                              <p className="small-text opacity-8 ">
-                                {dayjs(item?.createdAt).fromNow()}
-                              </p>
-                            </div>
-                          </div>
-                        </Menu.Item>
-                      ))
-                      .slice(0, 7)}
-
-                    {notifications?.length > 10 && (
-                      <Button
-                        m={3}
-                        variant="light"
-                        color="pink"
-                        size="xs"
-                        radius="xl"
-                      >
-                        See More
-                      </Button>
+                          <IconBell
+                            cursor="pointer"
+                            size="25"
+                            color="gray"
+                          ></IconBell>
+                        </Indicator>
+                      </Menu.Target>
                     )}
 
-                    {/* <Menu.Item component="a" href="https://mantine.dev">
+                    <Menu.Dropdown>
+                      {notifications
+                        ?.map((item, i) => (
+                          <Menu.Item
+                            className={`${
+                              item.opened ? "noti-light" : "noti-gray"
+                            }`}
+                            onClick={() => notificationMarkRead(item)}
+                          >
+                            <div className="flex align-center flex-gap-15">
+                              <div>
+                                <Avatar
+                                  onContextMenu={(e) => DisableRightClick(e)}
+                                  sx={{
+                                    objectFit: "containe",
+                                    borderRadius: "50%",
+                                    height: "35px",
+                                    width: "35px",
+                                  }}
+                                  mx="auto"
+                                  size="sm"
+                                  src={
+                                    item?.userFrom?.profilePicture?.url
+                                      ?.small || imageUrl
+                                  }
+                                  alt={item?.name}
+                                />
+                              </div>
+                              <div>
+                                <p className="noti">
+                                  {generateNotificationText(
+                                    item.notificationType,
+                                    item.userFrom,
+                                    item.entityId
+                                  )}
+                                </p>
+                                <p className="small-text opacity-8 ">
+                                  {dayjs(item?.createdAt).fromNow()}
+                                </p>
+                              </div>
+                            </div>
+                          </Menu.Item>
+                        ))
+                        .slice(0, 7)}
+
+                      {notifications?.length > 10 && (
+                        <Button
+                          m={3}
+                          variant="light"
+                          color="pink"
+                          size="xs"
+                          radius="xl"
+                        >
+                          See More
+                        </Button>
+                      )}
+
+                      {/* <Menu.Item component="a" href="https://mantine.dev">
                       Mantine website
                     </Menu.Item> */}
-                  </Menu.Dropdown>
-                </Menu>
+                    </Menu.Dropdown>
+                  </Menu>
+                </div>
 
-                <div className="user-profile mt-10 mr-10">
+                <div className="user-profile ">
                   <Menu shadow="md" width={200}>
                     <Menu.Target sx={{ cursor: "pointer" }}>
                       <Avatar
-                        size="md"
+                        size="lg"
                         objectFit="cover"
                         radius="xl"
                         src={profilePicture?.url?.large || "/profile.svg"}

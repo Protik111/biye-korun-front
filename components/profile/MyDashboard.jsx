@@ -342,7 +342,7 @@ const MyDashboard = () => {
             </div>
 
             <div className="email_verify flex justify-between ">
-              <p>Blue Batch</p>
+              <p>Blue Badge</p>
 
               <IoIosCloseCircleOutline color="red" size={25} />
             </div>

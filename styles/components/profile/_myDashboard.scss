@@ -107,7 +107,7 @@
   }
   .dashboard_grid {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 38.5% 60%;
     gap: 20px;
     .dashboard_grid_left {
       border-radius: 5px;
@@ -327,6 +327,13 @@
                 font-size: 12px;
                 margin: 6px 0;
               }
+            }
+            .text_bold {
+              color: #666;
+              font-family: "Work Sans";
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
             }
             .hide_mobile {
               @include getDown(600px) {

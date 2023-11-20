@@ -85,7 +85,7 @@ export const MatchesCard = () => {
                       {heightCalculator(item?.basicInfo?.height) ||
                         `5 feet 10 inches`}
                     </p>
-                    <p className="paragraphV3">
+                    <p className="paragraphV3 text_bold">
                       {`${item?.location.city ? item?.location.city : ""} ${
                         item?.location.country
                       }`}

@@ -1,0 +1,32 @@
+.tab-bar {
+    overflow-x: auto; 
+     white-space: nowrap;
+}
+.tab-bar::-webkit-scrollbar{
+    width: 0;
+}
+.tab {
+    display: inline-block;
+    padding: 10px 35px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    position: relative;
+}
+
+.tab.active {
+    border-bottom: 2px solid blue;
+    /* Change this to your desired active tab indicator */
+}
+
+.tab .tab-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.tab .tab-icon img {
+    width: 20px;
+    /* Adjust the size of the icon */
+    height: auto;
+}
