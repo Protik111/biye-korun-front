@@ -9,6 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { FiUsers } from "react-icons/fi";
 import { PiFolderSimpleUserDuotone } from "react-icons/pi";
+import TabBar from "./TabBar";
 
 const ProfileTapbar = () => {
   const router = useRouter();
@@ -21,10 +22,46 @@ const ProfileTapbar = () => {
   };
 
   // console.log('pathname', pathname.replace(/^\/+/, ''))
+  const tabs = [
+    "Dashboard",
+    "Home Feed",
+    "My Profile",
+    "My photos",
+    "My Matches",
+    "Partner Preferences",
+  ]; // Replace with your tab names
+  const icons = [
+    "tab/deactive1.svg",
+    "tab/deactive2.svg",
+    "tab/deactive3.svg",
+    "tab/deactive4.svg",
+    "tab/deactive5.svg",
+    "tab/deactive6.svg",
+  ];
+  const activeIcons = [
+    "tab/active1.svg",
+    "tab/active2.svg",
+    "tab/active3.svg",
+    "tab/active4.svg",
+    "tab/active5.svg",
+    "tab/active6.svg",
+  ];
 
+  const handleTabChange = (tab) => {
+    // Handle tab change logic here
+    console.log(`Selected tab: ${tab}`);
+  };
   return (
-    <div className="tapbar  mb-20 ">
-      <div className="container p-25" style={{ backgroundColor: "#F5F5F5" }}>
+    <div className="tapbar  mb-20 container ">
+      {/* <div
+        className="container p-25"
+        style={{
+          backgroundColor: "#F5F5F5",
+          width: "100%",
+          overflowX: "auto",
+          whiteSpace: "nowrap",
+        }}
+      >
         <Tabs
           defaultValue={pathname.replace(/^\/+/, "")}
           color="pink"
@@ -35,6 +72,7 @@ const ProfileTapbar = () => {
               // Customize styles for the tabs list
               display: "flex",
               gap: "20px",
+
               //   justifyContent: "space-between", // Space tabs evenly
             },
             tab: {
@@ -99,7 +137,14 @@ const ProfileTapbar = () => {
             </Tabs.Tab>
           </Tabs.List>
         </Tabs>
-      </div>
+      </div> */}
+      <TabBar
+        tabs={tabs}
+        icons={icons}
+        activeIcons={activeIcons}
+        initialTab={tabs[0]}
+        onTabChange={handleTabChange}
+      />
     </div>
   );
 };
