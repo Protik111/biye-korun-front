@@ -13,13 +13,17 @@ import setAuthToken from "@/utils/setAuthToken";
 import { configureAxiosHeader } from "@/utils/setAxiosHeader";
 import LoaderWithText from "../global/LoaderWithText";
 import { loadUserData } from "@/redux/features/user/userSlice";
+import ConfirmModal from "../global/ConfirmModal";
+import { useEffect } from "react";
 
-const Form = ({ handleModalClose }) => {
+const Form = ({ handleModalClose, modalOpen }) => {
+  console.log("modalOpen from Form como", modalOpen);
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
   const [showNotification, setShowNotification] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -42,17 +46,108 @@ const Form = ({ handleModalClose }) => {
   const handlePrev = () => setPage((prev) => prev - 1);
 
   const handleNext = () => {
-    const isValid = validatePage(page);
-
-    if (isValid) {
-      setPage((prev) => prev + 1);
-    }
+    // const isValid = validatePage(page);
+    // if (isValid) {
+    //   setPage((prev) => prev + 1);
+    // }
+    setPage((prev) => prev + 1);
   };
 
-  const handleSubmit = (e) => {
+  // previous functionality
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const isSubmittable = validatePage(page);
+
+  //   const datas = {
+  //     email: data?.basic2email,
+  //     firstName: data?.basic1firstName,
+  //     lastName: data?.basic1lastName,
+  //     dateOfBirth: format(data?.basic2dob, "MM/dd/yyyy"),
+  //     gender: data?.basic1gender,
+  //     postedBy: data?.basic1postedBy,
+  //     language: data?.basic1community,
+  //     country: data?.basic2country,
+  //     religion: data?.basic1religion,
+  //     password: data?.basic2password,
+  //   };
+
+  //   if (isSubmittable) {
+  //     // console.log('test');
+  //     // setLoading(true)
+  //     // dispatch(register(datas))
+  //     //     .unwrap()
+  //     //     .then(() => {
+  //     //         notifySuccess("Registered successfully!")
+  //     //         setLoading(false)
+  //     //         // console.log('yes');
+  //     //         handleModalClose()
+
+  //     //         const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+
+  //     //         // console.log('token', parsedToken);
+
+  //     //         if (parsedToken?.accessToken) {
+  //     //             setAuthToken(parsedToken.accessToken);
+  //     //             configureAxiosHeader();
+  //     //             dispatch(loadUser())
+  //     //             dispatch(loadUserData())
+  //     //         }
+  //     //         // console.log('registerred');
+  //     //         router.push('/profile-creation')
+  //     //         // setTimeout(() => {
+  //     //         // }, 500)
+  //     //     })
+  //     //     .catch(() => {
+  //     //         notifyError(message)
+  //     //         setLoading(false)
+  //     //         // console.log('no');
+  //     //     })
+
+  //     //Another approach
+  //     setLoading(true);
+  //     dispatch(register(datas))
+  //       .then((result) => {
+  //         if (register.fulfilled.match(result)) {
+  //           // Request was successful, handle it here
+  //           notifySuccess("Registered successfully!");
+  //           setLoading(false);
+  //           handleModalClose();
+
+  //           const parsedToken =
+  //             typeof window !== "undefined"
+  //               ? JSON.parse(localStorage.getItem("biyeKorun_token"))
+  //               : null;
+
+  //           if (parsedToken?.accessToken) {
+  //             setAuthToken(parsedToken.accessToken);
+  //             configureAxiosHeader();
+  //             dispatch(loadUser());
+  //             dispatch(loadUserData());
+  //           }
+  //           router.push("/profile-creation");
+  //         } else if (register.rejected.match(result)) {
+  //           // Request was rejected, handle the error here
+  //           const errorMessage = result.payload;
+  //           notifyError(errorMessage);
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         // Handle any unexpected errors here
+  //         console.error("Unexpected error:", error);
+  //       });
+  //   }
+  // };
+
+  // console.log('message', message);
+
+  const handleModalCloseSuccess = () => setModalOpen2(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const isSubmittable = validatePage(page);
+    // const isSubmittable = validatePage(page);
 
     const datas = {
       email: data?.basic2email,
@@ -66,83 +161,79 @@ const Form = ({ handleModalClose }) => {
       religion: data?.basic1religion,
       password: data?.basic2password,
     };
+    console.log("181", datas);
 
-    if (isSubmittable) {
-      // console.log('test');
-      // setLoading(true)
-      // dispatch(register(datas))
-      //     .unwrap()
-      //     .then(() => {
-      //         notifySuccess("Registered successfully!")
-      //         setLoading(false)
-      //         // console.log('yes');
-      //         handleModalClose()
+    handleModalClose();
 
-      //         const parsedToken = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('biyeKorun_token')) : null
+    // setTimeout(() => {
+    // }, 3000);
 
-      //         // console.log('token', parsedToken);
+    // router.push(`/profile-creation?success=${"success"}`);
 
-      //         if (parsedToken?.accessToken) {
-      //             setAuthToken(parsedToken.accessToken);
-      //             configureAxiosHeader();
-      //             dispatch(loadUser())
-      //             dispatch(loadUserData())
-      //         }
-      //         // console.log('registerred');
-      //         router.push('/profile-creation')
-      //         // setTimeout(() => {
-      //         // }, 500)
-      //     })
-      //     .catch(() => {
-      //         notifyError(message)
-      //         setLoading(false)
-      //         // console.log('no');
-      //     })
+    // if (isSubmittable) {
+    //   setLoading(true);
+    //   dispatch(register(datas))
+    //     .then((result) => {
+    //       if (register.fulfilled.match(result)) {
+    //         // Request was successful, handle it here
+    //         notifySuccess("Registered successfully!");
+    //         setLoading(false);
+    //         handleModalClose();
 
-      //Another approach
-      setLoading(true);
-      dispatch(register(datas))
-        .then((result) => {
-          if (register.fulfilled.match(result)) {
-            // Request was successful, handle it here
-            notifySuccess("Registered successfully!");
-            setLoading(false);
-            handleModalClose();
+    //         const parsedToken =
+    //           typeof window !== "undefined"
+    //             ? JSON.parse(localStorage.getItem("biyeKorun_token"))
+    //             : null;
 
-            const parsedToken =
-              typeof window !== "undefined"
-                ? JSON.parse(localStorage.getItem("biyeKorun_token"))
-                : null;
+    //         if (parsedToken?.accessToken) {
+    //           setAuthToken(parsedToken.accessToken);
+    //           configureAxiosHeader();
+    //           dispatch(loadUser());
+    //           dispatch(loadUserData());
+    //         }
+    //         // router.push("/profile-creation");
 
-            if (parsedToken?.accessToken) {
-              setAuthToken(parsedToken.accessToken);
-              configureAxiosHeader();
-              dispatch(loadUser());
-              dispatch(loadUserData());
-            }
-            router.push("/profile-creation");
-          } else if (register.rejected.match(result)) {
-            // Request was rejected, handle the error here
-            const errorMessage = result.payload;
-            notifyError(errorMessage);
-            setLoading(false);
-          }
-        })
-        .catch((error) => {
-          // Handle any unexpected errors here
-          console.error("Unexpected error:", error);
-        });
-    }
+    //       } else if (register.rejected.match(result)) {
+    //         // Request was rejected, handle the error here
+    //         const errorMessage = result.payload;
+    //         notifyError(errorMessage);
+    //         setLoading(false);
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       // Handle any unexpected errors here
+    //       console.error("Unexpected error:", error);
+    //     });
+    // }
   };
 
-  // console.log('message', message);
+  // useEffect(() => {
+  //   if (handleModalClose) {
+  //     setTimeout(() => {
+  //       console.log("in setTimeouit tests");
+  //       setModalOpen2(true);
+  //     }, 1000);
+  //   }
+  // }, [handleModalClose]);
+
+  console.log("success 205", modalOpen);
 
   const content = (
     <form className="form flex-col">
       <FormInputs />
       <header className="form-header">
         {/* <h2>{title[page]}</h2> */}
-
+        {modalOpen2 && (
+          <ConfirmModal
+            modalOpen={modalOpen2}
+            handleModalClose={handleModalCloseSuccess}
+            modalTitle={
+              <h3 className="text-center">Let's Create an Account!</h3>
+            }
+          >
+            fhghuh
+          </ConfirmModal>
+        )}
         <div className="button-container">
           {page === 1 && (
             <div className="flex flex-column flex-gap-15">
@@ -185,7 +276,7 @@ const Form = ({ handleModalClose }) => {
             </div>
           )}
 
-          {page === 0 && (
+          {(page === 0 || page === 1 || page === 2) && (
             <Button
               rightIcon={<IconArrowNarrowRight />}
               size="md"

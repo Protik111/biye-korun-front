@@ -42,3 +42,48 @@
     opacity: 0.5 !important;
   }
 }
+
+.basic3 {
+  .congrats_text {
+    color: #474748;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 46px; /* 153.333% */
+  }
+  .congrats_text_sub {
+    color: #474748;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  p {
+    color: #474748;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+  .success_btn {
+    width: 170px;
+    height: 56px;
+    background-color: #f42a41;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+  .clr {
+    background: rgba(244, 42, 65, 0.1);
+    color: rgba(0, 0, 0, 0.7);
+  }
+}

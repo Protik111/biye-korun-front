@@ -1,14 +1,77 @@
 .profile-creation {
-    background-color: $primaryColor;
-    min-height: 100vh;
+  // background-color: $primaryColor;
+  min-height: 100vh;
 
-    &__form {
-        background-color: $whiteColor;
-        min-height: 95vh;
-        max-width: 90%;
+  &__form {
+    background-color: $whiteColor;
+    min-height: 95vh;
+    max-width: 90%;
 
-        @include lgMinBreakPoint {
-            max-width: 50%;
-        }
+    @include lgMinBreakPoint {
+      max-width: 50%;
     }
+  }
+}
+
+.profile_creation_modal {
+  .steperr_border {
+    width: 67px;
+    border: 2.9px solid rgba(47, 60, 78, 0.3);
+    height: 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    @include getDown(600px) {
+      width: 57px;
+    }
+  }
+  .active_border {
+    border: 2.9px solid #2f3c4e;
+  }
+  h1 {
+    color: rgba(0, 0, 0, 0.8);
+    font-family: "Inter";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 30px 0;
+  }
+  .stepper_btn {
+    padding: 8px;
+    width: 70px;
+    border-radius: 5px;
+    background: rgba(253, 18, 63, 0.1);
+    border: none;
+    color: #fd123f;
+    font-family: "Inter";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+  }
+
+  .react-international-phone-input {
+    background: transparent !important;
+    outline: none !important;
+    color: white !important;
+    background: #f1f3f5 !important;
+    border: 1px solid rgba(196, 191, 191, 0.8) !important;
+    color: black !important;
+    border-radius: 0 30px 30px 0 !important;
+
+    // height: 3.625rem !important;
+  }
+  .react-international-phone-country-selector-button {
+    background: transparent !important;
+    outline: none !important;
+    color: black !important;
+  }
+  .react-international-phone-country-selector-button {
+    // height: 3.625rem !important;
+    background: #f1f3f5 !important;
+    border: 1px solid rgba(196, 191, 191, 0.8) !important;
+    color: black !important;
+    border-radius: 30px 0 0 30px !important;
+  }
 }

@@ -8,6 +8,7 @@ export const FormProvider = ({ children }) => {
   const title = {
     0: "Basic 1",
     1: "Basic 2",
+    2: "Basic 3",
   };
 
   const [page, setPage] = useState(0);
@@ -24,6 +25,7 @@ export const FormProvider = ({ children }) => {
     basic2password: "",
     basic2dob: new Date(generate18YearBefore()),
     basic2country: "",
+    basic3CompleteProfile: false,
   });
 
   // const handleChange = e => {
@@ -101,6 +103,13 @@ export const FormProvider = ({ children }) => {
       }
     }
 
+    //basci3 validation
+    if (page === 2) {
+      if (!pageData.basic3CompleteProfile) {
+        errors.basic3CompleteProfile = "The profile will not be visible";
+      }
+    }
+
     setFieldErrors(errors);
 
     // Return true if there are no errors
@@ -174,13 +183,18 @@ export const FormProvider = ({ children }) => {
     .map((key) => data[key])
     .every(Boolean);
 
+  const canNextPage3 = Object.keys(data)
+    .filter((key) => key.startsWith("basic3"))
+    .map((key) => data[key])
+    .every(Boolean);
+
   const disablePrev = page === 0;
 
   const disableNext =
     page === Object.keys(title).length - 1 ||
     (page === 0 && !canNextPage1) ||
-    (page === 1 && !canNextPage2);
-
+    (page === 1 && !canNextPage2) ||
+    (page === 2 && !canNextPage3);
   const prevHide = page === 0 && "remove-button";
 
   const nextHide = page === Object.keys(title).length - 1 && "remove-button";

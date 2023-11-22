@@ -47,7 +47,10 @@ const GetStartedFrom = () => {
     (startAge + index).toString().padStart(2, "0")
   );
 
-  const handleModalClose = () => setModalOpen(false);
+  const handleModalClose = () => {
+    setModalOpen(false);
+    // secondModalFunc();
+  };
 
   const handleLetsBegin = () => {
     if (!isAuthenticated) {

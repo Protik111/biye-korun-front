@@ -12,6 +12,7 @@ import { createProfile } from "@/redux/features/user/userSlice";
 import { notifyError } from "@/utils/showNotification";
 import { useRouter } from "next/navigation";
 import parsePhoneNumber from "libphonenumber-js";
+import MultiStepForm from "@/components/multiStepProfileCreation/MultiStepForm";
 
 const ProfileCreation = () => {
   const { userInfo, message } = useSelector((state) => state.user);
@@ -33,106 +34,107 @@ const ProfileCreation = () => {
   //   bloodGroup,
   //   country,
   // } = userInfo;
-  const {
-    location: {
-      state,
-      city,
-      // country,
-      livingSince,
-      residencyStatus,
-      zipCode,
-    } = {},
-    community: { religion, language, nativeLanguage } = {},
-    interestAndMore: { interests },
-    educationCareer: {
-      college,
-      education,
-      income,
-      employer,
-      occupation,
-      workingWith,
-      industry,
-    } = {},
-    family: {
-      noOfBrothers,
-      brothersMarried,
-      noOfSisters,
-      sistersMarried,
-      children,
-      familyState,
-      familyCity,
-      familyCountry,
-      familyIncome,
-      familyValues,
-      fatherProfession,
-      livingWith,
-      motherProfession,
-      noOfKids,
-      type,
-    } = {},
-    phone: { number, countryCode } = {},
-    basicInfo: {
-      diet,
-      maritalStatus,
-      bloodGroup,
-      height,
-      weight,
-      country,
-      dateOfBirth,
-      gender,
-    } = {},
-    firstName,
-    middleName,
-    lastName,
-    about: { aboutMe } = {},
-  } = userInfo;
+  // just comment for working purposes
+  // const {
+  //   location: {
+  //     state,
+  //     city,
+  //     // country,
+  //     livingSince,
+  //     residencyStatus,
+  //     zipCode,
+  //   } = {},
+  //   community: { religion, language, nativeLanguage } = {},
+  //   interestAndMore: { interests },
+  //   educationCareer: {
+  //     college,
+  //     education,
+  //     income,
+  //     employer,
+  //     occupation,
+  //     workingWith,
+  //     industry,
+  //   } = {},
+  //   family: {
+  //     noOfBrothers,
+  //     brothersMarried,
+  //     noOfSisters,
+  //     sistersMarried,
+  //     children,
+  //     familyState,
+  //     familyCity,
+  //     familyCountry,
+  //     familyIncome,
+  //     familyValues,
+  //     fatherProfession,
+  //     livingWith,
+  //     motherProfession,
+  //     noOfKids,
+  //     type,
+  //   } = {},
+  //   phone: { number, countryCode } = {},
+  //   basicInfo: {
+  //     diet,
+  //     maritalStatus,
+  //     bloodGroup,
+  //     height,
+  //     weight,
+  //     country,
+  //     dateOfBirth,
+  //     gender,
+  //   } = {},
+  //   firstName,
+  //   middleName,
+  //   lastName,
+  //   about: { aboutMe } = {},
+  // } = userInfo;
 
-  const [formValues, setFormValues] = useState({
-    city: city ? city : "",
-    livesWithFamily: livingWith ? livingWith : "",
-    residency: residencyStatus ? residencyStatus : "",
-    maritalStatus: maritalStatus ? maritalStatus : "",
-    hasChildren: children ? children : "",
-    diet: diet ? diet : "",
-    height: height ? height : "",
-    weight: weight ? weight : "",
-    qualification: education ? education : "",
-    college: college ? college : "",
-    worksWith: workingWith ? workingWith : "",
-    profession: occupation ? occupation : "",
-    company: employer ? employer : "",
-    income: income ? income : "",
-    about: aboutMe ? aboutMe : "",
-    phone: countryCode
-      ? countryCode + number
-      : number && !countryCode
-      ? number
-      : "",
-    motherTongue: nativeLanguage ? nativeLanguage : "",
-    bloodGroup: bloodGroup ? bloodGroup : "",
-  });
+  // const [formValues, setFormValues] = useState({
+  //   city: city ? city : "",
+  //   livesWithFamily: livingWith ? livingWith : "",
+  //   residency: residencyStatus ? residencyStatus : "",
+  //   maritalStatus: maritalStatus ? maritalStatus : "",
+  //   hasChildren: children ? children : "",
+  //   diet: diet ? diet : "",
+  //   height: height ? height : "",
+  //   weight: weight ? weight : "",
+  //   qualification: education ? education : "",
+  //   college: college ? college : "",
+  //   worksWith: workingWith ? workingWith : "",
+  //   profession: occupation ? occupation : "",
+  //   company: employer ? employer : "",
+  //   income: income ? income : "",
+  //   about: aboutMe ? aboutMe : "",
+  //   phone: countryCode
+  //     ? countryCode + number
+  //     : number && !countryCode
+  //     ? number
+  //     : "",
+  //   motherTongue: nativeLanguage ? nativeLanguage : "",
+  //   bloodGroup: bloodGroup ? bloodGroup : "",
+  // });
 
-  const [formErrors, setFormErrors] = useState({
-    city: "",
-    livesWithFamily: "",
-    residency: "",
-    maritalStatus: "",
-    hasChildren: "",
-    diet: "",
-    height: "",
-    weight: "", //
-    // subCommunity: "",
-    qualification: "",
-    college: "",
-    worksWith: "",
-    profession: "",
-    company: "",
-    income: "",
-    about: "",
-    phone: "",
-    motherTongue: "",
-    bloodGroup: "",
-  });
+  // const [formErrors, setFormErrors] = useState({
+  //   city: "",
+  //   livesWithFamily: "",
+  //   residency: "",
+  //   maritalStatus: "",
+  //   hasChildren: "",
+  //   diet: "",
+  //   height: "",
+  //   weight: "", //
+  //   // subCommunity: "",
+  //   qualification: "",
+  //   college: "",
+  //   worksWith: "",
+  //   profession: "",
+  //   company: "",
+  //   income: "",
+  //   about: "",
+  //   phone: "",
+  //   motherTongue: "",
+  //   bloodGroup: "",
+  // });
 
   // console.log('formValues', formValues);
 
@@ -251,8 +253,9 @@ const ProfileCreation = () => {
   return (
     <>
       <div className="profile-creation py-30">
-        <div className="container profile-creation__form rounded-15">
-          <h1 className="text-center py-20">Let's Create The Profile Now</h1>
+        <MultiStepForm />
+        {/* <div className="container profile-creation__form rounded-15"> */}
+        {/* <h1 className="text-center py-20">Let's Create The Profile Now</h1>
           <Stepper color="pink" active={active} breakpoint="sm">
             <Stepper.Step label="First step" description="Create an account">
               <Step1
@@ -284,8 +287,8 @@ const ProfileCreation = () => {
                 setFormErrors={setFormErrors}
               ></Step3>
             </Stepper.Step>
-          </Stepper>
-          {/* 
+          </Stepper> */}
+        {/* 
                 <Group position="center" mt="xl">
                     <Button
                         size="md"
@@ -304,8 +307,8 @@ const ProfileCreation = () => {
                         onClick={handleStep1Next}
                     >Next Step</Button>
                 </Group> */}
-        </div>
       </div>
+      {/* </div> */}
     </>
   );
 };
