@@ -1,5 +1,6 @@
 import React from "react";
 import { IconArrowNarrowLeft } from "@tabler/icons-react";
+import Link from "next/link";
 
 const TitleStepper = ({
   title = "",
@@ -8,7 +9,7 @@ const TitleStepper = ({
   handleNextStep = {},
   step,
 }) => {
-  console.log("title", step);
+  // console.log("title", step);
   return (
     <div>
       <div className="flex justify-between align-center">
@@ -21,6 +22,11 @@ const TitleStepper = ({
           )}
           <h1 className="modal_title">{title}</h1>
         </div>
+        {step === "E" && (
+          <Link href={"/my-profile"} style={{ marginRight: "0rem" }}>
+            <button className="stepper_btn">Skip</button>
+          </Link>
+        )}
         {step !== "E" && (
           <button className="stepper_btn" onClick={handleNextStep}>
             Skip

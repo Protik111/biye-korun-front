@@ -10,13 +10,22 @@ import { Loader } from "@mantine/core";
 // }
 
 export default function RootLayout({ children }) {
-  // const { isLoading } = useProtectedRoute();
+  const { isLoading } = useProtectedRoute();
 
-  // if (!isLoading) {
-  //   return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-  //     <Loader size="xl" color="pink" />
-  //   </div>
-  // }
+  if (!isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <Loader size="xl" color="pink" />
+      </div>
+    );
+  }
 
   return (
     <div>

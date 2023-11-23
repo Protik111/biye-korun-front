@@ -19,18 +19,43 @@ import {
 } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { btnBackground_prev } from "@/styles/library/mantine";
+import { useDispatch } from "react-redux";
+import { createProfile } from "@/redux/features/user/userSlice";
+import LoaderWithText from "../global/LoaderWithText";
 
 const StepThree = ({
-  formData,
-  handleChangeInput,
+  formValues,
+  setFormValues,
   handlePrevStep,
   handleNextStep,
 }) => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
   const handleFormChange = (name, value) => {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+
+    dispatch(
+      createProfile({
+        educationCareer: formValues,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        handleNextStep();
+        setLoading(false);
+      })
+      .catch(() => {
+        notifyError(message);
+        setLoading(false);
+      });
   };
 
   const collegeOptions = colleges.map((college) => ({
@@ -56,10 +81,9 @@ const StepThree = ({
         data={qualifications}
         dataKey="value"
         groupKey="label"
-        // value={formValues.qualification}
-
-        name="qualification"
-        // onChange={(event) => handleFormChange("qualification", event)}
+        value={formValues.education}
+        name="education"
+        onChange={(event) => handleFormChange("education", event)}
         // error={formErrors.qualification}
         searchable
       />
@@ -75,11 +99,10 @@ const StepThree = ({
         placeholder="Select"
         label="University/College"
         data={collegeOptions}
-        // value={formValues.college}
-
+        value={formValues.college}
         name="college"
         limit={5}
-        // onChange={(event) => handleFormChange("college", event)}
+        onChange={(event) => handleFormChange("college", event)}
         // error={formErrors.college}
         searchable
       />
@@ -94,10 +117,9 @@ const StepThree = ({
         placeholder="Select"
         label="Yearly Income"
         data={incomes}
-        // value={formValues.income}
-
+        value={formValues.income}
         name="income"
-        // onChange={(event) => handleFormChange("income", event)}
+        onChange={(event) => handleFormChange("income", event)}
         // error={formErrors.income}
       />
 
@@ -111,10 +133,9 @@ const StepThree = ({
         label="Job Sector"
         // styles={{ label: labelStyles }}
         data={worksWithsOwn}
-        // value={formValues.worksWith}
-
-        name="worksWith"
-        // onChange={(event) => handleFormChange("worksWith", event)}
+        value={formValues.workingWith}
+        name="workingWith"
+        onChange={(event) => handleFormChange("workingWith", event)}
         // error={formErrors.worksWith}
       />
 
@@ -127,10 +148,9 @@ const StepThree = ({
         placeholder="Select"
         label="Job Title"
         data={professions}
-        // value={formValues.profession}
-
-        name="profession"
-        // onChange={(event) => handleFormChange("profession", event)}
+        value={formValues.occupation}
+        name="occupation"
+        onChange={(event) => handleFormChange("occupation", event)}
         // error={formErrors.profession}
         searchable
       />
@@ -146,10 +166,9 @@ const StepThree = ({
         placeholder="Select"
         label="Company"
         data={companies}
-        // value={formValues.company}
-
-        name="company"
-        // onChange={(event) => handleFormChange("company", event)}
+        value={formValues.employer}
+        name="employer"
+        onChange={(event) => handleFormChange("employer", event)}
         // error={formErrors.company}
         searchable
       />
@@ -164,9 +183,15 @@ const StepThree = ({
         radius="xl"
         color="rgba(244, 42, 65, 0.10)"
         style={btnBackground_prev}
-        onClick={handleNextStep}
+        onClick={handleSubmit}
       >
-        Continue
+        {loading ? (
+          <>
+            <LoaderWithText text="" color="white"></LoaderWithText>
+          </>
+        ) : (
+          <> Continue</>
+        )}
       </Button>
     </div>
   );

@@ -53,16 +53,17 @@ import {
   getStatesForCountry,
 } from "@/hooks/common/countryApi";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
-import { loadUserData } from "@/redux/features/user/userSlice";
+import { createProfile, loadUserData } from "@/redux/features/user/userSlice";
 import LoaderWithText from "../global/LoaderWithText";
 import TitleStepper from "./TitleStepper";
 
 const StepFour = ({
-  formData,
-  handleChangeInput,
+  formValues,
+  setFormValues,
   handlePrevStep,
   handleNextStep,
 }) => {
+  const dispatch = useDispatch();
   // list of country
   const [contries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState();
@@ -76,18 +77,29 @@ const StepFour = ({
   const [loading, setLoading] = useState(false);
 
   const handleCountryChange = (event) => {
-    setSelectedCountry(event);
+    setFormValues({
+      ...formValues,
+      country: event,
+      city: "",
+      state: "",
+    });
     setSelectedState("");
     setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
-    setSelectedState(event);
-    setSelectedCity("");
+    setFormValues({
+      ...formValues,
+      state: event,
+      city: "",
+    });
   };
 
   const handleCityChange = (event) => {
-    setSelectedCity(event);
+    setFormValues({
+      ...formValues,
+      city: event,
+    });
   };
 
   const handleFormChange = (name, value) => {
@@ -95,6 +107,25 @@ const StepFour = ({
       ...prevFormValues,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+
+    dispatch(
+      createProfile({
+        location: formValues,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        handleNextStep();
+        setLoading(false);
+      })
+      .catch(() => {
+        notifyError(message);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -108,32 +139,32 @@ const StepFour = ({
   }, []);
 
   useEffect(() => {
-    if (selectedCountry !== "Select Country" && selectedCountry) {
-      getStatesForCountry(selectedCountry).then((result) => {
+    if (formValues.country !== "Select Country" && formValues.country) {
+      getStatesForCountry(formValues.country).then((result) => {
         const convertedList = result?.data.data?.states.map((item) => ({
           label: item?.name,
           value: item?.name,
         }));
-
         setStates(convertedList);
       });
-      // setSelectedState("");
-      // setSelectedCity("");
+
       setStates([]);
       setCities([]);
     }
-  }, [selectedCountry]);
+  }, [formValues.country]);
 
   useEffect(() => {
-    if (selectedState !== "Select State" && selectedCountry && selectedState) {
-      getCities(selectedCountry, selectedState).then((result) => {
-        console.log("result.data.data", result.data.data);
+    if (
+      formValues.state !== "Select State" &&
+      formValues.country &&
+      formValues.state
+    ) {
+      getCities(formValues.country, formValues.state).then((result) => {
         setCities(result.data.data);
       });
       setCities([]);
-      // setSelectedCity("");
     }
-  }, [selectedState]);
+  }, [formValues.state]);
 
   return (
     <div>
@@ -151,12 +182,11 @@ const StepFour = ({
           variant="filled"
           placeholder="Select country"
           label="Country"
-          // data={countries}
           data={contries}
           name="livingIn"
           size="md"
-          // onChange={handleCountryChange}
-          // value={selectedCountry}
+          onChange={handleCountryChange}
+          value={formValues.country}
         />
         <br />
 
@@ -164,14 +194,13 @@ const StepFour = ({
           searchable
           radius="xl"
           variant="filled"
-          placeholder="Select country"
+          placeholder="Select state"
           label="State"
-          // data={countries}
           data={states}
-          name="livingIn"
+          name="states"
           size="md"
-          // onChange={handleStateChange}
-          // value={selectedState}
+          value={formValues.state}
+          onChange={handleStateChange}
         />
 
         <br />
@@ -180,14 +209,13 @@ const StepFour = ({
           searchable
           radius="xl"
           variant="filled"
-          placeholder="Select country"
+          placeholder="Select city"
           label="City"
-          // data={countries}
           data={cities}
           name="livingIn"
           size="md"
-          // onChange={handleCityChange}
-          // value={selectedCity}
+          onChange={handleCityChange}
+          value={formValues.city}
         />
 
         <br />
@@ -196,12 +224,12 @@ const StepFour = ({
           variant="filled"
           label="Zip Code"
           placeholder="Zip Code"
-          // value={formValues.zipCode}
+          value={formValues.zipCode}
           name="zipCode"
           size="md"
-          // onChange={(event) =>
-          //   handleFormChange("zipCode", event.currentTarget.value)
-          // }
+          onChange={(event) =>
+            handleFormChange("zipCode", event.currentTarget.value)
+          }
         />
         <br />
         <Select
@@ -219,8 +247,8 @@ const StepFour = ({
           ]}
           name="residencyStatus"
           size="md"
-          // defaultValue={formValues.residencyStatus}
-          // onChange={(event) => handleFormChange("residencyStatus", event)}
+          defaultValue={formValues.residencyStatus}
+          onChange={(event) => handleFormChange("residencyStatus", event)}
           searchable
         />
         <br />
@@ -230,9 +258,15 @@ const StepFour = ({
           radius="xl"
           color="rgba(244, 42, 65, 0.10)"
           style={btnBackground_prev}
-          onClick={handleNextStep}
+          onClick={handleSubmit}
         >
-          Continue
+          {loading ? (
+            <>
+              <LoaderWithText text="" color="white"></LoaderWithText>
+            </>
+          ) : (
+            <> Continue</>
+          )}
         </Button>
       </div>
     </div>

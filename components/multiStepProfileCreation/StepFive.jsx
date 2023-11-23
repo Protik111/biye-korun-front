@@ -9,15 +9,22 @@ import parsePhoneNumber, {
 import { btnBackground_prev } from "@/styles/library/mantine";
 import TitleStepper from "./TitleStepper";
 import { motherTongues } from "@/staticData/InputFields/inputFields";
-
+import { createProfile } from "@/redux/features/user/userSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import LoaderWithText from "../global/LoaderWithText";
 const StepFive = ({
-  formData,
+  formValues,
+  setFormValues,
   handleChangeInput,
   handlePrevStep,
   handleNextStep,
 }) => {
-  //   const { about, phone } = formValues;
-  const phoneInfo = parsePhoneNumber("5678789098");
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const phoneInfo = parsePhoneNumber("");
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const errors = {};
@@ -52,13 +59,6 @@ const StepFive = ({
     return Object.keys(errors).length === 0; // Return true if no errors
   };
 
-  //   const handleNextStep = () => {
-  //     if (validateForm()) {
-  //       // Call the parent component's callback with the formValues
-  //       onNextStep(formValues);
-  //     }
-  //   };
-
   const handleFormChange = (name, value) => {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
@@ -85,7 +85,44 @@ const StepFive = ({
     } else {
       return;
     }
-    // console.log(asYouType.getChars().startsWith(1));
+  };
+
+  const handleSubmit = () => {
+    const { phone, aboutMe, nativeLanguage } = formValues;
+    const phoneInfo = parsePhoneNumber(phone);
+
+    //  dispatch(
+    //    createProfile({
+    //      about: { aboutMe },
+    //      phone: {
+    //        number: phoneInfo.nationalNumber,
+    //        countryCode: phoneInfo.countryCallingCode,
+    //      },
+    //      community: { nativeLanguage },
+    //    })
+    //  );
+
+    setLoading(true);
+
+    dispatch(
+      createProfile({
+        about: { aboutMe },
+        phone: {
+          number: phoneInfo.nationalNumber,
+          countryCode: phoneInfo.countryCallingCode,
+        },
+        community: { nativeLanguage },
+      })
+    )
+      .unwrap()
+      .then(() => {
+        setLoading(false);
+        router.push("/dashboard");
+      })
+      .catch(() => {
+        notifyError(message);
+        setLoading(false);
+      });
   };
 
   return (
@@ -102,8 +139,8 @@ const StepFive = ({
         autosize
         minRows={5}
         variant="filled"
-        // value={formValues.about}
-        // onChange={(event) => handleFormChange("about", event.target.value)}
+        value={formValues.aboutMe}
+        onChange={(event) => handleFormChange("aboutMe", event.target.value)}
         // error={formErrors.about}
       />
 
@@ -113,9 +150,9 @@ const StepFive = ({
         label="Native Language"
         defaultValue="20"
         data={motherTongues}
-        name="motherTongue"
-        // value={formValues.motherTongue}
-        // onChange={(event) => handleFormChange("motherTongue", event)}
+        name="nativeLanguage"
+        value={formValues.nativeLanguage}
+        onChange={(event) => handleFormChange("nativeLanguage", event)}
         searchable
         radius="xl"
         variant="filled"
@@ -126,8 +163,8 @@ const StepFive = ({
       <div>
         <PhoneInput
           defaultCountry="bd"
-          //   value={phone}
-          //   onChange={(phone) => handleFormChange("phone", phone)}
+          value={formValues.phone}
+          onChange={(phone) => handleFormChange("phone", phone)}
         />
         {/* {formErrors.phone && (
           <p className="error-message">{formErrors.phone} </p>
@@ -141,9 +178,15 @@ const StepFive = ({
         radius="xl"
         color="rgba(244, 42, 65, 0.10)"
         style={btnBackground_prev}
-        onClick={handleNextStep}
+        onClick={handleSubmit}
       >
-        Create Profile
+        {loading ? (
+          <>
+            <LoaderWithText text="" color="white"></LoaderWithText>
+          </>
+        ) : (
+          <> Create Profile</>
+        )}
       </Button>
     </div>
   );

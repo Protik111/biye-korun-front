@@ -22,7 +22,7 @@ import {
 } from "@/hooks/common/countryApi";
 import { notifyError, notifySuccess } from "@/utils/showNotification";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUserData } from "@/redux/features/user/userSlice";
+import { createProfile, loadUserData } from "@/redux/features/user/userSlice";
 import LoaderWithText from "../global/LoaderWithText";
 import TitleStepper from "./TitleStepper";
 
@@ -38,12 +38,13 @@ import {
 import { btnBackground_prev } from "@/styles/library/mantine";
 
 const StepTwo = ({
-  formData,
-  handleChangeInput,
+  formValues,
+  setFormValues,
   handlePrevStep,
   handleNextStep,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const dispatch = useDispatch();
   const [openModal, closeModal] = useState(true);
   // list of country
   const [contries, setCountries] = useState([]);
@@ -54,7 +55,15 @@ const StepTwo = ({
 
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState();
+  const [loading, setLoading] = useState(false);
   const handleModalClose = () => closeModal(false);
+
+  const handleFormChange = (name, value) => {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+    }));
+  };
 
   useEffect(() => {
     getCountries().then((result) => {
@@ -67,48 +76,113 @@ const StepTwo = ({
   }, []);
 
   const handleCountryChange = (event) => {
-    setSelectedCountry(event);
+    // setSelectedCountry(event);
+    setFormValues({
+      ...formValues,
+      familyCountry: event,
+      familyCity: "",
+      familyState: "",
+    });
     setSelectedState("");
     setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
-    setSelectedState(event);
-    setSelectedCity("");
+    setFormValues({
+      ...formValues,
+      familyState: event,
+      familyCity: "",
+    });
+
+    // setSelectedState(event);
+    // setSelectedCity("");
   };
 
   const handleCityChange = (event) => {
-    setSelectedCity(event);
+    // setSelectedCity(event);
+    setFormValues({
+      ...formValues,
+      familyCity: event,
+    });
+  };
+
+  const handleSubmit = () => {
+    console.log("formValues", formValues);
+
+    setLoading(true);
+
+    dispatch(
+      createProfile({
+        family: formValues,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        handleNextStep();
+        setLoading(false);
+      })
+      .catch(() => {
+        notifyError(message);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
-    if (selectedCountry !== "Select Country" && selectedCountry) {
-      getStatesForCountry(selectedCountry).then((result) => {
+    // if (selectedCountry !== "Select Country" && selectedCountry) {
+    //   getStatesForCountry(selectedCountry).then((result) => {
+    //     const convertedList = result?.data.data?.states.map((item) => ({
+    //       label: item?.name,
+    //       value: item?.name,
+    //     }));
+    //     setStates(convertedList);
+    //   });
+    //   //   setSelectedState("");
+    //   //   setSelectedCity("");
+    //   setStates([]);
+    //   setCities([]);
+    // }
+    if (
+      formValues.familyCountry !== "Select Country" &&
+      formValues.familyCountry
+    ) {
+      getStatesForCountry(formValues.familyCountry).then((result) => {
         const convertedList = result?.data.data?.states.map((item) => ({
           label: item?.name,
           value: item?.name,
         }));
-
         setStates(convertedList);
       });
-      console.log("169");
       //   setSelectedState("");
       //   setSelectedCity("");
       setStates([]);
       setCities([]);
     }
-  }, [selectedCountry]);
+  }, [formValues.familyCountry]);
 
   useEffect(() => {
-    if (selectedState !== "Select State" && selectedCountry && selectedState) {
-      getCities(selectedCountry, selectedState).then((result) => {
-        console.log("result.data.data", result.data.data);
-        setCities(result.data.data);
-      });
+    // if (selectedState !== "Select State" && selectedCountry && selectedState) {
+    //   getCities(selectedCountry, selectedState).then((result) => {
+    //     console.log("result.data.data", result.data.data);
+    //     setCities(result.data.data);
+    //   });
+    //   setCities([]);
+    //   //   setSelectedCity("");
+    // }
+
+    if (
+      formValues.familyState !== "Select State" &&
+      formValues.familyCountry &&
+      formValues.familyState
+    ) {
+      getCities(formValues.familyCountry, formValues.familyState).then(
+        (result) => {
+          console.log("result.data.data", result.data.data);
+          setCities(result.data.data);
+        }
+      );
       setCities([]);
-      //   setSelectedCity("");
     }
-  }, [selectedState]);
+  }, [formValues.familyState]);
 
   return (
     <div>
@@ -126,10 +200,10 @@ const StepTwo = ({
           radius="xl"
           variant="filled"
           size="md"
-          // value={formValues.fatherProfession}
-          // onChange={(event) =>
-          //   handleFormChange("fatherProfession", event.currentTarget.value)
-          // }
+          value={formValues.fatherProfession}
+          onChange={(event) =>
+            handleFormChange("fatherProfession", event.currentTarget.value)
+          }
         />
         <br />
         <TextInput
@@ -139,10 +213,10 @@ const StepTwo = ({
           radius="xl"
           variant="filled"
           size="md"
-          // value={formValues.motherProfession}
-          // onChange={(event) =>
-          //   handleFormChange("motherProfession", event.currentTarget.value)
-          // }
+          value={formValues.motherProfession}
+          onChange={(event) =>
+            handleFormChange("motherProfession", event.currentTarget.value)
+          }
         />
         <br />
 
@@ -153,7 +227,8 @@ const StepTwo = ({
           data={contries}
           name="livingIn"
           onChange={handleCountryChange}
-          value={selectedCountry}
+          // value={selectedCountry}
+          value={formValues.familyCountry}
           radius="xl"
           variant="filled"
           size="md"
@@ -165,7 +240,8 @@ const StepTwo = ({
           label="Family State"
           data={states}
           onChange={handleStateChange}
-          value={selectedState}
+          // value={selectedState}
+          value={formValues.familyState}
           radius="xl"
           variant="filled"
           size="md"
@@ -177,7 +253,8 @@ const StepTwo = ({
           label="Family City"
           data={cities}
           onChange={handleCityChange}
-          value={selectedCity}
+          // value={selectedCity}
+          value={formValues.familyCity}
           radius="xl"
           variant="filled"
           size="md"
@@ -200,8 +277,8 @@ const StepTwo = ({
           ]}
           name="type"
           size="md"
-          // value={formValues.type}
-          // onChange={(event) => handleFormChange("type", event)}
+          value={formValues.type}
+          onChange={(event) => handleFormChange("type", event)}
         />
         <br />
 
@@ -211,9 +288,15 @@ const StepTwo = ({
           radius="xl"
           color="rgba(244, 42, 65, 0.10)"
           style={btnBackground_prev}
-          onClick={handleNextStep}
+          onClick={handleSubmit}
         >
-          Continue
+          {loading ? (
+            <>
+              <LoaderWithText text="" color="white"></LoaderWithText>
+            </>
+          ) : (
+            <> Continue</>
+          )}
         </Button>
       </div>
     </div>

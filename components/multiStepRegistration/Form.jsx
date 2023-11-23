@@ -46,11 +46,11 @@ const Form = ({ handleModalClose, modalOpen }) => {
   const handlePrev = () => setPage((prev) => prev - 1);
 
   const handleNext = () => {
-    // const isValid = validatePage(page);
-    // if (isValid) {
-    //   setPage((prev) => prev + 1);
-    // }
-    setPage((prev) => prev + 1);
+    const isValid = validatePage(page);
+    if (isValid) {
+      setPage((prev) => prev + 1);
+    }
+    // setPage((prev) => prev + 1);
   };
 
   // previous functionality
@@ -146,8 +146,8 @@ const Form = ({ handleModalClose, modalOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const isSubmittable = validatePage(page);
+    const isSubmittable = validatePage(page);
+    if (!isSubmittable) return;
 
     const datas = {
       email: data?.basic2email,
@@ -161,62 +161,42 @@ const Form = ({ handleModalClose, modalOpen }) => {
       religion: data?.basic1religion,
       password: data?.basic2password,
     };
-    console.log("181", datas);
 
-    handleModalClose();
+    if (isSubmittable) {
+      setLoading(true);
+      dispatch(register(datas))
+        .then((result) => {
+          if (register.fulfilled.match(result)) {
+            // Request was successful, handle it here
+            // notifySuccess("Registered successfully!");
+            setLoading(false);
+            // handleModalClose();
+            setPage((prev) => prev + 1);
+            const parsedToken =
+              typeof window !== "undefined"
+                ? JSON.parse(localStorage.getItem("biyeKorun_token"))
+                : null;
 
-    // setTimeout(() => {
-    // }, 3000);
-
-    // router.push(`/profile-creation?success=${"success"}`);
-
-    // if (isSubmittable) {
-    //   setLoading(true);
-    //   dispatch(register(datas))
-    //     .then((result) => {
-    //       if (register.fulfilled.match(result)) {
-    //         // Request was successful, handle it here
-    //         notifySuccess("Registered successfully!");
-    //         setLoading(false);
-    //         handleModalClose();
-
-    //         const parsedToken =
-    //           typeof window !== "undefined"
-    //             ? JSON.parse(localStorage.getItem("biyeKorun_token"))
-    //             : null;
-
-    //         if (parsedToken?.accessToken) {
-    //           setAuthToken(parsedToken.accessToken);
-    //           configureAxiosHeader();
-    //           dispatch(loadUser());
-    //           dispatch(loadUserData());
-    //         }
-    //         // router.push("/profile-creation");
-
-    //       } else if (register.rejected.match(result)) {
-    //         // Request was rejected, handle the error here
-    //         const errorMessage = result.payload;
-    //         notifyError(errorMessage);
-    //         setLoading(false);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       // Handle any unexpected errors here
-    //       console.error("Unexpected error:", error);
-    //     });
-    // }
+            if (parsedToken?.accessToken) {
+              setAuthToken(parsedToken.accessToken);
+              configureAxiosHeader();
+              dispatch(loadUser());
+              dispatch(loadUserData());
+            }
+            // router.push("/profile-creation");
+          } else if (register.rejected.match(result)) {
+            // Request was rejected, handle the error here
+            const errorMessage = result.payload;
+            notifyError(errorMessage);
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
+          // Handle any unexpected errors here
+          console.error("Unexpected error:", error);
+        });
+    }
   };
-
-  // useEffect(() => {
-  //   if (handleModalClose) {
-  //     setTimeout(() => {
-  //       console.log("in setTimeouit tests");
-  //       setModalOpen2(true);
-  //     }, 1000);
-  //   }
-  // }, [handleModalClose]);
-
-  console.log("success 205", modalOpen);
 
   const content = (
     <form className="form flex-col">
@@ -230,11 +210,10 @@ const Form = ({ handleModalClose, modalOpen }) => {
             modalTitle={
               <h3 className="text-center">Let's Create an Account!</h3>
             }
-          >
-            fhghuh
-          </ConfirmModal>
+          ></ConfirmModal>
         )}
         <div className="button-container">
+          {console.log("page", page)}
           {page === 1 && (
             <div className="flex flex-column flex-gap-15">
               <Button
@@ -257,7 +236,7 @@ const Form = ({ handleModalClose, modalOpen }) => {
                 type="submit"
                 radius="xl"
                 style={btnBackground}
-                className={`button ${submitHide}`}
+                // className={`button ${submitHide}`}
                 // disabled={!canSubmit}
                 onClick={handleSubmit}
                 disabled={loading}
@@ -276,7 +255,7 @@ const Form = ({ handleModalClose, modalOpen }) => {
             </div>
           )}
 
-          {(page === 0 || page === 1 || page === 2) && (
+          {page === 0 && (
             <Button
               rightIcon={<IconArrowNarrowRight />}
               size="md"

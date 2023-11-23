@@ -20,23 +20,63 @@ import { Modal, Button } from "@mantine/core";
 
 // Step Final: Succes Result
 
-const initialFormData = {
-  firstName: "",
-  lastName: "",
-  businessName: "",
-  businessCity: "",
-  businessWebsite: "",
-  businessEmail: "",
-  incomePerMonth: 0,
-  taxPercantage: 0,
-  agreeToTerms: false,
-};
+// const initialFormData = {
+//   firstName: "",
+//   lastName: "",
+//   businessName: "",
+//   businessCity: "",
+//   businessWebsite: "",
+//   businessEmail: "",
+//   incomePerMonth: 0,
+//   taxPercantage: 0,
+//   agreeToTerms: false,
+// };
 
 const stepsArray = ["A", "B", "C", "D", "E"];
 
 const MultiStepForm = ({ showStepNumber = true }) => {
   const [step, setStep] = useState("A");
-  const [formData, setFormData] = useState(initialFormData);
+  const [formValues, setFormValues] = useState({
+    maritalStatus: "",
+    height: "",
+    weight: "",
+    diet: "",
+    bloodGroup: "",
+  });
+  const [formValues1, setFormValues1] = useState({
+    familyCountry: "",
+    familyCity: "",
+    familyState: "",
+    motherProfession: "",
+    fatherProfession: "",
+    type: "",
+  });
+
+  const [formValues3, setFormValues3] = useState({
+    education: "",
+    college: "",
+    income: "",
+    workingWith: "",
+    occupation: "",
+    employer: "",
+  });
+
+  const [formValues4, setFormValues4] = useState({
+    state: "",
+    city: "",
+    country: "",
+    livingSince: "",
+    residencyStatus: "",
+    zipCode: "",
+  });
+
+  const [formValues5, setFormValues5] = useState({
+    aboutMe: "",
+    nativeLanguage: "",
+    phone: "",
+  });
+
+  // const [formData, setFormData] = useState(initialFormData);
 
   // We need a method to go to next step
   const handleNextStep = () => {
@@ -54,21 +94,6 @@ const MultiStepForm = ({ showStepNumber = true }) => {
     else if (step === "B") setStep("A");
   };
 
-  // We need a method to update our formData
-  const handleChangeInput = (event) => {
-    const fieldName = event.target.name;
-    let fieldValue;
-    if (fieldName === "agreeToTerms") {
-      fieldValue = event.target.checked;
-    } else {
-      fieldValue = event.target.value;
-    }
-    setFormData({
-      ...formData,
-      [fieldName]: fieldValue,
-    });
-  };
-
   // We need a method to do final operation
   const handleSubmitFormData = () => {
     // Here You can do final Validation and then Submit Your form
@@ -78,10 +103,6 @@ const MultiStepForm = ({ showStepNumber = true }) => {
       setStep("Final");
     }
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   // Section for render StepNumbers
   const renderTopStepNumbers = () => {
@@ -93,9 +114,6 @@ const MultiStepForm = ({ showStepNumber = true }) => {
         {stepsArray.map((item) => (
           <div
             key={item}
-            // className={`w-8 h-8 flex justify-center items-center border-2 border-gray-600 rounded-full cursor-pointer ${
-            //   item === step ? "bg-blue-500" : ""
-            // }`}
             className={`steperr_border ${item === step ? "active_border" : ""}`}
             onClick={() => setStep(item)}
           >
@@ -115,34 +133,37 @@ const MultiStepForm = ({ showStepNumber = true }) => {
       <div className="profile_creation_modal">
         {renderTopStepNumbers()}
         {/* // Render Steps */}
-        {console.log("stae", step)}
+
         {step === "A" ? (
           <StepA
-            formData={formData}
-            handleChangeInput={handleChangeInput}
+            formValues={formValues}
+            // handleChangeInput={handleChangeInput}
+            setFormValues={setFormValues}
             handleNextStep={handleNextStep}
           />
         ) : null}
         {step === "B" ? (
           <StepB
-            formData={formData}
-            handleChangeInput={handleChangeInput}
+            formValues={formValues1}
+            setFormValues={setFormValues1}
+            // handleChangeInput={handleChangeInput}
             handlePrevStep={handlePrevStep}
             handleNextStep={handleNextStep}
           />
         ) : null}
         {step === "C" ? (
           <StepC
-            formData={formData}
-            handleChangeInput={handleChangeInput}
+            formValues={formValues3}
+            setFormValues={setFormValues3}
+            // handleChangeInput={handleChangeInput}
             handlePrevStep={handlePrevStep}
             handleNextStep={handleNextStep}
           />
         ) : null}
         {step === "D" ? (
           <StepD
-            formData={formData}
-            handleChangeInput={handleChangeInput}
+            formValues={formValues4}
+            setFormValues={setFormValues4}
             handlePrevStep={handlePrevStep}
             handleNextStep={handleNextStep}
             handleSubmitFormData={handleSubmitFormData}
@@ -150,8 +171,8 @@ const MultiStepForm = ({ showStepNumber = true }) => {
         ) : null}
         {step === "E" ? (
           <StepE
-            formData={formData}
-            handleChangeInput={handleChangeInput}
+            formValues={formValues5}
+            setFormValues={setFormValues5}
             handlePrevStep={handlePrevStep}
             handleNextStep={handleNextStep}
             handleSubmitFormData={handleSubmitFormData}

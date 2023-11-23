@@ -22,11 +22,53 @@ import {
   Modal,
 } from "@mantine/core";
 import { btnBackground_prev } from "@/styles/library/mantine";
+import { useDispatch } from "react-redux";
+import { createProfile } from "@/redux/features/user/userSlice";
+import { notifyError } from "@/utils/showNotification";
+import LoaderWithText from "../global/LoaderWithText";
 
-const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
+const StepOne = ({
+  formValues,
+  setFormValues,
+  handleChangeInput,
+  handleNextStep,
+}) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const dispatch = useDispatch();
   const [openModal, closeModal] = useState(true);
+  const [loading, setLoading] = useState(false);
   const handleModalClose = () => closeModal(false);
+
+  const handleFormChange = (name, value) => {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+    }));
+  };
+
+  console.log("formValues", formValues);
+  const handleSubmit = () => {
+    const { maritalStatus, diet, height, weight, bloodGroup } = formValues;
+
+    console.log("maritalStatus", maritalStatus);
+
+    setLoading(true);
+
+    dispatch(
+      createProfile({
+        basicInfo: { maritalStatus, diet, height, weight, bloodGroup },
+      })
+    )
+      .unwrap()
+      .then(() => {
+        handleNextStep();
+        setLoading(false);
+      })
+      .catch(() => {
+        notifyError(message);
+        setLoading(false);
+      });
+  };
 
   return (
     <div>
@@ -42,12 +84,12 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
           label="Marital Status"
           // styles={{ label: labelStyles }}
           data={maritalStatuses}
-          // value={formValues.maritalStatus}
+          value={formValues.maritalStatus}
           name="maritalStatus"
           radius="xl"
           size="md"
           variant="filled"
-          // onChange={(event) => handleFormChange("maritalStatus", event)}
+          onChange={(event) => handleFormChange("maritalStatus", event)}
           // error={formErrors.maritalStatus}
         />
 
@@ -57,12 +99,12 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
           placeholder="Select height"
           label="Height"
           data={heights}
-          // value={formValues.height}
+          value={formValues.height}
           name="height"
           radius="xl"
           size="md"
           variant="filled"
-          // onChange={(event) => handleFormChange("height", event)}
+          onChange={(event) => handleFormChange("height", event)}
           // error={formErrors.height}
         />
 
@@ -70,12 +112,12 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
         <NumberInput
           placeholder="Enter weight"
           label="Weight(kg)"
-          // value={formValues.weight}
+          value={formValues.weight}
           name="Select weight"
           variant="filled"
           radius="lg"
           size="md"
-          // onChange={(event) => handleFormChange("weight", event)}
+          onChange={(event) => handleFormChange("weight", event)}
           // error={formErrors.weight}
         />
 
@@ -87,8 +129,8 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
           </label>
           <Chip.Group
             multiple={false}
-            // value={formValues.diet}
-            // onChange={(event) => handleFormChange("diet", event)}
+            value={formValues.diet}
+            onChange={(event) => handleFormChange("diet", event)}
             name="diet"
           >
             <div className="flex flex-gap-25  flex-wrap mt-5">
@@ -110,13 +152,12 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
           placeholder="Select"
           label="Blood Group"
           data={bloodGroups}
-          // value={formValues.bloodGroup}
-
+          value={formValues.bloodGroup}
           name="bloodGroup"
           radius="xl"
           variant="filled"
           size="md"
-          // onChange={(event) => handleFormChange("bloodGroup", event)}
+          onChange={(event) => handleFormChange("bloodGroup", event)}
           // error={formErrors.bloodGroup}
         />
 
@@ -128,9 +169,15 @@ const StepOne = ({ formData, handleChangeInput, handleNextStep }) => {
           radius="xl"
           color="rgba(244, 42, 65, 0.10)"
           style={btnBackground_prev}
-          onClick={handleNextStep}
+          onClick={handleSubmit}
         >
-          Continue
+          {loading ? (
+            <>
+              <LoaderWithText text="" color="white"></LoaderWithText>
+            </>
+          ) : (
+            <> Continue</>
+          )}
         </Button>
       </div>
     </div>
