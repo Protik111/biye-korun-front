@@ -14,6 +14,7 @@ import {
   Select,
   TextInput,
 } from "@mantine/core";
+import ModalTitle from "../global/ModalTitle";
 
 const Basic1 = () => {
   const { data, handleChange, fieldErrors } = useFormContext();
@@ -26,10 +27,11 @@ const Basic1 = () => {
 
   const content = (
     <div className="mutlistep__registration basic1 px-10">
+      <ModalTitle />
       <Select
         size="md"
         placeholder="Select"
-        label="Profile For"
+        label="Profile For "
         // styles={{ label: labelStyles }}
         radius="xl"
         variant="filled"

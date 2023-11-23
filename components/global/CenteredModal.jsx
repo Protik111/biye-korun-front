@@ -41,7 +41,6 @@ const CenteredModal = ({
           },
         }}
       >
-        <ModalTitle />
         {children}
       </Modal>
     </>

@@ -14,6 +14,7 @@ import {
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useEffect, useState } from "react";
+import ModalTitle from "../global/ModalTitle";
 
 const Basic2 = () => {
   const { data, handleChange, fieldErrors } = useFormContext();
@@ -34,7 +35,7 @@ const Basic2 = () => {
 
   const content = (
     <div className="mutlistep__registration basic1 px-10 py-10">
-      <br />
+      <ModalTitle />
 
       <TextInput
         label="Email"

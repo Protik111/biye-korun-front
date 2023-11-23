@@ -113,7 +113,7 @@ const Landing = () => {
         >
           {/* <MultistepRegistration></MultistepRegistration> */}
           <FormProvider>
-            <Form></Form>
+            <Form modalOpen={modalOpen}></Form>
           </FormProvider>
         </CenteredModal>
       )}

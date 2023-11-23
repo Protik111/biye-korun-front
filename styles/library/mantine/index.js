@@ -61,7 +61,11 @@ export const btnBackground = {
 };
 
 export const btnBackground_prev = {
-  backgroundColor: "rgba(244, 42, 65, 0.1)",
+  backgroundColor: "red",
+  color: "white",
+  fontSize: "20px",
+  fontWeight: "500",
+  fontFamily: "Inter",
 };
 export const btnBackground1 = {
   // backgroundColor: '#F143CB',

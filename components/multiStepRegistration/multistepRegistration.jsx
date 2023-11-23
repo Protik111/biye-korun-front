@@ -80,7 +80,7 @@ const MultistepRegistration = () => {
       <Select
         size="md"
         placeholder="Select"
-        label="Profile for"
+        label="Profile for "
         // styles={{ label: labelStyles }}
         data={profileFor}
         value={formValues.postedBy}
