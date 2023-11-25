@@ -1,0 +1,287 @@
+.search_main {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20px;
+  background: #f5f5f5;
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // gap: 10px;
+    padding-top: 40px;
+
+    .card {
+      flex: 0 1 calc(30% - 0px);
+      width: calc(31% - 0px);
+      //   margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: box-shadow 0.3s;
+      margin: 40px auto;
+      height: 100%;
+
+      @include getDown(1024px) {
+        flex: 0 1 calc(50% - 10px);
+        width: calc(25% - 20px);
+      }
+
+      @include getDown(768px) {
+        flex: 0 1 calc(50% - 10px);
+        width: calc(100% - 20px);
+        margin: 30px auto;
+      }
+
+      @include getDown(600px) {
+        flex: 0 1 calc(50% - 10px);
+        width: calc(50% - 20px);
+      }
+
+      @include getDown(364px) {
+        height: 240px;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        /* Enlarge the card on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Add a stronger shadow on hover */
+      }
+
+      .header {
+        padding: 0 20px;
+        padding-top: 60px;
+        @include getDown(600px) {
+          padding: 0 10px;
+          padding-top: 40px;
+        }
+        .name {
+          font-size: 30px;
+          margin: 0;
+          @include getDown(600px) {
+            font-size: 25px;
+            font-weight: 600px !important;
+          }
+        }
+
+        .subtitle {
+          font-size: 14px;
+          // margin: 10px 0;
+        }
+      }
+
+      .content {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        font-size: 14px;
+        // height: 109px;
+        margin: 3px 0 16px;
+        flex-grow: 1;
+        @include getDown(600px) {
+          padding: 0 10px;
+        }
+        .details p {
+          flex: 1;
+          text-align: left;
+          font-size: 14px;
+          margin: 5px 0;
+          @include getDown(600px) {
+            font-size: 12px;
+            margin: 6px 0;
+          }
+        }
+        .text_bold {
+          color: #666;
+          font-family: "Work Sans";
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+        .hide_mobile {
+          @include getDown(600px) {
+            display: none;
+          }
+        }
+        .hide_desktop {
+          display: none;
+          @include getDown(600px) {
+            display: block;
+          }
+        }
+      }
+      .border_line {
+        background: rgba(0, 0, 0, 0.1);
+        height: 1px;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #e43b7c;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 20px;
+        position: absolute;
+        top: -45px;
+        left: 35%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        @include getDown(600px) {
+          width: 80px;
+          height: 80px;
+          top: -45px;
+          right: 0;
+          left: 0;
+          margin: auto;
+        }
+      }
+
+      .footer {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        .circle_img {
+          @include getDown(600px) {
+            width: 25px;
+            height: 25px;
+            overflow: hidden;
+            display: block;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+        @include getDown(364px) {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+        }
+        .custom_btn_size {
+          @include getDown(600px) {
+            height: 30px;
+            font-size: 12px;
+          }
+          @include getDown(380px) {
+            height: 30px;
+            font-size: 10px;
+          }
+        }
+        .btn_clr {
+          background: rgba(244, 42, 65, 0.1);
+          color: #f42a41;
+        }
+      }
+    }
+  }
+
+  .search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search_btn {
+      position: absolute;
+      right: 43px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: #f42a41;
+      padding: 8px;
+      height: 40px;
+      width: 40px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .search-input {
+      padding: 17px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      border: none;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      width: 678px;
+    }
+
+    @include getDown(768px) {
+      display: none;
+    }
+  }
+  h3 {
+    color: rgba(0, 0, 0, 0.8);
+    font-family: "Inter";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    span {
+      color: rgba(0, 0, 0, 0.6);
+      font-family: "Inter";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  .title {
+    p {
+      color: #f42a41;
+      font-family: "Inter";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  .btn_advance_search {
+    // Common button styles
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f42a41;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e6384d;
+    }
+    @include getDown(768px) {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+
+    @include getDown(480px) {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  @include getDown(600px) {
+    grid-template-columns: 100%;
+  }
+}

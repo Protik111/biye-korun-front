@@ -91,25 +91,14 @@ const StepFive = ({
     const { phone, aboutMe, nativeLanguage } = formValues;
     const phoneInfo = parsePhoneNumber(phone);
 
-    //  dispatch(
-    //    createProfile({
-    //      about: { aboutMe },
-    //      phone: {
-    //        number: phoneInfo.nationalNumber,
-    //        countryCode: phoneInfo.countryCallingCode,
-    //      },
-    //      community: { nativeLanguage },
-    //    })
-    //  );
-
     setLoading(true);
 
     dispatch(
       createProfile({
         about: { aboutMe },
         phone: {
-          number: phoneInfo.nationalNumber,
-          countryCode: phoneInfo.countryCallingCode,
+          number: phoneInfo?.nationalNumber,
+          countryCode: phoneInfo?.countryCallingCode,
         },
         community: { nativeLanguage },
       })
