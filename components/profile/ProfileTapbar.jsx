@@ -22,34 +22,29 @@ const ProfileTapbar = () => {
   };
 
   // console.log('pathname', pathname.replace(/^\/+/, ''))
-  const tabs = [
-    "Dashboard",
-    "Home Feed",
-    "My Profile",
-    "My photos",
-    "My Matches",
-    "Partner Preferences",
-  ]; // Replace with your tab names
+  const tabs = ["Search", "Be Social", "Chat", "Dashboard"]; // Replace with your tab names
+
   const icons = [
-    "tab/deactive1.svg",
+    "tab/deactive8.svg",
     "tab/deactive2.svg",
-    "tab/deactive3.svg",
-    "tab/deactive4.svg",
-    "tab/deactive5.svg",
-    "tab/deactive6.svg",
+    "tab/deactive7.svg",
+    "tab/deactive1.svg",
+    // "tab/deactive5.svg",
+    // "tab/deactive6.svg",
   ];
   const activeIcons = [
-    "tab/active1.svg",
+    "tab/active8.svg",
     "tab/active2.svg",
-    "tab/active3.svg",
-    "tab/active4.svg",
-    "tab/active5.svg",
-    "tab/active6.svg",
+    "tab/active7.svg",
+    "tab/active1.svg",
+    // "tab/active5.svg",
+    // "tab/active6.svg",
   ];
 
   const handleTabChange = (tab) => {
     // Handle tab change logic here
-    console.log(`Selected tab: ${tab}`);
+    console.log(`Selected tab: ${tab.toLowerCase()}`);
+    router.push(`/${tab.toLowerCase()}`);
   };
   return (
     <div className="tapbar  mb-20 container ">
@@ -142,7 +137,7 @@ const ProfileTapbar = () => {
         tabs={tabs}
         icons={icons}
         activeIcons={activeIcons}
-        initialTab={tabs[0]}
+        initialTab={tabs[3]}
         onTabChange={handleTabChange}
       />
     </div>

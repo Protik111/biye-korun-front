@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import { usePathname } from "next/navigation";
 const TabBar = ({
   tabs,
   initialTab,
@@ -8,6 +8,7 @@ const TabBar = ({
   onTabChange,
   padding_value = "",
 }) => {
+  const pathname = usePathname();
   const [activeTab, setActiveTab] = useState(initialTab);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -30,13 +31,10 @@ const TabBar = ({
     }
   };
 
-  //   const updateScrollArrows = () => {
-  //     if (tabScrollRef.current) {
-  //       const { scrollLeft, scrollWidth, clientWidth } = tabScrollRef.current;
-  //       setShowLeftArrow(scrollLeft > 0);
-  //       setShowRightArrow(scrollWidth > clientWidth + scrollLeft);
-  //     }
-  //   };
+  useEffect(() => {
+    setActiveTab(pathname.replace(/^\/+/, ""));
+  }, [activeTab]);
+
   return (
     <div className="tab-bar" style={{ padding: padding_value }}>
       {/* {showLeftArrow && (
