@@ -26,82 +26,114 @@ import {
 
 import MatchesInfo from "../dashboard/MatchesInfo";
 import { SearchCard } from "./SearchCard";
+import CenteredModal from "../global/CenteredModal";
+import AdvancedSearch from "./AdvancedSearch";
+import { useEffect } from "react";
+import useCountry from "@/hooks/common/useCountry";
 // import UniqueService from "./UniqueService";
 // import DashBoardCounter from "./DashBoardCounter";
 
 const SearchBoard = () => {
   const router = useRouter();
   const { userInfo } = useSelector((state) => state.user) || {};
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalClose = () => setModalOpen(false);
+  const [filterData, setFilterData] = useState({
+    maritalStatus: [""],
+    religion: "all",
+    motherTongue: [],
+    country: [],
+    education: [],
+  });
+  const [activePage, setActivePage] = useState(1);
+  const [countryList, setCountryList] = useState([]);
+  const pageSize = 5;
+
+  const { maritalStatus, religion, motherTongue, country, education } =
+    filterData;
+  const skeletons = new Array(5).fill();
+
+  const payload = {
+    page: activePage,
+    limit: pageSize,
+    sort_by: "newest",
+  };
+
+  if (maritalStatus.length > 0) {
+    payload.marital = maritalStatus;
+  }
+
+  if (motherTongue?.length !== 0) {
+    payload.motherLanguage = motherTongue;
+  }
+
+  if (country?.length !== 0) {
+    payload.country = country;
+    // payload.country = payload.country.map(function (country) {
+    //   return country.replace(/\u00A0/g, ' '); // Replace non-breaking space with a regular space
+    // });
+  }
+
+  if (education?.length !== 0) {
+    payload.education = education;
+  }
+
+  if (religion?.length !== 0) {
+    payload.religion = religion;
+  }
 
   const { data, error, loading, refetch } = useAxios(
-    "user/invitefriendship/all"
+    "user/getMatches",
+    "POST",
+    null,
+    {},
+    payload
   );
-  const {
-    data: data2,
-    error: error2,
-    loading: loading2,
-    refetch: refetch2,
-  } = useAxios("user/recent-visitors"); //todo '/user/recent-visitors'
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+
+  //for page count in the pagination component
+  const totalCount = Math.ceil(data?.total / pageSize);
+
+  useEffect(() => {
+    refetch();
+  }, [filterData, activePage]);
+
   // console.log('data', data);
 
-  // const statusSum = data?.data?.reduce((sum, item) => {
-  //     if (item.status === 'pending') {
-  //         return sum + 1;
-  //     }
-  //     return sum;
-  // }, 0);
+  const handleChange = (name, value) => {
+    setFilterData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  let acceptedCount = 0;
-  let pendingCount = 0;
+  const handlePageChange = (page) => {
+    // console.log('page', page);
+    setActivePage(page);
+  };
 
-  data?.data?.forEach((item) => {
-    if (item.status === "accepted") {
-      acceptedCount++;
-    } else if (item.status === "pending") {
-      pendingCount++;
+  const { data: data2, error: error2, loading: loading2 } = useCountry();
+
+  useEffect(() => {
+    if (!loading2?.country) {
+      const convertedList = data2?.country?.map((item) => ({
+        label: item?.name,
+        value: item?.name,
+        code: item?.iso2,
+      }));
+
+      setCountryList(convertedList);
     }
-  });
+  }, [data2]);
 
-  // console.log(userInfo);
-  const url = userInfo?.profilePicture?.url ?? imageUrl;
-
-  const {
-    location: { city, residencyStatus } = {},
-    doctrine: { caste } = {},
-    appearance: { height } = {},
-    education: { college, education } = {},
-    family: { children, livingWith } = {},
-    lifestyle: { diet, maritalStatus } = {},
-
-    profession: {
-      employer,
-      income: { min, max } = {},
-      occupation,
-      workingWith,
-    } = {},
-    trait: { aboutMe } = {},
-    phone,
-    // profilePicture: { url } = {},
-    fullName,
-    firstName,
-    lastName,
-    userId,
-    dateOfBirth,
-    postedBy,
-    religion,
-    community,
-    country,
-    isPremium,
-    isIdVerify,
-    isPhoneVerified,
-    isEmailVerified,
-  } = userInfo ?? {};
-
-  const handleClick = (num) => {
-    router.push(`/settings/?state=${num}`);
+  const handleClearFilter = () => {
+    setFilterData({
+      // ...filterData,
+      maritalStatus: [""],
+      religion: "all",
+      motherTongue: [],
+      country: [],
+      education: [],
+    });
   };
 
   return (
@@ -138,18 +170,26 @@ const SearchBoard = () => {
               />
                       
             </div>
-            <button className="btn_advance_search">Advanced Search</button>
+            <button
+              className="btn_advance_search"
+              onClick={() => setModalOpen(true)}
+            >
+              Advanced Search
+            </button>
           </div>
         </div>
         <SearchCard />
       </div>
-      <ReuseModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title="Identity Verification"
-      >
-        <VerifyModalBody closeModal={closeModal} />
-      </ReuseModal>
+      {modalOpen && (
+        <CenteredModal
+          modalOpen={modalOpen}
+          handleModalClose={handleModalClose}
+        >
+          <div className="flex flex-column flex-gap-15">
+            <AdvancedSearch />
+          </div>
+        </CenteredModal>
+      )}
     </div>
   );
 };

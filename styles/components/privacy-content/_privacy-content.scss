@@ -1,40 +1,59 @@
 .privacyContent {
-    p {}
+  p {
+  }
 
-    .all_contents {
-        padding: 10px 15px;
+  .all_contents {
+    padding: 10px 15px;
 
-        ul {
-            li {
-                color: #062539;
-                font-size: 15px;
-                font-family: "Poppins", sans-serif;
-                position: relative;
-                list-style: none;
-                padding-left: 20px;
-                margin-top: 15px;
+    ul {
+      li {
+        color: #062539;
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+        position: relative;
+        list-style: none;
+        padding-left: 20px;
+        margin-top: 15px;
 
-                a {
-                    color: black;
+        a {
+          color: black;
 
-                    &:hover {
-                        color: black;
-                        text-decoration: underline;
-                    }
-                }
-
-                &::before {
-                    position: absolute;
-                    left: 0;
-                    top: 4.5px;
-                    height: 9px;
-                    width: 9px;
-                    border-radius: 10px;
-                    content: "";
-                    background: $secondaryColorLight;
-                    display: inline-block;
-                }
-            }
+          &:hover {
+            color: black;
+            text-decoration: underline;
+          }
         }
+
+        &::before {
+          position: absolute;
+          left: 0;
+          top: 4.5px;
+          height: 9px;
+          width: 9px;
+          border-radius: 10px;
+          content: "";
+          background: $secondaryColorLight;
+          display: inline-block;
+        }
+      }
     }
+  }
+}
+
+.ComingSoon {
+  padding: 100px 0;
+  svg {
+    width: 250px;
+    height: 250px;
+  }
+
+  h1 {
+    font-size: 4em;
+    font-weight: normal;
+    text-transform: capitalize;
+    color: red;
+  }
+  .return_dashboard {
+    color: blue;
+  }
 }

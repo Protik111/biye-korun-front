@@ -21,8 +21,7 @@ const ProfileTapbar = () => {
     router.push(`/${value}`);
   };
 
-  // console.log('pathname', pathname.replace(/^\/+/, ''))
-  const tabs = ["Search", "Be Social", "Chat", "Dashboard"]; // Replace with your tab names
+  const tabs = ["search", "be Social", "chat", "dashboard"]; // Replace with your tab names
 
   const icons = [
     "tab/deactive8.svg",
@@ -43,9 +42,18 @@ const ProfileTapbar = () => {
 
   const handleTabChange = (tab) => {
     // Handle tab change logic here
-    console.log(`Selected tab: ${tab.toLowerCase()}`);
-    router.push(`/${tab.toLowerCase()}`);
+
+    console.log(`Selected tab: ${tab}`);
+    if (tab === "be Social" || tab === "chat") {
+      router.push(`/coming-soon`);
+    } else {
+      router.push(`/${tab}`);
+    }
+
+    // router.push(`/${tab}`);
   };
+
+  // console.log("pathname", pathname.replace(/^\/+/, ""));
   return (
     <div className="tapbar  mb-20 container ">
       {/* <div
@@ -137,7 +145,7 @@ const ProfileTapbar = () => {
         tabs={tabs}
         icons={icons}
         activeIcons={activeIcons}
-        initialTab={tabs[3]}
+        // initialTab={tabs[3]}
         onTabChange={handleTabChange}
       />
     </div>

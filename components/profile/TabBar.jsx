@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 const TabBar = ({
   tabs,
@@ -9,7 +9,7 @@ const TabBar = ({
   padding_value = "",
 }) => {
   const pathname = usePathname();
-  const [activeTab, setActiveTab] = useState(initialTab);
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const tabScrollRef = useRef(null);
@@ -20,6 +20,7 @@ const TabBar = ({
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    console.log("tabClick", tab);
     if (onTabChange) {
       onTabChange(tab);
     }
@@ -27,7 +28,10 @@ const TabBar = ({
 
   const scrollTabs = (scrollOffset) => {
     if (tabScrollRef.current) {
-      tabScrollRef.current.scrollBy({ left: scrollOffset, behavior: "smooth" });
+      tabScrollRef.current.scrollBy({
+        left: scrollOffset,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -35,6 +39,28 @@ const TabBar = ({
     setActiveTab(pathname.replace(/^\/+/, ""));
   }, [activeTab]);
 
+  const renderedTabs = useMemo(() => {
+    return tabs.map((tab, index) => (
+      <div
+        key={index}
+        className={`tab ${
+          activeTab === tab ? "active" : ""
+        } flex flex-gap-10 aligin-center`}
+        onClick={() => handleTabClick(tab)}
+      >
+        {icons && activeIcons && icons[index] && activeIcons[index] && (
+          <span className="tab-icon">
+            <img
+              src={activeTab === tab ? activeIcons[index] : icons[index]}
+              alt={`Icon for ${tab}`}
+            />
+          </span>
+        )}
+
+        <span>{tab}</span>
+      </div>
+    ));
+  });
   return (
     <div className="tab-bar" style={{ padding: padding_value }}>
       {/* {showLeftArrow && (
@@ -43,26 +69,7 @@ const TabBar = ({
         </button>
       )} */}
       <div className="tab-scroll" ref={tabScrollRef}>
-        {tabs.map((tab, index) => (
-          <div
-            key={index}
-            className={`tab ${
-              activeTab === tab ? "active" : ""
-            } flex flex-gap-10 aligin-center`}
-            onClick={() => handleTabClick(tab)}
-          >
-            {icons && activeIcons && icons[index] && activeIcons[index] && (
-              <span className="tab-icon">
-                <img
-                  src={activeTab === tab ? activeIcons[index] : icons[index]}
-                  alt={`Icon for ${tab}`}
-                />
-              </span>
-            )}
-
-            <span>{tab}</span>
-          </div>
-        ))}
+        {renderedTabs}
       </div>
       {/* {showRightArrow && (
         <button className="scroll-button right" onClick={() => scrollTabs(200)}>
