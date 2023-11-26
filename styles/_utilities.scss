@@ -489,7 +489,14 @@
 .secondary-text {
   color: $secondaryColor;
 }
-
+.secondary-text1 {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Inter";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
 /* Border Radius */
 .rounded {
   border-radius: 5px;

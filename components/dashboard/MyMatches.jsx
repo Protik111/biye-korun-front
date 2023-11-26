@@ -264,7 +264,7 @@ const MyMatches = () => {
               <Divider my={10}></Divider>
 
               <Radio.Group
-                onChange={(e) => handleChange("religion", e)}
+                onChange={(value) => handleInputChange("religion", value)}
                 name="religion"
                 label="Religion"
                 value={filterData.religion}

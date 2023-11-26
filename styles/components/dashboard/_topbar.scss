@@ -83,6 +83,9 @@
           transition: fill 0.3s ease; // Smooth transition for color change
         }
       }
+      span {
+        text-transform: capitalize;
+      }
     }
   }
 }
