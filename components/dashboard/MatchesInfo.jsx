@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { Button, Tabs, rem } from "@mantine/core";
 import {
@@ -9,8 +10,7 @@ import { MatchesCard } from "./MatchesCard";
 import TabBar from "../profile/TabBar";
 import { CiSearch } from "react-icons/ci";
 import AcceptedList from "../request/Accepted/AcceptedList";
-import useAxios from "@/hooks/axios/useAxios";
-
+import axios from "axios";
 
 const MatchesInfo = () => {
   const tabs = ["Connection", "Accept Invitation", "New Visitor", "Online"]; // Replace with your tab names
@@ -31,30 +31,48 @@ const MatchesInfo = () => {
     "tab/active6.svg",
   ];
 
-  const handleTabChange = (tab) => {
+  // const { data, error, loading, refetch } = useAxios(
+  //   "user/connections"
+  // );
+
+  // console.log("43 Friends", data)
+  // const { data: friends, error: errorFriends, loading: loadingFriends, postData: getFriendsData } = useAxiosPost('user/connections');
+  // const { data: pendingFriends, error: pendingError, loading: pendingLoading, postData: getPendingFriends } = useAxiosPost('user/friendship/pending',);
+  // const { data: acceptedFriends, error: acceptedError, loading: acceptedLoading, postData: getAcceptedFriends } = useAxiosPost('user/friendship/accepted');
+
+
+  // const { data: data2, error: error2, loading: loading2, postData: sendPostRequest2, } = useAxiosPost('user/connections');
+
+  // console.log(data, 'data from send')
+
+
+  const handleTabChange = async (tab) => {
     // Handle tab change logic here
     // console.log(`Selected tab: ${tab}`);
     if (tab === "friends") {
-      // const { data, error, loading, refetch } = useAxios(
-      //   "user/connections"
-      // );
+      // sendPostRequest();
+      // getFriendsData()
 
-      // console.log(data)
+      const friends = await axios.get('/user/connections')
 
+      console.log(friends)
     }
+
     if (tab === "sentRequest") {
+      // const { data, error, loading } = useAxiosPost('user/friendship/pending');
+      // getPendingFriends()
+      const pendingFriends = await axios.get('/user/friendship/pending')
 
-      // const { data, error, loading, refetch } = useAxios(
-      //   "user/invitefriendship/pending"
-      // );
-      // console.log(data)
 
+      console.log(pendingFriends)
     }
+
     if (tab === "receiveRequest") {
-      // const { data, error, loading, refetch } = useAxios("user/friendship/pending");
+      // const { data, error, loading } = useAxiosPost('user/friendship/accepted');
+      // getAcceptedFriends()
+      const acceptedFriends = await axios.get('/user/friendship/accepted')
 
-      // console.log(data)
-
+      console.log(acceptedFriends)
     }
   };
 
@@ -90,8 +108,8 @@ const MatchesInfo = () => {
           </Tabs.List>
 
           <Tabs.Panel className="tabPanel" value="friends">
-            <AcceptedList />
-            {/* <MatchesCard /> */}
+            {/* <AcceptedList /> */}
+            <MatchesCard />
           </Tabs.Panel>
           <Tabs.Panel className="tabPanel" value="sentRequest">
             <MatchesCard />

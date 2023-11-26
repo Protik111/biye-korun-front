@@ -28,6 +28,7 @@ const Basic3 = () => {
         <h3 className="text-center congrats_text_sub">
           Do you want to complete your profile?
         </h3>
+        <p className="mt-10 mb-10" style={{ color: "#F42A41", fontWeight: 'bold' }}>You’re using it FREE!</p>
         <div className="flex justify-center align-center flex-gap-10 mt-20 mb-20 ">
           <div>
             <Link href={"/profile-creation"}>
@@ -46,7 +47,7 @@ const Basic3 = () => {
         </div>
         <p>
           <b>Note:</b> If you do not complete your profile, the profile will not
-          be visible
+          be visible.
         </p>
       </div>
     </div>

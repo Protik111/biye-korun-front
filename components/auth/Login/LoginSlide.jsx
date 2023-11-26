@@ -46,24 +46,24 @@ const LoginSlider = () => {
       <h1 style={{ color: "white" }} className="hide_mobile mb-25">
         Welcome Back!
       </h1>
-      {/* <div class="image-slider">
-            <div class="slider-content">
-              <div class="slide">
+      {/* <div className="image-slider">
+            <div className="slider-content">
+              <div className="slide">
                 <img src="auth/1.png" alt="Slide 1" />
               </div>
-              <div class="slide">
+              <div className="slide">
                 <img src="auth/2.png" alt="Slide 2" />
               </div>
-              <div class="slide">
+              <div className="slide">
                 <img src="auth/3.png" alt="Slide 3" />
               </div>
-              <div class="slide">
+              <div className="slide">
                 <img src="auth/4.png" alt="Slide 3" />
               </div>
-              <div class="slide">
+              <div className="slide">
                 <img src="auth/5.png" alt="Slide 3" />
               </div>
-              <div class="slide">
+              <div className="slide">
                 <img src="auth/6.png" alt="Slide 3" />
               </div>
             </div>

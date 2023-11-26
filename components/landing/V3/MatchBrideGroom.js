@@ -52,7 +52,7 @@ export const MatchBrideGroom = () => {
           </div> */}
         </div>
         {data?.data?.length > 0 ? (
-          <div class="card-container">
+          <div className="card-container">
             {data?.data?.map((item, i) => {
               return (
                 <div className="card">
@@ -114,7 +114,7 @@ export const MatchBrideGroom = () => {
                       View Profile
                     </button>
                   </div>
-                  <div class="avatar">
+                  <div className="avatar">
                     <img
                       src={item?.profilePicture?.url?.medium || imageUrl}
                       alt={item?.name}
