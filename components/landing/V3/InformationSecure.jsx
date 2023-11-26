@@ -48,39 +48,39 @@ const InformationSecure = () => {
             Registration. Free Registration. Safe & Secure
           </p>
 
-          <ul class="icon-list">
+          <ul className="icon-list">
             <li className="authentic_li">
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Register for Free!
             </li>
             <li className="authentic_li">
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               100% human verified profiles
             </li>
             <li className="authentic_li">
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Chat, Voice & Video calling
             </li>
             <li className="authentic_li">
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Private, personalized, and highly confidential service
             </li>
             <li className="authentic_li">
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Safe and secured Matrimony site for Bangladeshi
             </li>
             <li style={{ color: "#9908F5" }}>
-              <i class="left-icon">
+              <i className="left-icon">
                 <IoMdCheckmarkCircleOutline style={{ color: "#9908F5" }} />
               </i>
               Nobody sees your name.

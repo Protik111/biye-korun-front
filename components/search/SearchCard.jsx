@@ -41,7 +41,7 @@ export const SearchCard = () => {
   return (
     <div>
       {data?.data?.length > 0 ? (
-        <div class="card-container">
+        <div className="card-container">
           {data?.data?.map((item, i) => {
             return (
               <div className="card">
@@ -85,9 +85,8 @@ export const SearchCard = () => {
                         `5 feet 10 inches`}
                     </p>
                     <p className="paragraphV3 text_bold">
-                      {`${item?.location.city ? item?.location.city : ""} ${
-                        item?.location.country
-                      }`}
+                      {`${item?.location.city ? item?.location.city : ""} ${item?.location.country
+                        }`}
                     </p>
                   </div>
                 </div>
@@ -109,7 +108,7 @@ export const SearchCard = () => {
 
                   <button
                     className="custom-button custom_btn_size "
-                    // onClick={handleRedirect}
+                  // onClick={handleRedirect}
                   >
                     Send Request
                   </button>
@@ -122,7 +121,7 @@ export const SearchCard = () => {
                     Button
                   </Button> */}
                 </div>
-                <div class="avatar">
+                <div className="avatar">
                   <img
                     src={item?.profilePicture?.url?.medium || imageUrl}
                     alt={item?.name}
