@@ -19,110 +19,20 @@ import {
 import useCountry from "@/hooks/common/useCountry";
 import { btnBackground } from "@/styles/library/mantine";
 
-const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
-  const [filterData, setFilterData] = useState({
-    maritalStatus: [""],
-    religion: "all",
-    motherTongue: [],
-    country: [],
-    education: [],
-  });
+const AdvancedSearch = ({
+  handleClearFilter,
+  handleChange,
+  filterData,
+  countryList,
+}) => {
   const [activePage, setActivePage] = useState(1);
-  const [countryList, setCountryList] = useState([]);
   const pageSize = 5;
 
-  const { maritalStatus, religion, motherTongue, country, education } =
-    filterData;
   const skeletons = new Array(5).fill();
 
-  const payload = {
-    page: activePage,
-    limit: pageSize,
-    sort_by: "newest",
-  };
-
-  if (maritalStatus.length > 0) {
-    payload.marital = maritalStatus;
-  }
-
-  if (motherTongue?.length !== 0) {
-    payload.motherLanguage = motherTongue;
-  }
-
-  if (country?.length !== 0) {
-    payload.country = country;
-    // payload.country = payload.country.map(function (country) {
-    //   return country.replace(/\u00A0/g, ' '); // Replace non-breaking space with a regular space
-    // });
-  }
-
-  if (education?.length !== 0) {
-    payload.education = education;
-  }
-
-  if (religion?.length !== 0) {
-    payload.religion = religion;
-  }
-
-  const { data, error, loading, refetch } = useAxios(
-    "user/getMatches",
-    "POST",
-    null,
-    {},
-    payload
-  );
-
-  //for page count in the pagination component
-  const totalCount = Math.ceil(data?.total / pageSize);
-
-  useEffect(() => {
-    refetch();
-  }, [filterData, activePage]);
-
-  // console.log('data', data);
-
-  //   const handleChange = (name, value) => {
-  //     setFilterData((prev) => ({
-  //       ...prev,
-  //       [name]: value,
-  //     }));
-  //   };
-
-  const handlePageChange = (page) => {
-    // console.log('page', page);
-    setActivePage(page);
-  };
-
-  const { data: data2, error: error2, loading: loading2 } = useCountry();
-
-  useEffect(() => {
-    if (!loading2?.country) {
-      const convertedList = data2?.country?.map((item) => ({
-        label: item?.name,
-        value: item?.name,
-        code: item?.iso2,
-      }));
-
-      setCountryList(convertedList);
-    }
-  }, [data2]);
-
-  //   const handleClearFilter = () => {
-  //     setFilterData({
-  //       // ...filterData,
-  //       maritalStatus: [""],
-  //       religion: "all",
-  //       motherTongue: [],
-  //       country: [],
-  //       education: [],
-  //     });
-  //   };
-  const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    console.log("event", e);
+  const handleInputChange = (name, value) => {
     handleChange(name, value);
   };
-  console.log("data", data);
 
   return (
     <div>
@@ -148,7 +58,7 @@ const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
             <div className="requestBox-container1">
               <Divider my={10}></Divider>
               <Radio.Group
-                onChange={(e) => handleInputChange("religion", e)}
+                onChange={(value) => handleInputChange("religion", value)}
                 name="religion"
                 label="Religion"
                 value={filterData.religion}
@@ -170,7 +80,7 @@ const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
               <Divider my={10}></Divider>
 
               <Checkbox.Group
-                onChange={(e) => handleChange("maritalStatus", e)}
+                onChange={(e) => handleInputChange("maritalStatus", e)}
                 name="maritalStatus"
                 defaultValue={["All"]}
                 label="Marital Status"
@@ -208,7 +118,7 @@ const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
                 data={communities}
                 value={filterData.motherTongue}
                 name="motherTongue"
-                onChange={(event) => handleChange("motherTongue", event)}
+                onChange={(event) => handleInputChange("motherTongue", event)}
                 searchable
               />
               <br />
@@ -225,7 +135,7 @@ const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
                 data={countryList}
                 value={filterData.country}
                 name="country"
-                onChange={(event) => handleChange("country", event)}
+                onChange={(event) => handleInputChange("country", event)}
                 searchable
               />
 
@@ -253,7 +163,7 @@ const AdvancedSearch = ({ handleClearFilter, handleChange }) => {
                 groupKey="label"
                 value={filterData.education}
                 name="education"
-                onChange={(event) => handleChange("education", event)}
+                onChange={(event) => handleInputChange("education", event)}
                 searchable
               />
               <br />
