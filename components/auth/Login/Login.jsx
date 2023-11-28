@@ -97,8 +97,9 @@ const LoginComp = () => {
               configureAxiosHeader();
               dispatch(loadUser());
               dispatch(loadUserData());
+              window.location.href = "/dashboard";
             }
-            window.location.href = "/dashboard";
+            // window.location.href = "/dashboard";
           } else if (login.rejected.match(result)) {
             // Request was rejected, handle the error here
             const errorMessage = result.payload;

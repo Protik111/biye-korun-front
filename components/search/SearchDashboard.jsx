@@ -30,6 +30,8 @@ import CenteredModal from "../global/CenteredModal";
 import AdvancedSearch from "./AdvancedSearch";
 import { useEffect } from "react";
 import useCountry from "@/hooks/common/useCountry";
+import NoDataFound from "../global/NoDataFound";
+import CardSkeleton from "../global/CardSkeleton";
 // import UniqueService from "./UniqueService";
 // import DashBoardCounter from "./DashBoardCounter";
 
@@ -69,9 +71,6 @@ const SearchBoard = () => {
 
   if (country?.length !== 0) {
     payload.country = country;
-    // payload.country = payload.country.map(function (country) {
-    //   return country.replace(/\u00A0/g, ' '); // Replace non-breaking space with a regular space
-    // });
   }
 
   if (education?.length !== 0) {
@@ -178,7 +177,43 @@ const SearchBoard = () => {
             </button>
           </div>
         </div>
-        <SearchCard />
+        {/* <SearchCard /> */}
+
+        {!loading && data?.data?.length > 0 ? (
+          data?.data?.map((profile, i) => (
+            <>
+              <div key={i} className="mt-15">
+                <SearchCard
+                  profile={profile}
+                  loading={loading}
+                  refetch={refetch}
+                ></SearchCard>
+              </div>
+            </>
+          ))
+        ) : !loading && data?.data?.length === 0 ? (
+          <div className="flex justify-center flex-column align-center">
+            {/* <h2>No Matches Found!</h2> */}
+            <NoDataFound></NoDataFound>
+          </div>
+        ) : loading ? (
+          <div className="container-box-bg p-30 mt-20 min-vh-75">
+            <CardSkeleton></CardSkeleton>
+          </div>
+        ) : (
+          <></>
+        )}
+
+        {data?.data?.length > 0 && (
+          <div className="flex justify-center mt-15 px-10">
+            <Pagination
+              color="pink"
+              value={activePage}
+              onChange={handlePageChange}
+              total={totalCount}
+            />
+          </div>
+        )}
       </div>
       {modalOpen && (
         <CenteredModal
@@ -186,7 +221,12 @@ const SearchBoard = () => {
           handleModalClose={handleModalClose}
         >
           <div className="flex flex-column flex-gap-15">
-            <AdvancedSearch />
+            <AdvancedSearch
+              handleClearFilter={handleClearFilter}
+              handleChange={handleChange}
+              countryList={countryList}
+              filterData={filterData}
+            />
           </div>
         </CenteredModal>
       )}
