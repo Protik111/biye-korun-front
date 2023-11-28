@@ -15,7 +15,7 @@ export const HeroSection = () => {
         <div className="column-1">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="/landing/logo-svg.svg" alt="Biye Korun Logo" />
+              <img src="/landing/Ai-logo-main.png" alt="Biye Korun Logo" />
             </Link>
             <div className="border_down"></div>
             <div className="form-btn">

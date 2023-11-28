@@ -102,7 +102,7 @@ function Navbar() {
         <nav className="container">
           <div className="navbarRoot__logo">
             <Link href="/">
-              <img src="logoNew.svg" alt="Biye Korun Logo" />
+              <img src="Ai-logo-main.png" alt="Biye Korun Logo" />
             </Link>
           </div>
           {/* //TOO in the next div className={`links ${clicked ? "active" : ""}`} */}

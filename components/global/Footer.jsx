@@ -20,7 +20,7 @@ const Footer = () => {
       </div>
       <div className="footer container">
         <div className="footer__addr">
-          <img src="logoNew.svg" alt="logo" loading="lazy" />
+          <img src="Ai-logo-main.png" alt="logo" loading="lazy" />
           <p className="mt-10">
             Bridging Hearts with Trust. Discover your perfect life partner
             through our secure and intuitive platform. Celebrate love,
