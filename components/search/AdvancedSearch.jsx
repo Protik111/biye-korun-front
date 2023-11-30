@@ -24,6 +24,7 @@ const AdvancedSearch = ({
   handleChange,
   filterData,
   countryList,
+  handleModalClose
 }) => {
   const [activePage, setActivePage] = useState(1);
   const pageSize = 5;
@@ -176,11 +177,10 @@ const AdvancedSearch = ({
                   <Radio color="pink" value="commerce" label="Commerce" />
                 </Group>
               </Radio.Group> */}
-
               <Divider my={10}></Divider>
               <br />
-              <Button size="md" fullWidth radius="xl" style={btnBackground}>
-                Search
+              <Button onClick={() => handleModalClose()} size="md" fullWidth radius="xl" style={btnBackground}>
+                Close
               </Button>
               <br />
             </div>
