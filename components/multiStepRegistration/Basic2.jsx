@@ -84,6 +84,7 @@ const Basic2 = () => {
 
       <br />
 
+
       <DatePickerInput
         clearable
         // defaultValue={today}
@@ -102,7 +103,6 @@ const Basic2 = () => {
         //disableBeforeDate={minDate} // Use the disableDate function
         maxDate={generate18YearBefore()}
       />
-
       <br />
     </div>
   );

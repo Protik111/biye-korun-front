@@ -6,15 +6,12 @@ export function generate18YearBefore() {
 
     const targetDate = new Date(year, month, day);
 
-    const monthFormat = targetDate.toLocaleDateString();
-
-    // convert from 6/1/2005 to 2005/01/06
-
-    const parts = monthFormat.split("/");
-
-    //.slice(-2) method in JavaScript is used to extract the last two characters from a string
-    const convertedDate = parts[2] + ',' + ('0' + parts[0]).slice(-2) + ',' + ('0' + parts[1]).slice(-2);
+    // Use toLocaleDateString with a specific format
+    const convertedDate = targetDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
 
     return convertedDate;
-
 }
