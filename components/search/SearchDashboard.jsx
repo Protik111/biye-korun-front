@@ -5,8 +5,9 @@ import {
   Divider,
   Progress,
   Accordion,
+  Pagination,
 } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ThemeIconComp from "../global/ThemeIconComp";
 import { IconCheck, IconLock, IconX } from "@tabler/icons-react";
 import { btnBackground } from "@/styles/library/mantine";
@@ -32,6 +33,10 @@ import { useEffect } from "react";
 import useCountry from "@/hooks/common/useCountry";
 import NoDataFound from "../global/NoDataFound";
 import CardSkeleton from "../global/CardSkeleton";
+import { useSetState } from "@mantine/hooks";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { notifyInfo } from "@/utils/showNotification";
 // import UniqueService from "./UniqueService";
 // import DashBoardCounter from "./DashBoardCounter";
 
@@ -40,18 +45,24 @@ const SearchBoard = () => {
   const { userInfo } = useSelector((state) => state.user) || {};
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalClose = () => setModalOpen(false);
+
+  const [searchInput, setSearchInput] = useState("");
+  const [matchUrl, setMatchurl] = useState('user/getMatches')
+
   const [filterData, setFilterData] = useState({
-    maritalStatus: [""],
-    religion: "all",
+    marital: ["all"],
+    religion: "",
     motherTongue: [],
     country: [],
     education: [],
+    query: ''
   });
+
   const [activePage, setActivePage] = useState(1);
   const [countryList, setCountryList] = useState([]);
-  const pageSize = 5;
+  const pageSize = 9;
 
-  const { maritalStatus, religion, motherTongue, country, education } =
+  const { marital, religion, nativeLanguage, country, education, query } =
     filterData;
   const skeletons = new Array(5).fill();
 
@@ -61,12 +72,12 @@ const SearchBoard = () => {
     sort_by: "newest",
   };
 
-  if (maritalStatus.length > 0) {
-    payload.marital = maritalStatus;
+  if (marital.length > 0) {
+    payload.marital = marital;
   }
 
-  if (motherTongue?.length !== 0) {
-    payload.motherLanguage = motherTongue;
+  if (nativeLanguage?.length !== 0) {
+    payload.nativeLanguage = nativeLanguage;
   }
 
   if (country?.length !== 0) {
@@ -81,8 +92,12 @@ const SearchBoard = () => {
     payload.religion = religion;
   }
 
+  if (query?.length !== 0) {
+    payload.query = query
+  }
+
   const { data, error, loading, refetch } = useAxios(
-    "user/getMatches",
+    matchUrl,
     "POST",
     null,
     {},
@@ -95,6 +110,11 @@ const SearchBoard = () => {
   useEffect(() => {
     refetch();
   }, [filterData, activePage]);
+
+
+  useEffect(() => {
+    setMatchurl('user/getMatches')
+  }, [])
 
   // console.log('data', data);
 
@@ -125,15 +145,37 @@ const SearchBoard = () => {
   }, [data2]);
 
   const handleClearFilter = () => {
+    setMatchurl('user/getMatches')
+
     setFilterData({
-      // ...filterData,
-      maritalStatus: [""],
-      religion: "all",
+      marital: ["all"],
+      religion: "",
       motherTongue: [],
       country: [],
       education: [],
+      query: ""
     });
+
+    setModalOpen(false)
   };
+
+  const handleSearch = () => {
+    if (searchInput?.length !== 0) {
+      setMatchurl('user/search')
+      setFilterData((prev) => ({
+        ...prev,
+        ['query']: searchInput,
+      }));
+      refetch();
+    } else {
+      setFilterData((prev) => ({
+        ...prev,
+        ['query']: "",
+      }));
+      setMatchurl('user/getMatches')
+      refetch();
+    }
+  }
 
   return (
     <div className="myDashboard container">
@@ -145,7 +187,13 @@ const SearchBoard = () => {
           </div>
           <div className="flex ml-15">
             <div className="search-input-container">
-              <button className="search_btn">
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search"
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <button className="search_btn" onClick={() => handleSearch()}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -162,12 +210,6 @@ const SearchBoard = () => {
                   />
                 </svg>
               </button>
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search"
-              />
-                      
             </div>
             <button
               className="btn_advance_search"
@@ -178,10 +220,9 @@ const SearchBoard = () => {
           </div>
         </div>
         {/* <SearchCard /> */}
-
-        {!loading && data?.data?.length > 0 ? (
-          data?.data?.map((profile, i) => (
-            <>
+        {!loading && data?.data?.length > 0 ?
+          <div className="grid grid-cols-3 grid-cols-3-responsive">
+            {data?.data?.map((profile, i) => (
               <div key={i} className="mt-15">
                 <SearchCard
                   profile={profile}
@@ -189,32 +230,32 @@ const SearchBoard = () => {
                   refetch={refetch}
                 ></SearchCard>
               </div>
-            </>
-          ))
-        ) : !loading && data?.data?.length === 0 ? (
-          <div className="flex justify-center flex-column align-center">
-            {/* <h2>No Matches Found!</h2> */}
-            <NoDataFound></NoDataFound>
-          </div>
-        ) : loading ? (
-          <div className="container-box-bg p-30 mt-20 min-vh-75">
-            <CardSkeleton></CardSkeleton>
-          </div>
-        ) : (
-          <></>
-        )}
-
-        {data?.data?.length > 0 && (
-          <div className="flex justify-center mt-15 px-10">
-            <Pagination
-              color="pink"
-              value={activePage}
-              onChange={handlePageChange}
-              total={totalCount}
-            />
-          </div>
-        )}
+            ))
+            }
+          </div> : !loading && data?.data?.length === 0 ? (
+            <div className="flex justify-center flex-column align-center">
+              {/* <h2>No Matches Found!</h2> */}
+              <NoDataFound></NoDataFound>
+            </div>
+          ) : loading ? (
+            <div className="container-box-bg p-30 mt-20 min-vh-75">
+              <CardSkeleton></CardSkeleton>
+            </div>
+          ) : (
+            <></>
+          )}
       </div>
+
+      {data?.data?.length > 0 && (
+        <div className="flex justify-center px-10 py-30 search-pagination">
+          <Pagination
+            color="pink"
+            value={activePage}
+            onChange={handlePageChange}
+            total={totalCount}
+          />
+        </div>
+      )}
       {modalOpen && (
         <CenteredModal
           modalOpen={modalOpen}
@@ -223,6 +264,7 @@ const SearchBoard = () => {
           <div className="flex flex-column flex-gap-15">
             <AdvancedSearch
               handleClearFilter={handleClearFilter}
+              handleModalClose={handleModalClose}
               handleChange={handleChange}
               countryList={countryList}
               filterData={filterData}

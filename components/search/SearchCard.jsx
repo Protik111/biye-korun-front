@@ -85,9 +85,8 @@ export const SearchCard = ({ profile, loading: loadingPrev, refetch }) => {
                   `5 feet 10 inches`}
               </p>
               <p className="paragraphV3 text_bold">
-                {`${profile?.location.city ? profile?.location.city : ""} ${
-                  profile?.location.country
-                }`}
+                {`${profile?.location.city ? profile?.location.city : ""} ${profile?.location.country
+                  }`}
               </p>
             </div>
           </div>
@@ -109,7 +108,7 @@ export const SearchCard = ({ profile, loading: loadingPrev, refetch }) => {
 
             <button
               className="custom-button custom_btn_size "
-              // onClick={handleRedirect}
+            // onClick={handleRedirect}
             >
               Send Request
             </button>

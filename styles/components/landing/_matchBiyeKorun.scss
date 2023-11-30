@@ -93,13 +93,16 @@
       .header {
         padding: 0 20px;
         padding-top: 40px;
+
         @include getDown(600px) {
           padding: 0 10px;
           padding-top: 40px;
         }
+
         .name {
           font-size: 30px;
           margin: 0;
+
           @include getDown(600px) {
             font-size: 25px;
             font-weight: 600px !important;
@@ -119,13 +122,16 @@
         font-size: 14px;
         height: 109px;
         flex-grow: 1;
+
         @include getDown(600px) {
           padding: 0 10px;
         }
+
         .details p {
           flex: 1;
           text-align: left;
           font-size: 14px;
+
           @include getDown(600px) {
             font-size: 12px;
             margin: 6px 0;
@@ -149,6 +155,7 @@
           height: 100%;
           object-fit: cover;
         }
+
         @include getDown(600px) {
           width: 80px;
           height: 80px;
