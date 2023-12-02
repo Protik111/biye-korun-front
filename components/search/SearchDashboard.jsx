@@ -37,6 +37,7 @@ import { useSetState } from "@mantine/hooks";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { notifyInfo } from "@/utils/showNotification";
+import UserCard from "../user-card/UserCard";
 // import UniqueService from "./UniqueService";
 // import DashBoardCounter from "./DashBoardCounter";
 
@@ -219,8 +220,42 @@ const SearchBoard = () => {
             </button>
           </div>
         </div>
+        <div className="grid grid-cols-3 grid-cols-3-responsive grid-gap-30 px-30 pb-30">
+          {
+            !loading && data?.data?.length > 0 ?
+              data?.data?.map((profile, i) => <UserCard key={i} profile={profile} />)
+              :
+              loading &&
+              <>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+                <div className="container-box-bg p-30 mt-20 ">
+                  <CardSkeleton></CardSkeleton>
+                </div>
+              </>
+          }
+        </div>
+        {
+          !loading && data?.data?.length === 0 &&
+          <div className="place-center">
+            <NoDataFound></NoDataFound>
+          </div>
+        }
         {/* <SearchCard /> */}
-        {!loading && data?.data?.length > 0 ?
+        {/* {!loading && data?.data?.length > 0 ?
           <div className="grid grid-cols-3 grid-cols-3-responsive">
             {data?.data?.map((profile, i) => (
               <div key={i} className="mt-15">
@@ -234,7 +269,6 @@ const SearchBoard = () => {
             }
           </div> : !loading && data?.data?.length === 0 ? (
             <div className="flex justify-center flex-column align-center">
-              {/* <h2>No Matches Found!</h2> */}
               <NoDataFound></NoDataFound>
             </div>
           ) : loading ? (
@@ -243,7 +277,7 @@ const SearchBoard = () => {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
       </div>
 
       {data?.data?.length > 0 && (

@@ -88,12 +88,15 @@
 .flex-basis-50 {
   flex-basis: 50px;
 }
+
 .flex-basis-fifty {
   flex-basis: 47%;
+
   @include getDown(400px) {
     flex-basis: 44%;
   }
 }
+
 /* CSS Grid */
 .grid {
   display: grid;
@@ -137,6 +140,10 @@
 
 .grid-gap-20 {
   gap: 20px;
+}
+
+.grid-gap-30 {
+  gap: 30px;
 }
 
 .place-center {
@@ -489,6 +496,7 @@
 .secondary-text {
   color: $secondaryColor;
 }
+
 .secondary-text1 {
   color: rgba(0, 0, 0, 0.8);
   font-family: "Inter";
@@ -497,6 +505,7 @@
   font-weight: 600;
   line-height: normal;
 }
+
 /* Border Radius */
 .rounded {
   border-radius: 5px;

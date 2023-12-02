@@ -16,22 +16,9 @@ import { useEffect } from "react";
 import useAnimation from "@/hooks/common/useAnimation";
 
 export const SearchCard = ({ profile, loading: loadingPrev, refetch }) => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  // const { isAuthenticated } = useSelector((state) => state.auth);
   // const { data, error, loading, refetch } = useAxios("user/public-profile");
-  const router = useRouter();
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleModalClose = () => setModalOpen(false);
-
-  const handleRegister = () => {
-    router.push("/login");
-  };
-
-  const handleRedirect = () => {
-    router.push("/login");
-  };
-
+  // const router = useRouter();
   const { makeAnimation } = useAnimation(600);
 
   useEffect(() => {
@@ -77,8 +64,8 @@ export const SearchCard = ({ profile, loading: loadingPrev, refetch }) => {
               </p>
               <p className="paragraphV3">
                 {" "}
-                {profile?.dateOfBirth
-                  ? `${calculateAge(profile?.dateOfBirth)} years`
+                {profile?.basicInfo?.dateOfBirth
+                  ? `${calculateAge(profile?.basicInfo?.dateOfBirth)} years`
                   : "18 years"}
                 ,{" "}
                 {heightCalculator(profile?.basicInfo?.height) ||

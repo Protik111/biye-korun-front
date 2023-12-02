@@ -162,41 +162,36 @@ body {
     background: transparent !important;
     outline: none !important;
     color: white !important;
-    background: linear-gradient(
-        0deg,
+    background: linear-gradient(0deg,
         rgba(255, 255, 255, 0.12),
-        rgba(255, 255, 255, 0.12)
-      ),
-      linear-gradient(
-        0deg,
+        rgba(255, 255, 255, 0.12)),
+      linear-gradient(0deg,
         rgba(255, 255, 255, 0.12),
-        rgba(255, 255, 255, 0.12)
-      ) !important;
+        rgba(255, 255, 255, 0.12)) !important;
     border: 1px solid rgba(196, 191, 191, 0.8) !important;
     color: white;
     height: 3.625rem !important;
   }
+
   .react-international-phone-country-selector-button {
     background: transparent !important;
     outline: none !important;
     color: white !important;
   }
+
   .react-international-phone-country-selector-button {
     height: 3.625rem !important;
-    background: linear-gradient(
-        0deg,
+    background: linear-gradient(0deg,
         rgba(255, 255, 255, 0.12),
-        rgba(255, 255, 255, 0.12)
-      ),
-      linear-gradient(
-        0deg,
+        rgba(255, 255, 255, 0.12)),
+      linear-gradient(0deg,
         rgba(255, 255, 255, 0.12),
-        rgba(255, 255, 255, 0.12)
-      ) !important;
+        rgba(255, 255, 255, 0.12)) !important;
     border: 1px solid rgba(196, 191, 191, 0.8) !important;
     color: white;
   }
 }
+
 //overriding react-international-phone-input end
 
 //overriding mantine autocomplete scrollbar
@@ -262,4 +257,41 @@ body {
 //notification
 .noti {
   font-weight: 500;
+}
+
+
+.btn-fill {
+  padding: 12px 20px;
+  background-color: #F42A41;
+  color: #FFFFFF;
+  font-family: "inter";
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 32px;
+  cursor: pointer;
+}
+
+.btn-light {
+  background-color: rgba(244, 42, 65, 0.1);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 32px;
+  font-family: 'inter';
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(244, 42, 65, 1);
+  cursor: pointer;
+}
+
+.btn-icon {
+  background-color: rgba(244, 42, 65, 0.1);
+  height: 42px;
+  width: 42px;
+  border: none;
+  border-radius: 50%;
+  font-family: 'inter';
+  color: rgba(244, 42, 65, 1);
+  padding-top: 5px;
+  cursor: pointer;
 }
