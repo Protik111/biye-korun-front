@@ -1,13 +1,6 @@
-import Navbar from '@/components/global/Navbar'
 import '../globals.scss'
-// Ai-logo-main.png
 
-export function generateMetadata({ params }) {
-  const details = params
-
-  if (!details) {
-    return {}
-  }
+export function generateMetadata() {
   const url = process.env.CLIENT_SITE_URL;
 
   // const ogUrl = new URL(`${url}/api/og`)
