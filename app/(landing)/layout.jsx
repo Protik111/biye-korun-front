@@ -29,7 +29,7 @@ export function generateMetadata({ params }) {
       url: url,
       images: [
         {
-          url: "Ai-logo-main.png",
+          url: `${url}/Ai-logo-main.png`,
           alt: "Biye Korun | A Matrimony service"
         }
       ]
@@ -40,7 +40,7 @@ export function generateMetadata({ params }) {
       description: "A matrimony service to find people hapiness",
       images: [
         {
-          url: 'Ai-logo-main.png',
+          url: `${url}/Ai-logo-main.png`,
           alt: "Biye Korun | A Matrimony service"
         }
       ]
