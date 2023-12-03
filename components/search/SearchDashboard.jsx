@@ -97,7 +97,7 @@ const SearchBoard = () => {
     payload.query = query
   }
 
-  const { data, error, loading, refetch } = useAxios(
+  const { data, error, loading, refetch, setData } = useAxios(
     matchUrl,
     "POST",
     null,
@@ -178,6 +178,30 @@ const SearchBoard = () => {
     }
   }
 
+  const handleSendRequest = (userId) => {
+    axios.post('/user/single-invite', { recipient: userId }).then(res => {
+      if (res.status === 200) {
+        refetch()
+      }
+    }).catch(err => {
+      notifyInfo("Friend request failed, Try again.")
+    })
+  }
+
+  const handleFriendsUpdate = (friendshipId, status) => {
+    axios.patch('/user/updatefriends', { status: status, friendshipId: friendshipId }).then(res => {
+      if (res.status === 200) {
+        refetch()
+      }
+    }).catch(err => {
+      notifyInfo(`Friend request ${status} failed, Try again.`)
+    })
+  }
+
+
+
+
+
   return (
     <div className="myDashboard container">
       <div className="search_main pt-25">
@@ -223,7 +247,7 @@ const SearchBoard = () => {
         <div className="grid grid-cols-3 grid-cols-3-responsive grid-gap-30 px-30 pb-30">
           {
             !loading && data?.data?.length > 0 ?
-              data?.data?.map((profile, i) => <UserCard key={i} profile={profile} />)
+              data?.data?.map((profile, i) => <UserCard key={i} index={i} profile={profile} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
               :
               loading &&
               <>

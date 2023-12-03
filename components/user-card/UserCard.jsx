@@ -9,9 +9,9 @@ import { useSelector } from 'react-redux';
 const UserCard = (props) => {
     const { userInfo } = useSelector((state) => state.user);
 
-    const { profile } = props
+    const { profile, handleSendRequest, handleFriendsUpdate } = props
 
-    console.log(profile)
+    // console.log(profile)
 
     return (
         <>
@@ -78,17 +78,17 @@ const UserCard = (props) => {
                                         <>
                                             {
                                                 profile?.friendships === null &&
-                                                <button className='btn-fill'>Send Request</button>
+                                                <button className='btn-fill' onClick={() => handleSendRequest(profile?._id)}>Send Request</button>
                                             }
                                             {
                                                 profile?.friendships !== null && profile?.friendships?.requester === userInfo?._id &&
-                                                <button className='btn-light'>Cancel Request</button>
+                                                <button className='btn-light' onClick={() => handleFriendsUpdate(profile?.friendships?._id, 'cancel')}>Cancel Request</button>
                                             }
                                             {
                                                 profile?.friendships !== null && profile?.friendships?.recipient === userInfo?._id &&
                                                 <>
-                                                    <button className='btn-fill' style={{ marginRight: "8px" }}>Accept</button>
-                                                    <button className='btn-light'>Decline</button>
+                                                    <button className='btn-fill' style={{ marginRight: "8px" }} onClick={() => handleFriendsUpdate(profile?.friendships?._id, 'accepted')}>Accept</button>
+                                                    <button className='btn-light' onClick={() => handleFriendsUpdate(profile?.friendships?._id, 'declined')}>Decline</button>
                                                 </>
                                             }
                                         </>
