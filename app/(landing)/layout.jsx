@@ -13,7 +13,7 @@ export function generateMetadata({ params }) {
   const ogUrl = new URL(`${url}/api/og`)
   ogUrl.searchParams.set('title', "Biye Korun | A Matrimony service")
   ogUrl.searchParams.set('author', "Biye Korun")
-  const dynamicImageUrl = `${url}/Ai-logo-main.png`;
+  const dynamicImageUrl = `/Ai-logo-main.png`;
   ogUrl.searchParams.set('cover', dynamicImageUrl)
 
   return {
