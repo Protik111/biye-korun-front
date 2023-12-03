@@ -10,11 +10,11 @@ export function generateMetadata({ params }) {
   }
   const url = process.env.CLIENT_SITE_URL;
 
-  const ogUrl = new URL(`${url}/api/og`)
-  ogUrl.searchParams.set('title', "Biye Korun | A Matrimony service");
-  ogUrl.searchParams.set('author', "Biye Korun");
-  const dynamicImageUrl = `/Ai-logo-main.png`;
-  ogUrl.searchParams.set('cover', dynamicImageUrl);
+  // const ogUrl = new URL(`${url}/api/og`)
+  // ogUrl.searchParams.set('title', "Biye Korun | A Matrimony service");
+  // ogUrl.searchParams.set('author', "Biye Korun");
+
+  // ogUrl.searchParams.set('cover', 'Ai-logo-main.png');
 
   return {
     title: "Biye Korun",
@@ -29,7 +29,7 @@ export function generateMetadata({ params }) {
       url: url,
       images: [
         {
-          url: ogUrl.toString(),
+          url: "Ai-logo-main.png",
           alt: "Biye Korun | A Matrimony service"
         }
       ]
@@ -40,7 +40,7 @@ export function generateMetadata({ params }) {
       description: "A matrimony service to find people hapiness",
       images: [
         {
-          url: ogUrl.toString(),
+          url: 'Ai-logo-main.png',
           alt: "Biye Korun | A Matrimony service"
         }
       ]
