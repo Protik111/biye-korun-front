@@ -199,7 +199,15 @@ const SearchBoard = () => {
   }
 
 
-
+  const handleFavorite = (userId) => {
+    axios.post('/user/favourite', { userId }).then(res => {
+      if (res.status === 200) {
+        refetch()
+      }
+    }).catch(err => {
+      notifyInfo(`Add/Remove Favorite failed`);
+    })
+  }
 
 
   return (
@@ -247,7 +255,7 @@ const SearchBoard = () => {
         <div className="grid grid-cols-3 grid-cols-3-responsive grid-gap-30 px-30 pb-30">
           {
             !loading && data?.data?.length > 0 ?
-              data?.data?.map((profile, i) => <UserCard key={i} index={i} profile={profile} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
+              data?.data?.map((profile, i) => <UserCard key={i} index={i} profile={profile} handleFavorite={handleFavorite} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
               :
               loading &&
               <>

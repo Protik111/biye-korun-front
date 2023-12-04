@@ -167,7 +167,7 @@ const AdvancedSearch = ({
                 onChange={(event) => handleInputChange("education", event)}
                 searchable
               />
-              <br />
+              {/* <br /> */}
               {/* <Radio.Group name="educationArea" label="Education Area">
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
@@ -177,11 +177,11 @@ const AdvancedSearch = ({
                   <Radio color="pink" value="commerce" label="Commerce" />
                 </Group>
               </Radio.Group> */}
-              <Divider my={10}></Divider>
-              <br />
-              <Button onClick={() => handleModalClose()} size="md" fullWidth radius="xl" style={btnBackground}>
+              {/* <Divider my={10}></Divider> */}
+              {/* <br /> */}
+              {/* <Button onClick={() => handleModalClose()} size="md" fullWidth radius="xl" style={btnBackground}>
                 Close
-              </Button>
+              </Button> */}
               <br />
             </div>
           </div>
