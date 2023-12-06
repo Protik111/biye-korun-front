@@ -148,6 +148,8 @@ const SearchBoard = () => {
   const handleClearFilter = () => {
     setMatchurl('user/getMatches')
 
+    setActivePage(1);
+
     setFilterData({
       marital: ["all"],
       religion: "",
@@ -161,6 +163,8 @@ const SearchBoard = () => {
   };
 
   const handleSearch = () => {
+    setActivePage(1);
+
     if (searchInput?.length !== 0) {
       setMatchurl('user/search')
       setFilterData((prev) => ({
