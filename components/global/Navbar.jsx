@@ -120,17 +120,14 @@ function Navbar() {
             {/* <a href="/my-matches">Dashboard</a> */}
             {/* <a href="">Help</a> */}
 
-            <div className="search-input-container">
-              {/* <i className="search-icon fas fa-search"></i> */}
+            {/* <div className="search-input-container">
               <CiSearch className="search-icon" />
               <input
                 type="text"
                 className="search-input"
                 placeholder="Search..."
-                // value={value}
-                // onChange={onChange}
               />
-            </div>
+            </div> */}
 
             {!isAuthenticated ? (
               <Link href="/login">
@@ -159,7 +156,7 @@ function Navbar() {
                     shadow="lg"
                   >
                     {notifications?.filter((item) => !item.opened).length >
-                    0 ? (
+                      0 ? (
                       <Menu.Target className="indicator_m">
                         <Indicator
                           color="red"
@@ -202,9 +199,8 @@ function Navbar() {
                       {notifications
                         ?.map((item, i) => (
                           <Menu.Item
-                            className={`${
-                              item.opened ? "noti-light" : "noti-gray"
-                            }`}
+                            className={`${item.opened ? "noti-light" : "noti-gray"
+                              }`}
                             onClick={() => notificationMarkRead(item)}
                           >
                             <div className="flex align-center flex-gap-15">
