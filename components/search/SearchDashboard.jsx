@@ -166,19 +166,23 @@ const SearchBoard = () => {
     setActivePage(1);
 
     if (searchInput?.length !== 0) {
-      setMatchurl('user/search')
       setFilterData((prev) => ({
         ...prev,
         ['query']: searchInput,
       }));
-      refetch();
+
+      setMatchurl('user/search', () => {
+        refetch();
+      })
+
     } else {
       setFilterData((prev) => ({
         ...prev,
         ['query']: "",
       }));
-      setMatchurl('user/getMatches')
-      refetch();
+      setMatchurl('user/getMatches', () => {
+        refetch();
+      })
     }
   }
 
