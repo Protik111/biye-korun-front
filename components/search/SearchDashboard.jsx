@@ -210,6 +210,13 @@ const SearchBoard = () => {
   }
 
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  };
+
+
   return (
     <div className="myDashboard container">
       <div className="search_main pt-25">
@@ -223,8 +230,9 @@ const SearchBoard = () => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search"
+                placeholder="Search by using first name, last name and user id"
                 onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
               <button className="search_btn" onClick={() => handleSearch()}>
                 <svg
