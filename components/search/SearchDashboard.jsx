@@ -224,6 +224,14 @@ const SearchBoard = () => {
     }
   };
 
+  const inputRef = useRef(null);
+
+  const handleModalOpen = () => {
+    setMatchurl('user/getMatches')
+    setModalOpen(true)
+    inputRef.current.value = ''
+  }
+
 
   return (
     <div className="myDashboard container">
@@ -241,6 +249,7 @@ const SearchBoard = () => {
                 placeholder="Search by using first name, last name and user id"
                 onChange={(e) => setSearchInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                ref={inputRef}
               />
               <button className="search_btn" onClick={() => handleSearch()}>
                 <svg
@@ -262,7 +271,7 @@ const SearchBoard = () => {
             </div>
             <button
               className="btn_advance_search"
-              onClick={() => setModalOpen(true)}
+              onClick={() => handleModalOpen()}
             >
               Advanced Search
             </button>

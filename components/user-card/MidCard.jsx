@@ -6,7 +6,7 @@ import { calculateAge } from '@/utils/calculateAge';
 import { heightCalculator } from '@/utils/heightCalculator';
 import { useSelector } from 'react-redux';
 
-const UserCard = (props) => {
+const MidCard = (props) => {
     const { userInfo } = useSelector((state) => state.user);
     const { profile, handleSendRequest, handleFriendsUpdate, handleFavorite } = props
 
@@ -14,12 +14,12 @@ const UserCard = (props) => {
         <>
             <Card shadow="sm" radius={10} className='user-card'>
                 <div className='card-avatar'>
-                    <Indicator inline size={27} offset={17} position="bottom-end" color={"rgba(0, 193, 119, 1)"} withBorder>
+                    <Indicator inline size={20} offset={14} position="bottom-end" color={"rgba(0, 193, 119, 1)"} withBorder>
                         {/* In active Color: rgba(0, 0, 0, 0.3) */}
                         <Avatar
-                            size={110}
+                            size={84}
                             radius={"50%"}
-                            src={profile?.profilePicture?.url?.small}
+                            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-3.png"
                         />
                     </Indicator>
                 </div>
@@ -52,7 +52,7 @@ const UserCard = (props) => {
                         <Divider size={1} color={"#00000026"} />
                         <Group className='card-group' pt={20}>
                             <div>
-                                <button className='btn-icon' style={{ marginRight: "7px" }} onClick={() => handleFavorite(profile?._id)}>
+                                <button className='btn-icon' style={{ marginRight: "7px" }}>
                                     {
                                         profile?.isFavourite ?
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@ const UserCard = (props) => {
                                 }
                             </div>
                             <div>
-                                {
+                                {/* {
                                     profile?.friendships !== null && profile?.friendships?.status === "accepted" ?
                                         <button className='btn-fill'>Send Message</button>
                                         :
@@ -96,11 +96,11 @@ const UserCard = (props) => {
                                                 </>
                                             }
                                         </>
-                                }
+                                } */}
 
-                                {/* <button className='btn-fill' style={{ marginRight: "8px" }}>Accept</button>
-                                <button className='btn-light'>Decline</button> */}
-                                {/* <button className='btn-fill'>Send Request</button> */}
+                                {/* <button className='btn-fill' style={{ marginRight: "8px" }}>Accept</button> */}
+                                {/* <button className='btn-light'>Decline</button> */}
+                                <button className='btn-fill'>Send Request</button>
                                 {/* <button className='btn-light'>Cancel Request</button> */}
                             </div>
                         </Group>
@@ -111,4 +111,4 @@ const UserCard = (props) => {
     )
 }
 
-export default UserCard
+export default MidCard

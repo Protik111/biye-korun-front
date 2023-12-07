@@ -1,35 +1,31 @@
 'use client'
-import React from "react";
-import { Button, Tabs, rem } from "@mantine/core";
-import {
-  IconPhoto,
-  IconMessageCircle,
-  IconSettings,
-} from "@tabler/icons-react";
+import React, { Suspense, useEffect, useState } from "react";
+import { Tabs } from "@mantine/core";
+
 import { MatchesCard } from "./MatchesCard";
-import TabBar from "../profile/TabBar";
-import { CiSearch } from "react-icons/ci";
-import AcceptedList from "../request/Accepted/AcceptedList";
 import axios from "axios";
+import { notifyError } from "@/utils/showNotification";
+import MidCard from "../user-card/MidCard";
+import CardSkeleton from "../global/CardSkeleton";
 
 const MatchesInfo = () => {
-  const tabs = ["Connection", "Accept Invitation", "New Visitor", "Online"]; // Replace with your tab names
-  const icons = [
-    "tab/deactive1.svg",
-    "tab/deactive2.svg",
-    "tab/deactive3.svg",
-    "tab/deactive4.svg",
-    "tab/deactive5.svg",
-    "tab/deactive6.svg",
-  ];
-  const activeIcons = [
-    "tab/active1.svg",
-    "tab/active2.svg",
-    "tab/active3.svg",
-    "tab/active4.svg",
-    "tab/active5.svg",
-    "tab/active6.svg",
-  ];
+  // const tabs = ["Connection", "Accept Invitation", "New Visitor", "Online"]; // Replace with your tab names
+  // const icons = [
+  //   "tab/deactive1.svg",
+  //   "tab/deactive2.svg",
+  //   "tab/deactive3.svg",
+  //   "tab/deactive4.svg",
+  //   "tab/deactive5.svg",
+  //   "tab/deactive6.svg",
+  // ];
+  // const activeIcons = [
+  //   "tab/active1.svg",
+  //   "tab/active2.svg",
+  //   "tab/active3.svg",
+  //   "tab/active4.svg",
+  //   "tab/active5.svg",
+  //   "tab/active6.svg",
+  // ];
 
   // const { data, error, loading, refetch } = useAxios(
   //   "user/connections"
@@ -45,39 +41,64 @@ const MatchesInfo = () => {
 
   // console.log(data, 'data from send')
 
+  const [friends, setFriends] = useState([])
+  const [pendingFriends, setPendingFriends] = useState([])
+  const [receiveFriends, setReceiveFriends] = useState([])
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    axios.get('/user/connections').then(res => {
+      setFriends(res.data)
+    })
+  }, [])
 
   const handleTabChange = async (tab) => {
-    // Handle tab change logic here
-    // console.log(`Selected tab: ${tab}`);
     if (tab === "friends") {
-      // sendPostRequest();
-      // getFriendsData()
-
-      const friends = await axios.get('/user/connections')
-
-      console.log(friends)
+      if (friends === null) {
+        setLoading(true)
+        const friends = await axios.get('/user/connections')
+        if (friends?.status === 200) {
+          setFriends(friends.data?.data)
+          setLoading(false)
+        } else {
+          notifyError("We're experiencing technical difficulties!")
+          setLoading(false)
+        }
+      }
     }
 
     if (tab === "sentRequest") {
-      // const { data, error, loading } = useAxiosPost('user/friendship/pending');
-      // getPendingFriends()
-      const pendingFriends = await axios.get('/user/friendship/pending')
-
-
-      console.log(pendingFriends)
+      if (pendingFriends === null) {
+        setLoading(true)
+        const pendingFriends = await axios.get('/user/friendship/pending')
+        if (pendingFriends?.status === 200) {
+          setPendingFriends(pendingFriends.data?.data)
+          setLoading(false)
+        } else {
+          notifyError("We're experiencing technical difficulties!")
+          setLoading(false)
+        }
+      }
     }
 
     if (tab === "receiveRequest") {
-      // const { data, error, loading } = useAxiosPost('user/friendship/accepted');
-      // getAcceptedFriends()
-      const acceptedFriends = await axios.get('/user/friendship/accepted')
-
-      console.log(acceptedFriends)
+      if (receiveFriends === null) {
+        setLoading(true)
+        const acceptedFriends = await axios.get('/user/friendship/accepted')
+        if (acceptedFriends?.status === 200) {
+          setReceiveFriends(acceptedFriends.data?.data)
+          setLoading(false)
+        } else {
+          notifyError("We're experiencing technical difficulties!")
+          setLoading(false)
+        }
+      }
     }
   };
 
   return (
-    <div className="dashboard_grid_right flex flex-column flex-gap-20 match_info">
+    <div className="flex flex-column match_info">
       <div className="match_info_title">
         <h1>Matches Information</h1>
         <div className="search-input-container">
@@ -108,14 +129,42 @@ const MatchesInfo = () => {
           </Tabs.List>
 
           <Tabs.Panel className="tabPanel" value="friends">
+            <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-30 px-30 pb-30">
+              <MidCard />
+              <MidCard />
+              <MidCard />
+              <MidCard />
+              <MidCard />
+              <MidCard />
+              {/* {
+                !loading && friends?.length > 0 ?
+                  friends?.map((profile, i) => <MidCard key={i} index={i} profile={profile} handleFavorite={handleFavorite} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
+                  :
+                  loading &&
+                  <>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                  </>
+              } */}
+            </div>
             {/* <AcceptedList /> */}
-            <MatchesCard />
+            {/* <MatchesCard /> */}
           </Tabs.Panel>
           <Tabs.Panel className="tabPanel" value="sentRequest">
-            <MatchesCard />
+            {/* <MatchesCard /> */}
           </Tabs.Panel>
           <Tabs.Panel className="tabPanel" value="receiveRequest">
-            <MatchesCard />
+            {/* <MatchesCard /> */}
           </Tabs.Panel>
 
         </Tabs>
