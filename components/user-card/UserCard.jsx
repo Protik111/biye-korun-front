@@ -27,7 +27,7 @@ const UserCard = (props) => {
                 <Card.Section className='card-section' px={20} py={20}>
                     <div className='card-content'>
                         <Group className='card-group'>
-                            <Text size={20} fw={600} color='black' pb={7}>{abbreviateName(profile?.firstName + " " + profile?.lastName)} <span className='userId'>#{profile?.userId}</span></Text>
+                            <Text size={20} fw={600} color='black' pb={7} tt={'capitalize'} >{profile?.fullName} <span className='userId'>#{profile?.userId}</span></Text>
                             {/* <Menu withinPortal position="bottom-end" shadow="sm">
                                 <Menu.Target>
                                     <ActionIcon variant="subtle" color="gray">

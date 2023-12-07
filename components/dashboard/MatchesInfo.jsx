@@ -48,54 +48,91 @@ const MatchesInfo = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     axios.get('/user/connections').then(res => {
-      setFriends(res.data)
+      if (res?.status === 200) {
+        setFriends(res.data?.data)
+        setLoading(false)
+        console.log(res.data?.data)
+      }
+    }).catch(err => {
+      setLoading(false)
+      notifyError("We're experiencing technical difficulties!")
+
     })
   }, [])
 
   const handleTabChange = async (tab) => {
     if (tab === "friends") {
-      if (friends === null) {
-        setLoading(true)
-        const friends = await axios.get('/user/connections')
-        if (friends?.status === 200) {
-          setFriends(friends.data?.data)
-          setLoading(false)
-        } else {
-          notifyError("We're experiencing technical difficulties!")
-          setLoading(false)
-        }
+      setLoading(true)
+      const friends = await axios.get('/user/connections')
+      if (friends?.status === 200) {
+        setFriends(friends.data?.data)
+        setLoading(false)
+        console.log(friends.data?.data)
+      } else {
+        notifyError("We're experiencing technical difficulties!")
+        setLoading(false)
       }
     }
 
     if (tab === "sentRequest") {
-      if (pendingFriends === null) {
-        setLoading(true)
-        const pendingFriends = await axios.get('/user/friendship/pending')
-        if (pendingFriends?.status === 200) {
-          setPendingFriends(pendingFriends.data?.data)
-          setLoading(false)
-        } else {
-          notifyError("We're experiencing technical difficulties!")
-          setLoading(false)
-        }
+      setLoading(true)
+      const pendingFriends = await axios.get('/user/invitefriendship/pending')
+      if (pendingFriends?.status === 200) {
+        setPendingFriends(pendingFriends.data?.data)
+        setLoading(false)
+      } else {
+        notifyError("We're experiencing technical difficulties!")
+        setLoading(false)
       }
     }
 
     if (tab === "receiveRequest") {
-      if (receiveFriends === null) {
-        setLoading(true)
-        const acceptedFriends = await axios.get('/user/friendship/accepted')
-        if (acceptedFriends?.status === 200) {
-          setReceiveFriends(acceptedFriends.data?.data)
-          setLoading(false)
-        } else {
-          notifyError("We're experiencing technical difficulties!")
-          setLoading(false)
-        }
+      setLoading(true)
+      const acceptedFriends = await axios.get('/user/friendship/pending')
+      if (acceptedFriends?.status === 200) {
+        setReceiveFriends(acceptedFriends.data?.data)
+        setLoading(false)
+      } else {
+        notifyError("We're experiencing technical difficulties!")
+        setLoading(false)
       }
     }
   };
+
+
+  const handleSendRequest = (userId) => {
+    axios.post('/user/single-invite', { recipient: userId }).then(res => {
+      if (res.status === 200) {
+
+      }
+    }).catch(err => {
+      notifyInfo("Friend request failed, Try again.")
+    })
+  }
+
+  const handleFriendsUpdate = (friendshipId, status) => {
+    axios.patch('/user/updatefriends', { status: status, friendshipId: friendshipId }).then(res => {
+      if (res.status === 200) {
+
+      }
+    }).catch(err => {
+      notifyInfo(`Friend request ${status} failed, Try again.`)
+    })
+  }
+
+  const handleFavorite = (userId) => {
+    axios.post('/user/favourite', { userId }).then(res => {
+      if (res.status === 200) {
+
+
+      }
+    }).catch(err => {
+      notifyInfo(`Add/Remove Favorite failed`);
+    })
+  }
+
 
   return (
     <div className="flex flex-column match_info">
@@ -130,13 +167,7 @@ const MatchesInfo = () => {
 
           <Tabs.Panel className="tabPanel" value="friends">
             <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-30 px-30 pb-30">
-              <MidCard />
-              <MidCard />
-              <MidCard />
-              <MidCard />
-              <MidCard />
-              <MidCard />
-              {/* {
+              {
                 !loading && friends?.length > 0 ?
                   friends?.map((profile, i) => <MidCard key={i} index={i} profile={profile} handleFavorite={handleFavorite} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
                   :
@@ -155,16 +186,56 @@ const MatchesInfo = () => {
                       <CardSkeleton></CardSkeleton>
                     </div>
                   </>
-              } */}
+              }
             </div>
-            {/* <AcceptedList /> */}
-            {/* <MatchesCard /> */}
           </Tabs.Panel>
           <Tabs.Panel className="tabPanel" value="sentRequest">
-            {/* <MatchesCard /> */}
+            <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-30 px-30 pb-30">
+              {
+                !loading && pendingFriends?.length > 0 ?
+                  pendingFriends?.map((profile, i) => <MidCard key={i} index={i} profile={profile} handleFavorite={handleFavorite} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
+                  :
+                  loading &&
+                  <>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                  </>
+              }
+            </div>
           </Tabs.Panel>
           <Tabs.Panel className="tabPanel" value="receiveRequest">
-            {/* <MatchesCard /> */}
+            <div className="grid grid-cols-2 grid-cols-2-responsive grid-gap-30 px-30 pb-30">
+              {
+                !loading && receiveFriends?.length > 0 ?
+                  receiveFriends?.map((profile, i) => <MidCard key={i} index={i} profile={profile} handleFavorite={handleFavorite} handleSendRequest={handleSendRequest} handleFriendsUpdate={handleFriendsUpdate} />)
+                  :
+                  loading &&
+                  <>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                    <div className="container-box-bg p-30 mt-20 ">
+                      <CardSkeleton></CardSkeleton>
+                    </div>
+                  </>
+              }
+            </div>
           </Tabs.Panel>
 
         </Tabs>

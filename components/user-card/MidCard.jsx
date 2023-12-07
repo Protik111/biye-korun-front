@@ -19,7 +19,7 @@ const MidCard = (props) => {
                         <Avatar
                             size={84}
                             radius={"50%"}
-                            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-3.png"
+                            src={profile?.profilePicture?.url?.small}
                         />
                     </Indicator>
                 </div>
@@ -75,7 +75,7 @@ const MidCard = (props) => {
                                 }
                             </div>
                             <div>
-                                {/* {
+                                {
                                     profile?.friendships !== null && profile?.friendships?.status === "accepted" ?
                                         <button className='btn-fill'>Send Message</button>
                                         :
@@ -96,11 +96,11 @@ const MidCard = (props) => {
                                                 </>
                                             }
                                         </>
-                                } */}
+                                }
 
                                 {/* <button className='btn-fill' style={{ marginRight: "8px" }}>Accept</button> */}
                                 {/* <button className='btn-light'>Decline</button> */}
-                                <button className='btn-fill'>Send Request</button>
+                                {/* <button className='btn-fill'>Send Request</button> */}
                                 {/* <button className='btn-light'>Cancel Request</button> */}
                             </div>
                         </Group>
