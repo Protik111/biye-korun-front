@@ -66,12 +66,13 @@ const AdvancedSearch = ({
               >
                 <Group mt="xs" className="flex-column align-start">
                   <Radio color="pink" value="all" label="All" />
-                  <Radio color="pink" value="Hinduism" label="Hinduism" />
+                  <Radio color="pink" value="Islam" label="Islam" />
                   <Radio
                     color="pink"
-                    value="Christianity"
-                    label="Christianity"
+                    value="Hinduism"
+                    label="Hinduism"
                   />
+                  <Radio color="pink" value="Christianity" label="Christianity" />
                   <Radio color="pink" value="Buddhism" label="Buddhism" />
                   <Radio color="pink" value="Judaism" label="Judaism" />
                   <Radio color="pink" value="Others" label="Others" />
@@ -81,11 +82,11 @@ const AdvancedSearch = ({
               <Divider my={10}></Divider>
 
               <Checkbox.Group
-                onChange={(e) => handleInputChange("maritalStatus", e)}
-                name="maritalStatus"
-                defaultValue={["All"]}
+                onChange={(e) => handleInputChange("marital", e)}
+                name="marital"
+                defaultValue={["all"]}
                 label="Marital Status"
-                value={filterData.maritalStatus}
+                value={filterData.marital}
               >
                 <Group mt="xs" className="flex-column align-start">
                   <Checkbox color="pink" value="all" label="All" />
@@ -115,11 +116,11 @@ const AdvancedSearch = ({
                 radius="xl"
                 size="md"
                 placeholder="Select language"
-                label="Language"
+                label="Native Language"
                 data={communities}
-                value={filterData.motherTongue}
-                name="motherTongue"
-                onChange={(event) => handleInputChange("motherTongue", event)}
+                value={filterData.nativeLanguage}
+                name="nativeLanguage"
+                onChange={(event) => handleInputChange("nativeLanguage", event)}
                 searchable
               />
               <br />

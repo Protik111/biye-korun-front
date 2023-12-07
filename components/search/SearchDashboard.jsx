@@ -53,7 +53,7 @@ const SearchBoard = () => {
   const [filterData, setFilterData] = useState({
     marital: ["all"],
     religion: "",
-    motherTongue: [],
+    nativeLanguage: [],
     country: [],
     education: [],
     query: ''
