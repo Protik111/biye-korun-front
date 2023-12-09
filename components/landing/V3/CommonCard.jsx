@@ -12,13 +12,15 @@ const CommonCard = ({ width, buttonColor, title, description, buttonText }) => {
         <h2 className="mb-20 heading2V3">{title}</h2>
         <p className="paragraphV3">{description}</p>
         {buttonText?.length > 3 && (
-          <Link href="/login">
-            <button
-              className={`secondary-btn-v3 mb-10 mt-30 ${buttonColor} flex justify-center align-center flex-gap-5`}
-            >
-              {buttonText} <BsArrowRight></BsArrowRight>
-            </button>
-          </Link>
+          <div className="btn-container">
+            <Link href="/login">
+              <button
+                className={`secondary-btn-v3 mb-10 mt-30 ${buttonColor} flex justify-center align-center flex-gap-5`}
+              >
+                {buttonText} <BsArrowRight></BsArrowRight>
+              </button>
+            </Link>
+          </div>
         )}
       </div>
     </div>

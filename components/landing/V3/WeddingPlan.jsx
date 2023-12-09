@@ -11,9 +11,11 @@ const WeddingPlan = () => {
           on your engagement! Planning your wedding is an exciting journey, and
           We are here to help you get started.
         </p>
-        <Link href="/login">
-          <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
-        </Link>
+        <div className="btn-container">
+          <Link href="/login">
+            <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
+          </Link>
+        </div>
       </div>
       <div className="honeymoon--right ">
         <div className="flex flex-gap-10  images responsive_img_part">

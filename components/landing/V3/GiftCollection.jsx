@@ -44,9 +44,11 @@ const GiftCollection = () => {
           BiyeKorun allows you to collect gifts and organize them from your
           BiyeKorun App.
         </p>
-        <Link href="/login">
-          <button className="primary-btn-v3 mt-25">Learn More &rarr;</button>
-        </Link>
+        <div className="btn-container">
+          <Link href="/login">
+            <button className="primary-btn-v3 mt-25">Learn More &rarr;</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

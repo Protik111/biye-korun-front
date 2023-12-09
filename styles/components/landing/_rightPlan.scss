@@ -19,13 +19,15 @@
         margin-top: 15px;
       }
 
+      @include getDown(600px) {
+        padding: 25px 15px;
+      }
+
       .list-container {
         background: linear-gradient(0deg, #f5f5f5, #f5f5f5),
-          linear-gradient(
-            0deg,
+          linear-gradient(0deg,
             rgba(255, 255, 255, 0.15),
-            rgba(255, 255, 255, 0.15)
-          );
+            rgba(255, 255, 255, 0.15));
         // padding: 20px;
         height: 75%;
         border-radius: 10px;
@@ -78,11 +80,13 @@
           }
         }
       }
+
       .list-container2 {
         @include getDown(600px) {
           height: 71%;
         }
       }
+
       button {
         margin: 15px 0;
         background-color: white;
@@ -116,6 +120,7 @@
           font-weight: 600;
           line-height: 19.36px;
           cursor: pointer !important;
+          margin: 15px 0;
         }
       }
     }
@@ -142,16 +147,12 @@
       }
 
       .list-container {
-        background: linear-gradient(
-            0deg,
+        background: linear-gradient(0deg,
             rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.1)
-          ),
-          linear-gradient(
-            0deg,
+            rgba(255, 255, 255, 0.1)),
+          linear-gradient(0deg,
             rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.1)
-          );
+            rgba(255, 255, 255, 0.1));
 
         h3 {
           font-family: "Inter", sans-serif;

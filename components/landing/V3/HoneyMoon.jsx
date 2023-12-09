@@ -12,9 +12,11 @@ const HoneyMoon = () => {
           one-stop solutions can be incredibly convenient for couples looking to
           have a stress-free and enjoyable honeymoon.
         </p>
-        <Link href="/login">
-          <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
-        </Link>
+        <div className="btn-container">
+          <Link href="/login">
+            <button className="secondary-btn-v3 mt-25">Learn More &rarr;</button>
+          </Link>
+        </div>
       </div>
       <div className="honeymoon--right">
         <div className="flex flex-gap-20 images">

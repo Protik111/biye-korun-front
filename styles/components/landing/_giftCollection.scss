@@ -11,6 +11,7 @@
   @include mdMaxBreakPoint {
     margin-top: 30px;
   }
+
   @include getDown(600px) {
     .gift_item-1 {
       order: 2;
@@ -92,6 +93,11 @@
 
     @include mdMaxBreakPoint {
       padding: 10px;
+
+      .btn-container {
+        display: flex !important;
+        justify-content: center !important;
+      }
     }
   }
 }
